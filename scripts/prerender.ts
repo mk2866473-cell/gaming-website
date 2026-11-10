@@ -109,7 +109,7 @@ function renderFooter(): string {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
         <div>
           <div class="flex items-center gap-2 mb-3">
-            <span class="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center font-black text-emerald-400 text-xs">G</span>
+            <span class="w-7 h-7 rounded-lg bg-violet-500/10 border border-violet-500/30 flex items-center justify-center font-black text-violet-400 text-xs">G</span>
             <span class="font-bold text-white text-sm">GamingToolsHub</span>
           </div>
           <p class="text-slate-500 leading-relaxed text-xs">High-performance gaming calculators, circle generators, nether portal math, and conversion engines built for precision gameplay with zero server lag.</p>
@@ -117,32 +117,32 @@ function renderFooter(): string {
         <div>
           <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px] mb-3">Game Hubs</h4>
           <ul class="space-y-2">
-            <li><a href="/games/minecraft" class="hover:text-emerald-400 transition-colors">Minecraft Tools & Circle Generator</a></li>
-            <li><a href="/games/roblox" class="hover:text-emerald-400 transition-colors">Roblox Robux Tax & DevEx</a></li>
-            <li><a href="/games/fortnite" class="hover:text-emerald-400 transition-colors">Fortnite Battle Pass XP & Sens</a></li>
-            <li><a href="/games/pokemongo" class="hover:text-emerald-400 transition-colors">Pokémon GO CP, IV & Evolutions</a></li>
-            <li><a href="/games/palworld" class="hover:text-emerald-400 transition-colors">Palworld Breeding & Stats</a></li>
-            <li><a href="/games/genshin" class="hover:text-emerald-400 transition-colors">Genshin Impact Wish Pity & Resin</a></li>
+            <li><a href="/games/minecraft" class="hover:text-violet-400 transition-colors">Minecraft Tools & Circle Generator</a></li>
+            <li><a href="/games/roblox" class="hover:text-violet-400 transition-colors">Roblox Robux Tax & DevEx</a></li>
+            <li><a href="/games/fortnite" class="hover:text-violet-400 transition-colors">Fortnite Battle Pass XP & Sens</a></li>
+            <li><a href="/games/pokemongo" class="hover:text-violet-400 transition-colors">Pokémon GO CP, IV & Evolutions</a></li>
+            <li><a href="/games/palworld" class="hover:text-violet-400 transition-colors">Palworld Breeding & Stats</a></li>
+            <li><a href="/games/genshin" class="hover:text-violet-400 transition-colors">Genshin Impact Wish Pity & Resin</a></li>
           </ul>
         </div>
         <div>
           <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px] mb-3">Popular Calculators</h4>
           <ul class="space-y-2">
-            <li><a href="/tools/minecraft-circle-generator" class="hover:text-emerald-400 transition-colors">Minecraft Circle Generator</a></li>
-            <li><a href="/tools/minecraft-3d-portal-linker" class="hover:text-emerald-400 transition-colors">Nether Portal 3D Linker</a></li>
-            <li><a href="/tools/roblox-tax-calculator" class="hover:text-emerald-400 transition-colors">Robux 30% Tax Calculator</a></li>
-            <li><a href="/tools/robux-to-usd-calculator" class="hover:text-emerald-400 transition-colors">DevEx USD Cashout Calculator</a></li>
-            <li><a href="/tools/pokemon-go-cp-calculator" class="hover:text-emerald-400 transition-colors">Pokémon GO CP Calculator</a></li>
-            <li><a href="/tools/palworld-breeding-calculator" class="hover:text-emerald-400 transition-colors">Palworld Breeding Calculator</a></li>
+            <li><a href="/tools/minecraft-circle-generator" class="hover:text-violet-400 transition-colors">Minecraft Circle Generator</a></li>
+            <li><a href="/tools/minecraft-3d-portal-linker" class="hover:text-violet-400 transition-colors">Nether Portal 3D Linker</a></li>
+            <li><a href="/tools/roblox-tax-calculator" class="hover:text-violet-400 transition-colors">Robux 30% Tax Calculator</a></li>
+            <li><a href="/tools/robux-to-usd-calculator" class="hover:text-violet-400 transition-colors">DevEx USD Cashout Calculator</a></li>
+            <li><a href="/tools/pokemon-go-cp-calculator" class="hover:text-violet-400 transition-colors">Pokémon GO CP Calculator</a></li>
+            <li><a href="/tools/palworld-breeding-calculator" class="hover:text-violet-400 transition-colors">Palworld Breeding Calculator</a></li>
           </ul>
         </div>
         <div>
           <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px] mb-3">Information & Legal</h4>
           <ul class="space-y-2">
-            <li><a href="/about" class="hover:text-emerald-400 transition-colors">About Us</a></li>
-            <li><a href="/privacy" class="hover:text-emerald-400 transition-colors">Privacy Policy</a></li>
-            <li><a href="/terms" class="hover:text-emerald-400 transition-colors">Terms of Service</a></li>
-            <li><a href="/disclaimer" class="hover:text-emerald-400 transition-colors">Disclaimer & Trademark Notices</a></li>
+            <li><a href="/about" class="hover:text-violet-400 transition-colors">About Us</a></li>
+            <li><a href="/privacy" class="hover:text-violet-400 transition-colors">Privacy Policy</a></li>
+            <li><a href="/terms" class="hover:text-violet-400 transition-colors">Terms of Service</a></li>
+            <li><a href="/disclaimer" class="hover:text-violet-400 transition-colors">Disclaimer & Trademark Notices</a></li>
           </ul>
         </div>
       </div>
@@ -281,23 +281,23 @@ TOOLS.forEach(tool => {
 
   // Build rich pre-rendered HTML body content
   const prerenderedBody = `
-    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-violet-500 selection:text-black">
       <div>
         <!-- Static Top Navigation Header -->
         <header class="sticky top-0 z-50 w-full border-b border-slate-800/80 bg-[#080c14]/95 backdrop-blur-md">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 gap-4">
               <a href="/" class="flex items-center gap-2.5 group">
-                <span class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center font-black text-emerald-400 text-sm">G</span>
-                <span class="font-extrabold text-base tracking-tight text-white">GamingTools<span class="text-emerald-400">Hub</span></span>
+                <span class="w-8 h-8 rounded-lg bg-violet-500/10 border border-violet-500/30 flex items-center justify-center font-black text-violet-400 text-sm">G</span>
+                <span class="font-extrabold text-base tracking-tight text-white">GamingTools<span class="text-violet-400">Hub</span></span>
               </a>
               <nav class="hidden md:flex items-center gap-6 text-xs text-slate-300">
-                <a href="/tools" class="hover:text-emerald-400">All Tools</a>
-                <a href="/games/minecraft" class="hover:text-emerald-400">Minecraft</a>
-                <a href="/games/roblox" class="hover:text-emerald-400">Roblox</a>
-                <a href="/games/fortnite" class="hover:text-emerald-400">Fortnite</a>
-                <a href="/games/pokemongo" class="hover:text-emerald-400">Pokémon GO</a>
-                <a href="/games/palworld" class="hover:text-emerald-400">Palworld</a>
+                <a href="/tools" class="hover:text-violet-400">All Tools</a>
+                <a href="/games/minecraft" class="hover:text-violet-400">Minecraft</a>
+                <a href="/games/roblox" class="hover:text-violet-400">Roblox</a>
+                <a href="/games/fortnite" class="hover:text-violet-400">Fortnite</a>
+                <a href="/games/pokemongo" class="hover:text-violet-400">Pokémon GO</a>
+                <a href="/games/palworld" class="hover:text-violet-400">Palworld</a>
               </nav>
             </div>
           </div>
@@ -309,9 +309,9 @@ TOOLS.forEach(tool => {
             <!-- Breadcrumbs -->
             <nav aria-label="Breadcrumb" class="mb-4">
               <ol class="flex items-center flex-wrap gap-1.5 text-xs text-zinc-400">
-                <li><a href="/" class="hover:text-emerald-400 transition-colors py-1">Home</a></li>
+                <li><a href="/" class="hover:text-violet-400 transition-colors py-1">Home</a></li>
                 <li class="text-zinc-600">/</li>
-                <li><a href="${gamePath}" class="hover:text-emerald-400 transition-colors py-1">${escapeHtml(gameName)}</a></li>
+                <li><a href="${gamePath}" class="hover:text-violet-400 transition-colors py-1">${escapeHtml(gameName)}</a></li>
                 <li class="text-zinc-600">/</li>
                 <li><span class="text-zinc-200 font-medium">${escapeHtml(tool.name)}</span></li>
               </ol>
@@ -320,9 +320,9 @@ TOOLS.forEach(tool => {
             <!-- H1 & Description -->
             <div class="pb-4 border-b border-zinc-800">
               <div class="flex items-center gap-2 mb-2 text-xs font-mono">
-                <a href="${gamePath}" class="text-slate-300 hover:text-emerald-400 font-semibold">${escapeHtml(gameName)}</a>
+                <a href="${gamePath}" class="text-slate-300 hover:text-violet-400 font-semibold">${escapeHtml(gameName)}</a>
                 <span class="text-slate-600">·</span>
-                <span class="text-emerald-400">${escapeHtml(tool.badge || 'Universal')}</span>
+                <span class="text-violet-400">${escapeHtml(tool.badge || 'Universal')}</span>
                 <span class="text-slate-600">·</span>
                 <span class="text-slate-500">Verified Engine</span>
               </div>
@@ -349,7 +349,7 @@ TOOLS.forEach(tool => {
               </p>
               <div class="pt-2">
                 <div class="w-full sm:w-auto inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-violet-600/20 border border-violet-500/40 text-violet-300 text-xs sm:text-sm font-semibold">
-                  <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span class="inline-block w-2.5 h-2.5 rounded-full bg-violet-400 animate-pulse"></span>
                   <span>Interactive Engine Ready</span>
                 </div>
               </div>
@@ -362,7 +362,7 @@ TOOLS.forEach(tool => {
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 ${tool.howToGuide.steps.map((step, idx) => `
                   <div class="bg-[#090d16] border border-slate-800/90 rounded-xl p-4 flex gap-3.5">
-                    <span class="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono font-bold text-xs flex items-center justify-center flex-shrink-0">${idx + 1}</span>
+                    <span class="w-7 h-7 rounded-lg bg-violet-500/10 border border-violet-500/30 text-violet-400 font-mono font-bold text-xs flex items-center justify-center flex-shrink-0">${idx + 1}</span>
                     <div>
                       <h3 class="text-xs font-bold text-slate-200 mb-1">${escapeHtml(step.title)}</h3>
                       <p class="text-xs text-slate-400 leading-relaxed">${escapeHtml(step.description)}</p>
@@ -390,7 +390,7 @@ TOOLS.forEach(tool => {
                 ${workedExamples.map((ex, idx) => `
                   <div class="bg-[#090d16] border border-slate-800/90 rounded-xl p-5 space-y-3.5">
                     <h3 class="text-sm font-bold text-slate-100 flex items-center gap-2">
-                      <span class="w-5 h-5 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center justify-center font-mono">${idx + 1}</span>
+                      <span class="w-5 h-5 rounded-md bg-violet-500/10 border border-violet-500/30 text-violet-400 text-xs flex items-center justify-center font-mono">${idx + 1}</span>
                       ${escapeHtml(ex.title)}
                     </h3>
                     <p class="text-xs text-slate-400 leading-relaxed"><strong class="text-slate-300">Scenario: </strong>${escapeHtml(ex.scenario)}</p>
@@ -399,8 +399,8 @@ TOOLS.forEach(tool => {
                       <code>${escapeHtml(ex.calculation)}</code>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                      <div class="bg-emerald-950/20 border border-emerald-500/30 rounded-lg p-3">
-                        <span class="text-[10px] uppercase font-bold text-emerald-400 tracking-wider block mb-0.5">In-Game Result</span>
+                      <div class="bg-violet-950/20 border border-violet-500/30 rounded-lg p-3">
+                        <span class="text-[10px] uppercase font-bold text-violet-400 tracking-wider block mb-0.5">In-Game Result</span>
                         <span class="text-xs text-slate-200 font-semibold">${escapeHtml(ex.result)}</span>
                       </div>
                       <div class="bg-amber-950/20 border border-amber-500/30 rounded-lg p-3">
@@ -441,7 +441,7 @@ TOOLS.forEach(tool => {
             <section class="bg-gradient-to-r from-[#0d1627] to-[#0a101d] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4">
               <h2 class="text-lg sm:text-xl font-bold text-white">Explore all ${escapeHtml(gameName)} Calculators & Tools</h2>
               <p class="text-xs text-slate-400 max-w-xl">Access the full suite of ${escapeHtml(gameName)} utilities, builders, conversion charts, and calculators in our dedicated game center.</p>
-              <a href="${gamePath}" class="inline-block px-4 py-2 bg-emerald-500 text-black font-semibold text-xs rounded-xl hover:bg-emerald-400 transition-all">Visit ${escapeHtml(gameName)} Hub →</a>
+              <a href="${gamePath}" class="inline-block px-4 py-2 bg-violet-500 text-black font-semibold text-xs rounded-xl hover:bg-violet-400 transition-all">Visit ${escapeHtml(gameName)} Hub →</a>
             </section>
           </div>
         </main>
@@ -525,24 +525,24 @@ function generateToolsDirectoryHtml(): string {
           <div>
             <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
               <span>${escapeHtml(game.name)}</span>
-              <span class="text-xs font-mono font-medium text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">${gameTools.length} Tools</span>
+              <span class="text-xs font-mono font-medium text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded-md border border-violet-500/20">${gameTools.length} Tools</span>
             </h2>
             <p class="text-xs sm:text-sm text-slate-400 mt-0.5">${escapeHtml(game.description)}</p>
           </div>
-          <a href="/games/${game.slug}" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1">Hub Page →</a>
+          <a href="/games/${game.slug}" class="text-xs font-semibold text-violet-400 hover:text-violet-300 flex items-center gap-1">Hub Page →</a>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           ${gameTools.map(tool => `
-            <a href="/tools/${tool.slug}" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-4 transition-all duration-200 flex flex-col justify-between">
+            <a href="/tools/${tool.slug}" class="group bg-[#0e1422] border border-slate-800 hover:border-violet-500/50 rounded-xl p-4 transition-all duration-200 flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between gap-2 mb-2">
-                  <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">${escapeHtml(tool.badge || 'Tool')}</span>
+                  <span class="text-xs font-mono font-semibold text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded border border-violet-500/20">${escapeHtml(tool.badge || 'Tool')}</span>
                   <span class="text-[11px] text-slate-500 font-mono">${escapeHtml(tool.userCount || '10k+')} users</span>
                 </div>
-                <h3 class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors mb-1.5">${escapeHtml(tool.name)}</h3>
+                <h3 class="text-sm font-bold text-white group-hover:text-violet-400 transition-colors mb-1.5">${escapeHtml(tool.name)}</h3>
                 <p class="text-xs text-slate-400 leading-relaxed line-clamp-2">${escapeHtml(tool.shortDescription || tool.description)}</p>
               </div>
-              <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+              <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-violet-400">
                 <span>Launch Calculator</span>
                 <span>→</span>
               </div>
@@ -554,19 +554,19 @@ function generateToolsDirectoryHtml(): string {
   });
 
   return `
-    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-violet-500 selection:text-black">
       <div>
         ${renderNavHeader('/tools')}
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-10">
           <nav aria-label="Breadcrumb" class="mb-4">
             <ol class="flex items-center gap-1.5 text-xs text-zinc-400">
-              <li><a href="/" class="hover:text-emerald-400 transition-colors">Home</a></li>
+              <li><a href="/" class="hover:text-violet-400 transition-colors">Home</a></li>
               <li class="text-zinc-600">/</li>
               <li><span class="text-zinc-200 font-medium">All Tools</span></li>
             </ol>
           </nav>
           <div class="pb-6 border-b border-zinc-800">
-            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold block mb-2">Comprehensive Directory</span>
+            <span class="text-xs font-mono text-violet-400 uppercase tracking-widest font-semibold block mb-2">Comprehensive Directory</span>
             <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">All Gaming Calculators, Generators & Precision Tools</h1>
             <p class="text-sm sm:text-base text-zinc-400 mt-3 max-w-3xl leading-relaxed">
               Explore our complete library of over ${TOOLS.length} specialized gaming calculators, voxel circle generators, nether portal 3D coordinate translators, XP pacers, and economic converters. Engineered with client-side computation for instantaneous results, zero latency, and 100% data privacy.
@@ -601,10 +601,10 @@ function generateGamesHubPageHtml(): string {
     const gameTools = TOOLS.filter(t => t.gameId === game.id);
     const topTools = gameTools.slice(0, 4);
     return `
-      <div class="bg-[#0e1422] border border-slate-800 hover:border-emerald-500/40 rounded-2xl p-6 transition-all flex flex-col justify-between">
+      <div class="bg-[#0e1422] border border-slate-800 hover:border-violet-500/40 rounded-2xl p-6 transition-all flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/30">${gameTools.length} Calculators</span>
+            <span class="text-xs font-mono font-bold text-violet-400 bg-violet-500/10 px-2.5 py-1 rounded-lg border border-violet-500/30">${gameTools.length} Calculators</span>
             <span class="text-xs font-mono text-slate-500 uppercase tracking-widest">${escapeHtml(game.shortName)}</span>
           </div>
           <h2 class="text-xl font-bold text-white mb-2">${escapeHtml(game.name)}</h2>
@@ -612,14 +612,14 @@ function generateGamesHubPageHtml(): string {
           <div class="space-y-2 pt-2 border-t border-slate-800/70">
             <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 block">Featured Tools:</span>
             ${topTools.map(tool => `
-              <a href="/tools/${tool.slug}" class="block text-xs font-medium text-slate-300 hover:text-emerald-400 transition-colors py-0.5 truncate">
+              <a href="/tools/${tool.slug}" class="block text-xs font-medium text-slate-300 hover:text-violet-400 transition-colors py-0.5 truncate">
                 • ${escapeHtml(tool.name)}
               </a>
             `).join('')}
           </div>
         </div>
         <div class="mt-6 pt-4 border-t border-slate-800/80">
-          <a href="/games/${game.slug}" class="w-full text-center block px-4 py-2 bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-black font-semibold text-xs rounded-xl transition-all">
+          <a href="/games/${game.slug}" class="w-full text-center block px-4 py-2 bg-violet-500/10 hover:bg-violet-500 text-violet-400 hover:text-black font-semibold text-xs rounded-xl transition-all">
             Open ${escapeHtml(game.name)} Hub (${gameTools.length} Tools) →
           </a>
         </div>
@@ -628,19 +628,19 @@ function generateGamesHubPageHtml(): string {
   }).join('');
 
   return `
-    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-violet-500 selection:text-black">
       <div>
         ${renderNavHeader('/games')}
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-10">
           <nav aria-label="Breadcrumb" class="mb-4">
             <ol class="flex items-center gap-1.5 text-xs text-zinc-400">
-              <li><a href="/" class="hover:text-emerald-400 transition-colors">Home</a></li>
+              <li><a href="/" class="hover:text-violet-400 transition-colors">Home</a></li>
               <li class="text-zinc-600">/</li>
               <li><span class="text-zinc-200 font-medium">Games</span></li>
             </ol>
           </nav>
           <div class="pb-6 border-b border-zinc-800">
-            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold block mb-2">Game Knowledge Centers</span>
+            <span class="text-xs font-mono text-violet-400 uppercase tracking-widest font-semibold block mb-2">Game Knowledge Centers</span>
             <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Gaming Hubs & Tool Suites by Game</h1>
             <p class="text-sm sm:text-base text-zinc-400 mt-3 max-w-3xl leading-relaxed">
               Access comprehensive toolkits and math engines organized by game. Whether you are calculating 8:1 nether portal coordinates in Minecraft, calculating the 30% developer tax in Roblox, planning season Battle Pass XP in Fortnite, evaluating Pokémon GO PvP IV stat products, or finding Palworld CombiRank breeding combos.
@@ -672,7 +672,7 @@ function generateCategoriesPageHtml(): string {
         <div class="border-b border-slate-800 pb-3">
           <div class="flex items-center gap-3">
             <h2 class="text-xl sm:text-2xl font-bold text-white">${escapeHtml(category.name)}</h2>
-            <span class="text-xs font-mono font-medium text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">${categoryTools.length} Utilities</span>
+            <span class="text-xs font-mono font-medium text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded-md border border-violet-500/20">${categoryTools.length} Utilities</span>
           </div>
           <p class="text-xs sm:text-sm text-slate-400 mt-1">${escapeHtml(category.description)}</p>
         </div>
@@ -680,16 +680,16 @@ function generateCategoriesPageHtml(): string {
           ${categoryTools.map(tool => {
             const game = getGameById(tool.gameId);
             return `
-              <a href="/tools/${tool.slug}" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-4 transition-all flex flex-col justify-between">
+              <a href="/tools/${tool.slug}" class="group bg-[#0e1422] border border-slate-800 hover:border-violet-500/50 rounded-xl p-4 transition-all flex flex-col justify-between">
                 <div>
                   <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="text-[11px] font-mono text-slate-400">${escapeHtml(game?.name || 'Universal')}</span>
-                    <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">${escapeHtml(tool.badge || 'Tool')}</span>
+                    <span class="text-xs font-mono text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded border border-violet-500/20">${escapeHtml(tool.badge || 'Tool')}</span>
                   </div>
-                  <h3 class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors mb-1.5">${escapeHtml(tool.name)}</h3>
+                  <h3 class="text-sm font-bold text-white group-hover:text-violet-400 transition-colors mb-1.5">${escapeHtml(tool.name)}</h3>
                   <p class="text-xs text-slate-400 leading-relaxed line-clamp-2">${escapeHtml(tool.shortDescription || tool.description)}</p>
                 </div>
-                <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-violet-400">
                   <span>Open Tool</span>
                   <span>→</span>
                 </div>
@@ -702,19 +702,19 @@ function generateCategoriesPageHtml(): string {
   }).join('');
 
   return `
-    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-violet-500 selection:text-black">
       <div>
         ${renderNavHeader('/categories')}
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-10">
           <nav aria-label="Breadcrumb" class="mb-4">
             <ol class="flex items-center gap-1.5 text-xs text-zinc-400">
-              <li><a href="/" class="hover:text-emerald-400 transition-colors">Home</a></li>
+              <li><a href="/" class="hover:text-violet-400 transition-colors">Home</a></li>
               <li class="text-zinc-600">/</li>
               <li><span class="text-zinc-200 font-medium">Categories</span></li>
             </ol>
           </nav>
           <div class="pb-6 border-b border-zinc-800">
-            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold block mb-2">Functionality Directory</span>
+            <span class="text-xs font-mono text-violet-400 uppercase tracking-widest font-semibold block mb-2">Functionality Directory</span>
             <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Gaming Tools by Category – Calculators, Generators & Planners</h1>
             <p class="text-sm sm:text-base text-zinc-400 mt-3 max-w-3xl leading-relaxed">
               Browse precision gaming tools organized by operational function. Whether you need mathematical calculators for in-game economy, voxel blueprint generators for architectural projects, coordinate converters, progression planners, or randomized decision wheels, find the exact utility for your gaming session below.
@@ -742,22 +742,22 @@ function generateSingleGameHubHtml(gameId: string): string {
   const gameTools = TOOLS.filter(t => t.gameId === gameId);
 
   return `
-    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-violet-500 selection:text-black">
       <div>
         ${renderNavHeader(game.slug)}
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-10">
           <nav aria-label="Breadcrumb" class="mb-4">
             <ol class="flex items-center gap-1.5 text-xs text-zinc-400">
-              <li><a href="/" class="hover:text-emerald-400 transition-colors">Home</a></li>
+              <li><a href="/" class="hover:text-violet-400 transition-colors">Home</a></li>
               <li class="text-zinc-600">/</li>
-              <li><a href="/games" class="hover:text-emerald-400 transition-colors">Games</a></li>
+              <li><a href="/games" class="hover:text-violet-400 transition-colors">Games</a></li>
               <li class="text-zinc-600">/</li>
               <li><span class="text-zinc-200 font-medium">${escapeHtml(game.name)}</span></li>
             </ol>
           </nav>
           <div class="pb-6 border-b border-zinc-800">
             <div class="flex items-center gap-2 mb-2 text-xs font-mono">
-              <span class="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">${gameTools.length} Verified Tools</span>
+              <span class="text-violet-400 font-bold bg-violet-500/10 px-2 py-0.5 rounded border border-violet-500/20">${gameTools.length} Verified Tools</span>
               <span class="text-slate-600">·</span>
               <span class="text-slate-400">Zero Server Lag</span>
               <span class="text-slate-600">·</span>
@@ -772,7 +772,7 @@ function generateSingleGameHubHtml(gameId: string): string {
               </div>
               <div class="bg-[#0e1422] border border-slate-800 rounded-xl p-3 text-center">
                 <span class="text-[10px] text-slate-500 uppercase tracking-wider block font-mono">Accuracy</span>
-                <span class="text-lg font-bold text-emerald-400 font-mono">100% Exact</span>
+                <span class="text-lg font-bold text-violet-400 font-mono">100% Exact</span>
               </div>
               <div class="bg-[#0e1422] border border-slate-800 rounded-xl p-3 text-center">
                 <span class="text-[10px] text-slate-500 uppercase tracking-wider block font-mono">Execution</span>
@@ -790,16 +790,16 @@ function generateSingleGameHubHtml(gameId: string): string {
             <h2 class="text-xl font-bold text-white">All ${escapeHtml(game.name)} Calculators & Utilities (${gameTools.length})</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               ${gameTools.map(tool => `
-                <a href="/tools/${tool.slug}" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                <a href="/tools/${tool.slug}" class="group bg-[#0e1422] border border-slate-800 hover:border-violet-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
                   <div>
                     <div class="flex items-center justify-between gap-2 mb-2">
-                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">${escapeHtml(tool.badge || 'Tool')}</span>
+                      <span class="text-xs font-mono font-semibold text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded border border-violet-500/20">${escapeHtml(tool.badge || 'Tool')}</span>
                       <span class="text-[11px] text-slate-500 font-mono">${escapeHtml(tool.userCount || '10k+')} users</span>
                     </div>
-                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">${escapeHtml(tool.name)}</h3>
+                    <h3 class="text-base font-bold text-white group-hover:text-violet-400 transition-colors mb-2">${escapeHtml(tool.name)}</h3>
                     <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">${escapeHtml(tool.shortDescription || tool.description)}</p>
                   </div>
-                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                  <div class="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-violet-400">
                     <span>Use ${escapeHtml(tool.name)}</span>
                     <span>→</span>
                   </div>
@@ -899,19 +899,19 @@ gameHubConfigs.forEach(cfg => {
 // 2.5 Pre-render /about
 function generateAboutPageHtml(): string {
   return `
-    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-violet-500 selection:text-black">
       <div>
         ${renderNavHeader()}
         <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
           <nav aria-label="Breadcrumb" class="mb-4">
             <ol class="flex items-center gap-1.5 text-xs text-zinc-400">
-              <li><a href="/" class="hover:text-emerald-400 transition-colors">Home</a></li>
+              <li><a href="/" class="hover:text-violet-400 transition-colors">Home</a></li>
               <li class="text-zinc-600">/</li>
               <li><span class="text-zinc-200 font-medium">About Us</span></li>
             </ol>
           </nav>
           <div class="pb-6 border-b border-zinc-800">
-            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold block mb-2">Our Mission</span>
+            <span class="text-xs font-mono text-violet-400 uppercase tracking-widest font-semibold block mb-2">Our Mission</span>
             <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">About GamingToolsHub</h1>
             <p class="text-sm sm:text-base text-zinc-400 mt-3 leading-relaxed">
               GamingToolsHub is an open, independent digital utility hub created for competitive players, survival architects, speedrunners, and developers who need instant, mathematically precise gaming calculations without the intrusive clutter of traditional gaming blogs.
@@ -929,19 +929,19 @@ function generateAboutPageHtml(): string {
               <h2 class="text-xl font-bold text-white">Core Architectural Principles</h2>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                 <div class="bg-[#090d16] border border-slate-800/80 rounded-xl p-4">
-                  <h3 class="text-sm font-bold text-emerald-400 mb-1">1. Client-Side Speed</h3>
+                  <h3 class="text-sm font-bold text-violet-400 mb-1">1. Client-Side Speed</h3>
                   <p class="text-xs text-slate-400">Every single calculator runs entirely in your browser using optimized JavaScript algorithms. There are no server roundtrips, meaning zero lag even on high-latency mobile connections.</p>
                 </div>
                 <div class="bg-[#090d16] border border-slate-800/80 rounded-xl p-4">
-                  <h3 class="text-sm font-bold text-emerald-400 mb-1">2. Absolute Data Privacy</h3>
+                  <h3 class="text-sm font-bold text-violet-400 mb-1">2. Absolute Data Privacy</h3>
                   <p class="text-xs text-slate-400">We do not store your private base coordinates, breeding combinations, user inputs, or inventory data on any database. Your game data remains strictly on your device.</p>
                 </div>
                 <div class="bg-[#090d16] border border-slate-800/80 rounded-xl p-4">
-                  <h3 class="text-sm font-bold text-emerald-400 mb-1">3. Verified Mathematical Accuracy</h3>
+                  <h3 class="text-sm font-bold text-violet-400 mb-1">3. Verified Mathematical Accuracy</h3>
                   <p class="text-xs text-slate-400">All algorithms are verified against official game APIs, datamined files, and decompiled source code across Minecraft, Roblox, Fortnite, Pokémon GO, and Palworld.</p>
                 </div>
                 <div class="bg-[#090d16] border border-slate-800/80 rounded-xl p-4">
-                  <h3 class="text-sm font-bold text-emerald-400 mb-1">4. Community-First Development</h3>
+                  <h3 class="text-sm font-bold text-violet-400 mb-1">4. Community-First Development</h3>
                   <p class="text-xs text-slate-400">Every calculator is updated rapidly when new game patches release, ensuring our formulas reflect the latest meta, balance changes, and game versions.</p>
                 </div>
               </div>
@@ -956,7 +956,7 @@ function generateAboutPageHtml(): string {
                 <a href="/games/fortnite" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold">Fortnite Hub →</a>
                 <a href="/games/pokemongo" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold">Pokémon GO Hub →</a>
                 <a href="/games/palworld" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold">Palworld Hub →</a>
-                <a href="/tools" class="px-3.5 py-1.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-lg text-xs font-semibold hover:bg-emerald-500 hover:text-black">All Tools Directory →</a>
+                <a href="/tools" class="px-3.5 py-1.5 bg-violet-500/20 text-violet-400 border border-violet-500/30 rounded-lg text-xs font-semibold hover:bg-violet-500 hover:text-black">All Tools Directory →</a>
               </div>
             </div>
           </div>
@@ -977,19 +977,19 @@ renderPageTemplate(
 // 2.6 Pre-render /privacy
 function generatePrivacyPolicyHtml(): string {
   return `
-    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-violet-500 selection:text-black">
       <div>
         ${renderNavHeader()}
         <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
           <nav aria-label="Breadcrumb" class="mb-4">
             <ol class="flex items-center gap-1.5 text-xs text-zinc-400">
-              <li><a href="/" class="hover:text-emerald-400 transition-colors">Home</a></li>
+              <li><a href="/" class="hover:text-violet-400 transition-colors">Home</a></li>
               <li class="text-zinc-600">/</li>
               <li><span class="text-zinc-200 font-medium">Privacy Policy</span></li>
             </ol>
           </nav>
           <div class="pb-6 border-b border-zinc-800">
-            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold block mb-2">Legal Compliance</span>
+            <span class="text-xs font-mono text-violet-400 uppercase tracking-widest font-semibold block mb-2">Legal Compliance</span>
             <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Privacy Policy</h1>
             <p class="text-xs text-slate-500 mt-2 font-mono">Last updated: January 2026 • Effective Date: January 1, 2026</p>
           </div>
@@ -1048,19 +1048,19 @@ renderPageTemplate(
 // 2.7 Pre-render /terms
 function generateTermsPageHtml(): string {
   return `
-    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-violet-500 selection:text-black">
       <div>
         ${renderNavHeader()}
         <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
           <nav aria-label="Breadcrumb" class="mb-4">
             <ol class="flex items-center gap-1.5 text-xs text-zinc-400">
-              <li><a href="/" class="hover:text-emerald-400 transition-colors">Home</a></li>
+              <li><a href="/" class="hover:text-violet-400 transition-colors">Home</a></li>
               <li class="text-zinc-600">/</li>
               <li><span class="text-zinc-200 font-medium">Terms of Service</span></li>
             </ol>
           </nav>
           <div class="pb-6 border-b border-zinc-800">
-            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold block mb-2">Terms & Conditions</span>
+            <span class="text-xs font-mono text-violet-400 uppercase tracking-widest font-semibold block mb-2">Terms & Conditions</span>
             <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Terms of Service</h1>
             <p class="text-xs text-slate-500 mt-2 font-mono">Last updated: January 2026 • Effective Date: January 1, 2026</p>
           </div>
@@ -1108,19 +1108,19 @@ renderPageTemplate(
 // 2.8 Pre-render /disclaimer
 function generateDisclaimerPageHtml(): string {
   return `
-    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-violet-500 selection:text-black">
       <div>
         ${renderNavHeader()}
         <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
           <nav aria-label="Breadcrumb" class="mb-4">
             <ol class="flex items-center gap-1.5 text-xs text-zinc-400">
-              <li><a href="/" class="hover:text-emerald-400 transition-colors">Home</a></li>
+              <li><a href="/" class="hover:text-violet-400 transition-colors">Home</a></li>
               <li class="text-zinc-600">/</li>
               <li><span class="text-zinc-200 font-medium">Disclaimer & Trademarks</span></li>
             </ol>
           </nav>
           <div class="pb-6 border-b border-zinc-800">
-            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold block mb-2">Legal Notices</span>
+            <span class="text-xs font-mono text-violet-400 uppercase tracking-widest font-semibold block mb-2">Legal Notices</span>
             <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Disclaimer & Trademark Notices</h1>
             <p class="text-xs text-slate-500 mt-2 font-mono">Last updated: January 2026</p>
           </div>
@@ -1169,31 +1169,31 @@ function generateHomePageHtml(): string {
   const gameHubsCards = GAMES.map(g => {
     const count = TOOLS.filter(t => t.gameId === g.id).length;
     return `
-      <a href="/games/${g.slug}" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-4 transition-all">
+      <a href="/games/${g.slug}" class="group bg-[#0e1422] border border-slate-800 hover:border-violet-500/50 rounded-xl p-4 transition-all">
         <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">${count} Tools</span>
+          <span class="text-xs font-mono font-bold text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded border border-violet-500/20">${count} Tools</span>
           <span class="text-xs text-slate-500">→</span>
         </div>
-        <h3 class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">${escapeHtml(g.name)}</h3>
+        <h3 class="text-sm font-bold text-white group-hover:text-violet-400 transition-colors">${escapeHtml(g.name)}</h3>
         <p class="text-xs text-slate-400 mt-1 line-clamp-2">${escapeHtml(g.tagline)}</p>
       </a>
     `;
   }).join('');
 
   return `
-    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+    <div class="min-h-screen bg-[#080c14] text-slate-100 flex flex-col justify-between selection:bg-violet-500 selection:text-black">
       <div>
         ${renderNavHeader('/')}
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-12">
           <!-- Hero Section -->
           <div class="text-center max-w-3xl mx-auto pt-4 sm:pt-8 space-y-4">
-            <span class="inline-block text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full uppercase tracking-wider">Zero Lag • 100% Free • Verified Math</span>
+            <span class="inline-block text-xs font-mono font-bold text-violet-400 bg-violet-500/10 border border-violet-500/30 px-3 py-1 rounded-full uppercase tracking-wider">Zero Lag • 100% Free • Verified Math</span>
             <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">Precision Gaming Calculators & Blueprint Generators</h1>
             <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
               Fast, browser-based gaming tools with instant client-side calculation. Pixel-perfect Minecraft circle builders, 8:1 nether portal linkers, 30% Robux tax models, Pokémon GO PvP rankings, and Palworld breeding calculators.
             </p>
             <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
-              <a href="/tools" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs sm:text-sm rounded-xl transition-all shadow-lg shadow-emerald-500/20">Explore All ${TOOLS.length} Tools →</a>
+              <a href="/tools" class="px-5 py-2.5 bg-violet-500 hover:bg-violet-400 text-black font-bold text-xs sm:text-sm rounded-xl transition-all shadow-lg shadow-violet-500/20">Explore All ${TOOLS.length} Tools →</a>
               <a href="/games" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs sm:text-sm rounded-xl transition-all border border-slate-700">Browse by Game</a>
             </div>
           </div>
@@ -1203,22 +1203,22 @@ function generateHomePageHtml(): string {
             <div class="flex items-center justify-between border-b border-slate-800 pb-3">
               <h2 class="text-xl font-bold text-white flex items-center gap-2">
                 <span>Featured Gaming Utilities</span>
-                <span class="text-xs font-mono font-medium text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">Popular</span>
+                <span class="text-xs font-mono font-medium text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded-md border border-violet-500/20">Popular</span>
               </h2>
-              <a href="/tools" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300">View All →</a>
+              <a href="/tools" class="text-xs font-semibold text-violet-400 hover:text-violet-300">View All →</a>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               ${featuredTools.map(tool => `
-                <a href="/tools/${tool.slug}" class="group bg-[#0e1422] border border-slate-800 hover:border-emerald-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
+                <a href="/tools/${tool.slug}" class="group bg-[#0e1422] border border-slate-800 hover:border-violet-500/50 rounded-xl p-5 transition-all flex flex-col justify-between">
                   <div>
                     <div class="flex items-center justify-between gap-2 mb-2">
-                      <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">${escapeHtml(tool.badge || 'Popular')}</span>
+                      <span class="text-xs font-mono font-semibold text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded border border-violet-500/20">${escapeHtml(tool.badge || 'Popular')}</span>
                       <span class="text-[11px] text-slate-500 font-mono">${escapeHtml(tool.userCount || '25k+')} users</span>
                     </div>
-                    <h3 class="text-base font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">${escapeHtml(tool.name)}</h3>
+                    <h3 class="text-base font-bold text-white group-hover:text-violet-400 transition-colors mb-2">${escapeHtml(tool.name)}</h3>
                     <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">${escapeHtml(tool.shortDescription || tool.description)}</p>
                   </div>
-                  <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-emerald-400">
+                  <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-violet-400">
                     <span>Launch Calculator</span>
                     <span>→</span>
                   </div>
