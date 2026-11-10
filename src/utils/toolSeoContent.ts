@@ -72,7 +72,11 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
   }
 
   // 2. Minecraft Circle / Sphere / Dome Generator
-  if (name.includes('circle') || name.includes('sphere') || name.includes('dome') || name.includes('oval')) {
+  // NOTE: restricted to Minecraft tools only. The old condition matched ANY
+  // name containing "sphere" or "oval" — so the Palworld Capture Chance &
+  // Sphere Calculator and the Companion Approval tracker ("apprOVAL") wrongly
+  // showed Minecraft circle examples.
+  if (name.includes('minecraft') && (name.includes('circle') || name.includes('sphere') || name.includes('dome') || name.includes('oval'))) {
     return [
       {
         title: 'Example 1: Medieval Lighthouse Tower Footprint (Odd Diameter)',
@@ -109,8 +113,43 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
+  // 2b. Blox Fruits XP / Level Grinding Calculator — MUST come before the
+  // generic Minecraft XP branch below: the tool name contains "XP", so the
+  // old order matched it to Minecraft enchanting/anvil examples.
+  if (id === 'blox-fruits-xp-calculator' || (name.includes('blox fruits') && name.includes('xp'))) {
+    return [
+      {
+        title: 'Example 1: Level 1 to Level 700 — Reaching the Second Sea',
+        scenario: 'A new pirate grinds quests through the First Sea and wants to know how many stat points unlock on the road to Level 700, the Second Sea requirement.',
+        inputValues: { 'Current Level': '1', 'Target Level': '700' },
+        calculation: 'Levels gained = 700 - 1 = 699. Stat points gained = 699 × 3 = 2,097 points.',
+        result: 'Stat Points Gained: 2,097 points | Unlocks Second Sea (Cafe, raids, trading)',
+        takeaway: 'Every level grants exactly 3 stat points, so the First Sea grind alone banks over 2,000 points before you ever set sail for the Second Sea.'
+      },
+      {
+        title: 'Example 2: Level 700 to Level 1500 — Second Sea with a 2x EXP Boost',
+        scenario: 'A player at Level 700 activates a 2x EXP code and grinds Second Sea bosses and quests toward Level 1500, the Third Sea requirement.',
+        inputValues: { 'Current Level': '700', 'Target Level': '1500', 'EXP Buff': '2x EXP code active' },
+        calculation: 'Levels gained = 1500 - 700 = 800. Stat points gained = 800 × 3 = 2,400 points. A 2x EXP boost doubles EXP per quest and boss kill, roughly halving the grind time.',
+        result: 'Stat Points Gained: 2,400 points | Unlocks Third Sea (Mansion, Race V4, Leviathan)',
+        takeaway: 'Redeem 2x EXP codes in 20-minute intervals while farming bosses — the boost stacks with quest EXP, so the 800-level Second Sea stretch takes about half the playtime.'
+      },
+      {
+        title: 'Example 3: Level 1500 to Max Level 2600 — Third Sea Buddha Grind',
+        scenario: 'A Third Sea player switches to Awakened Buddha fruit to grind the final stretch from Level 1500 to the max level cap of 2600.',
+        inputValues: { 'Current Level': '1500', 'Target Level': '2600', 'Fruit': 'Awakened Buddha' },
+        calculation: 'Levels gained = 2600 - 1500 = 1,100. Stat points gained = 1,100 × 3 = 3,300 points. Total stat points at max level = 2600 × 3 = 7,800 points.',
+        result: 'Stat Points Gained: 3,300 points | Max Stat Points at Level 2600: 7,800',
+        takeaway: 'Awakened Buddha is the best grinding fruit because its transformation boosts reach and defense while you spam melee/sword M1 attacks — ideal for clearing the 1,100-level final stretch.'
+      }
+    ];
+  }
+
   // 3. Minecraft XP / Enchantment / Anvil Cost Calculator
-  if (name.includes('xp') || name.includes('enchant') || name.includes('anvil')) {
+  // NOTE: restricted to Minecraft tools only. The old condition matched ANY
+  // tool name containing "xp" — so Blox Fruits XP, Fortnite XP, Helldivers 2
+  // XP and every "Weapon EXP" tool wrongly showed Minecraft examples.
+  if (name.includes('minecraft') && (name.includes('xp') || name.includes('enchant') || name.includes('anvil'))) {
     return [
       {
         title: 'Example 1: Level 0 to Level 30 for Max Enchanting Table',
@@ -200,7 +239,11 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
   }
 
   // 6. Pokémon GO CP / IV / Evolution / Stardust Calculator
-  if (name.includes('pokemon') || name.includes('pokémon') || name.includes('cp') || name.includes('iv') || name.includes('stardust')) {
+  // NOTE: bare "cp" / "iv" substrings removed — they matched any name
+  // containing them ("Helldivers" has "iv", "CPS Click Speed" has "cp",
+  // "Palworld IV" has "iv"), showing Pokémon examples on other games' tools.
+  // Every real Pokémon tool carries "Pokémon" or "Stardust" in its name.
+  if (name.includes('pokemon') || name.includes('pokémon') || name.includes('stardust')) {
     return [
       {
         title: 'Example 1: Appraising a 15/15/14 (98%) Legendary Raid Boss',
