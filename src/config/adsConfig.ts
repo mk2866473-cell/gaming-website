@@ -291,22 +291,22 @@ export const ADS_CONFIG: SiteAdsConfig = {
       enabled: true,
       id: 'mobile-anchor',
       name: 'Mobile Anchor Banner',
-      dimensions: '320 × 50',
-      mobileDimensions: '320 × 50',
-      description: 'Sticky bottom banner on mobile screens only.',
+      dimensions: '728 × 90',
+      mobileDimensions: '320 × 50 / 728 × 90',
+      description: 'Sticky bottom horizontal banner on mobile screens only.',
       minHeight: 'min-h-[50px]',
       monetagZoneId: '',
       ezoicPlaceholderId: 105,
       customHtml: `<script>
   atOptions = {
-    'key' : '42f8bd9e9814ff95da353115f98de70b',
+    'key' : 'e20f7802b1df62108e7bafb1dd32a3b5',
     'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
+    'height' : 90,
+    'width' : 728,
     'params' : {}
   };
 </script>
-<script src="https://www.highrevenueformat.com/42f8bd9e9814ff95da353115f98de70b/invoke.js"></script>`,
+<script src="https://www.highrevenueformat.com/e20f7802b1df62108e7bafb1dd32a3b5/invoke.js"></script>`,
     },
     'home-top': {
       enabled: true,
@@ -521,20 +521,20 @@ export const ADS_CONFIG: SiteAdsConfig = {
       enabled: true,
       id: 'tool-mobile-sticky',
       name: 'Tool Mobile Sticky Banner',
-      dimensions: '320 × 50',
-      mobileDimensions: '320 × 50',
-      description: 'Sticky bottom banner slot on tool pages, visible only on mobile widths.',
+      dimensions: '728 × 90',
+      mobileDimensions: '320 × 50 / 728 × 90',
+      description: 'Sticky bottom horizontal banner slot on tool pages, visible only on mobile widths.',
       minHeight: 'min-h-[50px]',
       customHtml: `<script>
   atOptions = {
-    'key' : '42f8bd9e9814ff95da353115f98de70b',
+    'key' : 'e20f7802b1df62108e7bafb1dd32a3b5',
     'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
+    'height' : 90,
+    'width' : 728,
     'params' : {}
   };
 </script>
-<script src="https://www.highrevenueformat.com/42f8bd9e9814ff95da353115f98de70b/invoke.js"></script>`,
+<script src="https://www.highrevenueformat.com/e20f7802b1df62108e7bafb1dd32a3b5/invoke.js"></script>`,
     },
   },
 

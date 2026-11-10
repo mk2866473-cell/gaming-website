@@ -78,8 +78,10 @@ export default function AdSlot({
             <X className="w-3.5 h-3.5" />
           </button>
         </div>
-        <div className="w-full flex justify-center items-center min-h-[50px]">
-          {children || <AdProviderAdapter placementId={targetPlacement} config={config} />}
+        <div className="w-full flex justify-center items-center min-h-[50px] max-h-[60px] overflow-hidden">
+          <div className="w-[728px] h-[90px] scale-[0.45] sm:scale-[0.60] origin-center flex items-center justify-center -my-5 flex-shrink-0">
+            {children || <AdProviderAdapter placementId={targetPlacement} config={config} />}
+          </div>
         </div>
       </aside>
     );
