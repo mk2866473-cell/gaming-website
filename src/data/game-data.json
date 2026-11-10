@@ -1,0 +1,93 @@
+{
+  "games": [
+    {
+      "id": "minecraft",
+      "slug": "minecraft",
+      "name": "Minecraft",
+      "shortName": "MC",
+      "tagline": "Block builders, redstoners & survivalists",
+      "description": "Essential calculators, circle generators, nether portal linkers, and coordinate converters for Minecraft Java & Bedrock editions.",
+      "color": "from-emerald-500/20 to-green-600/10",
+      "borderColor": "border-emerald-500/30",
+      "accentColor": "emerald",
+      "icon": "Box",
+      "badge": "Popular"
+    },
+    {
+      "id": "general",
+      "slug": "general-gaming",
+      "name": "General Gaming & Esports",
+      "shortName": "General",
+      "tagline": "Utilities for every gamer & squad",
+      "description": "Universal tools for team sorting, scrim balancing, random drop wheels, decision makers, and party game management.",
+      "color": "from-indigo-500/20 to-purple-600/10",
+      "borderColor": "border-indigo-500/30",
+      "accentColor": "indigo",
+      "icon": "Gamepad2",
+      "badge": "Universal"
+    },
+    {
+      "id": "fps-esports",
+      "slug": "fps-esports",
+      "name": "FPS & Competitive",
+      "shortName": "FPS",
+      "tagline": "Valorant, CS2, Overwatch, Apex",
+      "description": "Competitive team builders, scrim match balancers, sensitivity converters, and drop randomizers.",
+      "color": "from-rose-500/20 to-red-600/10",
+      "borderColor": "border-rose-500/30",
+      "accentColor": "rose",
+      "icon": "Crosshair",
+      "badge": "Esports"
+    },
+    {
+      "id": "rpg-mmo",
+      "slug": "rpg-mmo",
+      "name": "RPG & MMO",
+      "shortName": "RPG",
+      "tagline": "Character builds, XP curves & loot math",
+      "description": "Progression trackers, drop chance calculators, and skill point planners for MMO and RPG enthusiasts.",
+      "color": "from-amber-500/20 to-yellow-600/10",
+      "borderColor": "border-amber-500/30",
+      "accentColor": "amber",
+      "icon": "Shield",
+      "badge": "Coming Soon"
+    }
+  ],
+  "categories": [
+    {
+      "id": "calculators",
+      "slug": "calculators",
+      "name": "Calculators",
+      "description": "Mathematical tools for XP leveling, damage formulas, optimal enchantment paths, and portal physics.",
+      "icon": "Calculator"
+    },
+    {
+      "id": "generators",
+      "slug": "generators",
+      "name": "Generators",
+      "description": "Visual blueprint generators for pixel circles, ellipses, team rosters, and seed layouts.",
+      "icon": "Shapes"
+    },
+    {
+      "id": "converters",
+      "slug": "converters",
+      "name": "Converters",
+      "description": "Fast spatial converters for Nether-Overworld coordinates, chunk sub-coordinates, and region files.",
+      "icon": "ArrowLeftRight"
+    },
+    {
+      "id": "randomizers",
+      "slug": "randomizers",
+      "name": "Randomizers & Wheels",
+      "description": "Decision wheels, random drop choosers, loot rollers, and coin toss tools for streams & lobbies.",
+      "icon": "Dices"
+    },
+    {
+      "id": "trackers",
+      "slug": "trackers",
+      "name": "Trackers & Sorters",
+      "description": "Team balancers, MMR fairness sorters, and progression tracking utilities.",
+      "icon": "Users"
+    }
+  ]
+}

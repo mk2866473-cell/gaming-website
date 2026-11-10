@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Rounded Background Container -->
+  <rect width="64" height="64" rx="16" fill="#080c14"/>
+  <rect x="2" y="2" width="60" height="60" rx="14" stroke="#10b981" stroke-width="2.5" stroke-opacity="0.6"/>
+  
+  <!-- Accent Precision Dot -->
+  <circle cx="50" cy="14" r="3.5" fill="#34d399"/>
+  <circle cx="50" cy="14" r="5" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.5"/>
+
+  <!-- Gaming Controller Icon (Emerald 400) -->
+  <g transform="translate(10, 15)" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Gamepad Body -->
+    <path d="M12 4h20a8 8 0 0 1 8 8v12a6 6 0 0 1-10 4.5L25 24H19l-5 4.5A6 6 0 0 1 4 24V12a8 8 0 0 1 8-8z" fill="#0d1424"/>
+    
+    <!-- D-Pad Cross -->
+    <line x1="12" y1="11" x2="12" y2="17"/>
+    <line x1="9" y1="14" x2="15" y2="14"/>
+    
+    <!-- Action Buttons -->
+    <circle cx="31" cy="12" r="1" fill="#34d399"/>
+    <circle cx="34" cy="15" r="1" fill="#34d399"/>
+  </g>
+</svg>

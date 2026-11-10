@@ -1,0 +1,6 @@
+{
+  "name": "GamingToolsHub - Precision Gaming Calculators, Generators & Utilities",
+  "description": "Fast, modern, browser-based gaming calculators, generators, coordinate converters, XP planners, and team randomizers for gamers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

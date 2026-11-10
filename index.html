@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <script>
+      // Safe window.fetch getter/setter shim for iframe sandboxes
+      try {
+        if (typeof window !== 'undefined') {
+          const originalFetch = window.fetch;
+          let currentFetch = originalFetch ? originalFetch.bind(window) : undefined;
+          Object.defineProperty(window, 'fetch', {
+            get() {
+              return currentFetch;
+            },
+            set(val) {
+              currentFetch = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        }
+      } catch (e) {
+        // Fallback or ignore if protected
+      }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XRBMRCRFM0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XRBMRCRFM0');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <title>GamingToolsHub - Precision Gaming Calculators, Generators & Utilities</title>
+    <meta name="description" content="Fast gaming calculators and blueprint generators for Minecraft, Roblox, Fortnite, Pokémon GO, and Palworld. Instant math, zero server lag, and 100% free." />
+    <meta name="keywords" content="gaming tools, minecraft circle generator, nether portal calculator, minecraft xp calculator, coordinate converter, team generator, gaming decision wheel, gaming calculators" />
+    <meta name="author" content="GamingToolsHub" />
+    <meta name="robots" content="index, follow" />
+    <meta name="yandex-verification" content="4849c0ae39e78dca" />
+    <meta name="naver-site-verification" content="" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gamingtoolshub.com/" />
+    <meta property="og:title" content="GamingToolsHub - Precision Gaming Calculators, Generators & Utilities" />
+    <meta property="og:description" content="Fast, browser-based gaming calculators, generators, and decision wheels with zero lag and total privacy." />
+    <meta property="og:site_name" content="GamingToolsHub" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GamingToolsHub - Precision Gaming Calculators, Generators & Utilities" />
+    <meta name="twitter:description" content="High-performance gaming calculators, circle generators, portal math, XP estimators, and randomizers for gamers." />
+
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="canonical" href="https://gamingtoolshub.com/" />
+  </head>
+  <body class="bg-[#070b19] text-slate-100 min-h-screen antialiased selection:bg-violet-600 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

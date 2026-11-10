@@ -1,0 +1,9 @@
+node_modules
+dist
+dist_files
+docs
+website_ready_files
+*.tar.gz
+*.zip
+.env
+.env.local
