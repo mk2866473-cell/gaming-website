@@ -25,6 +25,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://gamingtoolshub.com/about</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/privacy</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/terms</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/disclaimer</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://gamingtoolshub.com/games/minecraft</loc>
     <lastmod>2026-11-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -67,28 +91,118 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gamingtoolshub.com/about</loc>
+    <loc>https://gamingtoolshub.com/games/ps99</loc>
     <lastmod>2026-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gamingtoolshub.com/privacy</loc>
+    <loc>https://gamingtoolshub.com/games/fps</loc>
     <lastmod>2026-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gamingtoolshub.com/terms</loc>
+    <loc>https://gamingtoolshub.com/games/esports</loc>
     <lastmod>2026-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gamingtoolshub.com/disclaimer</loc>
+    <loc>https://gamingtoolshub.com/games/the-first-descendant</loc>
     <lastmod>2026-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/once-human</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/wuthering-waves</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/zenless-zone-zero</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/type-soul</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/baldurs-gate-3</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/lethal-company</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/starfield</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/enshrouded</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/nightingale</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/cookie-run-kingdom</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/afk-journey</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/monopoly-go</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/seven-knights-rebirth</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/coin-master</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/games/general</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://gamingtoolshub.com/tools/minecraft-circle-generator</loc>
@@ -1538,6 +1652,144 @@
   </url>
   <url>
     <loc>https://gamingtoolshub.com/codes/coin-master</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/genshin</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/fortnite</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/how-much-is-1000-robux-in-usd</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/how-much-is-5000-robux-in-usd</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/how-much-is-10000-robux-in-usd</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/how-much-is-31000-robux-in-usd</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/how-much-is-50000-robux-in-usd</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/how-much-is-76000-robux-in-usd</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/how-much-is-100000-robux-in-usd</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/what-is-devex-and-how-much-robux-to-cash-out</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/how-much-robux-for-5-dollars</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/how-much-robux-for-10-dollars</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/how-much-robux-for-20-dollars</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/how-much-robux-for-50-dollars</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/how-much-robux-do-i-receive-after-marketplace-fee</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/roblox/how-long-do-pending-robux-take</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/genshin/how-many-wishes-guarantee-a-5-star</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/genshin/how-many-primogems-for-10-wishes</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/genshin/what-are-the-odds-of-pulling-a-5-star</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/fortnite/how-much-xp-per-level-in-fortnite</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/qa/fortnite/how-much-xp-to-reach-level-100-in-fortnite</loc>
     <lastmod>2026-11-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>

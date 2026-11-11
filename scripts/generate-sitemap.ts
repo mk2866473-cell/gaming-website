@@ -4,7 +4,7 @@
  */
 
 import fs from 'fs';
-import { TOOLS } from '../src/data/gamesAndTools';
+import { GAMES, TOOLS } from '../src/data/gamesAndTools';
 import { CODES_PAGES } from '../src/data/codesData';
 import { QA_ENTRIES, getQaGames } from '../src/data/qaData';
 
@@ -24,91 +24,86 @@ fs.writeFileSync('public/robots.txt', robotsTxt);
 const domain = 'https://gamingtoolshub.com';
 const today = new Date().toISOString().split('T')[0];
 
+interface SitemapUrl {
+  loc: string;
+  lastmod: string;
+  changefreq: string;
+  priority: string;
+}
+
+const urlMap = new Map<string, SitemapUrl>();
+
+function addUrl(loc: string, priority: string, changefreq: string) {
+  if (!loc || loc.includes('?')) return;
+  if (!urlMap.has(loc)) {
+    urlMap.set(loc, {
+      loc,
+      lastmod: today,
+      changefreq,
+      priority
+    });
+  }
+}
+
+// 1. Static Routes (8 static pages)
 const staticRoutes = [
   { path: '/', priority: '1.0', changefreq: 'daily' },
   { path: '/tools', priority: '0.9', changefreq: 'daily' },
   { path: '/games', priority: '0.8', changefreq: 'weekly' },
   { path: '/categories', priority: '0.8', changefreq: 'weekly' },
-  { path: '/games/minecraft', priority: '0.8', changefreq: 'weekly' },
-  { path: '/games/roblox', priority: '0.8', changefreq: 'weekly' },
-  { path: '/games/fortnite', priority: '0.8', changefreq: 'weekly' },
-  { path: '/games/pokemongo', priority: '0.8', changefreq: 'weekly' },
-  { path: '/games/palworld', priority: '0.8', changefreq: 'weekly' },
-  { path: '/games/genshin', priority: '0.8', changefreq: 'weekly' },
-  { path: '/games/helldivers-2', priority: '0.8', changefreq: 'weekly' },
   { path: '/about', priority: '0.6', changefreq: 'monthly' },
   { path: '/privacy', priority: '0.5', changefreq: 'monthly' },
   { path: '/terms', priority: '0.5', changefreq: 'monthly' },
   { path: '/disclaimer', priority: '0.5', changefreq: 'monthly' },
 ];
 
+staticRoutes.forEach(route => {
+  addUrl(`${domain}${route.path}`, route.priority, route.changefreq);
+});
+
+// 2. Data-Driven Game Hubs (26 games with tools)
+GAMES.forEach(game => {
+  const hasTools = TOOLS.some(t => t.gameId === game.id);
+  if (hasTools) {
+    addUrl(`${domain}/games/${game.slug}`, '0.8', 'weekly');
+  }
+});
+
+// 3. Tool Entries (230 tools)
+TOOLS.forEach(tool => {
+  addUrl(`${domain}/tools/${tool.slug}`, '0.8', 'weekly');
+});
+
+// 4. Game Codes Index and Detail Pages
+addUrl(`${domain}/codes`, '0.9', 'daily');
+CODES_PAGES.forEach(page => {
+  addUrl(`${domain}/codes/${page.slug}`, '0.8', 'daily');
+});
+
+// 5. Game Q&A Index, Game Hubs, and Question Detail Pages
+addUrl(`${domain}/qa`, '0.9', 'daily');
+const qaGames = getQaGames();
+qaGames.forEach(game => {
+  addUrl(`${domain}/qa/${game.slug}`, '0.8', 'daily');
+});
+QA_ENTRIES.forEach(entry => {
+  addUrl(`${domain}/qa/${entry.gameSlug}/${entry.slug}`, '0.8', 'daily');
+});
+
+// 6. Build XML Output
 let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
 xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
-staticRoutes.forEach(route => {
+urlMap.forEach(item => {
   xml += '  <url>\n';
-  xml += `    <loc>${domain}${route.path}</loc>\n`;
-  xml += `    <lastmod>${today}</lastmod>\n`;
-  xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
-  xml += `    <priority>${route.priority}</priority>\n`;
-  xml += '  </url>\n';
-});
-
-TOOLS.forEach(tool => {
-  xml += '  <url>\n';
-  xml += `    <loc>${domain}/tools/${tool.slug}</loc>\n`;
-  xml += `    <lastmod>${today}</lastmod>\n`;
-  xml += '    <changefreq>weekly</changefreq>\n';
-  xml += '    <priority>0.8</priority>\n';
-  xml += '  </url>\n';
-});
-
-// 3. Add Game Codes Index and Detail Pages
-xml += '  <url>\n';
-xml += `    <loc>${domain}/codes</loc>\n`;
-xml += `    <lastmod>${today}</lastmod>\n`;
-xml += '    <changefreq>daily</changefreq>\n';
-xml += '    <priority>0.9</priority>\n';
-xml += '  </url>\n';
-
-CODES_PAGES.forEach(page => {
-  xml += '  <url>\n';
-  xml += `    <loc>${domain}/codes/${page.slug}</loc>\n`;
-  xml += `    <lastmod>${today}</lastmod>\n`;
-  xml += '    <changefreq>daily</changefreq>\n';
-  xml += '    <priority>0.8</priority>\n';
-  xml += '  </url>\n';
-});
-
-// 4. Add Game Q&A Index, Game Hubs, and Question Detail Pages
-xml += '  <url>\n';
-xml += `    <loc>${domain}/qa</loc>\n`;
-xml += `    <lastmod>${today}</lastmod>\n`;
-xml += '    <changefreq>daily</changefreq>\n';
-xml += '    <priority>0.9</priority>\n';
-xml += '  </url>\n';
-
-const qaGames = getQaGames();
-qaGames.forEach(game => {
-  xml += '  <url>\n';
-  xml += `    <loc>${domain}/qa/${game.slug}</loc>\n`;
-  xml += `    <lastmod>${today}</lastmod>\n`;
-  xml += '    <changefreq>daily</changefreq>\n';
-  xml += '    <priority>0.8</priority>\n';
-  xml += '  </url>\n';
-});
-
-QA_ENTRIES.forEach(entry => {
-  xml += '  <url>\n';
-  xml += `    <loc>${domain}/qa/${entry.gameSlug}/${entry.slug}</loc>\n`;
-  xml += `    <lastmod>${today}</lastmod>\n`;
-  xml += '    <changefreq>daily</changefreq>\n';
-  xml += '    <priority>0.8</priority>\n';
+  xml += `    <loc>${item.loc}</loc>\n`;
+  xml += `    <lastmod>${item.lastmod}</lastmod>\n`;
+  xml += `    <changefreq>${item.changefreq}</changefreq>\n`;
+  xml += `    <priority>${item.priority}</priority>\n`;
   xml += '  </url>\n';
 });
 
 xml += '</urlset>\n';
 
 fs.writeFileSync('public/sitemap.xml', xml);
-console.log('Generated robots.txt and sitemap.xml with', staticRoutes.length + TOOLS.length + 1 + CODES_PAGES.length + 1 + qaGames.length + QA_ENTRIES.length, 'URLs!');
-
+console.log('Generated robots.txt and sitemap.xml with', urlMap.size, 'URLs!');
