@@ -43,9 +43,13 @@ import DisclaimerPage from './pages/DisclaimerPage';
 import NotFoundPage from './pages/NotFoundPage';
 import CodesIndexPage from './pages/CodesIndexPage';
 import CodesDetailPage from './pages/CodesDetailPage';
+import QaIndexPage from './pages/QaIndexPage';
+import QaGameHubPage from './pages/QaGameHubPage';
+import QaDetailPage from './pages/QaDetailPage';
 
 import { getToolBySlug } from './data/gamesAndTools';
 import { getCodesPageBySlug } from './data/codesData';
+import { getQaEntry } from './data/qaData';
 import AdLayout from './components/ads/AdLayout';
 
 export default function App() {
@@ -371,6 +375,26 @@ export default function App() {
       const codesPage = getCodesPageBySlug(slug);
       if (codesPage) {
         return <CodesDetailPage pageData={codesPage} onNavigate={navigate} />;
+      }
+      return <NotFoundPage onNavigate={navigate} onOpenSearch={() => setIsSearchOpen(true)} />;
+    }
+
+    // 7.18 Game Q&A (/qa, /qa/:gameSlug, /qa/:gameSlug/:questionSlug)
+    if (cleanRoute === '/qa') {
+      return <QaIndexPage onNavigate={navigate} />;
+    }
+    if (cleanRoute.startsWith('/qa/')) {
+      const parts = cleanRoute.replace('/qa/', '').split('/').filter(Boolean);
+      if (parts.length === 1) {
+        const gameSlug = parts[0];
+        return <QaGameHubPage gameSlug={gameSlug} onNavigate={navigate} />;
+      }
+      if (parts.length === 2) {
+        const [gameSlug, questionSlug] = parts;
+        const entry = getQaEntry(gameSlug, questionSlug);
+        if (entry) {
+          return <QaDetailPage entry={entry} onNavigate={navigate} />;
+        }
       }
       return <NotFoundPage onNavigate={navigate} onOpenSearch={() => setIsSearchOpen(true)} />;
     }

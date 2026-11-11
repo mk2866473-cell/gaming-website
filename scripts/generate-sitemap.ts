@@ -6,6 +6,7 @@
 import fs from 'fs';
 import { TOOLS } from '../src/data/gamesAndTools';
 import { CODES_PAGES } from '../src/data/codesData';
+import { QA_ENTRIES, getQaGames } from '../src/data/qaData';
 
 if (!fs.existsSync('public')) {
   fs.mkdirSync('public');
@@ -79,7 +80,35 @@ CODES_PAGES.forEach(page => {
   xml += '  </url>\n';
 });
 
+// 4. Add Game Q&A Index, Game Hubs, and Question Detail Pages
+xml += '  <url>\n';
+xml += `    <loc>${domain}/qa</loc>\n`;
+xml += `    <lastmod>${today}</lastmod>\n`;
+xml += '    <changefreq>daily</changefreq>\n';
+xml += '    <priority>0.9</priority>\n';
+xml += '  </url>\n';
+
+const qaGames = getQaGames();
+qaGames.forEach(game => {
+  xml += '  <url>\n';
+  xml += `    <loc>${domain}/qa/${game.slug}</loc>\n`;
+  xml += `    <lastmod>${today}</lastmod>\n`;
+  xml += '    <changefreq>daily</changefreq>\n';
+  xml += '    <priority>0.8</priority>\n';
+  xml += '  </url>\n';
+});
+
+QA_ENTRIES.forEach(entry => {
+  xml += '  <url>\n';
+  xml += `    <loc>${domain}/qa/${entry.gameSlug}/${entry.slug}</loc>\n`;
+  xml += `    <lastmod>${today}</lastmod>\n`;
+  xml += '    <changefreq>daily</changefreq>\n';
+  xml += '    <priority>0.8</priority>\n';
+  xml += '  </url>\n';
+});
+
 xml += '</urlset>\n';
 
 fs.writeFileSync('public/sitemap.xml', xml);
-console.log('Generated robots.txt and sitemap.xml with', staticRoutes.length + TOOLS.length + 1 + CODES_PAGES.length, 'URLs!');
+console.log('Generated robots.txt and sitemap.xml with', staticRoutes.length + TOOLS.length + 1 + CODES_PAGES.length + 1 + qaGames.length + QA_ENTRIES.length, 'URLs!');
+

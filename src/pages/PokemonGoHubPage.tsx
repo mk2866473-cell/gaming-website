@@ -13,6 +13,7 @@ import { TOOLS } from '../data/gamesAndTools';
 import SEOHead from '../components/SEOHead';
 import { PokeballIcon } from '../components/GameIcons';
 import AdLayout from '../components/ads/AdLayout';
+import HubCodesBanner from '../components/HubCodesBanner';
 
 interface PokemonGoHubPageProps {
   onNavigate: (path: string) => void;
@@ -70,6 +71,9 @@ export default function PokemonGoHubPage({ onNavigate }: PokemonGoHubPageProps) 
       <div className="space-y-12">
         {/* Hub Top Banner Ad Slot */}
         <AdLayout.HubTop currentPath="/pokemongo" />
+
+        {/* Dynamic Game Codes Banner */}
+        <HubCodesBanner hubPath="/games/pokemongo" onNavigate={onNavigate} />
 
         {/* Navigation Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs font-mono text-zinc-400">

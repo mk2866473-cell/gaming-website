@@ -13,6 +13,7 @@ import {
   getEnhancedToolSeoTitle 
 } from '../src/utils/toolSeoContent';
 import { CODES_PAGES, CodesPageData } from '../src/data/codesData';
+import { QA_ENTRIES, getQaGames, getQaEntriesByGame, QaEntry } from '../src/data/qaData';
 
 const DIST_DIR = path.resolve('dist');
 const BASE_TEMPLATE_PATH = path.join(DIST_DIR, 'index.html');
@@ -1447,7 +1448,211 @@ CODES_PAGES.forEach(entry => {
   );
 });
 
-console.log('Successfully pre-rendered all listing, codes, and static pages with rich content and working links!');
+/**
+ * 2.6 Pre-render Game Q&A Directory (/qa), Game Hubs (/qa/:gameSlug), and Detail Pages (/qa/:gameSlug/:questionSlug)
+ */
+function generateQaIndexHtml(): string {
+  const games = getQaGames();
+  const cardsHtml = QA_ENTRIES.map(entry => `
+    <a href="/qa/${entry.gameSlug}/${entry.slug}" class="block p-5 rounded-2xl bg-[#0c122e] border border-indigo-900/60 hover:border-violet-500/50 transition-all group">
+      <div class="flex items-center gap-2 mb-2 text-xs font-mono text-violet-400 font-bold uppercase">
+        <span>${escapeHtml(entry.gameName)} Q&A</span>
+      </div>
+      <h2 class="text-base font-bold text-white group-hover:text-violet-300 transition-colors mb-2">
+        ${escapeHtml(entry.question)}
+      </h2>
+      <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed bg-[#070b19] p-3 rounded-xl border border-indigo-950">
+        ${escapeHtml(entry.shortAnswer)}
+      </p>
+      <div class="mt-4 pt-3 border-t border-indigo-950 flex items-center justify-between text-xs font-semibold text-violet-400 group-hover:text-cyan-300">
+        <span>Read Answer & Example</span>
+        <span>→</span>
+      </div>
+    </a>
+  `).join('');
+
+  return `
+    <div class="min-h-screen bg-[#070b19] text-slate-100 flex flex-col justify-between selection:bg-violet-600 selection:text-white">
+      <div>
+        ${renderNavHeader('/qa')}
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8">
+          <nav aria-label="Breadcrumb" class="mb-4">
+            <ol class="flex items-center gap-1.5 text-xs text-slate-400">
+              <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+              <li class="text-slate-600">/</li>
+              <li><span class="text-slate-200 font-medium">Q&A</span></li>
+            </ol>
+          </nav>
+          <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-violet-950/70 via-indigo-950/60 to-[#0c122e] border border-violet-500/40">
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+              Game Q&A — Quick Answers to Gaming Questions
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-300 mt-2 max-w-2xl leading-relaxed">
+              Clear, calculated answers to common gaming questions, rates, and mechanics across major games.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            ${cardsHtml}
+          </div>
+        </main>
+      </div>
+      ${renderFooter()}
+    </div>
+  `;
+}
+
+renderPageTemplate(
+  '/qa',
+  'Game Q&A — Quick Answers to Gaming Questions | GamingToolsHub',
+  'Clear, calculated answers to common gaming questions, exchange rates, currency values, and mechanics across major games.',
+  generateQaIndexHtml()
+);
+
+// Pre-render each game Q&A hub (/qa/:gameSlug)
+const qaGamesList = getQaGames();
+qaGamesList.forEach(game => {
+  const gameEntries = getQaEntriesByGame(game.slug);
+  const gameCardsHtml = gameEntries.map(entry => `
+    <a href="/qa/${entry.gameSlug}/${entry.slug}" class="block p-5 rounded-2xl bg-[#0c122e] border border-indigo-900/60 hover:border-violet-500/50 transition-all group">
+      <h2 class="text-base font-bold text-white group-hover:text-violet-300 transition-colors mb-2">
+        ${escapeHtml(entry.question)}
+      </h2>
+      <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed bg-[#070b19] p-3 rounded-xl border border-indigo-950">
+        ${escapeHtml(entry.shortAnswer)}
+      </p>
+      <div class="mt-4 pt-3 border-t border-indigo-950 flex items-center justify-between text-xs font-semibold text-violet-400 group-hover:text-cyan-300">
+        <span>Read Full Explanation</span>
+        <span>→</span>
+      </div>
+    </a>
+  `).join('');
+
+  const hubHtml = `
+    <div class="min-h-screen bg-[#070b19] text-slate-100 flex flex-col justify-between selection:bg-violet-600 selection:text-white">
+      <div>
+        ${renderNavHeader('/qa')}
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8">
+          <nav aria-label="Breadcrumb" class="mb-4">
+            <ol class="flex items-center gap-1.5 text-xs text-slate-400">
+              <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+              <li class="text-slate-600">/</li>
+              <li><a href="/qa" class="hover:text-white transition-colors">Q&A</a></li>
+              <li class="text-slate-600">/</li>
+              <li><span class="text-slate-200 font-medium">${escapeHtml(game.name)} Q&A</span></li>
+            </ol>
+          </nav>
+          <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-violet-950/70 via-indigo-950/60 to-[#0c122e] border border-violet-500/40">
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+              ${escapeHtml(game.name)} Questions & Answers
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-300 mt-2 max-w-2xl leading-relaxed">
+              Quick, accurate answers to top ${escapeHtml(game.name)} questions, currency calculations, and game mechanics.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            ${gameCardsHtml}
+          </div>
+        </main>
+      </div>
+      ${renderFooter()}
+    </div>
+  `;
+
+  renderPageTemplate(
+    `/qa/${game.slug}`,
+    `${game.name} Questions & Answers | GamingToolsHub`,
+    `Get fast, verified answers to top ${game.name} questions, currency calculations, exchange rates, and game mechanics.`,
+    hubHtml
+  );
+});
+
+// Detail pages for each QA_ENTRIES entry (/qa/:gameSlug/:questionSlug)
+QA_ENTRIES.forEach(entry => {
+  const detailBodyHtml = `
+    <div class="min-h-screen bg-[#070b19] text-slate-100 flex flex-col justify-between selection:bg-violet-600 selection:text-white">
+      <div>
+        ${renderNavHeader('/qa')}
+        <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8">
+          <nav aria-label="Breadcrumb" class="mb-4">
+            <ol class="flex items-center gap-1.5 text-xs text-slate-400">
+              <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+              <li class="text-slate-600">/</li>
+              <li><a href="/qa" class="hover:text-white transition-colors">Q&A</a></li>
+              <li class="text-slate-600">/</li>
+              <li><a href="/qa/${entry.gameSlug}" class="hover:text-white transition-colors">${escapeHtml(entry.gameName)} Q&A</a></li>
+              <li class="text-slate-600">/</li>
+              <li><span class="text-slate-200 font-medium">${escapeHtml(entry.question)}</span></li>
+            </ol>
+          </nav>
+
+          <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-violet-950/70 via-indigo-950/60 to-[#0c122e] border border-violet-500/40">
+            <span class="text-xs font-mono font-bold text-violet-400 uppercase tracking-wider block mb-2">${escapeHtml(entry.gameName)} Question</span>
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+              ${escapeHtml(entry.question)}
+            </h1>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-gradient-to-r from-emerald-950/60 via-teal-950/40 to-[#0c122e] border border-emerald-500/50 space-y-2">
+            <span class="text-xs font-mono font-extrabold text-emerald-400 uppercase tracking-wider block">Quick Answer</span>
+            <p class="text-base sm:text-lg font-bold text-white leading-relaxed">
+              ${escapeHtml(entry.shortAnswer)}
+            </p>
+          </div>
+
+          <div class="p-6 sm:p-8 rounded-2xl bg-[#0c122e] border border-indigo-900/60 space-y-4">
+            <h2 class="text-xl font-bold text-white">Detailed Explanation</h2>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed whitespace-pre-line">
+              ${escapeHtml(entry.explanation)}
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-violet-950/30 border border-violet-500/40 space-y-3">
+            <h2 class="text-lg font-bold text-white">Worked Example</h2>
+            <div class="p-4 rounded-xl bg-[#070b19] border border-violet-500/30 font-mono text-sm text-slate-200">
+              ${escapeHtml(entry.workedExample)}
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#0c122e] border border-indigo-900/60 flex items-center justify-between">
+            <div>
+              <h3 class="text-base font-bold text-white">Interactive Precision Tool</h3>
+              <p class="text-xs text-slate-400">Calculate custom amounts with live rates in our calculator tool.</p>
+            </div>
+            <a href="/tools/robux-calculator" class="px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs transition-all">
+              Try the Robux Calculator →
+            </a>
+          </div>
+        </main>
+      </div>
+      ${renderFooter()}
+    </div>
+  `;
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'QAPage',
+    mainEntity: {
+      '@type': 'Question',
+      name: entry.question,
+      text: entry.question,
+      answerCount: 1,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `${entry.shortAnswer}\n\n${entry.explanation}\n\nWorked Example: ${entry.workedExample}`
+      }
+    }
+  };
+
+  renderPageTemplate(
+    `/qa/${entry.gameSlug}/${entry.slug}`,
+    `${entry.question} | ${entry.gameName} Q&A | GamingToolsHub`,
+    entry.shortAnswer,
+    detailBodyHtml,
+    jsonLd
+  );
+});
+
+console.log('Successfully pre-rendered all listing, codes, and Q&A pages with rich content!');
 
 /**
  * 3. Generate Clean GitHub Pages 404.html (No Meta Refresh, No Redirect Loop)

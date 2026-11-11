@@ -16,6 +16,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import SEOHead from '../components/SEOHead';
 import { AdLayout } from '../components/ads/AdLayout';
 import { ZzzIcon } from '../components/GameIcons';
+import HubCodesBanner from '../components/HubCodesBanner';
 
 interface ZenlessZoneZeroHubPageProps {
   onNavigate: (path: string) => void;
@@ -96,6 +97,9 @@ export default function ZenlessZoneZeroHubPage({ onNavigate }: ZenlessZoneZeroHu
       />
 
       <div className="space-y-10 sm:space-y-12">
+        {/* Dynamic Game Codes Banner */}
+        <HubCodesBanner hubPath="/games/zenless-zone-zero" onNavigate={onNavigate} />
+
         {/* Hero Banner */}
         <div className="relative overflow-hidden bg-gradient-to-b from-purple-950/70 via-slate-900 to-slate-950 border border-purple-500/20 rounded-3xl p-6 sm:p-10 shadow-2xl">
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />

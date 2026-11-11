@@ -7,6 +7,7 @@ import React, { useMemo } from 'react';
 import { CODES_PAGES, CodesPageData } from '../data/codesData';
 import SEOHead from '../components/SEOHead';
 import AdLayout from '../components/ads/AdLayout';
+import { getGameIcon } from '../components/GameIcons';
 import { Gift, ArrowRight, ShieldCheck, Clock, Sparkles } from 'lucide-react';
 
 interface CodesIndexPageProps {
@@ -120,13 +121,19 @@ export default function CodesIndexPage({ onNavigate }: CodesIndexPageProps) {
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-white group-hover:text-violet-300 transition-colors">
-                      {page.gameName}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-slate-300 line-clamp-3 leading-relaxed">
-                      {page.intro}
-                    </p>
+                    <div className="flex items-start gap-3.5">
+                      <div className="w-12 h-12 rounded-xl bg-[#070b19] border border-indigo-950 flex items-center justify-center p-2.5 shrink-0 group-hover:border-violet-500/50 shadow-md">
+                        {getGameIcon(page.slug, 'w-full h-full')}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <h3 className="text-xl font-bold text-white group-hover:text-violet-300 transition-colors truncate">
+                          {page.gameName}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed mt-1">
+                          {page.intro}
+                        </p>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="mt-6 pt-4 border-t border-indigo-950/80 flex items-center justify-between text-xs font-semibold text-violet-400 group-hover:text-cyan-300 transition-colors">

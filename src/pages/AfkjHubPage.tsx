@@ -28,6 +28,7 @@ import AdLayout from '../components/ads/AdLayout';
 import ToolCard from '../components/ToolCard';
 import { TOOLS } from '../data/gamesAndTools';
 import { AfkjIcon } from '../components/GameIcons';
+import HubCodesBanner from '../components/HubCodesBanner';
 
 interface AfkjHubPageProps {
   onNavigate: (path: string) => void;
@@ -102,6 +103,9 @@ export default function AfkjHubPage({ onNavigate }: AfkjHubPageProps) {
 
       {/* Hub Top Banner Ad Slot */}
       <AdLayout.HubTop />
+
+      {/* Dynamic Game Codes Banner */}
+      <HubCodesBanner hubPath="/games/afk-journey" onNavigate={onNavigate} />
 
       {/* Header Banner */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-950 via-slate-900 to-zinc-950 border border-purple-500/20 p-6 sm:p-8 lg:p-10 shadow-2xl">

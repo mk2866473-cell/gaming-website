@@ -11,6 +11,7 @@ import AdLayout from '../components/ads/AdLayout';
 import ToolCard from '../components/ToolCard';
 import { COIN_MASTER_TOOLS } from '../data/coinMasterData';
 import { CmIcon } from '../components/GameIcons';
+import HubCodesBanner from '../components/HubCodesBanner';
 
 interface CoinMasterHubPageProps {
   onNavigate: (path: string) => void;
@@ -60,6 +61,9 @@ export default function CoinMasterHubPage({ onNavigate }: CoinMasterHubPageProps
 
       {/* Hub Top Banner Ad Slot */}
       <AdLayout.HubTop />
+
+      {/* Dynamic Game Codes Banner */}
+      <HubCodesBanner hubPath="/games/coin-master" onNavigate={onNavigate} />
 
       {/* Hero Banner */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-950/70 via-zinc-900 to-black border border-amber-500/30 p-6 sm:p-8 lg:p-10 shadow-2xl">

@@ -7,7 +7,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   Search, Menu, X, ChevronDown, Box, Gamepad2, Swords, Compass, 
   Calculator, Shapes, ArrowLeftRight, Layers, Clock, Dices, ArrowRight,
-  Sparkles, Crosshair
+  Sparkles, Crosshair, HelpCircle
 } from 'lucide-react';
 import BrandLogo from './BrandLogo';
 import { TOOLS, getPrimaryGames, getGamePath } from '../data/gamesAndTools';
@@ -396,6 +396,19 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
                 <span>Codes</span>
               </button>
 
+              {/* Q&A Nav Link */}
+              <button
+                onClick={() => handleLinkClick('/qa')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-violet-500 ${
+                  currentPath.startsWith('/qa')
+                    ? 'bg-violet-600 text-white font-semibold shadow-md shadow-violet-950/50'
+                    : 'text-slate-300 hover:text-white hover:bg-indigo-950/60'
+                }`}
+              >
+                <HelpCircle className="w-3.5 h-3.5 text-violet-400" />
+                <span>Q&A</span>
+              </button>
+
               {/* All Tools Link */}
               <button
                 onClick={() => handleLinkClick('/tools')}
@@ -474,6 +487,24 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
             </div>
             <span className="text-[10px] font-mono bg-[#070b19] px-2 py-0.5 rounded text-amber-400 border border-amber-500/30">
               Active
+            </span>
+          </button>
+
+          {/* Q&A Primary Mobile Button */}
+          <button
+            onClick={() => handleLinkClick('/qa')}
+            className={`w-full py-2.5 px-3.5 rounded-xl text-xs font-semibold flex items-center justify-between transition-colors ${
+              currentPath.startsWith('/qa')
+                ? 'bg-violet-600 text-white shadow-md shadow-violet-950/50'
+                : 'bg-[#0c122e] border border-indigo-900/60 text-slate-200 hover:text-white'
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <HelpCircle className="w-4 h-4 text-violet-400" />
+              <span>Game Q&A Base</span>
+            </div>
+            <span className="text-[10px] font-mono bg-[#070b19] px-2 py-0.5 rounded text-cyan-400 border border-indigo-900/40">
+              Answers
             </span>
           </button>
 

@@ -27,6 +27,7 @@ import AdLayout from '../components/ads/AdLayout';
 import ToolCard from '../components/ToolCard';
 import { TOOLS } from '../data/gamesAndTools';
 import { MonopolyGoIcon } from '../components/GameIcons';
+import HubCodesBanner from '../components/HubCodesBanner';
 
 interface MonopolyGoHubPageProps {
   onNavigate: (path: string) => void;
@@ -101,6 +102,9 @@ export default function MonopolyGoHubPage({ onNavigate }: MonopolyGoHubPageProps
 
       {/* Hub Top Banner Ad Slot */}
       <AdLayout.HubTop />
+
+      {/* Dynamic Game Codes Banner */}
+      <HubCodesBanner hubPath="/games/monopoly-go" onNavigate={onNavigate} />
 
       {/* Header Banner */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-red-950 via-slate-900 to-zinc-950 border border-red-500/20 p-6 sm:p-8 lg:p-10 shadow-2xl">

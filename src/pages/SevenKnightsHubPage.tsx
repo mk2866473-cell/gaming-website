@@ -11,6 +11,7 @@ import AdLayout from '../components/ads/AdLayout';
 import ToolCard from '../components/ToolCard';
 import { TOOLS } from '../data/gamesAndTools';
 import { SkIcon } from '../components/GameIcons';
+import HubCodesBanner from '../components/HubCodesBanner';
 
 interface SevenKnightsHubPageProps {
   onNavigate: (path: string) => void;
@@ -66,6 +67,9 @@ export default function SevenKnightsHubPage({ onNavigate }: SevenKnightsHubPageP
 
       {/* Hub Top Banner Ad Slot */}
       <AdLayout.HubTop />
+
+      {/* Dynamic Game Codes Banner */}
+      <HubCodesBanner hubPath="/games/seven-knights-rebirth" onNavigate={onNavigate} />
 
       {/* Hero Banner */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-950/70 via-zinc-900 to-black border border-blue-500/30 p-6 sm:p-8 lg:p-10 shadow-2xl">

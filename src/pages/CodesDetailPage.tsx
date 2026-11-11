@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { CodesPageData, GameCode, DailyLink } from '../data/codesData';
 import SEOHead from '../components/SEOHead';
 import AdLayout from '../components/ads/AdLayout';
+import { getGameIcon } from '../components/GameIcons';
 import { 
   Copy, Check, Clock, ShieldCheck, HelpCircle, 
   ArrowRight, ExternalLink, AlertTriangle, Gift, Sparkles, ChevronDown 
@@ -110,7 +111,7 @@ export default function CodesDetailPage({ pageData, onNavigate }: CodesDetailPag
         <div className="relative rounded-3xl bg-gradient-to-br from-violet-950/70 via-indigo-950/60 to-[#0c122e] border border-violet-500/40 p-6 sm:p-10 overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 max-w-3xl space-y-4">
+          <div className="relative z-10 max-w-4xl space-y-5">
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-950/80 border border-violet-500/40 text-violet-300 text-xs font-mono font-bold">
                 <Gift className="w-3.5 h-3.5 text-violet-400" />
@@ -122,13 +123,19 @@ export default function CodesDetailPage({ pageData, onNavigate }: CodesDetailPag
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-              {pageH1}
-            </h1>
-
-            <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-              <Clock className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Last checked: <strong className="text-slate-200">{pageData.lastChecked}</strong></span>
+            <div className="flex items-start gap-4 sm:gap-5">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#070b19]/90 border border-violet-500/40 p-3 flex items-center justify-center shadow-xl shrink-0">
+                {getGameIcon(pageData.slug, 'w-full h-full')}
+              </div>
+              <div className="space-y-2">
+                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+                  {pageH1}
+                </h1>
+                <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
+                  <Clock className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Last checked: <strong className="text-slate-200">{pageData.lastChecked}</strong></span>
+                </div>
+              </div>
             </div>
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed pt-1">

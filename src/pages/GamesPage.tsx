@@ -11,6 +11,7 @@ import SEOHead from '../components/SEOHead';
 import ToolCard from '../components/ToolCard';
 import { getGameIcon } from '../components/GameIcons';
 import AdLayout from '../components/ads/AdLayout';
+import HubCodesBanner from '../components/HubCodesBanner';
 
 interface GamesPageProps {
   selectedGameSlug?: string | null;
@@ -36,6 +37,11 @@ export default function GamesPage({ selectedGameSlug, onNavigate }: GamesPagePro
       <div className="space-y-8">
         {/* Hub Top Banner Ad Slot */}
         <AdLayout.HubTop />
+
+        {/* Dynamic Game Codes Banner if viewing a specific game like Genshin Impact */}
+        {activeGame && (
+          <HubCodesBanner hubPath={getGamePath(activeGame.id)} onNavigate={onNavigate} />
+        )}
 
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
