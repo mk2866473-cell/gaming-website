@@ -12,6 +12,7 @@ import {
   getEnhancedToolFaqs, 
   getEnhancedToolSeoTitle 
 } from '../src/utils/toolSeoContent';
+import { CODES_PAGES, CodesPageData } from '../src/data/codesData';
 
 const DIST_DIR = path.resolve('dist');
 const BASE_TEMPLATE_PATH = path.join(DIST_DIR, 'index.html');
@@ -1251,7 +1252,202 @@ renderPageTemplate(
   generateHomePageHtml()
 );
 
-console.log('Successfully pre-rendered all listing and static pages with rich content and working links!');
+/**
+ * 2.5 Pre-render Game Codes Directory (/codes) & Detail Pages (/codes/:slug)
+ */
+function generateCodesIndexHtml(): string {
+  const sorted = [...CODES_PAGES].sort((a, b) => {
+    const kindOrder = { codes: 0, links: 1, status: 2 };
+    if (kindOrder[a.kind] !== kindOrder[b.kind]) {
+      return kindOrder[a.kind] - kindOrder[b.kind];
+    }
+    if (a.kind === 'codes' && b.kind === 'codes') {
+      return b.codes.length - a.codes.length;
+    }
+    return a.gameName.localeCompare(b.gameName);
+  });
+
+  const cardsHtml = sorted.map(entry => {
+    let badgeText = '';
+    let badgeClass = '';
+    if (entry.kind === 'codes') {
+      badgeText = `${entry.codes.length} active codes`;
+      badgeClass = 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30';
+    } else if (entry.kind === 'links') {
+      badgeText = 'Free daily links';
+      badgeClass = 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30';
+    } else {
+      badgeText = 'Codes status';
+      badgeClass = 'bg-amber-500/10 text-amber-300 border-amber-500/30';
+    }
+
+    return `
+      <a href="/codes/${entry.slug}" class="block p-5 rounded-2xl bg-[#0c122e] border border-indigo-900/60 hover:border-violet-500/50 transition-all group">
+        <div class="flex items-center justify-between gap-3 mb-3">
+          <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-full border ${badgeClass}">
+            ${badgeText}
+          </span>
+          <span class="text-[11px] font-mono text-slate-400">
+            Checked ${escapeHtml(entry.lastChecked)}
+          </span>
+        </div>
+        <h2 class="text-lg font-bold text-white group-hover:text-amber-300 transition-colors mb-2">
+          ${escapeHtml(entry.gameName)}
+        </h2>
+        <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed mb-4">
+          ${escapeHtml(entry.intro)}
+        </p>
+        <div class="pt-3 border-t border-indigo-950/80 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-amber-300">
+          <span>View Codes & Guides</span>
+          <span>→</span>
+        </div>
+      </a>
+    `;
+  }).join('');
+
+  return `
+    <div class="min-h-screen bg-[#070b19] text-slate-100 flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+      <div>
+        ${renderNavHeader('/codes')}
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8">
+          <nav aria-label="Breadcrumb" class="mb-4">
+            <ol class="flex items-center gap-1.5 text-xs text-slate-400">
+              <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+              <li class="text-slate-600">/</li>
+              <li><span class="text-slate-200 font-medium">Game Codes</span></li>
+            </ol>
+          </nav>
+          <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-amber-500/10 via-[#0c122e] to-[#070b19] border border-amber-500/30">
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+              Game Codes — Free Redeem Codes & Daily Links
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-300 mt-2 max-w-2xl leading-relaxed">
+              Verified working redeem codes, 2x EXP boosts, stat resets and daily free reward links. Tested and checked daily with zero clickbait.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            ${cardsHtml}
+          </div>
+        </main>
+      </div>
+      ${renderFooter()}
+    </div>
+  `;
+}
+
+renderPageTemplate(
+  '/codes',
+  'Game Codes — Free Redeem Codes & Daily Links (November 2026) | GamingToolsHub',
+  'Active redeem codes and free daily links for Blox Fruits, Type Soul, Monopoly GO and more. Verified and checked daily with zero spam.',
+  generateCodesIndexHtml()
+);
+
+// Detail pages for each CODES_PAGES entry
+CODES_PAGES.forEach(entry => {
+  let pageTitle = `${entry.gameName} Codes — All Active Codes (November 2026) | GamingToolsHub`;
+  let pageH1 = `${entry.gameName} Codes (November 2026)`;
+  if (entry.kind === 'links') {
+    let suffix = 'Free Links Today';
+    if (entry.slug === 'monopoly-go') suffix = 'Free Dice Links Today';
+    if (entry.slug === 'coin-master') suffix = 'Free Spins Links Today';
+    pageH1 = `${entry.gameName} ${suffix}`;
+    pageTitle = `${pageH1} (November 2026) | GamingToolsHub`;
+  }
+
+  const codesRowsHtml = entry.codes.map((c, i) => `
+    <div class="p-3 sm:p-4 rounded-xl bg-[#080d22] border border-indigo-950/90 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="text-xs font-mono text-slate-500 w-5">${i + 1}</span>
+        <code class="px-2.5 py-1 rounded-lg bg-[#070b19] border border-indigo-900/60 font-mono text-xs sm:text-sm font-bold text-amber-300 tracking-wider">
+          ${escapeHtml(c.code)}
+        </code>
+        <span class="text-xs sm:text-sm text-slate-200">
+          ${escapeHtml(c.reward)}
+        </span>
+      </div>
+      <span class="text-[11px] font-mono text-slate-400">Verified Active</span>
+    </div>
+  `).join('');
+
+  const stepsHtml = entry.redeemSteps.map((step, idx) => `
+    <li class="flex items-start gap-3">
+      <span class="w-6 h-6 rounded-lg bg-[#080d22] border border-indigo-900/70 text-amber-400 font-mono font-bold text-xs flex items-center justify-center shrink-0">
+        ${idx + 1}
+      </span>
+      <span class="text-xs sm:text-sm text-slate-300 leading-relaxed pt-0.5">
+        ${escapeHtml(step)}
+      </span>
+    </li>
+  `).join('');
+
+  const detailBodyHtml = `
+    <div class="min-h-screen bg-[#070b19] text-slate-100 flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+      <div>
+        ${renderNavHeader('/codes')}
+        <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8">
+          <nav aria-label="Breadcrumb" class="mb-4">
+            <ol class="flex items-center gap-1.5 text-xs text-slate-400">
+              <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+              <li class="text-slate-600">/</li>
+              <li><a href="/codes" class="hover:text-white transition-colors">Codes</a></li>
+              <li class="text-slate-600">/</li>
+              <li><span class="text-slate-200 font-medium">${escapeHtml(entry.gameName)}</span></li>
+            </ol>
+          </nav>
+          <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-amber-500/10 via-[#0c122e] to-[#070b19] border border-amber-500/30">
+            <div class="flex items-center gap-2 text-xs font-mono text-amber-300 mb-2">
+              <span>● Last checked: ${escapeHtml(entry.lastChecked)}</span>
+              <span>·</span>
+              <span>${entry.codes.length} active codes</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+              ${escapeHtml(pageH1)}
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-300 mt-2 max-w-2xl leading-relaxed">
+              ${escapeHtml(entry.intro)}
+            </p>
+          </div>
+          <div class="space-y-3">
+            <h2 class="text-lg font-bold text-white">Active Codes (${entry.codes.length})</h2>
+            <div class="space-y-2">
+              ${codesRowsHtml}
+            </div>
+          </div>
+          <div class="p-6 rounded-2xl bg-[#0c122e] border border-indigo-900/60 space-y-4">
+            <h2 class="text-lg font-bold text-white">How to Redeem Codes</h2>
+            <ol class="space-y-2.5">
+              ${stepsHtml}
+            </ol>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-indigo-950">
+            <a href="${escapeHtml(entry.relatedToolPath)}" class="p-4 rounded-xl bg-[#0c122e] border border-indigo-900/60 hover:border-violet-500/50 block text-xs">
+              <span class="text-slate-400 block mb-1">Related Tool</span>
+              <strong class="text-white hover:text-amber-300">${escapeHtml(entry.relatedToolLabel)} →</strong>
+            </a>
+            <a href="${escapeHtml(entry.gameHubPath)}" class="p-4 rounded-xl bg-[#0c122e] border border-indigo-900/60 hover:border-violet-500/50 block text-xs">
+              <span class="text-slate-400 block mb-1">Game Center</span>
+              <strong class="text-white hover:text-amber-300">${escapeHtml(entry.gameName)} Hub →</strong>
+            </a>
+            <a href="/codes" class="p-4 rounded-xl bg-[#0c122e] border border-indigo-900/60 hover:border-violet-500/50 block text-xs">
+              <span class="text-slate-400 block mb-1">Directory</span>
+              <strong class="text-white hover:text-amber-300">All Game Codes →</strong>
+            </a>
+          </div>
+        </main>
+      </div>
+      ${renderFooter()}
+    </div>
+  `;
+
+  renderPageTemplate(
+    `/codes/${entry.slug}`,
+    pageTitle,
+    `${entry.gameName} redeem codes (November 2026). ${entry.intro}`,
+    detailBodyHtml
+  );
+});
+
+console.log('Successfully pre-rendered all listing, codes, and static pages with rich content and working links!');
 
 /**
  * 3. Generate Clean GitHub Pages 404.html (No Meta Refresh, No Redirect Loop)

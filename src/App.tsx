@@ -41,8 +41,11 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsPage from './pages/TermsPage';
 import DisclaimerPage from './pages/DisclaimerPage';
 import NotFoundPage from './pages/NotFoundPage';
+import CodesIndexPage from './pages/CodesIndexPage';
+import CodesDetailPage from './pages/CodesDetailPage';
 
 import { getToolBySlug } from './data/gamesAndTools';
+import { getCodesPageBySlug } from './data/codesData';
 import AdLayout from './components/ads/AdLayout';
 
 export default function App() {
@@ -357,6 +360,19 @@ export default function App() {
     }
     if (cleanRoute === '/disclaimer') {
       return <DisclaimerPage onNavigate={navigate} />;
+    }
+
+    // 7.17 Game Codes (/codes and /codes/:slug)
+    if (cleanRoute === '/codes') {
+      return <CodesIndexPage onNavigate={navigate} />;
+    }
+    if (cleanRoute.startsWith('/codes/')) {
+      const slug = cleanRoute.replace('/codes/', '').replace(/\/$/, '');
+      const codesPage = getCodesPageBySlug(slug);
+      if (codesPage) {
+        return <CodesDetailPage pageData={codesPage} onNavigate={navigate} />;
+      }
+      return <NotFoundPage onNavigate={navigate} onOpenSearch={() => setIsSearchOpen(true)} />;
     }
 
     // 8. 404

@@ -502,6 +502,37 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
                 </button>
               ))}
             </div>
+
+            {/* Homepage Free Game Codes Featured Card */}
+            <div className="mt-5 max-w-xl mx-auto">
+              <button
+                onClick={() => onNavigate('/codes')}
+                className="w-full text-left p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-cyan-500/10 border border-amber-500/30 hover:border-amber-400/60 transition-all shadow-lg hover:shadow-amber-500/10 group flex items-center justify-between gap-3"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-lg flex-shrink-0 group-hover:scale-105 transition-transform">
+                    🎁
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-bold text-white group-hover:text-amber-300 transition-colors">
+                        Free Game Codes
+                      </span>
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 font-semibold">
+                        Daily Updates
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
+                      Free Game Codes — active redeem codes and daily free links, checked daily.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-semibold text-amber-400 group-hover:text-amber-300 group-hover:translate-x-0.5 transition-all flex-shrink-0">
+                  <span>Browse</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </div>
+              </button>
+            </div>
           </div>
         </section>
 

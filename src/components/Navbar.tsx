@@ -383,6 +383,19 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
                 )}
               </div>
 
+              {/* Codes Nav Link */}
+              <button
+                onClick={() => handleLinkClick('/codes')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-violet-500 ${
+                  currentPath.startsWith('/codes')
+                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold shadow-md shadow-amber-950/40'
+                    : 'text-amber-300/90 hover:text-amber-200 hover:bg-amber-500/10'
+                }`}
+              >
+                <span>🎁</span>
+                <span>Codes</span>
+              </button>
+
               {/* All Tools Link */}
               <button
                 onClick={() => handleLinkClick('/tools')}
@@ -444,6 +457,24 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
             <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-[#070b19] border border-indigo-900/60 rounded text-slate-400">
               ⌘K
             </kbd>
+          </button>
+
+          {/* Codes Primary Mobile Button */}
+          <button
+            onClick={() => handleLinkClick('/codes')}
+            className={`w-full py-2.5 px-3.5 rounded-xl text-xs font-semibold flex items-center justify-between transition-colors ${
+              currentPath.startsWith('/codes')
+                ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 shadow-md shadow-amber-950/40'
+                : 'bg-amber-500/10 border border-amber-500/30 text-amber-300 hover:text-white'
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-sm">🎁</span>
+              <span>Game Codes & Free Links</span>
+            </div>
+            <span className="text-[10px] font-mono bg-[#070b19] px-2 py-0.5 rounded text-amber-400 border border-amber-500/30">
+              Active
+            </span>
           </button>
 
           {/* All Tools Primary Mobile Button */}

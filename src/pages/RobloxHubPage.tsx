@@ -14,6 +14,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import SEOHead from '../components/SEOHead';
 import { getGameIcon } from '../components/GameIcons';
 import AdLayout from '../components/ads/AdLayout';
+import HubCodesBanner from '../components/HubCodesBanner';
 
 interface RobloxHubPageProps {
   onNavigate: (path: string) => void;
@@ -75,6 +76,9 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
       <div className="space-y-10 sm:space-y-12">
         {/* Hub Top Banner Ad Slot */}
         <AdLayout.HubTop currentPath="/roblox" />
+
+        {/* Dynamic Game Codes Banner */}
+        <HubCodesBanner hubPath="/games/roblox" onNavigate={onNavigate} />
 
         {/* Breadcrumb & Hero Header */}
         <div>

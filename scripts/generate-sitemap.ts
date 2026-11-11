@@ -5,6 +5,7 @@
 
 import fs from 'fs';
 import { TOOLS } from '../src/data/gamesAndTools';
+import { CODES_PAGES } from '../src/data/codesData';
 
 if (!fs.existsSync('public')) {
   fs.mkdirSync('public');
@@ -61,7 +62,24 @@ TOOLS.forEach(tool => {
   xml += '  </url>\n';
 });
 
+// 3. Add Game Codes Index and Detail Pages
+xml += '  <url>\n';
+xml += `    <loc>${domain}/codes</loc>\n`;
+xml += `    <lastmod>${today}</lastmod>\n`;
+xml += '    <changefreq>daily</changefreq>\n';
+xml += '    <priority>0.9</priority>\n';
+xml += '  </url>\n';
+
+CODES_PAGES.forEach(page => {
+  xml += '  <url>\n';
+  xml += `    <loc>${domain}/codes/${page.slug}</loc>\n`;
+  xml += `    <lastmod>${today}</lastmod>\n`;
+  xml += '    <changefreq>daily</changefreq>\n';
+  xml += '    <priority>0.8</priority>\n';
+  xml += '  </url>\n';
+});
+
 xml += '</urlset>\n';
 
 fs.writeFileSync('public/sitemap.xml', xml);
-console.log('Generated robots.txt and sitemap.xml with', staticRoutes.length + TOOLS.length, 'URLs!');
+console.log('Generated robots.txt and sitemap.xml with', staticRoutes.length + TOOLS.length + 1 + CODES_PAGES.length, 'URLs!');
