@@ -54,7 +54,10 @@ function writeHtmlForRoute(routePath: string, htmlContent: string) {
   const cleanPath = routePath.replace(/^\//, '').replace(/\/$/, '');
 
   if (cleanPath === '') {
-    // Keep dist/index.html as the clean Vite SPA template so React mounts cleanly on root visit
+    // Write pre-rendered homepage directly into dist/index.html with data-prerendered="true"
+    // Visitors from Google Search or direct URL see the full homepage INSTANTLY with 0ms blank screen!
+    const targetHtmlFile = path.join(DIST_DIR, 'index.html');
+    fs.writeFileSync(targetHtmlFile, htmlContent, 'utf-8');
     return;
   }
 

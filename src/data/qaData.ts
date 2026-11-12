@@ -280,6 +280,210 @@ Since every individual level step costs 80,000 XP, multiplying 99 level incremen
 Knowing the 7,920,000 XP milestone allows Battle Pass players to split XP requirements across weekly quests and daily match goals.`,
     workedExample: 'Level 1 to 100: 99 levels × 80,000 XP = 7,920,000 XP total.',
     relatedToolId: 'fortnite-xp-calculator'
+  },
+  {
+    gameSlug: 'minecraft',
+    gameName: 'Minecraft',
+    question: 'How much XP do you need to reach level 30 in Minecraft?',
+    slug: 'how-much-xp-to-reach-level-30-in-minecraft',
+    shortAnswer: 'You need 1,395 XP points in total to reach level 30 from level 0. The final step from level 29 to 30 alone costs 107 XP points.',
+    explanation: `Minecraft's XP curve is not flat — every level costs more points than the one before. Levels 1–16 are cheap, then the cost per level grows quickly: by the late 20s each single level costs over 100 points.
+
+Level 30 matters because a full enchanting table setup (15 bookshelves) offers level-30 enchantments, and the table takes its 30 levels straight from your XP bar.`,
+    workedExample: 'Total XP for level 30 = 2.5 × 30² − 40.5 × 30 + 360 = 1,395 points. Final level cost = 5 × 29 − 38 = 107 points.',
+    relatedToolId: 'minecraft-xp-calculator'
+  },
+  {
+    gameSlug: 'minecraft',
+    gameName: 'Minecraft',
+    question: 'How much XP do you need to reach level 50 in Minecraft?',
+    slug: 'how-much-xp-to-reach-level-50-in-minecraft',
+    shortAnswer: 'Reaching level 50 takes 5,345 XP points in total from level 0 — almost four times the cost of level 30.',
+    explanation: `Past level 30 the XP curve steepens again: each level from the 30s upward costs 9 × current level − 158 points, so the last levels before 50 cost close to 300 points each.
+
+Most players reach level 50 through XP farms or by defeating the Ender Dragon, rather than by mining and smelting alone.`,
+    workedExample: 'Total XP for level 50 = 4.5 × 50² − 162.5 × 50 + 2,220 = 5,345 points. The step from level 49 to 50 alone = 9 × 49 − 158 = 283 points.',
+    relatedToolId: 'minecraft-xp-calculator'
+  },
+  {
+    gameSlug: 'minecraft',
+    gameName: 'Minecraft',
+    question: 'How many bookshelves do you need for a level 30 enchantment in Minecraft?',
+    slug: 'how-many-bookshelves-for-level-30-enchantment-in-minecraft',
+    shortAnswer: 'You need 15 bookshelves placed around the enchanting table to unlock level 30 enchantments.',
+    explanation: `The enchanting table gains one level of power per valid bookshelf, up to a maximum of 15. The shelves must be one block away from the table with an air gap in between, and torches, carpets or snow in the gap block the power.
+
+Fifteen is also the cap — adding more bookshelves does not raise the maximum level past 30.`,
+    workedExample: '15 bookshelves need 45 books and 90 wood planks. The 45 books need 45 leather and 135 paper (from 135 sugar cane).',
+    relatedToolId: 'minecraft-enchantment-calculator'
+  },
+  {
+    gameSlug: 'minecraft',
+    gameName: 'Minecraft',
+    question: 'How many blocks do you need for a full beacon pyramid in Minecraft?',
+    slug: 'how-many-blocks-for-a-full-beacon-pyramid-in-minecraft',
+    shortAnswer: 'A full 4-layer beacon pyramid needs 164 blocks of iron, gold, emerald, diamond or netherite — in any mix.',
+    explanation: `The pyramid is built in four square layers: 9×9 at the bottom, then 7×7, 5×5 and 3×3 on top, with the beacon placed on the very top centre. Only the full 4-layer pyramid unlocks the secondary powers, such as Regeneration.
+
+Smaller pyramids still work: 1 layer (9 blocks) unlocks the basic effects, but the range and available powers grow with each layer.`,
+    workedExample: '81 + 49 + 25 + 9 = 164 blocks. Built from iron alone, that is 164 × 9 = 1,476 iron ingots.',
+    relatedToolId: 'minecraft-beacon-calculator'
+  },
+  {
+    gameSlug: 'minecraft',
+    gameName: 'Minecraft',
+    question: 'How much XP does the Ender Dragon drop in Minecraft?',
+    slug: 'how-much-xp-does-the-ender-dragon-drop',
+    shortAnswer: 'The Ender Dragon drops 12,000 XP the first time you defeat it — enough to jump from level 0 to about level 68. Every later kill drops only 500 XP.',
+    explanation: `The first dragon fight is the single biggest XP reward in the game. The 12,000 points fall as hundreds of XP orbs around the exit portal, so collect them before leaving the End.
+
+Respawned dragons (summoned with four end crystals) are worth far less: 500 XP each, less than a good night in an XP farm.`,
+    workedExample: "Level 68 needs 11,978 total XP, so the dragon's 12,000 XP lands just past level 68 starting from zero.",
+    relatedToolId: 'minecraft-xp-calculator'
+  },
+  {
+    gameSlug: 'pokemongo',
+    gameName: 'Pokémon GO',
+    question: 'How much XP do you need to reach level 40 in Pokémon GO?',
+    slug: 'how-much-xp-to-reach-level-40-in-pokemon-go',
+    shortAnswer: 'Reaching level 40 takes 20,000,000 XP in total. The final step from level 39 to 40 alone is 5,000,000 XP.',
+    explanation: `Trainer levels are based on your lifetime XP total, so every catch, spin and friendship bonus counts toward the same 20 million. The curve is steep at the end: the last five levels (35–40) together cost more than everything before them.
+
+Level 40 used to be the game's maximum level; it is now the halfway point of the level 50 climb.`,
+    workedExample: 'Cumulative XP at level 39 = 15,000,000. 15,000,000 + 5,000,000 = 20,000,000 XP at level 40.',
+    relatedToolId: 'pokemon-go-level-calculator'
+  },
+  {
+    gameSlug: 'pokemongo',
+    gameName: 'Pokémon GO',
+    question: 'How much XP do you need to reach level 50 in Pokémon GO?',
+    slug: 'how-much-xp-to-reach-level-50-in-pokemon-go',
+    shortAnswer: 'Level 50 takes 176,000,000 lifetime XP — and from level 41 upward you must also finish special research tasks at each level, XP alone is not enough.',
+    explanation: `Most of the climb is in the final ten levels: going from level 40 to level 50 needs 156 million XP, nearly eight times the entire road to level 40.
+
+From level 41, each level also gates on Level-Up Research — tasks like catching a set number of Pokémon or earning medals — so a huge XP bank does not level you up until the tasks are done too.`,
+    workedExample: '176,000,000 (level 50 total) − 20,000,000 (level 40 total) = 156,000,000 XP earned between levels 40 and 50.',
+    relatedToolId: 'pokemon-go-level-calculator'
+  },
+  {
+    gameSlug: 'pokemongo',
+    gameName: 'Pokémon GO',
+    question: 'How much XP do you get for evolving a Pokémon in Pokémon GO?',
+    slug: 'how-much-xp-for-evolving-a-pokemon-in-pokemon-go',
+    shortAnswer: 'Each evolution gives 500 XP — or 1,000 XP with a Lucky Egg running. A full 30-minute Lucky Egg session of back-to-back evolutions is worth roughly 60,000 XP.',
+    explanation: `This is why players save cheap 12-candy evolutions (like Caterpie, Weedle and Pidgey) and evolve them in batches. The Lucky Egg doubles all XP for 30 minutes, so the whole session happens under one egg.
+
+A typical session fits about 60 evolutions before the egg runs out, depending on how fast you tap through the animations.`,
+    workedExample: '60 evolutions × 500 XP = 30,000 XP without an egg; 60 × 1,000 XP = 60,000 XP with a Lucky Egg.',
+    relatedToolId: 'pokemon-go-evolution-cp-calculator'
+  },
+  {
+    gameSlug: 'pokemongo',
+    gameName: 'Pokémon GO',
+    question: 'How many candies does Magikarp need to evolve in Pokémon GO?',
+    slug: 'how-many-candies-does-magikarp-need-to-evolve',
+    shortAnswer: 'Magikarp needs 400 candies to evolve into Gyarados — the most famous candy grind in the game.',
+    explanation: `Most Pokémon evolve for 12, 25, 50 or 100 candies; Magikarp's 400 is a nod to the main-series games, where the useless fish becomes one of the strongest early Pokémon. A few others (Swablu, Wailmer, Noibat) also cost 400.
+
+Magikarp is a 1 km buddy, so walking the whole evolution would take 400 km — catching is much faster, especially near water or during events.`,
+    workedExample: 'At 3 candies per catch, 400 ÷ 3 = about 134 Magikarp. With a Pinap Berry (6 candies per catch), 400 ÷ 6 = about 67 catches.',
+    relatedToolId: 'pokemon-go-candy-calculator'
+  },
+  {
+    gameSlug: 'pokemongo',
+    gameName: 'Pokémon GO',
+    question: 'How much XP do you get for reaching Best Friends in Pokémon GO?',
+    slug: 'how-much-xp-for-best-friends-in-pokemon-go',
+    shortAnswer: 'Becoming Best Friends gives 100,000 XP — doubled to 200,000 XP if a Lucky Egg is running when the friendship levels up.',
+    explanation: `Friendship levels pay out XP at each step: Good Friends 3,000 XP (1 day), Great Friends 10,000 XP (7 days), Ultra Friends 50,000 XP (30 days) and Best Friends 100,000 XP (90 days of interaction) — 163,000 XP across the whole ladder per friend.
+
+Because the payout lands the moment you open a gift on the milestone day, experienced players save the final gift, start a Lucky Egg, and then open it.`,
+    workedExample: '3,000 + 10,000 + 50,000 + 100,000 = 163,000 XP total per friend taken from zero to Best Friends.',
+    relatedToolId: 'pokemon-go-level-calculator'
+  },
+  {
+    gameSlug: 'grow-a-garden',
+    gameName: 'Grow a Garden',
+    question: 'How much more is a Rainbow crop worth in Grow a Garden?',
+    slug: 'how-much-more-is-a-rainbow-crop-worth-in-grow-a-garden',
+    shortAnswer: "A Rainbow crop is worth 50 times its normal value. Rainbow is a variant, so its ×50 multiplies the crop's full value after weight and mutations are counted.",
+    explanation: `Every crop grows with one variant: Normal (×1), Silver (×5), Gold (×20) or Rainbow (×50) — plus the rarer Diamond and Jelly (×50) and Ember (×60). Rainbow is the strongest of the everyday variants and appears on only about 0.1% of crops.
+
+Because the variant multiplies everything else, a Rainbow version of an already mutated crop is where the biggest Sheckle payouts in the game come from.`,
+    workedExample: 'A crop worth 1,000 Sheckles at its base weight with no mutations sells for 1,000 × 50 = 50,000 Sheckles as a Rainbow.',
+    relatedToolId: 'grow-a-garden-crop-value-calculator'
+  },
+  {
+    gameSlug: 'grow-a-garden',
+    gameName: 'Grow a Garden',
+    question: 'How many Bug Eggs do you need to hatch a Dragonfly in Grow a Garden?',
+    slug: 'how-many-bug-eggs-to-hatch-a-dragonfly-in-grow-a-garden',
+    shortAnswer: 'The Dragonfly has a 1% hatch chance per Bug Egg, so you need about 69 eggs for a 50% chance and 230 eggs for a 90% chance. On average it takes 100 eggs.',
+    explanation: `Each Bug Egg is an independent 1-in-100 roll — no egg brings you "closer", the chance simply compounds across many eggs. That is why even 50 eggs still leave you at only about a 39% chance of owning a Dragonfly.
+
+The Dragonfly is chased because it turns a random crop Gold (×20) every few minutes, which pays for itself in a busy garden.`,
+    workedExample: 'Chance after n eggs = 1 − 0.99^n. 69 eggs → about 50%. 230 eggs → about 90%. At 50,000,000 Sheckles per egg, 69 eggs cost 3,450,000,000 Sheckles if bought outright.',
+    relatedToolId: 'grow-a-garden-egg-hatching-calculator'
+  },
+  {
+    gameSlug: 'grow-a-garden',
+    gameName: 'Grow a Garden',
+    question: 'How much is a Shocked crop worth in Grow a Garden?',
+    slug: 'how-much-is-a-shocked-crop-worth-in-grow-a-garden',
+    shortAnswer: 'Shocked is a ×100 mutation. On its own it makes a crop worth 100 times its base value — a 20-Sheckle Carrot becomes 2,000 Sheckles.',
+    explanation: `Shocked comes from lightning strikes during Thunderstorm weather. Environmental mutations like Shocked do not multiply each other — they add together inside one bracket: Shocked (×100) plus Frozen (×10) gives ×109, not ×1,000.
+
+Shocked is the strongest everyday weather mutation; only rare event and pet mutations (Celestial ×120, Disco ×125, Dawnbound ×150) beat it.`,
+    workedExample: 'Carrot, base value 20 Sheckles at its base weight of 0.275 kg: 20 × 100 = 2,000 Sheckles with Shocked alone.',
+    relatedToolId: 'grow-a-garden-mutation-calculator'
+  },
+  {
+    gameSlug: 'roblox',
+    gameName: 'Roblox',
+    question: 'What level do you need to reach the Second Sea in Blox Fruits?',
+    slug: 'what-level-to-reach-the-second-sea-in-blox-fruits',
+    shortAnswer: 'You need level 700 to unlock the Second Sea in Blox Fruits, and you must defeat the Ice Admiral as part of the unlock quest.',
+    explanation: `At level 700, talk to the Military Detective at the Prison island in the First Sea. He sends you to the Frozen Village to defeat the Ice Admiral; once he is beaten, you can travel to the Second Sea.
+
+Most players grind the last levels at the Skylands and Prison islands, where quest XP is highest for that range.`,
+    workedExample: "A level 650 player still needs 50 more levels before the Military Detective's quest becomes available.",
+    relatedToolId: 'blox-fruits-xp-calculator'
+  },
+  {
+    gameSlug: 'roblox',
+    gameName: 'Roblox',
+    question: 'What level do you need to reach the Third Sea in Blox Fruits?',
+    slug: 'what-level-to-reach-the-third-sea-in-blox-fruits',
+    shortAnswer: 'You need level 1500 to unlock the Third Sea in Blox Fruits, and you must have defeated Don Swan in the Second Sea.',
+    explanation: `Level alone is not enough: Don Swan, the boss in the Kingdom of Rose, must be defeated first. After that, speak to Mr. Captain at the Green Zone dock, who takes you through to the Third Sea.
+
+The Third Sea is the current endgame, holding the strongest bosses, raids and fruits in the game.`,
+    workedExample: 'A level 1,450 player still needs 50 more levels — and the Don Swan kill — before Mr. Captain will take them to the Third Sea.',
+    relatedToolId: 'blox-fruits-xp-calculator'
+  },
+  {
+    gameSlug: 'minecraft',
+    gameName: 'Minecraft',
+    question: 'Why does the anvil say "Too Expensive" in Minecraft?',
+    slug: 'why-does-the-anvil-say-too-expensive-in-minecraft',
+    shortAnswer: 'In Survival mode the anvil refuses any job that would cost 40 or more XP levels — that is the "Too Expensive" limit. Creative mode has no limit.',
+    explanation: `Every time an item goes on the anvil it gains a hidden "prior work penalty": 0, then 1, 3, 7, 15, 31 extra levels on each following use. After several combines or repairs, the penalty alone pushes the total cost past 40 and the item becomes unusable on the anvil.
+
+Renaming an item is the exception — a rename-only job always stays cheap and does not hit the limit the same way.`,
+    workedExample: 'An item that has already been worked on the anvil 5 times carries a 31-level penalty before the new job\'s own cost is even added.',
+    relatedToolId: 'minecraft-anvil-cost-calculator'
+  },
+  {
+    gameSlug: 'genshin',
+    gameName: 'Genshin Impact',
+    question: 'How long does it take for Original Resin to fully refill in Genshin Impact?',
+    slug: 'how-long-for-original-resin-to-fully-refill-in-genshin-impact',
+    shortAnswer: 'Original Resin refills at 1 point every 8 minutes, so a full 200 Resin takes 26 hours and 40 minutes from empty. You regenerate 180 Resin per day.',
+    explanation: `Because the daily regeneration (180) is less than the cap (200), logging in once a day is not enough to avoid waste — some Resin overflows unless you spend it roughly every 24 hours or store it as Condensed Resin.
+
+Fragile Resin items restore 60 Resin instantly and are best saved for heavy farming days, such as new artifact domains.`,
+    workedExample: '200 × 8 minutes = 1,600 minutes = 26 hours 40 minutes for a completely full bar.',
+    relatedToolId: 'genshin-resin-calculator'
   }
 ];
 

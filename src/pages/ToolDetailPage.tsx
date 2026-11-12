@@ -806,7 +806,24 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
           <div className="md:col-span-7 lg:col-span-8 space-y-8 min-w-0">
             {/* The Interactive Tool Container */}
             <div>
-              <React.Suspense fallback={<div className="flex items-center justify-center py-16 text-violet-300 text-sm font-medium animate-pulse">Loading tool…</div>}>
+              <React.Suspense fallback={
+                <div className="bg-[#0c122e] border border-indigo-900/60 rounded-2xl p-6 sm:p-8 space-y-4 animate-pulse">
+                  <div className="flex items-center justify-between border-b border-indigo-900/40 pb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-violet-500/20 border border-violet-500/30 flex items-center justify-center text-violet-400 font-bold">⚡</div>
+                      <div className="space-y-1.5">
+                        <div className="h-4 bg-indigo-900/50 rounded w-44"></div>
+                        <div className="h-3 bg-indigo-950/60 rounded w-32"></div>
+                      </div>
+                    </div>
+                    <span className="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded border border-cyan-500/20">Loading Engine</span>
+                  </div>
+                  <div className="space-y-3 pt-2">
+                    <div className="h-11 bg-indigo-950/50 rounded-xl border border-indigo-900/40"></div>
+                    <div className="h-11 bg-indigo-950/50 rounded-xl border border-indigo-900/40"></div>
+                  </div>
+                </div>
+              }>
                 {renderToolComponent()}
               </React.Suspense>
 

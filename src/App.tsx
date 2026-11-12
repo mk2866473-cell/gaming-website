@@ -8,45 +8,45 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SearchModal from './components/SearchModal';
 
-// Pages
-import HomePage from './pages/HomePage';
-import MinecraftHubPage from './pages/MinecraftHubPage';
-import RobloxHubPage from './pages/RobloxHubPage';
-import FortniteHubPage from './pages/FortniteHubPage';
-import PokemonGoHubPage from './pages/PokemonGoHubPage';
-import PalworldHubPage from './pages/PalworldHubPage';
-import HelldiversHubPage from './pages/HelldiversHubPage';
-import Ps99HubPage from './pages/Ps99HubPage';
-import TheFirstDescendantHubPage from './pages/TheFirstDescendantHubPage';
-import OnceHumanHubPage from './pages/OnceHumanHubPage';
-import WutheringWavesHubPage from './pages/WutheringWavesHubPage';
-import ZenlessZoneZeroHubPage from './pages/ZenlessZoneZeroHubPage';
-import TypeSoulHubPage from './pages/TypeSoulHubPage';
-import Bg3HubPage from './pages/Bg3HubPage';
-import LethalCompanyHubPage from './pages/LethalCompanyHubPage';
-import StarfieldHubPage from './pages/StarfieldHubPage';
-import EnshroudedHubPage from './pages/EnshroudedHubPage';
-import NightingaleHubPage from './pages/NightingaleHubPage';
-import CrkHubPage from './pages/CrkHubPage';
-import AfkjHubPage from './pages/AfkjHubPage';
-import MonopolyGoHubPage from './pages/MonopolyGoHubPage';
-import SevenKnightsHubPage from './pages/SevenKnightsHubPage';
-import CoinMasterHubPage from './pages/CoinMasterHubPage';
-import GrowAGardenHubPage from './pages/GrowAGardenHubPage';
-import ToolsDirectoryPage from './pages/ToolsDirectoryPage';
-import ToolDetailPage from './pages/ToolDetailPage';
-import GamesPage from './pages/GamesPage';
-import CategoriesPage from './pages/CategoriesPage';
-import AboutPage from './pages/AboutPage';
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import TermsPage from './pages/TermsPage';
-import DisclaimerPage from './pages/DisclaimerPage';
-import NotFoundPage from './pages/NotFoundPage';
-import CodesIndexPage from './pages/CodesIndexPage';
-import CodesDetailPage from './pages/CodesDetailPage';
-import QaIndexPage from './pages/QaIndexPage';
-import QaGameHubPage from './pages/QaGameHubPage';
-import QaDetailPage from './pages/QaDetailPage';
+// Code-split pages for instant initial page loads
+const HomePage = React.lazy(() => import('./pages/HomePage'));
+const MinecraftHubPage = React.lazy(() => import('./pages/MinecraftHubPage'));
+const RobloxHubPage = React.lazy(() => import('./pages/RobloxHubPage'));
+const FortniteHubPage = React.lazy(() => import('./pages/FortniteHubPage'));
+const PokemonGoHubPage = React.lazy(() => import('./pages/PokemonGoHubPage'));
+const PalworldHubPage = React.lazy(() => import('./pages/PalworldHubPage'));
+const HelldiversHubPage = React.lazy(() => import('./pages/HelldiversHubPage'));
+const Ps99HubPage = React.lazy(() => import('./pages/Ps99HubPage'));
+const TheFirstDescendantHubPage = React.lazy(() => import('./pages/TheFirstDescendantHubPage'));
+const OnceHumanHubPage = React.lazy(() => import('./pages/OnceHumanHubPage'));
+const WutheringWavesHubPage = React.lazy(() => import('./pages/WutheringWavesHubPage'));
+const ZenlessZoneZeroHubPage = React.lazy(() => import('./pages/ZenlessZoneZeroHubPage'));
+const TypeSoulHubPage = React.lazy(() => import('./pages/TypeSoulHubPage'));
+const Bg3HubPage = React.lazy(() => import('./pages/Bg3HubPage'));
+const LethalCompanyHubPage = React.lazy(() => import('./pages/LethalCompanyHubPage'));
+const StarfieldHubPage = React.lazy(() => import('./pages/StarfieldHubPage'));
+const EnshroudedHubPage = React.lazy(() => import('./pages/EnshroudedHubPage'));
+const NightingaleHubPage = React.lazy(() => import('./pages/NightingaleHubPage'));
+const CrkHubPage = React.lazy(() => import('./pages/CrkHubPage'));
+const AfkjHubPage = React.lazy(() => import('./pages/AfkjHubPage'));
+const MonopolyGoHubPage = React.lazy(() => import('./pages/MonopolyGoHubPage'));
+const SevenKnightsHubPage = React.lazy(() => import('./pages/SevenKnightsHubPage'));
+const CoinMasterHubPage = React.lazy(() => import('./pages/CoinMasterHubPage'));
+const GrowAGardenHubPage = React.lazy(() => import('./pages/GrowAGardenHubPage'));
+const ToolsDirectoryPage = React.lazy(() => import('./pages/ToolsDirectoryPage'));
+const ToolDetailPage = React.lazy(() => import('./pages/ToolDetailPage'));
+const GamesPage = React.lazy(() => import('./pages/GamesPage'));
+const CategoriesPage = React.lazy(() => import('./pages/CategoriesPage'));
+const AboutPage = React.lazy(() => import('./pages/AboutPage'));
+const PrivacyPolicyPage = React.lazy(() => import('./pages/PrivacyPolicyPage'));
+const TermsPage = React.lazy(() => import('./pages/TermsPage'));
+const DisclaimerPage = React.lazy(() => import('./pages/DisclaimerPage'));
+const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
+const CodesIndexPage = React.lazy(() => import('./pages/CodesIndexPage'));
+const CodesDetailPage = React.lazy(() => import('./pages/CodesDetailPage'));
+const QaIndexPage = React.lazy(() => import('./pages/QaIndexPage'));
+const QaGameHubPage = React.lazy(() => import('./pages/QaGameHubPage'));
+const QaDetailPage = React.lazy(() => import('./pages/QaDetailPage'));
 
 import { getToolBySlug } from './data/gamesAndTools';
 import { getCodesPageBySlug } from './data/codesData';
@@ -419,7 +419,14 @@ export default function App() {
         />
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-          {renderCurrentPage()}
+          <React.Suspense fallback={
+            <div className="min-h-[40vh] flex flex-col items-center justify-center gap-3">
+              <div className="w-7 h-7 border-2 border-violet-500 border-t-transparent rounded-full animate-spin"></div>
+              <span className="text-xs text-slate-400 font-mono">Loading...</span>
+            </div>
+          }>
+            {renderCurrentPage()}
+          </React.Suspense>
         </main>
       </div>
 
