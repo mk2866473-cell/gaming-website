@@ -92,7 +92,7 @@ export default function TypeSoulHubPage({ onNavigate }: TypeSoulHubPageProps) {
       <SEOHead
         title="Roblox Type Soul Calculators & Build Tools 2026 – Bankai, Stats & Clans Guide"
         description="Comprehensive suite of 6 Roblox Type Soul tools: Stat Skill Tree Allocator with hybrid lockout warnings, Grade Progression Requirement Calculator, Shikai/Bankai/Resurrección Evolution Stage Tracker, Raid Reward & True Hogyoku Drop Rate Checker, Clan Rarity & Buff Simulator, and Abilities Combo Gauge."
-        canonicalPath="/type-soul"
+        canonicalPath="/games/type-soul"
         breadcrumbs={breadcrumbs}
       />
 

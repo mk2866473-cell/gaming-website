@@ -99,7 +99,7 @@ export default function LethalCompanyHubPage({ onNavigate }: LethalCompanyHubPag
       <SEOHead
         title="Lethal Company & Content Warning Tools Hub 2026 – Quota, Bestiary & SpookTube Calculators"
         description="Complete suite of 5 tools for Lethal Company and Content Warning: Quota Profit Margin Matrix, Monster Danger Rating, Store Item Budget Planner, Ship Upgrade ROI, and SpookTube Views Calculator."
-        canonicalPath="/lethal-company"
+        canonicalPath="/games/lethal-company"
       />
 
       {/* Hub Top Banner Ad Slot */}

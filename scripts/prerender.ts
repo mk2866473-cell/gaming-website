@@ -160,10 +160,12 @@ function renderPageTemplate(
   title: string,
   description: string,
   bodyContent: string,
-  jsonLd?: any
+  jsonLd?: any,
+  overrideCanonicalPath?: string
 ) {
   let pageHtml = baseTemplate;
-  const canonicalUrl = `${DOMAIN}${routePath === '/' ? '/' : routePath}`;
+  const canonicalPath = overrideCanonicalPath !== undefined ? overrideCanonicalPath : (routePath === '/' ? '/' : routePath);
+  const canonicalUrl = `${DOMAIN}${canonicalPath}`;
 
   pageHtml = pageHtml.replace(/<title>.*?<\/title>/i, `<title>${escapeHtml(title)}</title>`);
   pageHtml = pageHtml.replace(
@@ -838,64 +840,213 @@ function generateSingleGameHubHtml(gameId: string): string {
   `;
 }
 
-const gameHubConfigs = [
+const gameHubConfigs: {
+  id: string;
+  slug: string;
+  aliases: string[];
+  title?: string;
+  description?: string;
+}[] = [
   {
     id: 'minecraft',
-    path: '/games/minecraft',
-    aliasPath: '/minecraft',
+    slug: 'minecraft',
+    aliases: ['/minecraft'],
     title: 'Minecraft Calculators, Generators & Blueprint Tools | GamingToolsHub',
     description: 'Pixel-perfect circle generators, 3D sphere planners, nether portal 8:1 linkers, XP formulas, and anvil cost calculators for Minecraft.',
   },
   {
     id: 'roblox',
-    path: '/games/roblox',
-    aliasPath: '/roblox',
+    slug: 'roblox',
+    aliases: ['/roblox'],
     title: 'Roblox Calculators – Robux Tax, DevEx & Blox Fruits Tools | GamingToolsHub',
     description: '30% Robux tax calculators, official DevEx cashout estimators, developer earnings, and Blox Fruits trading calculators.',
   },
   {
     id: 'fortnite',
-    path: '/games/fortnite',
-    aliasPath: '/fortnite',
+    slug: 'fortnite',
+    aliases: ['/fortnite'],
     title: 'Fortnite Battle Pass XP & Sensitivity Calculators | GamingToolsHub',
     description: 'Season level pacers, 80k XP Battle Pass target calculators, mouse sensitivity converters, and eDPI estimators for Fortnite.',
   },
   {
     id: 'pokemongo',
-    path: '/games/pokemongo',
-    aliasPath: '/pokemongo',
+    slug: 'pokemongo',
+    aliases: ['/pokemongo'],
     title: 'Pokémon GO CP, IV & Evolution Calculators | GamingToolsHub',
     description: 'Accurate CP multipliers, raid catch IV appraisals, Great League PvP stat product optimizers, and Stardust powerup cost planners.',
   },
   {
     id: 'palworld',
-    path: '/games/palworld',
-    aliasPath: '/palworld',
+    slug: 'palworld',
+    aliases: ['/palworld'],
     title: 'Palworld Breeding & Stat Calculators | GamingToolsHub',
     description: 'Breeding combination calculators, reverse lineage search, IV calculators, and condensation requirements for Palworld.',
   },
   {
     id: 'genshin',
-    path: '/games/genshin',
-    aliasPath: '/genshin',
+    slug: 'genshin',
+    aliases: ['/genshin'],
     title: 'Genshin Impact Calculators & Pity Planners | GamingToolsHub',
     description: 'Wish pity estimators, Primogem planners, resin refill timers, and artifact crit value calculators for Genshin Impact.',
   },
   {
     id: 'helldivers2',
-    path: '/games/helldivers-2',
-    aliasPath: '/helldivers-2',
+    slug: 'helldivers-2',
+    aliases: ['/helldivers-2', '/helldivers2'],
     title: 'Helldivers 2 Damage & Breakpoint Calculators | GamingToolsHub',
     description: 'Precision ballistics, weapon TTK, shots-to-kill breakpoints, and enemy weak spot multipliers for Helldivers 2.',
+  },
+  {
+    id: 'ps99',
+    slug: 'ps99',
+    aliases: ['/ps99', '/pet-simulator-99'],
+    title: 'Pet Simulator 99 Calculators & Tools | GamingToolsHub',
+    description: 'Verified Pet Simulator 99 trading calculators: WFL trade calculators, Exclusive Daycare earnings, and RAP price alerts.',
+  },
+  {
+    id: 'fps',
+    slug: 'fps',
+    aliases: ['/fps'],
+    title: 'FPS & Aim Esports Calculators & Tools | GamingToolsHub',
+    description: 'Universal mouse sensitivity converter, eDPI rankings, crosshair code generators, and reaction benchmarks.',
+  },
+  {
+    id: 'esports',
+    slug: 'esports',
+    aliases: ['/esports'],
+    title: 'Esports & Competitive Gaming Tools | GamingToolsHub',
+    description: 'Team generators, MMR balancers, and scrim roster organizers for competitive FPS and MOBA games.',
+  },
+  {
+    id: 'tfd',
+    slug: 'the-first-descendant',
+    aliases: ['/the-first-descendant', '/tfd'],
+    title: 'The First Descendant Calculators & Tools | GamingToolsHub',
+    description: 'Weapon DPS calculators, Descendant skill damage simulators, reactor checkers, and module capacity optimizers for The First Descendant.',
+  },
+  {
+    id: 'oncehuman',
+    slug: 'once-human',
+    aliases: ['/once-human', '/oncehuman'],
+    title: 'Once Human Calculators & Build Tools | GamingToolsHub',
+    description: 'Blueprint star upgrades, acid farm calculators, weapon calibration tuning, and cradle override planners for Once Human.',
+  },
+  {
+    id: 'wuwa',
+    slug: 'wuthering-waves',
+    aliases: ['/wuthering-waves', '/wuwa'],
+    title: 'Wuthering Waves Calculators & Build Tools | GamingToolsHub',
+    description: 'Echo tuning evaluator, 80 pity Astrite planner, resonance chain multipliers, and resonator ascension material calculators for Wuthering Waves.',
+  },
+  {
+    id: 'zzz',
+    slug: 'zenless-zone-zero',
+    aliases: ['/zenless-zone-zero', '/zzz'],
+    title: 'Zenless Zone Zero Calculators & Build Tools | GamingToolsHub',
+    description: 'Drive disc build optimizer, polychrome banner pity planner, daze stun multiplier calculator, and W-engine comparison for Zenless Zone Zero.',
+  },
+  {
+    id: 'typesoul',
+    slug: 'type-soul',
+    aliases: ['/type-soul', '/typesoul', '/roblox-type-soul'],
+    title: 'Roblox Type Soul Calculators & Build Tools | GamingToolsHub',
+    description: 'Stat skill tree allocator, grade requirements, Bankai/Resurrección trackers, raid drop checkers, and clan simulators for Roblox Type Soul.',
+  },
+  {
+    id: 'bg3',
+    slug: 'baldurs-gate-3',
+    aliases: ['/baldurs-gate-3', '/bg3'],
+    title: 'Baldur\'s Gate 3 Tools & Calculators | GamingToolsHub',
+    description: 'Multiclass spell builder, d20 dice roll probability calculator, 3:1 alchemy recipe finder, and AC tank optimizer for Baldur\'s Gate 3.',
+  },
+  {
+    id: 'lethalcompany',
+    slug: 'lethal-company',
+    aliases: ['/lethal-company', '/lethalcompany', '/content-warning', '/contentwarning'],
+    title: 'Lethal Company & Content Warning Tools Hub | GamingToolsHub',
+    description: 'Quota profit margin matrix, scrap value calculators, monster danger rating, and SpookTube views calculator for Lethal Company.',
+  },
+  {
+    id: 'starfield',
+    slug: 'starfield',
+    aliases: ['/starfield'],
+    title: 'Starfield Tools & Calculators | GamingToolsHub',
+    description: 'Shipbuilder cost & cargo weight calculator, outpost supply line planner, 82-skill tree allocator, and planet scan checklist for Starfield.',
+  },
+  {
+    id: 'enshrouded',
+    slug: 'enshrouded',
+    aliases: ['/enshrouded'],
+    title: 'Enshrouded Tools & Calculators | GamingToolsHub',
+    description: 'Flame altar upgrade costs, building block material requirements, survivor recipe finder, and comfort rested buff timer for Enshrouded.',
+  },
+  {
+    id: 'nightingale',
+    slug: 'nightingale',
+    aliases: ['/nightingale'],
+    title: 'Nightingale Tools & Calculators | GamingToolsHub',
+    description: 'Realm card crafting matrix, minor card modifier simulator, gear score calculator, and material stats optimizer for Nightingale.',
+  },
+  {
+    id: 'crk',
+    slug: 'cookie-run-kingdom',
+    aliases: ['/cookie-run-kingdom', '/crk'],
+    title: 'Cookie Run: Kingdom Tools Hub | GamingToolsHub',
+    description: 'Team builder, topping optimizer, production chain planner, cookie skill upgrade calculator, and gacha pity planner for Cookie Run: Kingdom.',
+  },
+  {
+    id: 'afkj',
+    slug: 'afk-journey',
+    aliases: ['/afk-journey', '/afkj'],
+    title: 'AFK Journey Tools Hub | GamingToolsHub',
+    description: 'Dream realm daily boss planner, hero ascension & acorn calculator, hero essence dust planner, and wishlist summon calculator for AFK Journey.',
+  },
+  {
+    id: 'mogo',
+    slug: 'monopoly-go',
+    aliases: ['/monopoly-go', '/mogo', '/monopolygo'],
+    title: 'Monopoly GO Tools Hub | GamingToolsHub',
+    description: 'Sticker tracker, trade matcher, verified daily free dice links, flash event schedule timers, and board upgrade cost planner for Monopoly GO.',
+  },
+  {
+    id: 'sk',
+    slug: 'seven-knights-rebirth',
+    aliases: ['/seven-knights-rebirth', '/sk'],
+    title: 'Seven Knights Re:BIRTH Tools Hub | GamingToolsHub',
+    description: 'Damage calculator, gear sell/keep valuator, 5v5 team builder, ruby income planner, shop bundle optimizer, and gacha pity simulator.',
+  },
+  {
+    id: 'cm',
+    slug: 'coin-master',
+    aliases: ['/coin-master', '/cm'],
+    title: 'Coin Master Tools Hub | GamingToolsHub',
+    description: 'Village cost calculator, verified free spin links, card set tracker, event timer planner, and companion pet timer for Coin Master.',
+  },
+  {
+    id: 'general',
+    slug: 'general',
+    aliases: ['/general'],
+    title: 'Gaming Utilities & Decision Wheels | GamingToolsHub',
+    description: 'Random decision makers, challenge pickers, drop spot randomizers, and team draft wheels for gaming nights.',
   }
 ];
 
 gameHubConfigs.forEach(cfg => {
+  const game = getGameById(cfg.id);
+  const title = cfg.title || `${game?.name || cfg.id} Calculators & Tools | GamingToolsHub`;
+  const description = cfg.description || game?.description || '';
+  const canonicalPath = `/games/${cfg.slug}`;
   const html = generateSingleGameHubHtml(cfg.id);
-  renderPageTemplate(cfg.path, cfg.title, cfg.description, html);
-  if (cfg.aliasPath) {
-    renderPageTemplate(cfg.aliasPath, cfg.title, cfg.description, html);
-  }
+
+  // 1. Render primary game hub path at /games/<slug>
+  renderPageTemplate(`/games/${cfg.slug}`, title, description, html, undefined, canonicalPath);
+
+  // 2. Render all alias paths with canonicalPath forced to /games/<slug>
+  cfg.aliases.forEach(alias => {
+    if (alias !== `/games/${cfg.slug}`) {
+      renderPageTemplate(alias, title, description, html, undefined, canonicalPath);
+    }
+  });
 });
 
 // 2.5 Pre-render /about

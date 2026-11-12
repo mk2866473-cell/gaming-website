@@ -92,7 +92,7 @@ export default function NightingaleHubPage({ onNavigate }: NightingaleHubPagePro
       <SEOHead
         title="Nightingale Tools Hub 2026 – Realm Card Matrix, Minor Cards, Gear Score & Material Stats"
         description="Comprehensive suite of 5 Nightingale gaslamp survival tools: Realm Card Crafting Matrix, Minor Card Modifier Simulator, Gear Score Tier Calculator, Resource Inherent Stats Optimizer, and Essence Trader Planner."
-        canonicalPath="/nightingale"
+        canonicalPath="/games/nightingale"
       />
 
       {/* Hub Top Banner Ad Slot */}

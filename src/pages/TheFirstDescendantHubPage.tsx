@@ -90,7 +90,7 @@ export default function TheFirstDescendantHubPage({ onNavigate }: TheFirstDescen
       <SEOHead
         title="The First Descendant Calculators & Build Tools 2026 – DPS, Skills & Colossus Guide"
         description="Comprehensive suite of 8 The First Descendant tools: Weapon DPS Calculator, Descendant Skill Damage Simulator, Reactor Perfect-Roll Checker, Amorphous Material Tracker, Component Set Optimizer, Gold & Kuiper Leveling Calculator, Daily Invasion Timer, and Colossus Weakness Matrix."
-        canonicalPath="/the-first-descendant"
+        canonicalPath="/games/the-first-descendant"
         breadcrumbs={breadcrumbs}
       />
 

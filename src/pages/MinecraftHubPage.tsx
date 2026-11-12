@@ -60,7 +60,7 @@ export default function MinecraftHubPage({ onNavigate }: MinecraftHubPageProps) 
       <SEOHead
         title="Minecraft Calculators & Blueprint Generators – GamingToolsHub"
         description="Comprehensive suite of 15+ Minecraft calculators: 3D Sphere & Dome generator, Circle blueprints, Nether portal linker, Distance time calculator, XP planner, Anvil penalty optimizer, Beacon & Redstone tick math."
-        canonicalPath="/minecraft"
+        canonicalPath="/games/minecraft"
         breadcrumbs={breadcrumbs}
       />
 

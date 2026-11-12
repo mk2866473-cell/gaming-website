@@ -30,7 +30,7 @@ export default function GamesPage({ selectedGameSlug, onNavigate }: GamesPagePro
       <SEOHead
         title={activeGame ? `${activeGame.name} Calculators & Tools` : 'Browse Gaming Tools by Game'}
         description={activeGame ? activeGame.description : 'Find calculators, generators, and tools sorted by game: Minecraft, FPS esports, RPGs, and party games.'}
-        canonicalPath={activeGame ? `/games?game=${activeGame.slug}` : '/games'}
+        canonicalPath="/games"
         breadcrumbs={breadcrumbs}
       />
 

@@ -98,7 +98,7 @@ export default function AfkjHubPage({ onNavigate }: AfkjHubPageProps) {
       <SEOHead
         title="AFK Journey Tools Hub 2026 – Dream Realm Boss Planner, Ascension & Team Builder"
         description="Comprehensive suite of 6 AFK Journey tactical tools: Dream Realm Daily Boss Planner, Hero Ascension & Acorn Calculator, Hero Essence Dust Planner, Wishlist Summon Calculator, 5v5 Tactical Grid Team Builder, and Season Tracker."
-        canonicalPath="/afk-journey"
+        canonicalPath="/games/afk-journey"
       />
 
       {/* Hub Top Banner Ad Slot */}

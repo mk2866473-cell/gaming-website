@@ -97,7 +97,7 @@ export default function CrkHubPage({ onNavigate }: CrkHubPageProps) {
       <SEOHead
         title="Cookie Run: Kingdom Tools Hub 2026 – Team Builder, Topping Optimizer & Upgrade Planner"
         description="Suite of 6 Cookie Run: Kingdom interactive tools: Team Builder with meta comps, Topping Optimizer with CD thresholds, Production Chain Planner, Cookie & Skill Upgrade Calculator, Gacha Pity Planner, and Event Timers."
-        canonicalPath="/cookie-run-kingdom"
+        canonicalPath="/games/cookie-run-kingdom"
       />
 
       {/* Hub Top Banner Ad Slot */}

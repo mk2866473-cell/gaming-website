@@ -104,7 +104,7 @@ export default function HelldiversHubPage({ onNavigate }: HelldiversHubPageProps
       <SEOHead
         title="Helldivers 2 Utilities Hub - 16 Free Calculators, Recoil & War Maps 2026"
         description="Official Helldivers 2 Utilities Hub 2026. 16 free calculators: Recoil Pattern Visualizer, Enemy Weakness Matrix, Armor Tier List, Super Credits Farm, Warbond Medals, and Galactic War Map."
-        canonicalPath="/helldivers-2"
+        canonicalPath="/games/helldivers-2"
       />
 
       {/* Hub Top Banner Ad Slot */}

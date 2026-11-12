@@ -96,7 +96,7 @@ export default function StarfieldHubPage({ onNavigate }: StarfieldHubPageProps) 
       <SEOHead
         title="Starfield Tools & Calculators 2026 – Shipbuilder, Outpost Supply, Skills & Survey Suite"
         description="Official suite of 6 Starfield tools: Ship Modules Cost & Cargo Weight Calculator, Outpost Resource Supply Line Planner, 82-Skill Tree Allocator, Planet Scan Flora/Fauna Checklist, Weapon Modding Damage Multiplier, and Crew Assignment Buff Calculator."
-        canonicalPath="/starfield"
+        canonicalPath="/games/starfield"
         breadcrumbs={breadcrumbs}
       />
 

@@ -94,7 +94,7 @@ export default function Ps99HubPage({ onNavigate }: Ps99HubPageProps) {
       <SEOHead
         title="Pet Simulator 99 Calculators & Tools – WFL, RAP Tracker & Values 2026"
         description="Comprehensive suite of 8 Pet Simulator 99 calculators: WFL Trade Calculator, Exclusive Daycare Earnings, Enchant Builder & Diminishing Returns, Egg Hatching Odds, Mastery Planner, RAP Price Alerts, Clan Battles, and Diamond Grind Optimizer."
-        canonicalPath="/ps99"
+        canonicalPath="/games/ps99"
         breadcrumbs={breadcrumbs}
       />
 

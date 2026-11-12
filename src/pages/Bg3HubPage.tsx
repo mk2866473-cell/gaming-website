@@ -99,7 +99,7 @@ export default function Bg3HubPage({ onNavigate }: Bg3HubPageProps) {
       <SEOHead
         title="Baldur's Gate 3 Tools & Calculators 2026 – Multiclass, Dice, Alchemy & Build Suite"
         description="Complete suite of 7 Baldur's Gate 3 tools: Multiclass Spell Slot Builder, d20 Dice Roll Probability Calculator, 3:1 Alchemy Recipe Finder, Companion Approval & Romance Tracker, AC Tank Optimizer, Weapon Action DPR Counter, and Origin Character Passive Guide."
-        canonicalPath="/baldurs-gate-3"
+        canonicalPath="/games/baldurs-gate-3"
         breadcrumbs={breadcrumbs}
       />
 

@@ -37,7 +37,7 @@ export default function CategoriesPage({ selectedCategoryId, onNavigate }: Categ
       <SEOHead
         title={activeCat ? `${activeCat.name} – Gaming Tools & Utilities` : 'Gaming Tool Categories'}
         description={activeCat ? activeCat.description : 'Explore tools by category: Calculators, Generators, Converters, Decision Wheels, and Trackers.'}
-        canonicalPath={activeCat ? `/categories?cat=${activeCat.id}` : '/categories'}
+        canonicalPath="/categories"
         breadcrumbs={breadcrumbs}
       />
 

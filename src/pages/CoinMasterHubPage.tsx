@@ -56,7 +56,7 @@ export default function CoinMasterHubPage({ onNavigate }: CoinMasterHubPageProps
       <SEOHead
         title="Coin Master Tools Hub 2026 – Village Cost Calculator, Spins & Card Tracker"
         description="Suite of 5 verified Coin Master interactive tools: Village Cost Calculator, Verified Free Spin Links, Card Set Tracker, Event Timer Planner, and Companion Pet Timer."
-        canonicalPath="/coin-master"
+        canonicalPath="/games/coin-master"
       />
 
       {/* Hub Top Banner Ad Slot */}

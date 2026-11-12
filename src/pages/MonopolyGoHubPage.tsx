@@ -97,7 +97,7 @@ export default function MonopolyGoHubPage({ onNavigate }: MonopolyGoHubPageProps
       <SEOHead
         title="Monopoly GO Tools Hub 2026 – Free Dice Links, Sticker Tracker & Trade Matcher"
         description="Comprehensive suite of 6 Monopoly GO tools: Album Sticker & Duplicate Vault Tracker, Safe Exchange Trade Matcher, Verified Daily Free Dice Links, Flash Event Timers, Shield Finder, and Board Upgrade Cost Planner."
-        canonicalPath="/monopoly-go"
+        canonicalPath="/games/monopoly-go"
       />
 
       {/* Hub Top Banner Ad Slot */}

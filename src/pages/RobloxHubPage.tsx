@@ -69,7 +69,7 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
       <SEOHead
         title="Roblox Calculators & Blox Fruits Tools – GamingToolsHub"
         description="Comprehensive suite of 10+ Roblox calculators: Robux Tax (30%), DevEx USD Cashout ($0.0035/R$), Blox Fruits Trading Values & 40% Beli rule, XP Leveling to 2600, Stat builder, Gamepass Revenue & Team Splits."
-        canonicalPath="/roblox"
+        canonicalPath="/games/roblox"
         breadcrumbs={breadcrumbs}
       />
 

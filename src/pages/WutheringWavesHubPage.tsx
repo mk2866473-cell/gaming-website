@@ -92,7 +92,7 @@ export default function WutheringWavesHubPage({ onNavigate }: WutheringWavesHubP
       <SEOHead
         title="Wuthering Waves Calculators & Build Tools 2026 – Echo Tuning, Pity & Sonata Guide"
         description="Comprehensive suite of 6 Wuthering Waves tools: Echo Tuning Sub-Stat Evaluator with God-Roll scores, 80 Hard Pity & Astrite Farming Planner, Resonance Chain S0-S6 DPS multipliers, Resonator Ascension & Forte Material Calculator, Shell Credit Spend Optimizer, and Team Rotation & Sonata Effect Synergy Builder."
-        canonicalPath="/wuthering-waves"
+        canonicalPath="/games/wuthering-waves"
         breadcrumbs={breadcrumbs}
       />
 

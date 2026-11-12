@@ -92,7 +92,7 @@ export default function ZenlessZoneZeroHubPage({ onNavigate }: ZenlessZoneZeroHu
       <SEOHead
         title="Zenless Zone Zero Calculators & Build Tools 2026 – Drive Discs, Pity & Daze Guide"
         description="Comprehensive suite of 6 Zenless Zone Zero tools: Drive Disc Set & Anomaly Build Optimizer, Polychrome & Master Tape Banner Pity Calculator, Daze & Stun Multiplier Calculator, Bangboo Synergy Selector, Inter-Knot Battery Planner, and W-Engine Side-by-Side Comparison Tool."
-        canonicalPath="/zenless-zone-zero"
+        canonicalPath="/games/zenless-zone-zero"
         breadcrumbs={breadcrumbs}
       />
 

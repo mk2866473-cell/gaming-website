@@ -65,7 +65,7 @@ export default function PokemonGoHubPage({ onNavigate }: PokemonGoHubPageProps) 
       <SEOHead
         title="Pokémon GO Calculators & Tools – CP, IV, PvP & Stardust"
         description="Verified Pokémon GO calculators for trainers: official CPM Combat Power formulas, IV appraisal, Great/Ultra PvP rankers, raid TTW, and stardust budgets."
-        canonicalPath="/pokemongo"
+        canonicalPath="/games/pokemongo"
       />
 
       <div className="space-y-12">

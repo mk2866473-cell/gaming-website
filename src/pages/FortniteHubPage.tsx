@@ -65,7 +65,7 @@ export default function FortniteHubPage({ onNavigate }: FortniteHubPageProps) {
       <SEOHead
         title="Fortnite Calculators & Tools – Battle Pass XP, Sensitivity & Damage"
         description="Comprehensive suite of 10+ Fortnite tools: Battle Pass XP Pacing to Level 200, 80k XP Leveling, Mouse Sensitivity Converter, eDPI Pro calculator, Weapon Damage, Fall Damage height math & Storm Timers."
-        canonicalPath="/fortnite"
+        canonicalPath="/games/fortnite"
         breadcrumbs={breadcrumbs}
       />
 

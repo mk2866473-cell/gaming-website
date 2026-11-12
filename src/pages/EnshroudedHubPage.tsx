@@ -98,7 +98,7 @@ export default function EnshroudedHubPage({ onNavigate }: EnshroudedHubPageProps
       <SEOHead
         title="Enshrouded Tools Hub 2026 – Flame Altar, Building Blocks, Skill Tree & Rested Buff Calculators"
         description="Comprehensive suite of 6 Enshrouded tools: Flame Altar Upgrade Cost Calculator, Building Block Material Requirements, Survivor Recipe Finder, Comfort Rested Buff Timer, Skill Tree Planner, and Glider Tier Upgrader."
-        canonicalPath="/enshrouded"
+        canonicalPath="/games/enshrouded"
       />
 
       {/* Hub Top Banner Ad Slot */}

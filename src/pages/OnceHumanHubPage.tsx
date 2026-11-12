@@ -93,7 +93,7 @@ export default function OnceHumanHubPage({ onNavigate }: OnceHumanHubPageProps) 
       <SEOHead
         title="Once Human Calculators & Build Tools 2026 – Blueprints, Acid Farm & Cradle Guide"
         description="Comprehensive suite of 8 Once Human tools: Blueprint Star Upgrade Calculator, Tactical Mystical Crate Map, Base Acid Farm & Power Grid Calculator, Weapon Calibration Tool, Cradle Override Build Planner, Deviance Mood & Energy Optimizer, Memetic Specialization Planner, and Boss Loot Matrix."
-        canonicalPath="/once-human"
+        canonicalPath="/games/once-human"
         breadcrumbs={breadcrumbs}
       />
 

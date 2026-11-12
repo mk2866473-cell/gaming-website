@@ -62,7 +62,7 @@ export default function SevenKnightsHubPage({ onNavigate }: SevenKnightsHubPageP
       <SEOHead
         title="Seven Knights Re:BIRTH Tools Hub 2026 – Damage Calc, Team Builder & Gacha Planner"
         description="Suite of 6 Seven Knights Re:BIRTH interactive tactical tools: Damage Calculator, Gear Sell/Keep Valuator, 5v5 Team Builder, Ruby Income Planner, Shop Bundle Optimizer, and Gacha Pity Simulator."
-        canonicalPath="/seven-knights-rebirth"
+        canonicalPath="/games/seven-knights-rebirth"
       />
 
       {/* Hub Top Banner Ad Slot */}
