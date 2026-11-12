@@ -1023,6 +1023,13 @@ const gameHubConfigs: {
     description: 'Village cost calculator, verified free spin links, card set tracker, event timer planner, and companion pet timer for Coin Master.',
   },
   {
+    id: 'growagarden',
+    slug: 'grow-a-garden',
+    aliases: ['/grow-a-garden', '/growagarden'],
+    title: 'Grow a Garden Calculators & Tools | GamingToolsHub',
+    description: 'Calculate crop Sheckle sell values, weight scaling factors, variant multipliers, environmental mutation brackets, and friend boost bonuses in Roblox Grow a Garden.',
+  },
+  {
     id: 'general',
     slug: 'general',
     aliases: ['/general'],

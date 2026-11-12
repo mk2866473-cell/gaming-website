@@ -68,6 +68,16 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
         accent: 'border-rose-500/30 group-hover:border-rose-500/60'
       },
       {
+        id: 'growagarden',
+        name: 'Grow a Garden',
+        subtitle: 'Crop Values & Hatching Odds',
+        description: 'Calculate crop Sheckle sell values with weight scaling, variant multipliers, environmental mutation brackets, and pet egg odds.',
+        count: TOOLS.filter(t => t.gameId === 'growagarden' || t.gameId === 'grow-a-garden').length,
+        path: getGamePath('growagarden'),
+        icon: getGameIcon('growagarden', 'w-5 h-5'),
+        accent: 'border-emerald-500/30 group-hover:border-emerald-500/60'
+      },
+      {
         id: 'fortnite',
         name: 'Fortnite',
         subtitle: 'Chapter 5 & Zero Build',

@@ -34,7 +34,8 @@ import {
   AfkjIcon,
   MonopolyGoIcon,
   SkIcon,
-  CmIcon
+  CmIcon,
+  GrowAGardenIcon
 } from './GameIcons';
 
 interface NavbarProps {
@@ -50,6 +51,7 @@ const GAME_NAV_ICONS: Record<string, React.ReactNode> = {
   pokemongo: <PokeballIcon className="w-4 h-4 text-rose-400" />,
   palworld: <PalSphereIcon className="w-4 h-4 text-cyan-400" />,
   genshin: <GenshinIcon className="w-4 h-4" />,
+  growagarden: <GrowAGardenIcon className="w-4 h-4 text-emerald-400" />,
   ps99: <Ps99Icon className="w-4 h-4" />,
   helldivers2: <HelldiversIcon className="w-4 h-4" />,
   tfd: <TfdIcon className="w-4 h-4" />,

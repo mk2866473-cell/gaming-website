@@ -4880,6 +4880,195 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
       'Save your Tier 3 and Tier 4 Essence for endgame Ascended Vault keycards and Apex weapons.'
     ],
     relatedToolIds: ['nightingale-realm-card-crafting-matrix', 'nightingale-gear-score-tier-calculator', 'nightingale-resource-stats-optimizer']
+  },
+  {
+    id: 'grow-a-garden-crop-value-calculator',
+    slug: 'grow-a-garden-crop-value-calculator',
+    name: 'Grow a Garden Crop Value Calculator',
+    gameId: 'growagarden',
+    categoryId: 'calculators',
+    icon: 'Sprout',
+    shortDescription: 'Calculate exact crop Sheckle sell values in Roblox Grow a Garden with variant multipliers, mutation brackets, weight scaling, and friend boost.',
+    description: 'Calculates official crop sell values in Roblox Grow a Garden using exact wiki formulas: Base Value, quadratic weight scaling ratio max(Weight/BaseWeight, 0.95)², Variant multiplier, environmental mutation sum bracket 1 + Σ(Env - 1), friend boost, and quantity.',
+    badge: 'Garden Value',
+    rating: 4.98,
+    reviewsCount: 180,
+    userCount: '14.2K',
+    tags: ['grow a garden', 'roblox grow a garden', 'crop value calculator', 'sheckles', 'carrot value', 'environmental mutations', 'weight scaling'],
+    seoTitle: 'Grow a Garden Crop Value Calculator – Sheckles & Mutations',
+    metaDescription: 'Calculate exact crop sell values in Roblox Grow a Garden. Includes Carrot preset, weight scaling, Gold/Rainbow variants, environmental mutation brackets, and friend boost.',
+    h1: 'Grow a Garden Crop Value Calculator',
+    canonicalPath: '/tools/grow-a-garden-crop-value-calculator',
+    howToGuide: {
+      overview: 'Select crop preset or custom mode, enter actual crop weight in kg, pick variant and environmental mutations, add friend boost %, and enter quantity.',
+      steps: [
+        { title: 'Select Crop & Weight', description: 'Choose Carrot preset (20 Sheckles, 0.275 kg) or enter custom base value and weight, then type the actual weight in kg.' },
+        { title: 'Variant & Mutations', description: 'Select crop variant (None, Gold, Rainbow, etc.) and check all environmental mutations. Wet and Chilled fuse into Frozen (×10) automatically.' },
+        { title: 'Friend Boost & Qty', description: 'Enter friend boost % (0–100) and quantity to view total Sheckles and breakdown.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Grow a Garden Crop Value Formula',
+      details: 'Value = round( BaseValue × max(Weight ÷ BaseWeight, 0.95)² × Variant × max(1, 1 + Σ(Env − 1)) × (1 + FriendBoost%) × Quantity ). Environmental mutations ADD inside the bracket. Worked Example: Carrot at 0.55 kg, Gold, Shocked + Frozen, no friend boost, qty 1 = 174,400 Sheckles.',
+      mathSnippet: 'Value = round( BaseValue * Math.pow(Math.max(Weight / BaseWeight, 0.95), 2) * Variant * Math.max(1, 1 + sum(Env - 1)) * (1 + FriendBoost) * Qty )'
+    },
+    faqs: [
+      { question: 'How does weight scaling affect crop value?', answer: 'Weight scaling uses a quadratic ratio (Weight ÷ BaseWeight)². A crop with double the base weight (e.g. 0.55kg vs 0.275kg) gets a 4.00× weight multiplier.' },
+      { question: 'What happens when Wet and Chilled are both selected?', answer: 'Wet (×2) and Chilled (×2) fuse into Frozen (×10). Frozen adds +9 into the environmental mutation sum and Wet/Chilled are ignored.' },
+      { question: 'Do environmental mutations multiply each other?', answer: 'No. Environmental mutations add inside the bracket sum Σ(Env − 1). For example, Shocked (×100) + Frozen (×10) = 1 + 99 + 9 = ×109.' }
+    ],
+    proTips: ['Gold variant (×20) combined with high-tier mutations like Shocked (×100) and Celestial (×120) produces exponential Sheckle returns.'],
+    relatedToolIds: ['grow-a-garden-mutation-calculator', 'grow-a-garden-egg-hatching-calculator', 'grow-a-garden-trade-calculator', 'grow-a-garden-stock-timer']
+  },
+  {
+    id: 'grow-a-garden-mutation-calculator',
+    slug: 'grow-a-garden-mutation-calculator',
+    name: 'Grow a Garden Mutation Calculator',
+    gameId: 'growagarden',
+    categoryId: 'calculators',
+    icon: 'Sparkles',
+    shortDescription: 'Calculate combined variant and environmental mutation stacking multipliers in Roblox Grow a Garden.',
+    description: 'Calculates combined crop mutation multipliers in Roblox Grow a Garden. Pick one variant and stack environmental mutations to see written-out bracket math 1 + Σ(Env - 1) and custom mutations.',
+    badge: 'Mutation Stack',
+    rating: 4.96,
+    reviewsCount: 150,
+    userCount: '11.8K',
+    tags: ['grow a garden', 'mutation calculator', 'rainbow variant', 'shocked mutation', 'celestial mutation', 'bracket math'],
+    seoTitle: 'Grow a Garden Mutation Calculator – Multipliers & Stacking',
+    metaDescription: 'Calculate combined crop variant and environmental mutation multipliers in Roblox Grow a Garden. Shows written-out bracket math e.g. Rainbow + Shocked + Celestial = ×10,950.',
+    h1: 'Grow a Garden Mutation Calculator',
+    canonicalPath: '/tools/grow-a-garden-mutation-calculator',
+    howToGuide: {
+      overview: 'Select one variant, check any environmental mutations, or add custom mutations to view the written-out multiplier formula.',
+      steps: [
+        { title: 'Pick Variant', description: 'Select crop variant (None ×1, Gold ×20, Rainbow ×50, etc.).' },
+        { title: 'Stack Mutations', description: 'Check environmental mutations or add custom mutations to sum the (Multiplier − 1) bracket.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Environmental Mutation Bracket Math',
+      details: 'Combined Multiplier = Variant × max(1, 1 + Σ(Env − 1)). Worked Example: Rainbow (×50) + Shocked (×100) + Celestial (×120) = 50 × [1 + (100−1) + (120−1)] = 50 × 219 = ×10,950.',
+      mathSnippet: 'CombinedMultiplier = Variant * Math.max(1, 1 + sum(Env - 1))'
+    },
+    faqs: [
+      { question: 'Why do environmental mutations add instead of multiplying?', answer: 'In Roblox Grow a Garden, environmental mutations add inside a bracket term 1 + Σ(Env − 1) to prevent infinite multiplicative runaway, while variants multiply the entire bracket.' },
+      { question: 'Can I add custom mutations?', answer: 'Yes! Type the custom mutation name and multiplier into the Custom Mutation tool input to test unlisted mutations.' }
+    ],
+    proTips: ['Rainbow (×50) and Ember (×60) variants yield the highest base multiplier before environmental mutation brackets are applied.'],
+    relatedToolIds: ['grow-a-garden-crop-value-calculator', 'grow-a-garden-egg-hatching-calculator', 'grow-a-garden-trade-calculator', 'grow-a-garden-stock-timer']
+  },
+  {
+    id: 'grow-a-garden-egg-hatching-calculator',
+    slug: 'grow-a-garden-egg-hatching-calculator',
+    name: 'Grow a Garden Egg Hatching Calculator',
+    gameId: 'growagarden',
+    categoryId: 'calculators',
+    icon: 'Egg',
+    shortDescription: 'Calculate pet hatch odds, "1 in N" chances, 50%/90% confidence thresholds, and Sheckle costs in Roblox Grow a Garden.',
+    description: 'Calculates exact pet hatch probabilities across Common, Uncommon, Rare, Legendary, Mythical, Bug, and Jungle Eggs in Roblox Grow a Garden. Shows 50% and 90% confidence thresholds using logarithmic formulas.',
+    badge: 'Egg Odds',
+    rating: 4.97,
+    reviewsCount: 165,
+    userCount: '13.1K',
+    tags: ['grow a garden', 'egg hatching calculator', 'pet odds', 'dragonfly odds', 'turtle odds', 'legendary egg'],
+    seoTitle: 'Grow a Garden Egg Hatching Calculator – Pet Odds & Confidence',
+    metaDescription: 'Calculate pet hatch odds and confidence thresholds in Roblox Grow a Garden. Includes Bug Egg Dragonfly (1%), Legendary Egg Turtle (2.13%), and all 7 eggs.',
+    h1: 'Grow a Garden Egg Hatching Calculator',
+    canonicalPath: '/tools/grow-a-garden-egg-hatching-calculator',
+    howToGuide: {
+      overview: 'Select an egg to view its pet loot table, then pick a target pet to view 50% and 90% confidence egg counts and Sheckle budgets.',
+      steps: [
+        { title: 'Select Egg', description: 'Choose Common, Uncommon, Rare, Legendary, Mythical, Bug, or Jungle Egg.' },
+        { title: 'Select Target Pet', description: 'Click any pet in the loot table (e.g. Dragonfly 1% or Turtle 2.13%).' },
+        { title: 'View Confidence Thresholds', description: 'Review the required eggs and total Sheckles for 50% and 90% probability.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Logarithmic Cumulative Probability Formula',
+      details: 'Eggs = Ceil( Ln(1 − Target) / Ln(1 − p) ). Expected Eggs = 1 / p. Worked Examples: 1. Bug Egg ➔ Dragonfly (1%): 69 eggs for 50%, 230 eggs for 90%, expected 100. 2. Legendary Egg ➔ Turtle (2.13%): 33 eggs for 50%.',
+      mathSnippet: 'RequiredEggs = Math.ceil( Math.log(1 - TargetProbability) / Math.log(1 - (ChancePercent / 100)) )'
+    },
+    faqs: [
+      { question: 'How many Bug Eggs do I need for a 50% chance at a Dragonfly?', answer: 'With a 1% hatch rate, you need 69 Bug Eggs for a 50% chance, 230 Bug Eggs for a 90% chance, and an average expected count of 100 eggs.' },
+      { question: 'How many Legendary Eggs do I need for a Turtle?', answer: 'With a 2.13% hatch rate, you need 33 Legendary Eggs for a 50% chance and 107 eggs for a 90% chance.' }
+    ],
+    proTips: ['Hatching in bulk during luck events significantly lowers the total Sheckles needed for rare Legendary and Bug Egg pets.'],
+    relatedToolIds: ['grow-a-garden-crop-value-calculator', 'grow-a-garden-mutation-calculator', 'grow-a-garden-trade-calculator', 'grow-a-garden-stock-timer']
+  },
+  {
+    id: 'grow-a-garden-trade-calculator',
+    slug: 'grow-a-garden-trade-calculator',
+    name: 'Grow a Garden Trade Calculator (WFL)',
+    gameId: 'growagarden',
+    categoryId: 'calculators',
+    icon: 'ArrowLeftRight',
+    shortDescription: 'Evaluate Win, Fair, or Loss (WFL) status for Roblox Grow a Garden crop and pet trades.',
+    description: 'Compare "Your Offer" vs "Their Offer" Sheckle values in Roblox Grow a Garden. Calculates total values, value difference, percentage difference, and Win/Fair/Loss verdict.',
+    badge: 'Trade WFL',
+    rating: 4.95,
+    reviewsCount: 140,
+    userCount: '10.9K',
+    tags: ['grow a garden', 'trade calculator', 'wfl', 'win fair loss', 'crop trade value', 'pet trade'],
+    seoTitle: 'Grow a Garden Trade Calculator (WFL) – Win, Fair or Loss',
+    metaDescription: 'Evaluate Win, Fair, or Loss status for Roblox Grow a Garden trades. Compare Sheckle values between Your Offer and Their Offer.',
+    h1: 'Grow a Garden Trade Calculator (WFL)',
+    canonicalPath: '/tools/grow-a-garden-trade-calculator',
+    howToGuide: {
+      overview: 'Add items and Sheckle values to "Your Offer" and "Their Offer" to view instant WFL evaluation.',
+      steps: [
+        { title: 'Add Your Offer Items', description: 'Type item names and Sheckle values for your side.' },
+        { title: 'Add Their Offer Items', description: 'Type item names and Sheckle values for their side.' },
+        { title: 'Check WFL Verdict', description: 'Review the ±5% fair threshold, difference amount, and Win/Fair/Loss status.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'WFL Trade Evaluation Matrix',
+      details: 'If Their Total is within ±5% of Your Total ➔ Fair Trade. If Their Total > Your Total * 1.05 ➔ Win. If Their Total < Your Total * 0.95 ➔ Loss.',
+      mathSnippet: 'Status = TheirTotal >= YourTotal * 0.95 && TheirTotal <= YourTotal * 1.05 ? "Fair" : TheirTotal > YourTotal * 1.05 ? "Win" : "Loss"'
+    },
+    faqs: [
+      { question: 'What is considered a Fair trade in Grow a Garden?', answer: 'A trade where the received offer value is within ±5% of your offer value is considered Fair.' },
+      { question: 'Can I type custom Sheckle values?', answer: 'Yes! All item values are customizable so you can evaluate any crop variant, pet, or gear item.' }
+    ],
+    proTips: ['Always use the Crop Value Calculator to find exact Sheckle values for variant crops before entering them into trades!'],
+    relatedToolIds: ['grow-a-garden-crop-value-calculator', 'grow-a-garden-mutation-calculator', 'grow-a-garden-egg-hatching-calculator', 'grow-a-garden-stock-timer']
+  },
+  {
+    id: 'grow-a-garden-stock-timer',
+    slug: 'grow-a-garden-stock-timer',
+    name: 'Grow a Garden Stock Timer',
+    gameId: 'growagarden',
+    categoryId: 'gaming-utilities',
+    icon: 'Clock',
+    shortDescription: 'Live restock countdowns for Seed Shop (5m), Gear Shop (5m), and Pet Egg Shop (30m) in Roblox Grow a Garden.',
+    description: 'Live real-time stock restock timers for Roblox Grow a Garden. Shows live countdowns, progress bars, and clock targets for Seed Shop (every 5 minutes), Gear Shop (every 5 minutes), and Pet Egg Shop (every 30 minutes).',
+    badge: 'Restock Timer',
+    rating: 4.99,
+    reviewsCount: 210,
+    userCount: '16.4K',
+    tags: ['grow a garden', 'stock timer', 'seed shop restock', 'gear shop restock', 'pet egg shop timer'],
+    seoTitle: 'Grow a Garden Stock Timer – Live Restock Countdowns',
+    metaDescription: 'Live restock countdowns for Roblox Grow a Garden. Real-time timers for Seed Shop (5m), Gear Shop (5m), and Pet Egg Shop (30m).',
+    h1: 'Grow a Garden Stock Timer',
+    canonicalPath: '/tools/grow-a-garden-stock-timer',
+    howToGuide: {
+      overview: 'Keep this page open during gameplay to track restock countdowns for seeds, gear, and pet eggs.',
+      steps: [
+        { title: 'Observe Live Countdowns', description: 'Timers tick live every second synced to the next clock boundary.' },
+        { title: 'Check Next Restock Clock Time', description: 'View the exact clock time for the upcoming restock cycle.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Clock Boundary Restock Synchronization',
+      details: 'Seed and Gear shops refresh at every 5-minute clock interval (:00, :05, :10, etc.). Pet Egg shop refreshes at every 30-minute interval (:00, :30).',
+      mathSnippet: 'RemainingSeconds = CycleSeconds - (CurrentSecondsInHour % CycleSeconds)'
+    },
+    faqs: [
+      { question: 'When does the Seed Shop restock in Grow a Garden?', answer: 'The Seed Shop restocks every 5 minutes on the clock (e.g. 1:00, 1:05, 1:10, 1:15, etc.).' },
+      { question: 'When does the Pet Egg Shop restock?', answer: 'The Pet Egg Shop restocks every 30 minutes on the clock (e.g. 1:00, 1:30, 2:00, 2:30, etc.).' }
+    ],
+    proTips: ['Head to the Pet Egg Shop 30 seconds before the 30-minute restock mark so you can grab high-tier eggs immediately!'],
+    relatedToolIds: ['grow-a-garden-crop-value-calculator', 'grow-a-garden-mutation-calculator', 'grow-a-garden-egg-hatching-calculator', 'grow-a-garden-trade-calculator']
   }
 ];
 

@@ -302,6 +302,110 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
+  // Grow a Garden tools
+  if (id.startsWith('grow-a-garden') || name.includes('grow a garden')) {
+    if (id === 'grow-a-garden-crop-value-calculator') {
+      return [
+        {
+          title: 'Example 1: Gold Carrot with Shocked & Frozen Mutations',
+          scenario: 'A player harvests a 0.55 kg Gold Carrot with Shocked and Frozen environmental mutations and no friend boost.',
+          inputValues: { 'Crop': 'Carrot (20 Sheckles, 0.275kg)', 'Actual Weight': '0.55 kg', 'Variant': 'Gold (x20)', 'Mutations': 'Shocked (x100) + Frozen (x10)' },
+          calculation: 'Base (20) × WeightFactor ((0.55/0.275)^2 = 4.0) × Variant (20) × EnvBracket [1 + (Shocked: 99) + (Frozen: 9) = 109] × FriendBoost (1.0) × Qty (1) = 20 × 4 × 20 × 109 = 174,400 Sheckles.',
+          result: '174,400 Sheckles',
+          takeaway: 'Because weight scaling is quadratic, doubling the actual weight yields a 4x multiplier, which scales exponentially with high-tier mutation brackets.'
+        },
+        {
+          title: 'Example 2: Rainbow Carrot with Celestial Mutation',
+          scenario: 'A player harvests a 0.275 kg base-weight Rainbow Carrot with the Celestial environmental mutation.',
+          inputValues: { 'Crop': 'Carrot (20 Sheckles, 0.275kg)', 'Actual Weight': '0.275 kg', 'Variant': 'Rainbow (x50)', 'Mutations': 'Celestial (x120)' },
+          calculation: 'Base (20) × WeightFactor (1.0) × Variant (50) × EnvBracket [1 + (Celestial: 119) = 120] × Qty (1) = 20 × 1.0 × 50 × 120 = 120,000 Sheckles.',
+          result: '120,000 Sheckles',
+          takeaway: 'Rainbow variant (x50) multiplies the entire environmental bracket sum, producing 120,000 Sheckles on base weight alone.'
+        }
+      ];
+    }
+    if (id === 'grow-a-garden-mutation-calculator') {
+      return [
+        {
+          title: 'Example 1: Stacking Rainbow Variant with Shocked & Celestial Mutations',
+          scenario: 'Calculating total multiplier for Rainbow variant with Shocked and Celestial mutations.',
+          inputValues: { 'Variant': 'Rainbow (x50)', 'Mutations': 'Shocked (x100), Celestial (x120)' },
+          calculation: 'Variant (Rainbow x50) × Bracket [1 + (Shocked: 100−1 = 99) + (Celestial: 120−1 = 119)] = 50 × [1 + 99 + 119] = 50 × 219 = x10,950.',
+          result: 'Combined Multiplier = x10,950',
+          takeaway: 'Environmental mutations add inside the bracket (99 + 119 = 218), while Rainbow multiplies the total bracket sum by 50.'
+        },
+        {
+          title: 'Example 2: Stacking Gold Variant with Dawnbound (Sunflower Only)',
+          scenario: 'Calculating multiplier for Gold variant Sunflower with Dawnbound mutation.',
+          inputValues: { 'Variant': 'Gold (x20)', 'Mutation': 'Dawnbound (x150)' },
+          calculation: 'Variant (Gold x20) × Bracket [1 + (Dawnbound: 150−1 = 149)] = 20 × 150 = x3,000.',
+          result: 'Combined Multiplier = x3,000',
+          takeaway: 'Dawnbound provides a +149 bracket term, making it the highest single environmental mutation for Sunflowers.'
+        }
+      ];
+    }
+    if (id === 'grow-a-garden-egg-hatching-calculator') {
+      return [
+        {
+          title: 'Example 1: Bug Egg Hatching for Dragonfly (1.0% Rate)',
+          scenario: 'A player wants a Dragonfly from Bug Eggs (1.0% hatch rate) and needs 50% and 90% cumulative confidence thresholds.',
+          inputValues: { 'Egg': 'Bug Egg (50,000,000 Sheckles)', 'Pet': 'Dragonfly (1.0%)' },
+          calculation: '50% chance = Ceil(Ln(1−0.50) / Ln(1−0.01)) = 69 eggs. 90% chance = Ceil(Ln(1−0.90) / Ln(0.99)) = 230 eggs. Expected average (1/p) = 100 eggs.',
+          result: '69 eggs for 50%, 230 eggs for 90%, expected 100 eggs',
+          takeaway: 'To reach a 50% cumulative chance at a 1% Dragonfly, you need 69 Bug Eggs (3.45 Billion Sheckles).'
+        },
+        {
+          title: 'Example 2: Legendary Egg Hatching for Turtle (2.13% Rate)',
+          scenario: 'A player wants a Turtle from Legendary Eggs (2.13% hatch rate).',
+          inputValues: { 'Egg': 'Legendary Egg (3,000,000 Sheckles)', 'Pet': 'Turtle (2.13%)' },
+          calculation: '50% chance = Ceil(Ln(1−0.50) / Ln(1−0.0213)) = 33 eggs.',
+          result: '33 eggs for 50% chance (99,000,000 Sheckles)',
+          takeaway: 'Hatching 33 Legendary Eggs gives a >50% probability of obtaining at least one Turtle.'
+        }
+      ];
+    }
+    if (id === 'grow-a-garden-trade-calculator') {
+      return [
+        {
+          title: 'Example 1: Gold Carrot & Rare Pet for Legendary Cow',
+          scenario: 'Offering Gold Carrot (174,400 Sheckles) + Orange Tabby (600,000 Sheckles) = 774,400 Sheckles, receiving a Cow (800,000 Sheckles).',
+          inputValues: { 'Your Offer': '774,400 Sheckles', 'Their Offer': '800,000 Sheckles' },
+          calculation: 'Value Difference = 800,000 − 774,400 = +25,600 Sheckles (+3.3%). Their offer is higher than your offer.',
+          result: 'Win (Big W for You!)',
+          takeaway: 'Since 800,000 Sheckles is >1.05x of 774,400 Sheckles (or higher value), this trade is a net win for you.'
+        },
+        {
+          title: 'Example 2: Equal Sheckle Value Trade',
+          scenario: 'Offering items worth 50,000,000 Sheckles and receiving items worth 50,000,000 Sheckles.',
+          inputValues: { 'Your Offer': '50,000,000 Sheckles', 'Their Offer': '50,000,000 Sheckles' },
+          calculation: 'Value Difference = 0 Sheckles. Their total is within ±5% of your total.',
+          result: 'Fair Trade (Balanced)',
+          takeaway: 'Equal value trades are evaluated as Fair Trade.'
+        }
+      ];
+    }
+    if (id === 'grow-a-garden-stock-timer') {
+      return [
+        {
+          title: 'Example 1: Tracking Seed & Gear Shop Restock Boundaries',
+          scenario: 'Monitoring Seed Shop and Gear Shop restocks on the 5-minute clock boundary (:00, :05, :10, :15, etc.).',
+          inputValues: { 'Cycle': '5 minutes', 'Current Time': '8:02:15 AM' },
+          calculation: 'Remaining time = 300 seconds − (135 seconds) = 165 seconds (2m 45s). Next restock at 8:05:00 AM.',
+          result: 'Restock in 02m 45s',
+          takeaway: 'Seed and Gear shops refresh every 5 minutes on the dot.'
+        },
+        {
+          title: 'Example 2: Tracking Pet Egg Shop Restock Boundary',
+          scenario: 'Monitoring Pet Egg Shop restocks on the 30-minute clock boundary (:00, :30).',
+          inputValues: { 'Cycle': '30 minutes', 'Current Time': '8:12:00 AM' },
+          calculation: 'Remaining time = 1800 seconds − (720 seconds) = 1080 seconds (18m 00s). Next restock at 8:30:00 AM.',
+          result: 'Restock in 18m 00s',
+          takeaway: 'Head to the Pet Egg Shop 30 seconds before the 30-minute mark to claim fresh eggs.'
+        }
+      ];
+    }
+  }
+
   // 8. General / Fallback High-Quality Worked Examples
   return [
     {

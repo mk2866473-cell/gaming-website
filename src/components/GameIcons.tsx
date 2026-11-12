@@ -560,6 +560,40 @@ export function CmIcon({ className = 'w-5 h-5', size = 20 }: IconProps) {
   );
 }
 
+/**
+ * Grow a Garden: Vibrant Emerald & Gold Sprout & Sunflower Crest
+ */
+export function GrowAGardenIcon({ className = 'w-5 h-5', size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+      <defs>
+        <linearGradient id="gagEmerald" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#6ee7b7" />
+          <stop offset="0.5" stopColor="#10b981" />
+          <stop offset="1" stopColor="#047857" />
+        </linearGradient>
+        <linearGradient id="gagGold" x1="4" y1="4" x2="20" y2="20" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#fef08a" />
+          <stop offset="0.6" stopColor="#f59e0b" />
+          <stop offset="1" stopColor="#b45309" />
+        </linearGradient>
+      </defs>
+      {/* Garden Crest Base */}
+      <circle cx="12" cy="12" r="10" fill="#022c22" stroke="url(#gagEmerald)" strokeWidth="1.5" />
+      {/* Soil curve */}
+      <path d="M4 16.5C7 15 17 15 20 16.5" stroke="#a16207" strokeWidth="1.5" strokeLinecap="round" />
+      {/* Sprout Stem */}
+      <path d="M12 17V8C12 8 12 5.5 10 4.5" stroke="url(#gagGold)" strokeWidth="1.75" strokeLinecap="round" />
+      {/* Left Leaf */}
+      <path d="M12 12C9 12 7 9 7 6C10 6 12 9 12 12Z" fill="url(#gagEmerald)" stroke="#a7f3d0" strokeWidth="0.8" />
+      {/* Right Leaf */}
+      <path d="M12 10C15 10 17 7 17 4C14 4 12 7 12 10Z" fill="url(#gagEmerald)" stroke="#a7f3d0" strokeWidth="0.8" />
+      {/* Radiant Sun sparkle */}
+      <circle cx="18" cy="6" r="1.5" fill="#fde047" />
+    </svg>
+  );
+}
+
 
 /**
      * Helper function to get the appropriate custom vector logo for any game ID
@@ -581,6 +615,9 @@ export function getGameIcon(gameId: string, className = 'w-5 h-5'): React.ReactN
     case 'genshin':
     case 'genshin-impact':
       return <GenshinIcon className={className} />;
+    case 'growagarden':
+    case 'grow-a-garden':
+      return <GrowAGardenIcon className={className} />;
     case 'helldivers-2':
     case 'helldivers2':
       return <HelldiversIcon className={className} />;

@@ -332,6 +332,19 @@ export const GAMES: GameInfo[] = [
     badge: '5 Tools Available'
   },
   {
+    id: 'growagarden',
+    slug: 'grow-a-garden',
+    name: 'Grow a Garden',
+    shortName: 'Grow Garden',
+    tagline: 'Crop Sheckle value calculator, variant scaling & mutation stacking',
+    description: 'Verified Roblox Grow a Garden calculators: calculate exact crop Sheckle sell values, weight scaling factors, variant multipliers, environmental mutation brackets, and friend boost bonuses.',
+    color: 'from-emerald-950/60 to-zinc-950',
+    borderColor: 'border-emerald-500/30',
+    accentColor: 'text-emerald-400',
+    icon: 'Sprout',
+    badge: '5 Tools Available'
+  },
+  {
     id: 'general',
     slug: 'general',
     name: 'Gaming Utilities',
@@ -354,6 +367,7 @@ export const PRIMARY_GAME_IDS = [
   'palworld',
   'genshin',
   'ps99',
+  'growagarden',
   'helldivers2',
   'tfd',
   'oncehuman',
@@ -384,6 +398,8 @@ export function getGamePath(gameId: string): string {
     case 'pokemongo': return '/pokemongo';
     case 'palworld': return '/games/palworld';
     case 'genshin': return '/games?game=genshin';
+    case 'growagarden':
+    case 'grow-a-garden': return '/games/grow-a-garden';
     case 'helldivers2':
     case 'helldivers-2': return '/helldivers-2';
     case 'ps99':

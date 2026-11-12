@@ -206,6 +206,11 @@ const CmFreeSpinLinks = React.lazy(() => import('../components/tools/CmFreeSpinL
 const CmCardTracker = React.lazy(() => import('../components/tools/CmCardTracker'));
 const CmEventPlanner = React.lazy(() => import('../components/tools/CmEventPlanner'));
 const CmPetTimer = React.lazy(() => import('../components/tools/CmPetTimer'));
+const GrowAGardenCropValueCalculator = React.lazy(() => import('../components/tools/GrowAGardenCropValueCalculator'));
+const GrowAGardenMutationCalculator = React.lazy(() => import('../components/tools/GrowAGardenMutationCalculator'));
+const GrowAGardenEggHatchingCalculator = React.lazy(() => import('../components/tools/GrowAGardenEggHatchingCalculator'));
+const GrowAGardenTradeCalculator = React.lazy(() => import('../components/tools/GrowAGardenTradeCalculator'));
+const GrowAGardenStockTimer = React.lazy(() => import('../components/tools/GrowAGardenStockTimer'));
 const ModularGamingTool = React.lazy(() => import('../components/tools/ModularGamingTool'));
 
 interface ToolDetailPageProps {
@@ -641,6 +646,16 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <CmEventPlanner />;
       case 'cm-pet-timer':
         return <CmPetTimer />;
+      case 'grow-a-garden-crop-value-calculator':
+        return <GrowAGardenCropValueCalculator />;
+      case 'grow-a-garden-mutation-calculator':
+        return <GrowAGardenMutationCalculator />;
+      case 'grow-a-garden-egg-hatching-calculator':
+        return <GrowAGardenEggHatchingCalculator />;
+      case 'grow-a-garden-trade-calculator':
+        return <GrowAGardenTradeCalculator />;
+      case 'grow-a-garden-stock-timer':
+        return <GrowAGardenStockTimer />;
       default:
         return <ModularGamingTool tool={tool} />;
     }

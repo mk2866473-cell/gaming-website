@@ -32,6 +32,7 @@ import AfkjHubPage from './pages/AfkjHubPage';
 import MonopolyGoHubPage from './pages/MonopolyGoHubPage';
 import SevenKnightsHubPage from './pages/SevenKnightsHubPage';
 import CoinMasterHubPage from './pages/CoinMasterHubPage';
+import GrowAGardenHubPage from './pages/GrowAGardenHubPage';
 import ToolsDirectoryPage from './pages/ToolsDirectoryPage';
 import ToolDetailPage from './pages/ToolDetailPage';
 import GamesPage from './pages/GamesPage';
@@ -260,6 +261,11 @@ export default function App() {
     // 7.17 Dedicated Coin Master Hub
     if (cleanRoute === '/coin-master' || cleanRoute === '/cm' || cleanRoute === '/games/coin-master' || cleanRoute === '/games/cm') {
       return <CoinMasterHubPage onNavigate={navigate} />;
+    }
+
+    // 7.18 Dedicated Grow a Garden Hub
+    if (cleanRoute === '/grow-a-garden' || cleanRoute === '/games/grow-a-garden' || cleanRoute === '/growagarden') {
+      return <GrowAGardenHubPage onNavigate={navigate} />;
     }
 
     // 8. Individual Tool Page (/tools/:slug)
