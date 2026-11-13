@@ -61,6 +61,7 @@ const BloxFruitsRaidCalculator = React.lazy(() => import('../components/tools/Bl
 const BloxFruitsFightingStyleCalculator = React.lazy(() => import('../components/tools/BloxFruitsFightingStyleCalculator'));
 const BloxFruitsGachaCalculator = React.lazy(() => import('../components/tools/BloxFruitsGachaCalculator'));
 const BloxFruitsFruitSpawnTimer = React.lazy(() => import('../components/tools/BloxFruitsFruitSpawnTimer'));
+const BloxFruitsTitleTracker = React.lazy(() => import('../components/tools/BloxFruitsTitleTracker'));
 const RobloxUsernameGenerator = React.lazy(() => import('../components/tools/RobloxUsernameGenerator'));
 const RobloxFontGenerator = React.lazy(() => import('../components/tools/RobloxFontGenerator'));
 const RobloxUgcCalculator = React.lazy(() => import('../components/tools/RobloxUgcCalculator'));
@@ -127,6 +128,7 @@ const Ps99ExclusiveDaycareCalculator = React.lazy(() => import('../components/to
 const Ps99EnchantBuilder = React.lazy(() => import('../components/tools/Ps99EnchantBuilder'));
 const Ps99EggHatchingCalculator = React.lazy(() => import('../components/tools/Ps99EggHatchingCalculator'));
 const Ps99MasteryCalculator = React.lazy(() => import('../components/tools/Ps99MasteryCalculator'));
+const Ps99GoldenRainbowCalculator = React.lazy(() => import('../components/tools/Ps99GoldenRainbowCalculator'));
 const Ps99RapTracker = React.lazy(() => import('../components/tools/Ps99RapTracker'));
 const Ps99ClanBattleCalculator = React.lazy(() => import('../components/tools/Ps99ClanBattleCalculator'));
 const Ps99DiamondGrindOptimizer = React.lazy(() => import('../components/tools/Ps99DiamondGrindOptimizer'));
@@ -322,6 +324,8 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <BloxFruitsGachaCalculator />;
       case 'blox-fruits-fruit-spawn-timer':
         return <BloxFruitsFruitSpawnTimer />;
+      case 'blox-fruits-title-tracker':
+        return <BloxFruitsTitleTracker />;
       case 'roblox-username-generator':
         return <RobloxUsernameGenerator />;
       case 'roblox-font-generator':
@@ -449,6 +453,8 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <Ps99EggHatchingCalculator />;
       case 'ps99-mastery-calculator':
         return <Ps99MasteryCalculator />;
+      case 'ps99-golden-rainbow-calculator':
+        return <Ps99GoldenRainbowCalculator />;
       case 'ps99-rap-tracker':
         return <Ps99RapTracker />;
       case 'ps99-clan-battle-calculator':

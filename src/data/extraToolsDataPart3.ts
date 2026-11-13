@@ -1240,50 +1240,63 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
   {
     id: 'ps99-mastery-calculator',
     slug: 'ps99-mastery-calculator',
-    name: 'Mastery Level Progress Calculator',
+    name: 'Pet Simulator 99 Mastery XP Calculator',
     gameId: 'ps99',
-    categoryId: 'trackers',
+    categoryId: 'calculators',
     icon: 'Trophy',
-    shortDescription: 'Calculate XP requirements, items needed, and hours to reach Level 99 Mastery for Eggs, Potions, Enchants, and Economy.',
-    description: 'Track and plan Level 1 to 99 Mastery progression in Pet Simulator 99. Calculates exact actions, potion combines, fruit consumption, and diamond costs needed to hit Level 99 Mastery perks.',
-    badge: 'Mastery Max',
-    rating: 4.96,
-    reviewsCount: 290,
-    userCount: '27.4K',
+    shortDescription: 'Calculate exact cumulative XP, actions required, and milestone perks for all 14 Mastery tracks in Pet Simulator 99.',
+    description: 'Calculate exact cumulative XP requirements, farming actions needed, and milestone perks for all 14 Mastery tracks in Pet Simulator 99 (unlocked at Rebirth 4). Powered by the verified shared cumulative XP table (13,034,431 XP to Level 99) with Clan Level 6+ (+10%) boost and Mastery XP Potion tracking.',
+    badge: 'Rebirth 4+',
+    rating: 4.98,
+    reviewsCount: 345,
+    userCount: '38.6K',
     featured: true,
-    tags: ['ps99', 'mastery calculator', 'level 99 mastery', 'potion mastery', 'egg mastery', 'economy mastery'],
-    seoTitle: 'PS99 Mastery Calculator – Level 99 XP & Items Needed',
-    metaDescription: 'Calculate exact XP and item costs to reach Level 99 Mastery in Pet Simulator 99 for Eggs, Potions, Enchants, and Breakables.',
-    h1: 'Mastery Level Progress Calculator',
+    tags: ['ps99', 'mastery calculator', 'pet simulator 99 mastery', 'rebirth 4 mastery', 'level 99 mastery', 'potions mastery', 'enchants mastery', 'eggs mastery', 'fishing mastery'],
+    seoTitle: 'Pet Simulator 99 Mastery XP Calculator – Level 99 XP & Action Rates',
+    metaDescription: 'Calculate exact cumulative XP and actions needed across all 14 Pet Simulator 99 Mastery tracks from Level 1 to 99. Verified 13,034,431 XP table with Clan +10% boost.',
+    h1: 'Pet Simulator 99 Mastery XP Calculator',
     canonicalPath: '/tools/ps99-mastery-calculator',
     howToGuide: {
-      overview: 'Choose your target Mastery category and current level to see the fastest, lowest-cost leveling path.',
+      overview: 'Pick your active Mastery track, select your preferred farming action, and enter your current level to calculate remaining XP and actions to your milestone.',
       steps: [
-        { title: 'Select Mastery Tree', description: 'Choose Eggs, Potions, Enchants, Fruits, Keys, or Economy.' },
-        { title: 'Input Current Level', description: 'Enter starting level and progress percentage.' },
-        { title: 'View Item Requirements', description: 'See required crafts, eggs to hatch, or potions to brew to reach Level 99.' }
+        { title: 'Select Mastery Track', description: 'Choose from all 14 tracks unlocked at Rebirth 4 (Eggs, Fishing, Potions, Enchants, Breakables, etc.).' },
+        { title: 'Choose Action Method', description: 'Select the specific farming action (e.g. Normal Egg at 0.4 XP, Fishing Cast at 25 XP, or Superior Mini Chest at 3,000 XP).' },
+        { title: 'Configure Levels & Boosts', description: 'Enter current level, XP progress, target level (up to 99), and toggle the Clan Level 6+ (+10% XP) perk if active.' },
+        { title: 'Review Actions & Perks', description: 'Inspect exact remaining XP, actions required, target level perk, and Mastery XP Potion equivalents.' }
       ]
     },
     formulaExplained: {
-      title: 'Mastery XP Quadratic Curve',
-      details: 'Mastery XP escalates per level: XP(Level) = BaseXP * (Level)^1.8. Total XP from 1 to 99 is approximately 1,250,000 XP.',
-      mathSnippet: 'TotalXpNeeded = Sum(LevelXp) - CurrentAccumulatedXp'
+      title: 'Verified Cumulative XP Table (13,034,431 Total XP)',
+      details: 'All 14 Pet Simulator 99 Mastery tracks share ONE cumulative XP table (unlocks at Rebirth 4). Total XP to Level 99 is 13,034,431 XP. Verified milestones: L10 = 1,154 · L20 = 4,470 · L30 = 13,363 · L40 = 37,224 · L50 = 101,333 · L60 = 273,742 · L70 = 737,627 · L75 = 1,210,421 · L80 = 1,986,068 · L85 = 3,258,594 · L90 = 5,346,332 · L92 = 6,517,253 · L96 = 9,684,577 · L99 = 13,034,431. Clan Level 6+ grants +10% mastery XP; Mastery XP Potion grants +10,000 XP (+11,000 in a Lv6+ clan); Ultra Mastery XP Potion jumps straight to Level 99.',
+      mathSnippet: 'XP_Needed = CumulativeXP[TargetLevel] - (CumulativeXP[CurrentLevel] + CurrentXPInLevel); Actions_Needed = ceil(XP_Needed / (ActionXP * ClanMultiplier))'
     },
     faqs: [
       {
-        question: 'Which Mastery should you level up to 99 first in PS99?',
-        answer: 'Potion Mastery and Enchant Mastery should be prioritized first because Level 99 unlocks auto-brewing and high-tier fusion without failure.'
+        question: 'When does Mastery unlock in Pet Simulator 99?',
+        answer: 'Mastery unlocks permanently once you complete Rebirth 4 in Pet Simulator 99, giving you access to all 14 mastery tracks simultaneously.'
       },
       {
-        question: 'What is the fastest way to level Fruit Mastery?',
-        answer: 'Set up an auto-clicker or macro to continuously eat Rainbow Fruits and Apples in your inventory.'
+        question: 'How much total XP is required to reach Level 99 Mastery in PS99?',
+        answer: 'All 14 mastery tracks share the exact same cumulative XP table, requiring exactly 13,034,431 XP to advance from Level 1 to Level 99.'
+      },
+      {
+        question: 'How does the Clan Level 6+ perk affect mastery XP?',
+        answer: 'Being in a Clan at Level 6 or higher grants a permanent +10% Mastery XP bonus to all in-game actions and boosts standard Mastery XP Potions from 10,000 XP to 11,000 XP.'
+      },
+      {
+        question: 'What does the Ultra Mastery XP Potion do?',
+        answer: 'The Ultra Mastery XP Potion instantly advances any selected mastery track to Level 99 (13,034,431 XP) with zero actions required.'
+      },
+      {
+        question: 'What are the XP rates for Eggs and Superior Mini Chests?',
+        answer: 'Hatching a normal egg yields 0.4 XP (Exclusive egg yields 25,000 XP). Breaking a Superior Mini Chest yields 3,000 XP per chest.'
       }
     ],
     proTips: [
-      'Level 99 Egg Mastery unlocks the ability to hatch eggs for free with zero coins consumed!',
-      'Combining low tier potions (Tier 1 to Tier 3) gives the best XP per diamond spent.'
+      'Level 99 Egg Mastery unlocks free egg hatching, eliminating coin costs entirely.',
+      'Superior Mini Chests award a massive 3,000 XP each, making them one of the fastest endgame XP tracks.'
     ],
-    relatedToolIds: ['ps99-egg-hatching-calculator', 'ps99-diamond-grind-optimizer', 'ps99-enchant-builder']
+    relatedToolIds: ['ps99-golden-rainbow-calculator', 'ps99-egg-hatching-calculator', 'ps99-enchant-builder', 'ps99-trade-calculator']
   },
   {
     id: 'ps99-rap-tracker',
@@ -6271,6 +6284,128 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
       'Click the "Luau" copy button on any matched color to copy ready-to-paste BrickColor.new("...") syntax.'
     ],
     relatedToolIds: ['roblox-studs-converter', 'roblox-shirt-template-maker', 'roblox-thumbnail-resizer']
+  },
+  {
+    id: 'ps99-golden-rainbow-calculator',
+    slug: 'ps99-golden-rainbow-calculator',
+    name: 'Pet Simulator 99 Golden & Rainbow Upgrade Calculator',
+    gameId: 'ps99',
+    categoryId: 'calculators',
+    icon: 'Sparkles',
+    shortDescription: 'Calculate normal and gold pet requirements, craftable pets, and leftover counts with Pets Mastery discounts in Pet Simulator 99.',
+    description: 'Calculate required normal and gold pets to craft Gold and Rainbow pets in Pet Simulator 99. Features Golden Machine (Area 10, Mine) and Rainbow Machine (Area 31, Desert Pyramids) with 100% free crafting (0 diamonds), verified +13% and +27% damage boosts, and Pets Mastery discounts (Lv 60, Lv 90, Lv 99).',
+    badge: 'Free (0 💎)',
+    rating: 4.97,
+    reviewsCount: 312,
+    userCount: '34.1K',
+    featured: true,
+    tags: ['ps99', 'golden pet calculator', 'rainbow pet calculator', 'golden machine', 'rainbow machine', 'pets mastery', 'pet simulator 99 crafting'],
+    seoTitle: 'Pet Simulator 99 Golden & Rainbow Upgrade Calculator – Machine Rates & Mastery',
+    metaDescription: 'Calculate exact normal and gold pets needed for gold and rainbow variants in Pet Simulator 99. Accounts for Pets Mastery Level 60, 90, and 99 discounts.',
+    h1: 'Pet Simulator 99 Golden & Rainbow Upgrade Calculator',
+    canonicalPath: '/tools/ps99-golden-rainbow-calculator',
+    howToGuide: {
+      overview: 'Enter how many normal and gold pets you currently own, choose your Pets Mastery tier, and calculate craftable pets plus leftovers.',
+      steps: [
+        { title: 'Input Owned Pets', description: 'Enter the count of identical normal pets and any existing gold pets in your bag.' },
+        { title: 'Select Pets Mastery Level', description: 'Choose your Pets Mastery tier (None, Level 60, Level 90, or Level 99) to apply conversion discounts.' },
+        { title: 'View Craftable Yields', description: 'See exactly how many gold and rainbow pets can be crafted right now, plus leftover pets.' },
+        { title: 'Track Next Milestone', description: 'Check how many normal pets are still needed to reach your next rainbow pet.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Machine Conversion Ratios & Pets Mastery Discounts',
+      details: 'By default, the Golden Machine (Area 10, Mine) converts 10 normal pets into 1 gold pet, and the Rainbow Machine (Area 31, Desert Pyramids) converts 10 gold pets into 1 rainbow pet (100 normal per rainbow from scratch). Both machines are free (0 diamonds). Gold pets grant ≈ +13% power and Rainbow pets grant ≈ +27% power (the in-game 10x tooltip is wrong). Pets Mastery discounts reduce inputs: Level 60 reduces golding by 1 (9:1), Level 90 reduces rainbowing by 1 (9:1), and Level 99 reduces both by 2 (8 normal -> gold, 8 gold -> rainbow = 64 normal per rainbow).',
+      mathSnippet: 'Total_Rainbow = floor((Gold_Owned + floor(Normal_Owned / Normal_Per_Gold)) / Gold_Per_Rainbow); Next_Rainbow_Normal_Needed = (Gold_Per_Rainbow - (Total_Gold % Gold_Per_Rainbow)) * Normal_Per_Gold - (Normal_Owned % Normal_Per_Gold)'
+    },
+    faqs: [
+      {
+        question: 'How many normal pets are needed to craft a rainbow pet from scratch?',
+        answer: 'Without mastery discounts, it takes 10 normal pets to make 1 gold pet and 10 gold pets to make 1 rainbow pet, which equals exactly 100 normal pets. At Level 99 Pets Mastery, it drops to 8 normal per gold and 8 gold per rainbow (64 normal pets total).'
+      },
+      {
+        question: 'Where are the Golden Machine and Rainbow Machine located in PS99?',
+        answer: 'The Golden Machine is located in Area 10 (Mine), and the Rainbow Machine is located in Area 31 (Desert Pyramids). Both machines are 100% free and require zero diamonds to use.'
+      },
+      {
+        question: 'What are the real damage power boosts for Gold and Rainbow pets?',
+        answer: 'Gold pets grant approximately +13% power over normal pets, and Rainbow pets grant approximately +27% power over normal pets. The in-game tooltip stating a 10x multiplier is incorrect.'
+      },
+      {
+        question: 'How do Pets Mastery discounts work?',
+        answer: 'At Level 60 Pets Mastery, the Golden Machine discount reduces inputs from 10 to 9 normal pets. At Level 90, the Rainbow Machine discount reduces inputs from 10 to 9 gold pets. At Level 99, both machines receive a -2 discount (8 normal per gold and 8 gold per rainbow).'
+      },
+      {
+        question: 'Can shiny pets be converted using this calculator?',
+        answer: 'No. Shiny pets require shiny inputs and follow separate mechanics. Shiny pets need shiny inputs and are not covered by this calculator.'
+      }
+    ],
+    proTips: [
+      'At Level 99 Pets Mastery, you only need 64 normal pets per rainbow pet instead of 100 (8 normal per gold, 8 gold per rainbow).',
+      'Both machines are completely free (0 diamonds), so never hesitate to craft your normal pets up to rainbow.'
+    ],
+    relatedToolIds: ['ps99-mastery-calculator', 'ps99-egg-hatching-calculator', 'ps99-exclusive-daycare-calculator', 'ps99-trade-calculator']
+  },
+  {
+    id: 'blox-fruits-title-tracker',
+    slug: 'blox-fruits-title-tracker',
+    name: 'Blox Fruits Title & Achievement Tracker',
+    gameId: 'roblox',
+    categoryId: 'trackers',
+    icon: 'Trophy',
+    shortDescription: 'Searchable checklist and progress tracker for Blox Fruits chat titles, specialist locations, and unobtainable legacy badges.',
+    description: 'Track Blox Fruits chat titles and achievements across Second Sea and Third Sea. Search by title number or name, filter by 11 categories (Race, PvP, Awakening, Level and mastery, Raid, Boss, Sea, Item, Creator and staff, Event, Other), spot unobtainable titles like #040 Thunder God, and save your progress in your browser.',
+    badge: 'Sea 2 & 3',
+    rating: 4.98,
+    reviewsCount: 388,
+    userCount: '41.2K',
+    featured: true,
+    tags: ['blox fruits', 'title tracker', 'blox fruits titles', 'titles specialist', 'raging demon', 'pirate hunter', 'thunder god', 'roblox titles'],
+    seoTitle: 'Blox Fruits Title & Achievement Tracker – Sea 2 & 3 Titles Checklist',
+    metaDescription: 'Complete Blox Fruits chat title tracker. Search title numbers, filter by category or obtainability, find Titles Specialist locations, and track PvP & Race titles.',
+    h1: 'Blox Fruits Title & Achievement Tracker',
+    canonicalPath: '/tools/blox-fruits-title-tracker',
+    howToGuide: {
+      overview: 'Search by title number or name, filter by category or obtainability, and check off titles you have unlocked.',
+      steps: [
+        { title: 'Search or Filter Titles', description: 'Enter any title name, number (e.g. #022), or filter by category (Race, PvP, Awakening, etc.).' },
+        { title: 'Check Obtainment Sea Rules', description: 'Titles are obtainable ONLY in the Second Sea and Third Sea (exceptions: Class S and I Was There).' },
+        { title: 'Visit Titles Specialist', description: 'Equip or switch titles via the Titles Specialist: Second Sea — Cafe basement; Third Sea — Mansion, right side inside the front door.' },
+        { title: 'Track Unlock Progress', description: 'Save checked titles in your browser to monitor completion percentage and view recommended next easiest titles.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Titles Specialist Locations & Sea Obtainment Rules',
+      details: 'Titles show next to the player name in Roblox chat. Equip or switch titles via the Titles Specialist: Second Sea — Cafe basement; Third Sea — Mansion, right side inside the front door. Titles are obtainable ONLY in the Second Sea and Third Sea: a requirement finished in the First Sea grants nothing and must be done again later. Exceptions: "Class S" (First Sea, Advanced Combat) and "I Was There" (one-off Sea 1 Rework event title). Creator/staff titles are tagged as Special because they need defeating a creator while they have title drops enabled. Unobtainable titles like #040 Thunder God (Rumble awakening, Update 27 removed Rumble raids) are flagged clearly.',
+      mathSnippet: 'Completion_Rate = (Unlocked_Obtainable_Titles / Total_Obtainable_Titles_Loaded) * 100%'
+    },
+    faqs: [
+      {
+        question: 'Where is the Titles Specialist located in Blox Fruits?',
+        answer: 'The Titles Specialist is in the Second Sea at the Cafe basement, and in the Third Sea at the Mansion on the right side inside the front door.'
+      },
+      {
+        question: 'Can you obtain Blox Fruits titles in the First Sea?',
+        answer: 'No. Titles are obtainable ONLY in the Second Sea and Third Sea—a requirement finished in the First Sea grants nothing and must be done again later. Exceptions: "Class S" (First Sea, Advanced Combat) and "I Was There" (one-off Sea 1 Rework event title).'
+      },
+      {
+        question: 'Why is the Thunder God title (#040) unobtainable?',
+        answer: 'The Thunder God title (#040) required Rumble awakening, and it is no longer obtainable since Update 27 removed Rumble raids.'
+      },
+      {
+        question: 'What is the requirement for the Pirate Hunter title (#022)?',
+        answer: 'The Pirate Hunter title (#022) requires 5M+ bounty or honor.'
+      },
+      {
+        question: 'How do Creator and Staff titles work?',
+        answer: 'Creator/staff titles are tagged as Special—they require defeating a creator while they have title drops enabled and are not normal grind goals.'
+      }
+    ],
+    proTips: [
+      'Titles completed in the First Sea grant nothing (except Class S and I Was There)—always reach the Second Sea or Third Sea before grinding titles.',
+      'Use the "next easiest" hint to target the lowest-numbered unticked obtainable titles first.'
+    ],
+    relatedToolIds: ['blox-fruits-mastery-calculator', 'blox-fruits-awakening-calculator', 'blox-fruits-race-v4-calculator', 'blox-fruits-fighting-style-calculator']
   }
 ];
 

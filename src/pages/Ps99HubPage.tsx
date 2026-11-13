@@ -30,9 +30,9 @@ export default function Ps99HubPage({ onNavigate }: Ps99HubPageProps) {
   }, []);
 
   const categories = [
-    { id: 'all', name: 'All PS99 Tools (8)' },
+    { id: 'all', name: 'All PS99 Tools (9)' },
     { id: 'trading', name: 'Trading & Values (WFL, RAP Alerts)' },
-    { id: 'farming', name: 'Farming & Economy (Daycare, Diamonds, Enchants)' },
+    { id: 'farming', name: 'Farming & Economy (Daycare, Diamonds, Golden/Rainbow Crafting)' },
     { id: 'progression', name: 'Progression & Clan (Mastery, Egg Hatching, Clan Battle)' }
   ];
 
@@ -48,7 +48,7 @@ export default function Ps99HubPage({ onNavigate }: Ps99HubPageProps) {
       if (selectedCategory === 'trading') {
         matchCategory = ['ps99-trade-calculator', 'ps99-rap-tracker'].includes(tool.id);
       } else if (selectedCategory === 'farming') {
-        matchCategory = ['ps99-exclusive-daycare-calculator', 'ps99-diamond-grind-optimizer', 'ps99-enchant-builder'].includes(tool.id);
+        matchCategory = ['ps99-exclusive-daycare-calculator', 'ps99-diamond-grind-optimizer', 'ps99-enchant-builder', 'ps99-golden-rainbow-calculator'].includes(tool.id);
       } else if (selectedCategory === 'progression') {
         matchCategory = ['ps99-egg-hatching-calculator', 'ps99-mastery-calculator', 'ps99-clan-battle-calculator'].includes(tool.id);
       }
@@ -93,7 +93,7 @@ export default function Ps99HubPage({ onNavigate }: Ps99HubPageProps) {
     <>
       <SEOHead
         title="Pet Simulator 99 Calculators & Tools – WFL, RAP Tracker & Values 2026"
-        description="Comprehensive suite of 8 Pet Simulator 99 calculators: WFL Trade Calculator, Exclusive Daycare Earnings, Enchant Builder & Diminishing Returns, Egg Hatching Odds, Mastery Planner, RAP Price Alerts, Clan Battles, and Diamond Grind Optimizer."
+        description="Comprehensive suite of 9 Pet Simulator 99 calculators: WFL Trade Calculator, Golden & Rainbow Upgrade Calculator, Exclusive Daycare Earnings, Enchant Builder & Diminishing Returns, Egg Hatching Odds, Mastery Planner, RAP Price Alerts, Clan Battles, and Diamond Grind Optimizer."
         canonicalPath="/games/ps99"
         breadcrumbs={breadcrumbs}
       />

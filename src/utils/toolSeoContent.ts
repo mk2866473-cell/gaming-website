@@ -739,6 +739,96 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
+  // 4t. Pet Simulator 99 Mastery XP Calculator
+  if (id === 'ps99-mastery-calculator') {
+    return [
+      {
+        title: 'Example 1: Eggs Mastery (L1, 0 XP → L50)',
+        scenario: 'A player recently completed Rebirth 4, unlocking Mastery, and wants to reach Level 50 in Eggs Mastery to unlock faster auto-hatch speed.',
+        inputValues: { 'Mastery Track': 'Eggs Mastery', 'Current Level': '1', 'Current XP': '0', 'Target Level': '50', 'Farming Method': 'Normal Egg (0.4 XP)' },
+        calculation: 'Cumulative XP to L50 = 101,333 XP. Current XP = 0. XP needed = 101,333. Actions = ceil(101,333 ÷ 0.4) = 253,333 normal eggs.',
+        result: '101,333 XP needed | 253,333 Normal Eggs',
+        takeaway: 'Reaching Level 50 Eggs Mastery unlocks faster egg hatching speed and increased hatch luck with 253,333 eggs hatched.'
+      },
+      {
+        title: 'Example 2: Fishing Mastery (L1, 0 XP → L99)',
+        scenario: 'A player aims to max out Fishing Mastery from scratch using regular fishing casts.',
+        inputValues: { 'Mastery Track': 'Fishing Mastery', 'Current Level': '1', 'Current XP': '0', 'Target Level': '99', 'Farming Method': 'Fishing Cast (25 XP)' },
+        calculation: 'Cumulative XP to L99 = 13,034,431 XP. Current XP = 0. Actions = ceil(13,034,431 ÷ 25) = 521,378 casts.',
+        result: '13,034,431 XP needed | 521,378 Fishing Casts',
+        takeaway: 'Maxing Fishing Mastery from Level 1 takes 521,378 casts (13,034,431 XP ÷ 25 XP per cast).'
+      },
+      {
+        title: 'Example 3: Superior Mini Chests (L1 → L99)',
+        scenario: 'An endgame player breaks naturally spawning Superior Mini Chests in final zones to level up mastery.',
+        inputValues: { 'Mastery Track': 'Superior Mini Chests', 'Current Level': '1', 'Target Level': '99', 'Farming Method': 'Superior Mini Chest (3,000 XP)' },
+        calculation: 'Cumulative XP to L99 = 13,034,431 XP. Actions = ceil(13,034,431 ÷ 3,000) = 4,345 chests.',
+        result: '13,034,431 XP needed | 4,345 Superior Mini Chests',
+        takeaway: 'Breaking 4,345 Superior Mini Chests maxes out the track to Level 99, doubling item drops and bonus gems.'
+      }
+    ];
+  }
+
+  // 4u. Pet Simulator 99 Golden & Rainbow Upgrade Calculator
+  if (id === 'ps99-golden-rainbow-calculator') {
+    return [
+      {
+        title: 'Example 1: Baseline 100 Normal Pets Conversion',
+        scenario: 'A player opens 100 identical normal pets and wants to know how many gold and rainbow pets they can craft with zero mastery discounts.',
+        inputValues: { 'Normal Pets Owned': '100', 'Gold Pets Owned': '0', 'Pets Mastery': 'None (10:1)' },
+        calculation: 'Golden Machine: 100 ÷ 10 = 10 gold pets (0 normal leftover). Rainbow Machine: 10 ÷ 10 = 1 rainbow pet (0 gold leftover).',
+        result: '10 Gold Pets → 1 Rainbow Pet (0 pets leftover)',
+        takeaway: 'Without mastery perks, 100 normal pets convert into 10 gold pets and then 1 rainbow pet at zero diamond cost.'
+      },
+      {
+        title: 'Example 2: Partial Inventory (25 Normal Pets)',
+        scenario: 'A player has 25 normal pets and wants to craft gold pets and see what is needed for their first rainbow pet.',
+        inputValues: { 'Normal Pets Owned': '25', 'Gold Pets Owned': '0', 'Pets Mastery': 'None (10:1)' },
+        calculation: 'Golden Machine: 25 ÷ 10 = 2 gold pets with 5 normal leftover. Next rainbow needs: 10 - 2 = 8 gold pets = 80 normal - 5 leftover = 75 normal pets still needed.',
+        result: '2 Gold Pets crafted (5 normal leftover) | 75 Normal Pets needed for next Rainbow',
+        takeaway: 'Converting 25 normal pets leaves 5 normal pets in inventory, requiring 75 more normal pets to craft the first rainbow pet.'
+      },
+      {
+        title: 'Example 3: Pets Mastery 99 Discount (64 Normal Pets)',
+        scenario: 'An endgame player with maxed Level 99 Pets Mastery crafts pets with the -2 input discount active on both machines.',
+        inputValues: { 'Normal Pets Owned': '64', 'Gold Pets Owned': '0', 'Pets Mastery': 'Level 99 (-2 both / 8:1)' },
+        calculation: 'Golden Machine (8:1): 64 ÷ 8 = 8 gold pets (0 leftover). Rainbow Machine (8:1): 8 ÷ 8 = 1 rainbow pet (0 leftover).',
+        result: '8 Gold Pets → 1 Rainbow Pet (0 pets leftover)',
+        takeaway: 'Pets Mastery 99 reduces input requirements from 100 down to 64 normal pets per rainbow pet (8 normal per gold, 8 gold per rainbow).'
+      }
+    ];
+  }
+
+  // 4v. Blox Fruits Title & Achievement Tracker
+  if (id === 'blox-fruits-title-tracker') {
+    return [
+      {
+        title: 'Example 1: Unlocking PvP Title #022 Pirate Hunter',
+        scenario: 'A player grinding bounty in the Second Sea hits 5M+ bounty or honor and visits the Titles Specialist to equip their title.',
+        inputValues: { 'Title Name': 'Pirate Hunter', 'Title Number': '#022', 'Category': 'PvP', 'Requirement': '5M+ bounty or honor' },
+        calculation: 'Requirement verified: 5M+ bounty or honor in Second Sea or Third Sea. Visit Titles Specialist in Cafe basement (Second Sea) or Mansion right entrance (Third Sea).',
+        result: 'Title #022 "Pirate Hunter" Unlocked & Available to Equip',
+        takeaway: 'Pirate Hunter unlocks at 5M+ bounty or honor in the Second Sea or Third Sea, and is equipped via the Titles Specialist.'
+      },
+      {
+        title: 'Example 2: Checking Unobtainable Title #040 Thunder God',
+        scenario: 'A player checking their awakening achievements wonders why Rumble Awakening title #040 Thunder God cannot be unlocked.',
+        inputValues: { 'Title Name': 'Thunder God', 'Title Number': '#040', 'Category': 'Awakening', 'Status': 'UNOBTAINABLE' },
+        calculation: 'Update 27 removed Rumble raids from Blox Fruits. The Thunder God title cannot be earned by modern players.',
+        result: 'Marked as UNOBTAINABLE (Update 27 removed Rumble raids)',
+        takeaway: 'The tracker clearly flags Thunder God as unobtainable so players do not waste fragments attempting to unlock a retired title.'
+      },
+      {
+        title: 'Example 3: Sea 1 Obtainment Rule & Exception (Class S)',
+        scenario: 'A player in the First Sea completes Advanced Combat and checks if they receive a title before entering Second Sea.',
+        inputValues: { 'Title Name': 'Class S', 'Title Number': '#107', 'Sea Completed': 'First Sea', 'Requirement': 'Advanced Combat' },
+        calculation: 'Standard rule: First Sea requirements grant no titles. Exception: Class S and legacy I Was There can be unlocked from First Sea conditions.',
+        result: 'Title #107 "Class S" Unlocked as First Sea Exception',
+        takeaway: 'Except for Class S and the I Was There event, all other title requirements must be finished in the Second Sea or Third Sea to count.'
+      }
+    ];
+  }
+
   // 4. Roblox Robux Tax / DevEx / Developer Earnings Calculator
   if (name.includes('robux') || name.includes('devex') || name.includes('gamepass') || name.includes('developer')) {
     return [
@@ -1391,6 +1481,57 @@ export function getToolDeepDive(tool: ToolItem): ToolDeepDive {
     };
   }
 
+  if (tool.id === 'ps99-mastery-calculator') {
+    return {
+      title: 'Pet Simulator 99 Mastery Scaling & Clan XP Multipliers',
+      summary: 'Unlocking Mastery at Rebirth 4 opens 14 separate progression tracks, all powered by an identical 13,034,431 cumulative XP progression curve.',
+      paragraphs: [
+        'Mastery in Pet Simulator 99 unlocks immediately upon completing Rebirth 4. Rather than each track having an arbitrary leveling rate, every one of the 14 tracks—Eggs, Fishing, Potions, Enchants, Breakables, Gifts, Pets, Digging, Keys, Superior Mini Chests, Fusing, Fruit, Economy, and Boost Exchange—shares an identical cumulative XP curve.',
+        'The curve requires 13,034,431 XP to reach Level 99. Key milestone thresholds are reached at Level 50 (101,333 XP), Level 75 (1,210,421 XP), Level 85 (3,258,594 XP), Level 92 (6,517,253 XP), Level 96 (9,684,577 XP), and Level 99 (13,034,431 XP). Leveling can be boosted by +10% by joining a Clan at Level 6 or higher, which increases all action XP and boosts standard Mastery XP Potions from 10,000 XP to 11,000 XP.',
+        'For instant progression, an Ultra Mastery XP Potion can be consumed to instantly max out any single track to Level 99 with zero farming actions.'
+      ],
+      keyPoints: [
+        'Universal 14-Track XP Parity: All 14 tracks follow the exact same 13,034,431 cumulative XP curve to Level 99.',
+        'Clan Level 6+ Multiplier: Permanent +10% boost across all actions and boosts Mastery XP Potions to 11,000 XP.',
+        'Game-Changing Perks: Unlocks free egg hatching, faster auto-hatch speeds, higher fishing yields, and pet crafting discounts.'
+      ]
+    };
+  }
+
+  if (tool.id === 'ps99-golden-rainbow-calculator') {
+    return {
+      title: 'Golden & Rainbow Pet Conversions and Mastery Ratios',
+      summary: 'Upgrading normal pets to Gold and Rainbow variants at zero diamond cost, with Pets Mastery discounts at Lv 60, Lv 90, and Lv 99.',
+      paragraphs: [
+        'In Pet Simulator 99, the Golden Machine is located in Area 10 (Mine) and the Rainbow Machine is located in Area 31 (Desert Pyramids). Both machines are free (0 diamonds) to use. Baseline conversion requires 10 identical normal pets to produce 1 gold pet, and 10 identical gold pets to produce 1 rainbow pet (100 normal pets total from scratch).',
+        'Levelling Pets Mastery introduces conversion discounts: Level 60 reduces the Golden Machine input by 1 (9 normal per gold), Level 90 reduces the Rainbow Machine input by 1 (9 gold per rainbow), and Level 99 reduces both machines by 2 (8 normal per gold, 8 gold per rainbow = 64 normal pets total per rainbow).',
+        'Gold pets grant ≈ +13% power and Rainbow pets grant ≈ +27% power—note that the in-game tooltip saying 10x is WRONG. Shiny pets need shiny inputs and are not covered by this calculator.'
+      ],
+      keyPoints: [
+        'Free Machine Access: Golden Machine (Area 10, Mine) and Rainbow Machine (Area 31, Desert Pyramids) cost 0 diamonds.',
+        'Verified Power Boosts: Gold ≈ +13% power; Rainbow ≈ +27% power (in-game 10x tooltip is wrong).',
+        'Pets Mastery 99 Efficiency: Drops normal pet requirements from 100 down to 64 per rainbow pet.'
+      ]
+    };
+  }
+
+  if (tool.id === 'blox-fruits-title-tracker') {
+    return {
+      title: 'Blox Fruits Chat Titles, Specialist Locations & Obtainment Mechanics',
+      summary: 'Complete guide to equipping chat titles, Titles Specialist locations in Second Sea and Third Sea, and obtainment rules.',
+      paragraphs: [
+        'Titles in Blox Fruits show next to the player\'s name in Roblox chat. Equip or switch titles via the Titles Specialist NPC: in the Second Sea at the Cafe basement, and in the Third Sea at the Mansion on the right side inside the front door.',
+        'Titles are obtainable ONLY in the Second Sea and Third Sea. A requirement finished in the First Sea grants nothing and must be done again later. The only exceptions are "Class S" (First Sea, Advanced Combat) and "I Was There" (one-off Sea 1 Rework event title).',
+        'Unobtainable titles such as #040 Thunder God (Rumble awakening, removed when Update 27 removed Rumble raids) are clearly marked, and Creator/staff titles are tagged as Special because they require defeating a creator while they have title drops enabled.'
+      ],
+      keyPoints: [
+        'Titles Specialist Locations: Second Sea — Cafe basement; Third Sea — Mansion, right side inside the front door.',
+        'Second & Third Sea Rule: First Sea requirements grant nothing (exceptions: Class S and I Was There).',
+        'Dynamic Count & Browser Save: Shows the exact count of titles loaded in data and saves ticks to localStorage.'
+      ]
+    };
+  }
+
   const game = getGameById(tool.gameId);
   const gameName = game?.name || 'Gaming';
   const name = tool.name;
@@ -1436,7 +1577,10 @@ export function getEnhancedToolFaqs(tool: ToolItem): EnhancedToolFaq[] {
     tool.id === 'roblox-shirt-template-maker' ||
     tool.id === 'roblox-thumbnail-resizer' ||
     tool.id === 'roblox-studs-converter' ||
-    tool.id === 'roblox-brickcolor-picker'
+    tool.id === 'roblox-brickcolor-picker' ||
+    tool.id === 'ps99-mastery-calculator' ||
+    tool.id === 'ps99-golden-rainbow-calculator' ||
+    tool.id === 'blox-fruits-title-tracker'
   ) {
     return existing.slice(0, 5);
   }

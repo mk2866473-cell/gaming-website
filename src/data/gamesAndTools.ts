@@ -108,7 +108,7 @@ export const GAMES: GameInfo[] = [
     borderColor: 'border-sky-500/30',
     accentColor: 'text-sky-400',
     icon: 'Sparkles',
-    badge: '8 Tools Available'
+    badge: '9 Tools Available'
   },
   {
     id: 'fps',

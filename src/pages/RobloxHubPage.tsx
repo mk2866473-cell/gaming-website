@@ -32,7 +32,7 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
     { id: 'all', name: 'All Roblox Tools' },
     { id: 'ps99', name: 'Pet Simulator 99 (PS99 Trade WFL)' },
     { id: 'economy', name: 'Robux & DevEx (Tax, USD Value, DevEx Cashout)' },
-    { id: 'bloxfruits', name: 'Blox Fruits (Values, XP, Stats, Damage)' },
+    { id: 'bloxfruits', name: 'Blox Fruits (Values, XP, Stats, Titles)' },
     { id: 'developer', name: 'Studio Developer (Gamepasses, Group Payouts, Team Splits, Premium)' }
   ];
 
