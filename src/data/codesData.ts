@@ -307,19 +307,12 @@ export const CODES_PAGES: CodesPageData[] = [
     gameName: 'Seven Knights Re:BIRTH',
     gameHubPath: '/games/seven-knights-rebirth',
     kind: 'codes',
-    lastChecked: '11 November 2026',
+    lastChecked: '13 November 2026',
     relatedToolPath: '/tools/sk-ruby-calc',
     relatedToolLabel: 'Seven Knights Ruby Calculator',
     intro:
       'The latest confirmed Seven Knights Re:BIRTH coupon code. Codes for this game expire very fast — redeem immediately.',
-    codes: [
-      {
-        code: 'SKRE300BIRTH',
-        reward:
-          '4-Star Legendary Accessory Selection Box, 300 Hero Summon Vouchers, 30 Pet Wish List Summon Vouchers, 3 Brilliant Skill Enhancement Stones, 3,000,000 Gold, 30 Chaos Essence',
-        expires: '12 November 2026 — redeem fast'
-      }
-    ],
+    codes: [],
     redeemSteps: [
       'Android: in game, Settings → Coupon, enter the code.',
       'iOS: use the official Netmarble coupon website with your member code.',
@@ -393,7 +386,7 @@ export const CODES_PAGES: CodesPageData[] = [
     gameName: 'Monopoly GO',
     gameHubPath: '/games/monopoly-go',
     kind: 'links',
-    lastChecked: '11 November 2026',
+    lastChecked: '13 November 2026',
     relatedToolPath: '/tools/mogo-free-dice-links',
     relatedToolLabel: 'Monopoly GO Free Dice Links',
     intro:
@@ -401,7 +394,12 @@ export const CODES_PAGES: CodesPageData[] = [
     linksNote:
       "How it works: tap a link on the phone or tablet where Monopoly GO is installed → the game opens → tap Collect on the 'Here's a gift for you!' pop-up. Each link works once per account, most give 25–75 free dice rolls, and they usually expire within 2–3 days. You must be Net Worth Level 15 (Sticker Album unlocked) or the link will not redeem. Beware: any site promising 1,000+ dice from one link is a scam — official links never give that much.",
     codes: [],
-    links: [],
+    links: [
+      { label: "25 Free Dice", url: "https://mply.io/YuaDMATTyes", date: "2026-11-12" },
+      { label: "25 Free Dice", url: "https://mply.io/ViUiaJBngg8", date: "2026-11-11" },
+      { label: "Daffy Duck Shield", url: "https://mply.io/Ai2qNgnabXc", date: "2026-11-11" },
+      { label: "McDonald's Fry Guard Shield", url: "https://mply.io/eqQcaP1kbUU", date: "2026-11-11" }
+    ],
     redeemSteps: [
       'Tap an official link above on your device.',
       'Monopoly GO opens automatically.',
@@ -416,7 +414,7 @@ export const CODES_PAGES: CodesPageData[] = [
     gameName: 'Coin Master',
     gameHubPath: '/games/coin-master',
     kind: 'links',
-    lastChecked: '11 November 2026',
+    lastChecked: '13 November 2026',
     relatedToolPath: '/tools/cm-village-calculator',
     relatedToolLabel: 'Coin Master Village Cost Calculator',
     intro:
@@ -424,7 +422,22 @@ export const CODES_PAGES: CodesPageData[] = [
     linksNote:
       'How it works: Moon Active posts 3–8 new links daily. Each link usually gives 25, 50 or 100 free spins (sometimes coins or cards), works once per account, and expires after about 72 hours. Tap a link on the device where Coin Master is installed and the spins are added when the game opens. Only official reward links are listed here — links from random sites can be fake.',
     codes: [],
-    links: [],
+    links: [
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_FCBANbmpn_20261112", date: "2026-11-12" },
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_FCBNjjHLU_20261112", date: "2026-11-12" },
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_INSFyITCO_20261112", date: "2026-11-12" },
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_TWIGJWsCs_20261112", date: "2026-11-12" },
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_CHATBQhZctN_20261112", date: "2026-11-12" },
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_HELPFvrsZu_20261112", date: "2026-11-12" },
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_LINErFAoIu_20261112", date: "2026-11-12" },
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_FCBppOAuJ_20261111", date: "2026-11-11" },
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_FCBFZNNEt_20261111", date: "2026-11-11" },
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_INSsPcObg_20261111", date: "2026-11-11" },
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_TWIlaQjrH_20261111", date: "2026-11-11" },
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_CHATBTEmNMd_20261111", date: "2026-11-11" },
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_HELPKbNDUX_20261111", date: "2026-11-11" },
+      { label: "Free Spins Gift", url: "https://rewards.coinmaster.com/rewards/rewards.html?c=pe_LINEScThRM_20261111", date: "2026-11-11" }
+    ],
     redeemSteps: [
       'Tap an official link above on your device.',
       'Coin Master opens automatically.',
