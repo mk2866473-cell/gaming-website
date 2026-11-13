@@ -38,6 +38,11 @@ const MinecraftDamageCalculator = React.lazy(() => import('../components/tools/M
 const MinecraftRedstoneTickCalculator = React.lazy(() => import('../components/tools/MinecraftRedstoneTickCalculator'));
 const MinecraftFurnaceFuelCalculator = React.lazy(() => import('../components/tools/MinecraftFurnaceFuelCalculator'));
 const MinecraftOvalGenerator = React.lazy(() => import('../components/tools/MinecraftOvalGenerator'));
+const MinecraftSlimeChunkFinder = React.lazy(() => import('../components/tools/MinecraftSlimeChunkFinder'));
+const MinecraftBannerDesigner = React.lazy(() => import('../components/tools/MinecraftBannerDesigner'));
+const MinecraftStrongholdFinder = React.lazy(() => import('../components/tools/MinecraftStrongholdFinder'));
+const MinecraftPixelArtConverter = React.lazy(() => import('../components/tools/MinecraftPixelArtConverter'));
+const MinecraftBrewingCalculator = React.lazy(() => import('../components/tools/MinecraftBrewingCalculator'));
 // Roblox tools
 const RobuxTaxCalculator = React.lazy(() => import('../components/tools/RobuxTaxCalculator'));
 const RobuxCalculator = React.lazy(() => import('../components/tools/RobuxCalculator'));
@@ -258,6 +263,16 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <MinecraftFurnaceFuelCalculator />;
       case 'minecraft-oval-generator':
         return <MinecraftOvalGenerator />;
+      case 'minecraft-slime-chunk-finder':
+        return <MinecraftSlimeChunkFinder />;
+      case 'minecraft-banner-designer':
+        return <MinecraftBannerDesigner />;
+      case 'minecraft-stronghold-finder':
+        return <MinecraftStrongholdFinder />;
+      case 'minecraft-pixel-art-converter':
+        return <MinecraftPixelArtConverter />;
+      case 'minecraft-brewing-calculator':
+        return <MinecraftBrewingCalculator />;
       case 'robux-tax-calculator':
         return <RobuxTaxCalculator />;
       case 'robux-calculator':

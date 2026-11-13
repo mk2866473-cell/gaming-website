@@ -18,7 +18,7 @@ export const GAMES: GameInfo[] = [
     borderColor: 'border-emerald-500/30',
     accentColor: 'text-emerald-400',
     icon: 'Box',
-    badge: '23 Tools Available'
+    badge: '28 Tools Available'
   },
   {
     id: 'roblox',

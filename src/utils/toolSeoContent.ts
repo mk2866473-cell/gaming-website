@@ -178,6 +178,125 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
+  // 3b. Minecraft Slime Chunk Finder (Java Edition)
+  if (id === 'minecraft-slime-chunk-finder') {
+    return [
+      {
+        title: 'Example 1: Checking Chunk (-8, 0) on Java Seed 0',
+        scenario: 'A Java Edition player on world seed 0 checks block X = -128, Z = 0 (Chunk -8, 0) and compares it to spawn Chunk (0, 0).',
+        inputValues: { 'World Seed': '0 (Java Edition)', 'Block Coords': 'X = -128, Z = 0', 'Chunk Coords': '(-8, 0)' },
+        calculation: 'Chunk X = floor(-128 ÷ 16) = -8; Chunk Z = floor(0 ÷ 16) = 0. Evaluating java.util.Random(seed + chunkHash ^ 0x3ad8025fL).nextInt(10) returns 0 for Chunk (-8, 0) and non-zero for Chunk (0, 0).',
+        result: 'Chunk (-8, 0) IS a Slime Chunk (Blocks X: -128 to -113, Z: 0 to 15). Chunk (0, 0) is NOT a Slime Chunk.',
+        takeaway: 'Slimes will spawn inside blocks X -128..-113, Z 0..15 below Y=40 at any light level on seed 0.'
+      },
+      {
+        title: 'Example 2: Locating a Slime Chunk Near Spawn on Java Seed 42',
+        scenario: 'A player on Java Edition seed 42 enters block coordinates X = 12, Z = 104 (Chunk 0, 6) to verify if it qualifies as a slime chunk before digging a spawning room.',
+        inputValues: { 'World Seed': '42 (Java Edition)', 'Block Coords': 'X = 12, Z = 104', 'Chunk Coords': '(0, 6)' },
+        calculation: 'Chunk X = floor(12 ÷ 16) = 0; Chunk Z = floor(104 ÷ 16) = 6. Running the Java Edition 48-bit LCG check yields rnd.nextInt(10) == 0.',
+        result: 'Chunk (0, 6) IS a Slime Chunk (Blocks X: 0 to 15, Z: 96 to 111).',
+        takeaway: 'Digging out platforms below Y=40 between X 0..15 and Z 96..111 allows slimes to spawn regardless of torch placement.'
+      }
+    ];
+  }
+
+  // 3c. Minecraft Banner Designer
+  if (id === 'minecraft-banner-designer') {
+    return [
+      {
+        title: 'Example 1: 3-Layer Creeper Crest Banner with Full Loom Steps',
+        scenario: 'Crafting a 3-layer Green Banner with a dark base fade, a Lime Creeper Charge emblem, and a crisp Black Bordure frame in Survival mode.',
+        inputValues: {
+          'Base Banner': 'Green Banner (6× Green Wool + 1× Stick)',
+          'Layer 1': 'Base Gradient (gradient_up) + Black Dye',
+          'Layer 2': 'Creeper Charge (creeper) + Lime Dye + Creeper Charge Pattern Item',
+          'Layer 3': 'Bordure (border) + Black Dye'
+        },
+        calculation: 'Step 1 (Crafting Table): Craft Green Banner (6 Green Wool + 1 Stick). Step 2 (Loom): Green Banner + Black Dye → select Base Gradient (gradient_up). Step 3 (Loom): Banner from Step 2 + Lime Dye + Creeper Charge Banner Pattern (Paper + Creeper Head; not consumed in Java). Step 4 (Loom): Banner from Step 3 + Black Dye → select Bordure (border).',
+        result: 'Finished 3-Layer Banner (uses 3 of 6 max survival layers; Creeper Charge Pattern item remains reusable)',
+        takeaway: 'Because later layers paint over earlier ones, placing Base Gradient first, Creeper Charge second, and Bordure last frames the creeper clean around the edges.'
+      },
+      {
+        title: 'Example 2: Trial Chambers Flow Banner Using Uncraftable Pattern Items',
+        scenario: 'Building a Cyan Banner topped with an Indented Bordure and the Flow emblem found in trial chambers ominous vaults.',
+        inputValues: {
+          'Base Banner': 'Cyan Banner (6× Cyan Wool + 1× Stick)',
+          'Layer 1': 'Flow (flow) + Light Blue Dye + Flow Pattern Item',
+          'Layer 2': 'Bordure Indented (curly_border) + White Dye + Bordure Indented Pattern Item'
+        },
+        calculation: 'Craft Cyan Banner → Loom Layer 1: Cyan Banner + Light Blue Dye + Flow Pattern (obtained from trial chambers ominous vault) → Loom Layer 2: Banner + White Dye + Bordure Indented Pattern (Paper + Vines). Both Banner Pattern items remain unconsumed in Java Edition.',
+        result: 'Finished 2-Layer Banner with reusable Flow and Bordure Indented Pattern items',
+        takeaway: 'Even rare uncraftable patterns like Globe (8 emeralds from a master cartographer), Snout (bastion chest loot), Flow, and Guster are never consumed in the loom.'
+      }
+    ];
+  }
+
+  // 3d. Minecraft Stronghold Finder
+  if (id === 'minecraft-stronghold-finder') {
+    return [
+      {
+        title: 'Example 1: Triangulating from (0, 0) and (800, 0) Using F3 Yaw',
+        scenario: 'A player throws the first Eye of Ender at (0, 0) measuring F3 yaw -53.13°, then travels east to (800, 0) and throws a second Eye measuring F3 yaw 0°.',
+        inputValues: { 'Throw 1': '(0, 0), Yaw -53.13°', 'Throw 2': '(800, 0), Yaw 0°' },
+        calculation: 'Ray 1 vector: dx1 = -sin(-53.13°) ≈ 0.8, dz1 = cos(-53.13°) ≈ 0.6. Ray 2 vector: dx2 = -sin(0°) = 0, dz2 = cos(0°) = 1. Intersecting (0 + t1×0.8, 0 + t1×0.6) with (800, t2) solves t1 = 1,000 blocks and t2 = 600 blocks.',
+        result: 'Estimated Stronghold Starting Staircase Area: (800, 600) | Distances: 1,000 blocks from Throw 1, 600 blocks from Throw 2',
+        takeaway: 'Remember that Eyes of Ender target the stronghold\'s starting staircase area, so explore outward from the staircase once you dig down at (800, 600).'
+      },
+      {
+        title: 'Example 2: Wide-Angle Throw Targeting the First Stronghold Ring',
+        scenario: 'A player throws an Eye of Ender from (0, 0) at yaw -135° (northeast) and walks 1,200 blocks east to (1200, 0), throwing a second Eye at yaw 135° (northwest).',
+        inputValues: { 'Throw 1': '(0, 0), Yaw -135°', 'Throw 2': '(1200, 0), Yaw 135°' },
+        calculation: 'Ray 1 points along (+0.7071, -0.7071) and Ray 2 points along (-0.7071, -0.7071), crossing at a clean 90° angle. Solving the ray intersection gives X = 600, Z = -600 (distance ~849 blocks from each throw).',
+        result: 'Estimated Intersection: (600, -600) | Distance: ~849 blocks from each throw | Crossing Angle: 90°',
+        takeaway: 'Throwing from locations far apart that cross at a wide angle minimizes error; in standard worlds, the 3 first-ring strongholds generate 1,280 to 2,816 blocks from spawn.'
+      }
+    ];
+  }
+
+  // 3e. Minecraft Pixel Art Converter
+  if (id === 'minecraft-pixel-art-converter') {
+    return [
+      {
+        title: 'Example 1: Converting a Square Emblem at 32-Block Width',
+        scenario: 'A builder uploads a square 1:1 emblem and selects the 32-block grid width for a flat single-height wall or floor build.',
+        inputValues: { 'Chosen Width': '32 blocks', 'Aspect Ratio': '1:1 (Square)', 'Build Type': 'Flat Art (1 block per pixel)' },
+        calculation: 'Height scales proportionally to 32 blocks. Total pixels = 32 × 32 = 1,024 pixels. Every pixel maps via shortest RGB distance to one of the 16 Wool/Concrete map colours.',
+        result: '32 × 32 Grid = 1,024 total Wool or Concrete blocks (16 stacks total)',
+        takeaway: 'Building flat art at one height is the simplest survival construction method, requiring exactly 1 block per pixel.'
+      },
+      {
+        title: 'Example 2: Scaling a 4:3 Landscape Painting to 64-Block Width',
+        scenario: 'A builder uploads a 4:3 landscape image at the maximum 64-block grid width to compare against a full 128×128 Minecraft map.',
+        inputValues: { 'Chosen Width': '64 blocks', 'Aspect Ratio': '4:3 Landscape' },
+        calculation: 'Aspect-preserved height = round(64 × 3 ÷ 4) = 48 blocks. Total blocks needed = 64 × 48 = 3,072 blocks (under one-fifth of a full 128×128 = 16,384-block map).',
+        result: '64 × 48 Grid = 3,072 total Wool or Concrete blocks',
+        takeaway: 'Keeping aspect ratio avoids squishing your image while fitting neatly inside a single 128×128 map area.'
+      }
+    ];
+  }
+
+  // 3f. Minecraft Brewing Calculator
+  if (id === 'minecraft-brewing-calculator') {
+    return [
+      {
+        title: 'Example 1: Full Path for Extended Fire Resistance (8:00)',
+        scenario: 'Brewing a Potion of Fire Resistance extended to 8:00 for safe Nether exploration in Java Edition.',
+        inputValues: { 'Target Potion': 'Fire Resistance (Extended)', 'Modifier': 'Redstone Dust (cannot enhance with Glowstone)' },
+        calculation: 'Step 1: Water Bottle + Nether Wart → Awkward Potion. Step 2: Awkward Potion + Magma Cream → Potion of Fire Resistance (3:00 base). Step 3: Potion of Fire Resistance + Redstone → Extended Fire Resistance (8:00). Optional: + Gunpowder gives Splash (8:00); + Dragon\'s Breath on Splash gives Lingering (2:00, 1/4 duration).',
+        result: 'Potion of Fire Resistance — 8:00 (cannot be enhanced with Glowstone)',
+        takeaway: 'Redstone and Glowstone cannot be combined on one potion, and Fire Resistance cannot be enhanced—so Redstone to 8:00 is always its strongest upgrade.'
+      },
+      {
+        title: 'Example 2: Full Path for Potion of Weakness (No Nether Wart)',
+        scenario: 'Brewing a Potion of Weakness using the unique direct Water Bottle path in Java Edition.',
+        inputValues: { 'Target Potion': 'Weakness', 'Starting Bottle': 'Plain Water Bottle (NO Nether Wart)' },
+        calculation: 'Step 1: Plain Water Bottle + Fermented Spider Eye → Potion of Weakness (1:30 base). Optional Step 2: + Redstone → Extended Weakness (4:00); + Gunpowder → Splash Potion of Weakness (same duration: 1:30 base or 4:00 extended). Note: Weakness cannot be enhanced with Glowstone.',
+        result: 'Potion of Weakness — 1:30 base or 4:00 extended (cannot be enhanced)',
+        takeaway: 'Weakness is the only potion brewed directly from a plain Water Bottle without Nether Wart.'
+      }
+    ];
+  }
+
   // 4. Roblox Robux Tax / DevEx / Developer Earnings Calculator
   if (name.includes('robux') || name.includes('devex') || name.includes('gamepass') || name.includes('developer')) {
     return [
@@ -439,6 +558,91 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
  * Returns an in-depth 200-300 word technical mechanics guide for the tool.
  */
 export function getToolDeepDive(tool: ToolItem): ToolDeepDive {
+  if (tool.id === 'minecraft-slime-chunk-finder') {
+    return {
+      title: 'How Minecraft Java Edition Slime Chunks Work',
+      summary: 'Exact Java Edition java.util.Random seeding mechanics, Y-level spawning rules, and Bedrock Edition differences.',
+      paragraphs: [
+        'In Minecraft Java Edition, slime chunks are determined pseudo-randomly from your 64-bit world seed and the 16×16 chunk coordinates (chunkX, chunkZ). The game hashes the chunk coordinates with 32-bit int and 64-bit long arithmetic, adds your world seed, XORs the result with 0x3ad8025fL, and initializes java.util.Random. If rnd.nextInt(10) returns 0, the chunk is a slime chunk — meaning about 1 in 10 chunks qualifies.',
+        'Inside a confirmed slime chunk, slimes can spawn below Y=40 at any light level. Because block-to-chunk conversion uses floor division (floor(coord ÷ 16)), negative coordinates shift one chunk further negative when not evenly divisible by 16 (for example, block -1 lies in chunk -1 covering blocks -16 to -1).',
+        'Outside slime chunks, slimes can also spawn naturally in swamp and mangrove swamp biomes between Y=51 and Y=69 at light level 7 or lower. Swamp slime spawns follow the moon phase: they occur most often on a full moon and never on a new moon. Note that this calculator applies only to Java Edition — in Bedrock Edition, slime chunks do not depend on the world seed and remain in the same chunk locations across every world.'
+      ],
+      keyPoints: [
+        'Java Edition Seed Formula: Implements exact 32-bit integer overflow (Math.imul), 64-bit BigInt longs, and the 48-bit java.util.Random LCG.',
+        'Verified Slime Spawning Rules: Below Y=40 at any light level in slime chunks; Y=51–69 at light level ≤ 7 in swamps (most on full moon, never on new moon).',
+        'Java vs Bedrock Difference: Java Edition slime chunks depend on the world seed (~1 in 10 chunks); Bedrock Edition slime chunks are identical in every world regardless of seed.'
+      ]
+    };
+  }
+
+  if (tool.id === 'minecraft-banner-designer') {
+    return {
+      title: 'How Minecraft Survival Banners & Loom Layers Work',
+      summary: 'Understanding the 6-layer survival loom limit, 16 dye colours, and reusable Banner Pattern items in Java Edition.',
+      paragraphs: [
+        'In Minecraft Survival mode, banners start from a single base banner crafted using 6 matching wool blocks and 1 stick in any of the 16 dye colours (White, Orange, Magenta, Light Blue, Yellow, Lime, Pink, Gray, Light Gray, Cyan, Purple, Blue, Brown, Green, Red, and Black). You can then stack up to 6 pattern layers on top using a Loom.',
+        'Out of the 42 supported patterns, 32 shapes — including stripes, halves, diagonals, cantons, chevrons, roundels, lozenges, bordures, and gradients — require only dye in the loom. The remaining 10 special patterns require a Banner Pattern item alongside your dye: 6 are craftable with Paper (Bordure Indented, Field Masoned, Flower Charge, Creeper Charge, Skull Charge, and Thing), while 4 must be traded or looted (Globe from a master cartographer villager for 8 emeralds, Snout from bastion remnant chests, Guster from trial chambers vaults, and Flow from trial chambers ominous vaults).',
+        'In Minecraft Java Edition, Banner Pattern items are not consumed when applied in the Loom. Only the dye is used up per layer, meaning your crafted or looted pattern items can be kept and reused across every banner you build.'
+      ],
+      keyPoints: [
+        'Maximum 6 Layers in Survival: Build banners layer-by-layer up to the 6-layer Loom cap using any of the 16 dye colours.',
+        'Craftable vs Uncraftable Pattern Items: 6 pattern items craft with Paper; Globe (8 emeralds, master cartographer), Snout (bastion loot), Flow (ominous vault), and Guster (vault) are not craftable.',
+        'Reusable in Java Edition: Banner Pattern items are never consumed by the Loom in Java Edition.'
+      ]
+    };
+  }
+
+  if (tool.id === 'minecraft-stronghold-finder') {
+    return {
+      title: 'How Eye of Ender Triangulation & Stronghold Rings Work',
+      summary: 'Using Minecraft Java Edition F3 yaw geometry and ring distribution rules to pinpoint stronghold starting staircases.',
+      paragraphs: [
+        'In Minecraft Java Edition, 128 strongholds generate across 8 concentric rings centered around world spawn. The first ring contains 3 strongholds located between 1,280 and 2,816 blocks from spawn. Rather than wandering endlessly throwing Eyes of Ender, you can triangulate a stronghold\'s coordinates with just two well-spaced throws.',
+        'Minecraft\'s horizontal F3 facing angle (yaw) maps directly onto world coordinates via the unit direction vector dx = -sin(yaw in radians) and dz = cos(yaw in radians), where yaw 0 faces south (+Z) and yaw -90 faces east (+X). By aiming cleanly at each hovering Eye of Ender and recording both throws\' positions and yaw values, the intersection of the two rays reveals the target coordinate.',
+        'Because Eyes of Ender fly toward the stronghold\'s starting staircase area rather than the End portal room itself, triangulation guides you directly to the staircase entrance. Your estimate improves significantly when the two throw points are far apart and cross at a wide angle; if two throws are nearly parallel, move perpendicular to your first throw and try again.'
+      ],
+      keyPoints: [
+        'Java Edition Ray Math: Direction vector dx = -sin(yaw_rad), dz = cos(yaw_rad) intersects two F3 throw rays cleanly.',
+        '128 Strongholds in 8 Rings: First ring holds 3 strongholds between 1,280 and 2,816 blocks out.',
+        'Accuracy & Target: Eyes target the starting staircase area (not the portal room); wide crossing angles and spaced-out throws yield the best accuracy.'
+      ]
+    };
+  }
+
+  if (tool.id === 'minecraft-pixel-art-converter') {
+    return {
+      title: 'How Minecraft Pixel Art & Map Colour Matching Works',
+      summary: 'Browser-local image resizing, 16-colour RGB distance matching, and survival material budgeting.',
+      paragraphs: [
+        'The Minecraft Pixel Art Converter processes your entire image locally in your browser without uploading anything to a server. After choosing a target width (16, 32, 48, or 64 blocks), the converter preserves your image\'s aspect ratio and samples every pixel.',
+        'Each pixel is matched by simple RGB distance to the 16 dye map colours for Wool and Concrete: White (#FFFFFF), Orange (#D87F33), Magenta (#B24CD8), Light Blue (#6699D8), Yellow (#E5E533), Lime (#7FCC19), Pink (#F27FA5), Gray (#4C4C4C), Light Gray (#999999), Cyan (#4C7F99), Purple (#7F3FB2), Blue (#334CB2), Brown (#664C33), Green (#667F33), Red (#993333), and Black (#191919).',
+        'A full 1:1 Minecraft map covers 128 × 128 blocks (16,384 blocks in total). For survival builders, flat art—placing all blocks at one single height—is the simplest build style, and the tool\'s material list assumes exactly one block per pixel.'
+      ],
+      keyPoints: [
+        '100% Client-Side: All image scaling and pixel matching runs in your browser.',
+        'Exact 16 Map Dye Colours: Maps every pixel via RGB distance to the 16 Wool/Concrete map colours.',
+        'Full Map & Flat Art Reference: Full maps are 128×128 (16,384 blocks); flat single-height builds are the simplest and use 1 block per pixel.'
+      ]
+    };
+  }
+
+  if (tool.id === 'minecraft-brewing-calculator') {
+    return {
+      title: 'How Java Edition Potion Brewing Paths & Modifiers Work',
+      summary: 'Verified Java Edition base recipes, Nether Wart vs plain Water Bottle paths, Redstone/Glowstone limits, and 1.21 potions.',
+      paragraphs: [
+        'Nearly every Minecraft Java Edition potion begins by brewing Nether Wart into Water Bottles to create an Awkward Potion, then adding the primary potion ingredient (or applying a Fermented Spider Eye to corrupt an existing potion such as Night Vision into Invisibility, Healing/Poison into Harming, or Swiftness/Leaping into Slowness). Weakness is the sole exception: it is brewed directly by adding a Fermented Spider Eye into a plain Water Bottle with no Nether Wart.',
+        'Once brewed, eligible potions can be upgraded with either Redstone (extended duration) or Glowstone (enhanced level II+ potency), though Redstone and Glowstone can never be combined on a single potion. Several potions—including the four 1.21 potions Oozing (Slime Block), Weaving (Cobweb), Infestation (Stone), and Wind Charging (Breeze Rod)—cannot be extended or enhanced at all.',
+        'To change how a potion is delivered, add Gunpowder to brew a Splash potion at the exact same duration as its drinkable form. Adding Dragon\'s Breath to a Splash potion converts it into a Lingering potion lasting 1/4 of the drinkable duration.'
+      ],
+      keyPoints: [
+        'Unique Weakness Path: Fermented Spider Eye directly into a plain Water Bottle (no Nether Wart).',
+        'Mutually Exclusive Upgrades: Redstone and Glowstone cannot be combined on the same potion.',
+        'Splash & Lingering Math: Gunpowder keeps the same duration; Dragon\'s Breath cuts duration to 1/4 of drink duration.'
+      ]
+    };
+  }
+
   const game = getGameById(tool.gameId);
   const gameName = game?.name || 'Gaming';
   const name = tool.name;
@@ -464,6 +668,15 @@ export function getToolDeepDive(tool: ToolItem): ToolDeepDive {
  */
 export function getEnhancedToolFaqs(tool: ToolItem): EnhancedToolFaq[] {
   const existing = (tool.faqs || []).map(f => ({ question: f.question, answer: f.answer }));
+  if (
+    tool.id === 'minecraft-slime-chunk-finder' ||
+    tool.id === 'minecraft-banner-designer' ||
+    tool.id === 'minecraft-stronghold-finder' ||
+    tool.id === 'minecraft-pixel-art-converter' ||
+    tool.id === 'minecraft-brewing-calculator'
+  ) {
+    return existing.slice(0, 5);
+  }
   const game = getGameById(tool.gameId);
   const gameName = game?.name || 'this game';
 

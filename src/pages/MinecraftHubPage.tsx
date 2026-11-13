@@ -30,7 +30,7 @@ export default function MinecraftHubPage({ onNavigate }: MinecraftHubPageProps) 
   }, []);
 
   const categories = [
-    { id: 'all', name: 'All Minecraft Tools (15)' },
+    { id: 'all', name: `All Minecraft Tools (${minecraftTools.length})` },
     { id: 'generators', name: 'Building & Geometry (Circle, Sphere, Dome, Oval)' },
     { id: 'converters', name: 'Portals & Coordinates (Nether 8:1, Distance)' },
     { id: 'calculators', name: 'Mechanics & Combat (XP, Anvil, Damage, Redstone)' },

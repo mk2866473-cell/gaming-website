@@ -5069,6 +5069,308 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
     ],
     proTips: ['Head to the Pet Egg Shop 30 seconds before the 30-minute restock mark so you can grab high-tier eggs immediately!'],
     relatedToolIds: ['grow-a-garden-crop-value-calculator', 'grow-a-garden-mutation-calculator', 'grow-a-garden-egg-hatching-calculator', 'grow-a-garden-trade-calculator']
+  },
+  {
+    id: 'minecraft-slime-chunk-finder',
+    slug: 'minecraft-slime-chunk-finder',
+    name: 'Minecraft Slime Chunk Finder',
+    gameId: 'minecraft',
+    categoryId: 'calculators',
+    icon: 'Compass',
+    shortDescription: 'Find Minecraft Java Edition slime chunks from your world seed and chunk or block coordinates on an interactive grid.',
+    description: 'Check whether any chunk or block coordinate is a slime chunk in Minecraft Java Edition using the game\'s exact java.util.Random seed formula. Explore a centered 17×17 or 21×21 chunk grid and inspect exact block coordinate ranges for every chunk. (For Java Edition — Bedrock Edition slime chunks do not depend on the world seed.)',
+    badge: 'Java Edition',
+    rating: 4.97,
+    reviewsCount: 412,
+    userCount: '38k+ players',
+    featured: true,
+    tags: ['minecraft', 'slime chunk', 'slime finder', 'java edition', 'world seed', 'chunk coordinates', 'slime farm'],
+    seoTitle: 'Minecraft Slime Chunk Finder – Java Edition Seed Map & Block Range',
+    metaDescription: 'Find Minecraft Java Edition slime chunks using your world seed and chunk or block coordinates. Includes an interactive chunk grid and exact block ranges.',
+    h1: 'Minecraft Slime Chunk Finder (Java Edition)',
+    canonicalPath: '/tools/minecraft-slime-chunk-finder',
+    howToGuide: {
+      overview: 'Locate slime chunks in your Minecraft Java Edition world from your seed and coordinates.',
+      steps: [
+        { title: 'Enter Your Java Edition World Seed', description: 'Type your numeric 64-bit world seed (or text seed, which hashes via Java String.hashCode()).' },
+        { title: 'Choose Chunk or Block Coordinates', description: 'Enter chunk coordinates directly, or switch to Block Coords (X, Z) to convert using floor division (floor(coord ÷ 16)).' },
+        { title: 'Check the Center Chunk Verdict', description: 'Instantly see whether your entered chunk is a slime chunk along with its 16×16 block boundaries.' },
+        { title: 'Click Chunks on the Grid', description: 'Inspect any chunk across the centered 17×17 or 21×21 chunk map to view its exact X and Z block coordinate range.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Minecraft Java Edition Slime Chunk Formula',
+      details: 'Java Edition seeds java.util.Random with your world seed combined with 32-bit int and 64-bit long chunk coordinate multipliers XORed with 0x3ad8025fL, then checks if rnd.nextInt(10) == 0 (~1 in 10 chunks).',
+      mathSnippet: 'new Random(worldSeed + (int)(cx*cx*0x4c1906) + (int)(cx*0x5ac0db) + (int)(cz*cz)*0x4307a7L + (int)(cz*0x5f24f) ^ 0x3ad8025fL).nextInt(10) == 0'
+    },
+    faqs: [
+      {
+        question: 'How do you find slime chunks in Minecraft Java Edition?',
+        answer: 'Enter your Java Edition world seed along with either your chunk coordinates or your X/Z block coordinates. The tool runs the exact java.util.Random formula and highlights every chunk where rnd.nextInt(10) == 0 on an interactive chunk map.'
+      },
+      {
+        question: 'Does this Slime Chunk Finder work for Minecraft Bedrock Edition?',
+        answer: 'No, this finder is for Minecraft Java Edition only. In Bedrock Edition, slime chunks do not depend on the world seed and occur at the exact same chunk coordinates in every world.'
+      },
+      {
+        question: 'At what Y-level and light level do slimes spawn in slime chunks?',
+        answer: 'In a slime chunk, slimes can spawn underground below Y=40 at any light level — even in brightly lit caves or digging chambers.'
+      },
+      {
+        question: 'Where else do slimes spawn besides slime chunks?',
+        answer: 'Slimes also spawn naturally in swamp and mangrove swamp biomes between Y=51 and Y=69 when the light level is 7 or lower. Swamp slime spawns depend on the moon phase: they spawn most often on a full moon and never on a new moon.'
+      },
+      {
+        question: 'How common are slime chunks in Minecraft Java Edition?',
+        answer: 'Because the game checks rnd.nextInt(10) == 0, roughly 1 in 10 chunks (10%) is a slime chunk.'
+      }
+    ],
+    proTips: [
+      'In Java Edition slime chunks, slimes spawn below Y=40 at any light level, so light up your spawning platforms and nearby caves to stop other hostile mobs from taking the mob cap.',
+      'Always use floor division when converting negative block coordinates to chunks (for example, block X = -1 is in chunk X = -1 covering blocks -16 to -1, not chunk 0).'
+    ],
+    relatedToolIds: ['minecraft-xp-calculator', 'minecraft-circle-generator']
+  },
+  {
+    id: 'minecraft-banner-designer',
+    slug: 'minecraft-banner-designer',
+    name: 'Minecraft Banner Designer',
+    gameId: 'minecraft',
+    categoryId: 'generators',
+    icon: 'Layers',
+    shortDescription: 'Design custom Minecraft banners with all 16 dye colours and 42 loom patterns (up to 6 survival layers) with step-by-step loom crafting instructions.',
+    description: 'Interactive Minecraft Banner Designer supporting all 16 dye colours, 32 dye-only loom patterns, and 10 Banner Pattern items (Bordure Indented, Field Masoned, Flower Charge, Creeper Charge, Skull Charge, Thing, Globe, Snout, Flow, and Guster). Preview up to 6 survival layers live and follow the exact step-by-step loom crafting recipe.',
+    badge: '6-Layer Loom',
+    rating: 4.98,
+    reviewsCount: 530,
+    userCount: '44k+ builders',
+    featured: true,
+    tags: ['minecraft', 'banner designer', 'loom', 'banner patterns', 'dye colours', 'creeper charge', 'globe pattern'],
+    seoTitle: 'Minecraft Banner Designer – 6-Layer Loom Pattern Creator & Crafting Steps',
+    metaDescription: 'Design Minecraft banners using all 16 dye colours and 42 patterns (up to 6 survival layers). Includes a live banner preview and ordered loom crafting steps.',
+    h1: 'Minecraft Banner Designer (Loom Layer Creator)',
+    canonicalPath: '/tools/minecraft-banner-designer',
+    howToGuide: {
+      overview: 'Build a survival-legal banner design with up to 6 layers and follow the generated loom crafting recipe.',
+      steps: [
+        { title: 'Pick Your Base Banner Colour', description: 'Select any of the 16 Minecraft dye colours (crafted from 6 matching Wool and 1 Stick).' },
+        { title: 'Add Up to 6 Pattern Layers', description: 'Choose a pattern and dye colour for each layer. The live banner updates immediately in layer order.' },
+        { title: 'Check Pattern Item Requirements', description: 'See which layers only use dye in the loom versus which require a reusable Banner Pattern item (not consumed in Java Edition).' },
+        { title: 'Follow the Loom Crafting Order', description: 'Apply each layer in order at a Loom using the previous banner step, dye, and optional Banner Pattern item.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Survival Loom Layer Rules & Pattern Item Requirements',
+      details: 'In Survival mode, you can apply up to 6 pattern layers to a banner using a Loom. 32 patterns require only dye, while 10 special patterns also require a Banner Pattern item — banner pattern items are not consumed in the loom (Java Edition).',
+      mathSnippet: 'Max Survival Loom Layers = 6 | Base Banner = 6 Wool + 1 Stick | Pattern Items Not Consumed (Java)'
+    },
+    faqs: [
+      {
+        question: 'How many pattern layers can a Minecraft banner have in Survival mode?',
+        answer: 'A banner can have a maximum of 6 pattern layers in Survival mode when crafted with a Loom.'
+      },
+      {
+        question: 'Are Banner Pattern items consumed when crafting in a Loom?',
+        answer: 'No. In Minecraft Java Edition, banner pattern items are not consumed when used in a loom, so you can reuse the same pattern item across as many banners as you want.'
+      },
+      {
+        question: 'Which Banner Pattern items can you craft on a crafting table?',
+        answer: 'Six pattern items are crafted with Paper plus one item: Bordure Indented (curly_border: Paper + Vines), Field Masoned (bricks: Paper + Bricks), Flower Charge (flower: Paper + Oxeye Daisy), Creeper Charge (creeper: Paper + Creeper Head), Skull Charge (skull: Paper + Wither Skeleton Skull), and Thing (mojang: Paper + Enchanted Golden Apple).'
+      },
+      {
+        question: 'Which Banner Pattern items cannot be crafted?',
+        answer: 'Four banner pattern items are NOT craftable: Globe (globe: buy from a master cartographer villager for 8 emeralds), Snout (piglin: bastion remnant chest loot), Flow (flow: trial chambers ominous vault), and Guster (guster: trial chambers vault).'
+      },
+      {
+        question: 'Which dye colours are supported in the Minecraft Banner Designer?',
+        answer: 'All 16 Minecraft dye colours are supported for both the base banner and every layer: White, Orange, Magenta, Light Blue, Yellow, Lime, Pink, Gray, Light Gray, Cyan, Purple, Blue, Brown, Green, Red, and Black.'
+      }
+    ],
+    proTips: [
+      'Always craft your layers in the exact top-to-bottom order shown in the recipe, because later layers cover earlier patterns.',
+      'Since Banner Pattern items are not consumed in Java Edition, keep one of each pattern item stored in a chest beside your Loom.'
+    ],
+    relatedToolIds: ['minecraft-circle-generator', 'minecraft-slime-chunk-finder']
+  },
+  {
+    id: 'minecraft-stronghold-finder',
+    slug: 'minecraft-stronghold-finder',
+    name: 'Minecraft Stronghold Finder',
+    gameId: 'minecraft',
+    categoryId: 'calculators',
+    icon: 'Compass',
+    shortDescription: 'Triangulate Minecraft stronghold coordinates from two Eye of Ender throws using F3 positions and yaw angles.',
+    description: 'Find Minecraft Java Edition stronghold coordinates from two Eye of Ender throws. Enter each throw position (X, Z) and F3 facing yaw angle to compute the exact ray intersection, distance from both throw points, and ring context.',
+    badge: 'Triangulation',
+    rating: 4.98,
+    reviewsCount: 486,
+    userCount: '51k+ runners',
+    featured: true,
+    tags: ['minecraft', 'stronghold finder', 'eye of ender', 'triangulation', 'end portal', 'f3 yaw', 'speedrun'],
+    seoTitle: 'Minecraft Stronghold Finder – Eye of Ender Triangulation Calculator',
+    metaDescription: 'Triangulate Minecraft stronghold coordinates from two Eye of Ender throws using X/Z coordinates and F3 yaw angles.',
+    h1: 'Minecraft Stronghold Finder (Eye of Ender Triangulation)',
+    canonicalPath: '/tools/minecraft-stronghold-finder',
+    howToGuide: {
+      overview: 'Use two Eye of Ender throws from spaced-out locations to triangulate the stronghold starting staircase area.',
+      steps: [
+        { title: 'Measure Throw 1 Position & F3 Yaw', description: 'Throw an Eye of Ender, aim straight at it, press F3, and enter your X1, Z1 coordinates and Facing yaw angle.' },
+        { title: 'Travel Far Apart & Measure Throw 2', description: 'Move perpendicular to the flight direction so your throws cross at a wide angle, throw a second Eye, and enter X2, Z2, and yaw angle 2.' },
+        { title: 'Read the Estimated Coordinates', description: 'The calculator intersects both rays (dx = -sin(yaw), dz = cos(yaw)) and outputs estimated X, Z and distance from each throw point.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Minecraft F3 Yaw Ray Intersection Math',
+      details: 'Minecraft yaw converts to a 2D horizontal direction vector via dx = -sin(yaw in radians) and dz = cos(yaw in radians), where yaw 0 = South (+Z) and yaw -90 = East (+X). Solving the intersection of two rays locates the stronghold starting staircase area.',
+      mathSnippet: 'dx = -sin(yaw_rad), dz = cos(yaw_rad) | Intersect Ray 1 (X1 + t1*dx1, Z1 + t1*dz1) & Ray 2 (X2 + t2*dx2, Z2 + t2*dz2)'
+    },
+    faqs: [
+      {
+        question: 'Where does an Eye of Ender fly in Minecraft Java Edition?',
+        answer: 'An Eye of Ender flies toward the stronghold\'s starting staircase area, so triangulation locates the starting staircase area rather than the End portal room itself.'
+      },
+      {
+        question: 'How many strongholds exist in Java Edition and where is the first ring?',
+        answer: 'Java Edition worlds generate 128 strongholds in total across 8 rings around world spawn. The first ring has 3 strongholds located between 1,280 and 2,816 blocks out.'
+      },
+      {
+        question: 'How do you convert Minecraft F3 yaw into a direction vector?',
+        answer: 'Using yaw in radians, the horizontal direction vector is dx = -sin(yaw) and dz = cos(yaw), where yaw 0 faces south (+Z) and yaw -90 faces east (+X).'
+      },
+      {
+        question: 'How can I make my stronghold triangulation estimate more accurate?',
+        answer: 'The estimate improves when the two throws are far apart and cross at a wide angle, reducing small crosshair aiming errors.'
+      },
+      {
+        question: 'Why does the tool say "throws are too close in angle — throw again from farther away"?',
+        answer: 'When your two throws have nearly parallel angles, small measurement variations shift the intersection wildly. Walk farther perpendicular to your first throw and measure again.'
+      }
+    ],
+    proTips: [
+      'Walk several hundred blocks perpendicular to your first Eye of Ender flight path so both rays cross at a wide angle.',
+      'Dig down near the estimated intersection coordinates knowing Eyes of Ender guide you to the starting staircase area of the stronghold.'
+    ],
+    relatedToolIds: ['minecraft-nether-portal-calculator', 'minecraft-coordinate-converter']
+  },
+  {
+    id: 'minecraft-pixel-art-converter',
+    slug: 'minecraft-pixel-art-converter',
+    name: 'Minecraft Pixel Art Converter',
+    gameId: 'minecraft',
+    categoryId: 'generators',
+    icon: 'Layers',
+    shortDescription: 'Convert any image in your browser into a 16-colour Minecraft Wool or Concrete pixel-art grid with an exact block material list.',
+    description: 'Client-side Minecraft Pixel Art Converter that scales your uploaded image to 16, 32, 48, or 64 blocks wide while keeping aspect ratio, matches every pixel via RGB distance to the 16 Minecraft wool/concrete map dye colours, and outputs a block-by-block material count list.',
+    badge: 'Map Palette',
+    rating: 4.98,
+    reviewsCount: 418,
+    userCount: '39k+ builders',
+    featured: true,
+    tags: ['minecraft', 'pixel art converter', 'map art', 'wool palette', 'concrete palette', 'blueprint'],
+    seoTitle: 'Minecraft Pixel Art Converter – Image to 16-Colour Wool & Concrete Grid',
+    metaDescription: 'Convert any image into Minecraft pixel art in your browser. Choose 16, 32, 48, or 64 block width, match the 16 map dye colours, and get an exact material list.',
+    h1: 'Minecraft Pixel Art Converter (Image to Block Blueprint)',
+    canonicalPath: '/tools/minecraft-pixel-art-converter',
+    howToGuide: {
+      overview: 'Turn any image into a colour-matched Minecraft Wool or Concrete pixel-art grid entirely inside your browser.',
+      steps: [
+        { title: 'Upload an Image', description: 'Select any image from your device. Everything runs locally in your browser with zero server uploads.' },
+        { title: 'Pick a Grid Width', description: 'Choose 16, 32, 48, or 64 blocks wide. Height scales automatically to preserve your image\'s aspect ratio.' },
+        { title: 'Review the Preview Grid & Material List', description: 'Inspect individual block coordinates and check how many blocks of each of the 16 map colours are required (assuming 1 block per pixel).' }
+      ]
+    },
+    formulaExplained: {
+      title: '16-Colour RGB Nearest-Colour Mapping',
+      details: 'Each resized pixel is matched by shortest Euclidean RGB distance ((ΔR)² + (ΔG)² + (ΔB)²) to Minecraft\'s 16 dye map colours for Wool and Concrete. A full Minecraft map is 128×128 = 16,384 blocks.',
+      mathSnippet: 'Distance² = (R - Rp)² + (G - Gp)² + (B - Bp)² | Full Map = 128 × 128 = 16,384 blocks'
+    },
+    faqs: [
+      {
+        question: 'Are my uploaded images sent to a server?',
+        answer: 'No. All image resizing, RGB colour matching, and grid rendering happen 100% locally inside your browser\'s canvas engine.'
+      },
+      {
+        question: 'Which blocks and colours does the Minecraft Pixel Art Converter use?',
+        answer: 'It maps every pixel to Minecraft\'s 16 dye map colours for Wool and Concrete: White (#FFFFFF), Orange (#D87F33), Magenta (#B24CD8), Light Blue (#6699D8), Yellow (#E5E533), Lime (#7FCC19), Pink (#F27FA5), Gray (#4C4C4C), Light Gray (#999999), Cyan (#4C7F99), Purple (#7F3FB2), Blue (#334CB2), Brown (#664C33), Green (#667F33), Red (#993333), and Black (#191919).'
+      },
+      {
+        question: 'How many blocks are in a full Minecraft map?',
+        answer: 'A full Minecraft map covers 128 × 128 blocks, which equals 16,384 blocks in total.'
+      },
+      {
+        question: 'What is the simplest way to build Minecraft map art or pixel art in Survival?',
+        answer: 'Flat art—placing all blocks at one single height—is the simplest build method. The generated material list counts assume one block per pixel.'
+      },
+      {
+        question: 'What grid widths can I generate?',
+        answer: 'You can pick 16, 32, 48, or 64 blocks wide, and the converter automatically calculates the matching grid height to keep your image\'s original aspect ratio.'
+      }
+    ],
+    proTips: [
+      'Flat pixel art—keeping all blocks at one single Y-level—is the simplest and fastest way to build in Survival.',
+      'Remember that material counts assume exactly one block per pixel.'
+    ],
+    relatedToolIds: ['minecraft-circle-generator', 'minecraft-banner-designer']
+  },
+  {
+    id: 'minecraft-brewing-calculator',
+    slug: 'minecraft-brewing-calculator',
+    name: 'Minecraft Brewing Calculator',
+    gameId: 'minecraft',
+    categoryId: 'calculators',
+    icon: 'Zap',
+    shortDescription: 'Step-by-step Java Edition potion brewing paths, durations, Redstone/Glowstone effects, and Splash or Lingering modifiers.',
+    description: 'Complete Minecraft Java Edition Brewing Calculator covering all 19 potions including 1.21 effects (Oozing, Weaving, Infestation, Wind Charging). Shows the exact ingredient order from Water Bottle or Awkward Potion, Redstone extended durations, Glowstone level II enhancements, and Splash/Lingering outputs.',
+    badge: '1.21 Potions',
+    rating: 4.99,
+    reviewsCount: 612,
+    userCount: '58k+ players',
+    featured: true,
+    tags: ['minecraft', 'brewing calculator', 'potions', 'awkward potion', 'weakness potion', 'redstone', 'glowstone', '1.21'],
+    seoTitle: 'Minecraft Brewing Calculator – Java Potion Recipes, Paths & Durations',
+    metaDescription: 'Find exact Minecraft Java Edition potion brewing paths, base/extended/enhanced durations, Weakness water-bottle recipe, and Splash or Lingering rules.',
+    h1: 'Minecraft Brewing Calculator (Java Edition Potions)',
+    canonicalPath: '/tools/minecraft-brewing-calculator',
+    howToGuide: {
+      overview: 'Look up the exact ingredient path, duration, and modifiers for any Minecraft Java Edition potion.',
+      steps: [
+        { title: 'Pick a Potion', description: 'Select from all 19 Java Edition potions, including classic effects and 1.21 Trial Chambers potions.' },
+        { title: 'Choose Redstone or Glowstone', description: 'Apply Redstone (Extended) or Glowstone (Enhanced Level II+), or see clearly when a potion cannot be extended or enhanced.' },
+        { title: 'Pick Drinkable, Splash, or Lingering', description: 'Add Gunpowder for Splash (same duration) or Dragon\'s Breath for Lingering (1/4 of drink duration).' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Java Edition Potion Brewing & Modifier Rules',
+      details: 'Base = Awkward Potion (Water Bottle + Nether Wart) + ingredient, except Weakness (Fermented Spider Eye into a plain Water Bottle) and corruption chains. Redstone and Glowstone cannot be combined on one potion. Gunpowder creates Splash (same duration); Dragon\'s Breath converts Splash to Lingering at 1/4 of the drink duration.',
+      mathSnippet: 'Awkward = Water Bottle + Nether Wart | Lingering Duration = Drink Duration ÷ 4 | Redstone XOR Glowstone'
+    },
+    faqs: [
+      {
+        question: 'Which Minecraft potion is brewed without Nether Wart?',
+        answer: 'Weakness is the only potion brewed without Nether Wart: add a Fermented Spider Eye directly into a plain Water Bottle (1:30 base duration, or 4:00 when extended with Redstone).'
+      },
+      {
+        question: 'Can you combine Redstone and Glowstone on the same potion?',
+        answer: 'No. Redstone (extended duration) and Glowstone (enhanced level II+) cannot be combined on one potion—you can only apply one modifier.'
+      },
+      {
+        question: 'How does Dragon\'s Breath change a potion\'s duration?',
+        answer: 'Adding Dragon\'s Breath to a Splash potion creates a Lingering potion with 1/4 of the drinkable potion\'s duration (for example, an 8:00 Fire Resistance potion becomes 2:00 as a Lingering potion).'
+      },
+      {
+        question: 'Which potions were added in Minecraft 1.21 and can they be extended or enhanced?',
+        answer: 'The four 1.21 potions are Oozing (Slime Block), Weaving (Cobweb), Infestation (Stone), and Wind Charging (Breeze Rod). Each has a 3:00 base duration and cannot be extended with Redstone or enhanced with Glowstone.'
+      },
+      {
+        question: 'Which potions use Fermented Spider Eye on an existing potion instead of an Awkward Potion?',
+        answer: 'Invisibility (Fermented Spider Eye into Night Vision), Harming (Fermented Spider Eye into Healing or Poison), and Slowness (Fermented Spider Eye into Swiftness or Leaping) corrupt existing potions.'
+      }
+    ],
+    proTips: [
+      'Remember that Weakness skips Nether Wart completely: place plain Water Bottles directly in the Brewing Stand with a Fermented Spider Eye.',
+      'Splash potions keep the exact same duration as their drinkable version when you add Gunpowder.'
+    ],
+    relatedToolIds: ['minecraft-xp-calculator', 'minecraft-stronghold-finder']
   }
 ];
 

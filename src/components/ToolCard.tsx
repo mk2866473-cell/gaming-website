@@ -143,6 +143,21 @@ function getBadgeStyles(badge: StatusBadgeType): string {
  */
 function getTechnicalMetadata(tool: ToolItem): string {
   if (tool.gameId === 'minecraft') {
+    if (tool.id.includes('slime')) {
+      return 'Java Edition';
+    }
+    if (tool.id.includes('banner')) {
+      return '16 Dyes • 6 Layers';
+    }
+    if (tool.id.includes('stronghold')) {
+      return 'Eye Triangulation';
+    }
+    if (tool.id.includes('pixel')) {
+      return '16 Map Colours';
+    }
+    if (tool.id.includes('brewing')) {
+      return '19 Java Potions';
+    }
     if (
       tool.id.includes('circle') || 
       tool.id.includes('portal') || 
