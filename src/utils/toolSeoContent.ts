@@ -297,6 +297,118 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
+  // 4a. Robux to USD Converter (store purchase vs DevEx — 30% marketplace tax stays in robux-tax-calculator only)
+  if (id === 'robux-to-usd-calculator') {
+    return [
+      {
+        title: 'Example 1: Comparing Store Purchase Value vs DevEx Cashout for 10,000 Robux',
+        scenario: 'A player compares what 10,000 Robux costs to buy in USD at the baseline store rate versus what 10,000 Earned Robux pays out via Developer Exchange.',
+        inputValues: { 'Robux Amount': '10,000 R$', 'Store Rate': '$0.0125/R$ (~80 R$/$)', 'DevEx Rate': '$0.0035/R$' },
+        calculation: 'Store Value = 10,000 × $0.0125 = $125.00 USD (or $99.99 via the official 10,000 R$ bundle). DevEx Value = 10,000 × $0.0035 = $35.00 USD.',
+        result: 'Store Purchase Value: $125.00 USD | DevEx Cashout Equivalent: $35.00 USD',
+        takeaway: 'Store rates and DevEx cashout rates are very different—note also that 10,000 R$ is below the 30,000 Robux minimum required to submit a DevEx request.'
+      },
+      {
+        title: 'Example 2: Converting a $20 USD Budget to Robux with Premium (+10% Bonus)',
+        scenario: 'A Roblox player budgets $20.00 USD and compares how many Robux they receive at the standard baseline rate (~80 R$/$) versus with an active Roblox Premium membership (+10% bonus, ~88 R$/$).',
+        inputValues: { 'Direction': 'USD → Robux', 'Budget': '$20.00 USD', 'Premium Bonus': '+10%' },
+        calculation: 'Standard = $20 × 80 = 1,600 R$. With Premium (+10%) = $20 × 88 = 1,760 R$. (Official $19.99 package gives 1,700 R$ standard or 1,870 R$ with Premium.)',
+        result: 'Standard: ~1,600 R$ | Premium (+10%): ~1,760 R$',
+        takeaway: 'Holding Roblox Premium grants 10% extra Robux across store purchases and lowers your effective cost per Robux.'
+      },
+      {
+        title: 'Example 3: Reaching the 30,000 Robux DevEx Cashout Minimum (50,000 R$ Payout)',
+        scenario: 'A studio developer checks whether 50,000 Earned Robux clears the 30,000 Robux DevEx minimum and calculates the USD payout.',
+        inputValues: { 'Earned Balance': '50,000 R$', 'DevEx Minimum': '30,000 R$ ($105.00)', 'DevEx Rate': '$0.0035/R$' },
+        calculation: '50,000 >= 30,000 minimum threshold (Eligible). USD Payout = 50,000 × $0.0035 = $175.00 USD.',
+        result: 'Eligible for DevEx · Payout: $175.00 USD',
+        takeaway: 'Every 30,000 Earned Robux yields at least $105.00 USD, and every 100,000 Earned Robux cashes out to $350.00 USD.'
+      }
+    ];
+  }
+
+  // 4b. Blox Fruits Trading Calculator & 40% Rule Evaluator
+  if (id === 'blox-fruits-trading-calculator') {
+    return [
+      {
+        title: 'Example 1: Evaluating Dough + Buddha vs T-Rex (Market Value & 40% Beli Rule)',
+        scenario: 'A trader offers Dough (25M trading value, 2.8M Beli) + Buddha (8M trading value, 1.2M Beli) for T-Rex (20M trading value, 2.7M Beli).',
+        inputValues: { 'Your Offer': 'Dough + Buddha (33M val, 4.0M Beli)', 'Their Offer': 'T-Rex (20M val, 2.7M Beli)' },
+        calculation: 'Trading Value Diff = 20M - 33M = -13M (Massive Loss in market value). Beli Gap = (4.0M - 2.7M) / 4.0M = 32.5% (≤ 40%, trade allowed in-game).',
+        result: 'Verdict: Massive Loss (-13M Val) | 40% Beli Rule: Passed (32.5% gap)',
+        takeaway: 'Even when an in-game trade table accepts the Beli gap (32.5% ≤ 40%), community trading values protect you from overpaying.'
+      },
+      {
+        title: 'Example 2: Fixing a Blocked Trade Over the 40% Beli Limit',
+        scenario: 'Offering Leopard (40M value, 5.0M Beli) for Dough (25M value, 2.8M Beli) triggers "Value difference is too high".',
+        inputValues: { 'Your Beli': '5,000,000 Beli (Leopard)', 'Their Beli': '2,800,000 Beli (Dough)' },
+        calculation: 'Beli Gap = (5.0M - 2.8M) / 5.0M = 44.0% (> 40%, blocked). Min required on their side = 5.0M × 0.60 = 3.0M Beli → needs +200,000 Beli filler (e.g. Gravity 2.5M or Magma 850k).',
+        result: 'Blocked at 44.0% → Adding Magma (850k Beli) brings their side to 3.65M Beli (27.0% gap, Allowed)',
+        takeaway: 'Use the 40% Beli Rule Evaluator to find the exact minimum Beli filler needed before walking to the trading chairs.'
+      },
+      {
+        title: 'Example 3: Upgrading Kitsune + Gravity for Dragon (Rework)',
+        scenario: 'Checking a high-tier Mythical trade: Kitsune (125M value, 8.0M Beli) + Gravity (2.5M value, 2.5M Beli) for Dragon (Rework) (180M value, 10.0M Beli).',
+        inputValues: { 'Your Offer': '127.5M Value · 10.5M Beli', 'Their Offer': '180M Value · 10.0M Beli' },
+        calculation: 'Value Gain = 180M - 127.5M = +52.5M (Massive Win). Beli Gap = (10.5M - 10.0M) / 10.5M = 4.8% (well under 40%).',
+        result: 'Massive Win (+52.5M Value) · 40% Beli Rule Passed (4.8%)',
+        takeaway: 'Adding Gravity stabilizes Beli requirements while barely affecting overall Mythical market trade balance.'
+      }
+    ];
+  }
+
+  // 4c. Blox Fruits Stat Calculator & Reset Planner
+  if (id === 'blox-fruits-stat-calculator') {
+    return [
+      {
+        title: 'Example 1: Max Level 2,600 Fruit Main Build (7,800 Points)',
+        scenario: 'A max-level pirate allocates all 7,800 stat points into Melee, Defense, and Blox Fruit for maximum PvP survivability and fruit combo damage.',
+        inputValues: { 'Player Level': '2,600 (7,800 Points)', 'Melee': '2,600', 'Defense': '2,600', 'Blox Fruit': '2,600' },
+        calculation: 'HP = 100 + (2,600 × 5) = 13,100 HP. Energy = 100 + (2,600 × 5) = 13,100 Energy. Remaining points = 7,800 - 7,800 = 0.',
+        result: '13,100 HP | 13,100 Energy | Max 2,600 Blox Fruit Damage',
+        takeaway: 'Investing equally into Melee, Defense, and one primary offense stat maximizes damage without sacrificing health or stamina.'
+      },
+      {
+        title: 'Example 2: Planning a Stat Reset — Plokster NPC vs Shop Refund',
+        scenario: 'A Sword Main player wants to respec all 7,800 stat points into a Gun Main build after unlocking new Third Sea weapons.',
+        inputValues: { 'Option A': 'Plokster NPC (Second Sea Cafe / Third Sea Floating Turtle)', 'Option B': 'In-Game Shop', 'Option C': 'Promo Codes' },
+        calculation: 'Plokster charges 2,500 Fragments; Shop Stat Refund costs 75 Robux; active developer codes cost 0.',
+        result: 'Best Free-to-Play Option: 2,500 Fragments at Plokster NPC (or 0 cost if a Stat Reset code is active)',
+        takeaway: 'Keep at least 2,500 Fragments banked from Sea Events or Raids so you can switch between Fruit, Sword, and Gun builds anytime.'
+      },
+      {
+        title: 'Example 3: Balanced 5-Stat Hybrid Split at Level 2,600',
+        scenario: 'Testing a 5-way Hybrid Split distribution across all 5 attributes before locking in an experimental PvP loadout.',
+        inputValues: { 'Total Pool': '7,800 Points', 'Attributes': '5 (Melee, Defense, Sword, Gun, Fruit)' },
+        calculation: 'Per-Attribute Allocation = floor(7,800 / 5) = 1,560 points each. HP = 100 + (1,560 × 5) = 7,900 HP; Energy = 7,900.',
+        result: '1,560 in all 5 stats | 7,900 HP | 7,900 Energy',
+        takeaway: 'Hybrid splits spread damage thin—compare your 7,900 HP against a 13,100 HP Meta Main before entering competitive Bounty hunting.'
+      }
+    ];
+  }
+
+  // 4d. Roblox Group Payout & Studio Team Earnings Calculator
+  if (id === 'roblox-group-payout-calculator') {
+    return [
+      {
+        title: 'Example 1: Splitting Multi-Stream Studio Team Earnings (500,000 R$ Pool)',
+        scenario: 'A Roblox development studio earns 250,000 R$ from Gamepasses (70% Net), 150,000 R$ from Dev Products, 30,000 R$ from Avatar Commissions, and 70,000 R$ from Premium Playtime Payouts.',
+        inputValues: { 'Total Pool': '500,000 Net R$', 'Splits': '40% / 30% / 15% / 15%' },
+        calculation: 'Lead Dev (40%) = 200,000 R$ ($700.00 DevEx USD); Lead Builder (30%) = 150,000 R$ ($525.00 USD); UI/VFX (15%) = 75,000 R$ ($262.50 USD); Studio Reserve (15%) = 75,000 R$ ($262.50 USD).',
+        result: '500,000 Net R$ Distributed | $1,750.00 Total DevEx USD (0% extra group payout tax)',
+        takeaway: 'Group payouts carry a 0% additional fee because the 30% Roblox marketplace cut was already taken when each stream was earned.'
+      },
+      {
+        title: 'Example 2: Direct Group Funds Payout Split with 14-Day Eligibility Check',
+        scenario: 'Distributing 100,000 R$ sitting in Group Funds across 3 equal collaborators (33% each) and checking remainder.',
+        inputValues: { 'Group Funds Pool': '100,000 R$', '3 Members': '33% each (99% allocated)' },
+        calculation: 'Per Member = floor(100,000 × 0.33) = 33,000 R$ ($115.50 DevEx USD — above 30k DevEx minimum). Remainder left in group = 1,000 R$.',
+        result: '33,000 R$ ($115.50 USD) per member | 1,000 R$ unallocated remainder',
+        takeaway: 'Remember that newly joined group members must wait 14 days before Roblox allows sending them group payouts.'
+      }
+    ];
+  }
+
   // 4. Roblox Robux Tax / DevEx / Developer Earnings Calculator
   if (name.includes('robux') || name.includes('devex') || name.includes('gamepass') || name.includes('developer')) {
     return [
@@ -639,6 +751,72 @@ export function getToolDeepDive(tool: ToolItem): ToolDeepDive {
         'Unique Weakness Path: Fermented Spider Eye directly into a plain Water Bottle (no Nether Wart).',
         'Mutually Exclusive Upgrades: Redstone and Glowstone cannot be combined on the same potion.',
         'Splash & Lingering Math: Gunpowder keeps the same duration; Dragon\'s Breath cuts duration to 1/4 of drink duration.'
+      ]
+    };
+  }
+
+  if (tool.id === 'robux-to-usd-calculator') {
+    return {
+      title: 'How Robux to USD & DevEx Exchange Rates Work',
+      summary: 'Comparing standard retail purchase pricing ($0.0125/R$ + 10% Premium bonus) with the official Developer Exchange rate ($0.0035/R$, 30,000 R$ minimum).',
+      paragraphs: [
+        'Robux carries two distinct real-world USD exchange rates depending on whether you are buying Robux from the Roblox store or cashing out Earned Robux as a creator. On the retail store side, packages average ~$0.0125 USD per Robux (~80 Robux per $1.00 USD), ranging from $4.99 for 400 R$ up to $199.99 for 22,500 R$. Active Roblox Premium subscribers receive a +10% Robux bonus (~88 Robux per $1.00 USD) across purchase bundles.',
+        'On the developer side, the official Developer Exchange (DevEx) program converts eligible Earned Robux into real money at $0.0035 USD per Robux ($105.00 USD at the 30,000 Robux minimum, and $350.00 USD per 100,000 Earned Robux).',
+        'To qualify for DevEx payouts, your account must hold at least 30,000 Earned Robux acquired legitimately through game monetization (game passes, developer products, premium payouts) or catalog sales, meet the 13+ age requirement, and maintain verified Tipalti payout credentials.'
+      ],
+      keyPoints: [
+        'Two-Way Conversion: Convert Robux → USD and USD → Robux with +10% Roblox Premium bundle toggling.',
+        'Dual Rate Clarity: Displays retail store value (~$0.0125/R$, ~80 R$/$) alongside official DevEx cashout value ($0.0035/R$).',
+        '30,000 Robux DevEx Minimum: Real-time eligibility check highlights the $105.00 USD minimum cashout threshold.'
+      ]
+    };
+  }
+
+  if (tool.id === 'blox-fruits-trading-calculator') {
+    return {
+      title: 'How Blox Fruits Market Values & the 40% Beli Rule Work',
+      summary: 'Understanding community trading demand values vs NPC Beli prices and the mandatory 40% in-game trade table difference limit.',
+      paragraphs: [
+        'Every trade in Blox Fruits must pass two separate checks: first, the game server enforces the mandatory 40% Beli difference rule based on each fruit\'s NPC shop Beli price; second, experienced traders compare community market trading values (such as 180M for Dragon Rework, 125M for Kitsune, 40M for Leopard, 25M for Dough, and 8M for Buddha).',
+        'In-game trade tables evaluate |Beli_You - Beli_Them| / max(Beli_You, Beli_Them) <= 40%. Equivalently, the lower-priced side must equal at least 60% of the higher-priced side\'s total Beli, or the game blocks the trade with "Value difference is too high."',
+        'Because popular grinding and PvP fruits like Buddha (1.2M Beli, 8M trade value) trade far above their NPC shop cost, players routinely include high-Beli, low-demand fruits such as Gravity (2.5M Beli) or Shadow (2.9M Beli) to satisfy the 40% Beli limit without skewing real trade equity.'
+      ],
+      keyPoints: [
+        '4v4 Fruit Value Comparison: Track total trading value, average demand (1–10), and Win / Fair / Loss assessment.',
+        'Dedicated 40% Beli Rule Evaluator: Automatically checks your fruit trade OR tests custom Beli sums against the 60% minimum threshold.',
+        'Exact Filler Calculation: Immediately shows the exact Beli needed on the lower side to unlock blocked trades.'
+      ]
+    };
+  }
+
+  if (tool.id === 'blox-fruits-stat-calculator') {
+    return {
+      title: 'How Blox Fruits Stat Points, Pools & Stat Resets Work',
+      summary: 'Level 2,600 stat cap math (7,800 points), 13,100 HP & Energy formulas, and Plokster vs Robux stat reset options.',
+      paragraphs: [
+        'In Blox Fruits, every level grants exactly 3 stat points, giving players a total budget of 7,800 stat points at the Level 2,600 cap (with a maximum of 2,600 points per individual attribute). Because both Defense (5 HP per point) and Melee (5 Energy per point) are essential for survivability and stamina—capping at 13,100 HP and 13,100 Energy—competitive builds typically max Melee, Defense, and one primary damage stat (Blox Fruit, Sword, or Gun).',
+        'Whenever you switch fighting styles or want to transition from grinding (such as Awakened Buddha Sword/Melee) into PvP Fruit Main combos, you can refund all allocated points via three in-game methods: speaking to the Plokster NPC in the Cafe (Second Sea) or Floating Turtle (Third Sea) for 2,500 Fragments, buying a Stat Refund in the Shop for 75 Robux, or redeeming free developer Stat Reset codes.'
+      ],
+      keyPoints: [
+        'Max Level 2,600 Budget: 7,800 total stat points (3 points per level; max 2,600 per stat attribute).',
+        'Health & Energy Pools: HP = 100 + Defense × 5 (13,100 Max) and Energy = 100 + Melee × 5 (13,100 Max).',
+        'Stat Reset Costs: 2,500 Fragments at Plokster NPC, 75 Robux in the Shop, or 0 cost with active Stat Reset codes.'
+      ]
+    };
+  }
+
+  if (tool.id === 'roblox-group-payout-calculator') {
+    return {
+      title: 'How Roblox Group Payouts & Team Earnings Splits Work',
+      summary: 'Combining multi-stream studio revenue or direct group funds, 0% group payout fee rules, DevEx eligibility, and the 14-day member wait.',
+      paragraphs: [
+        'Roblox studios distribute game earnings using Group Payouts, allowing owners to split either an existing Group Funds balance or combined monthly creator revenue streams—Gamepasses (70% Net), Developer Products, Avatar Commissions (40%), and Engagement-Based Premium Payouts—across scripters, builders, designers, and studio reserve funds.',
+        'Because Roblox already deducts its 30% marketplace fee when players purchase passes or products in your experience, sending Group Payouts carries a 0% additional tax. Payouts funded by verified experience or catalog earnings remain clean Earned Robux, eligible for Developer Exchange (DevEx) at $0.0035 USD per Robux once a developer reaches the 30,000 Robux minimum. Keep in mind that newly added group members must wait 14 days before they are eligible to receive payouts.'
+      ],
+      keyPoints: [
+        'Dual Pool Modes: Split a direct Group Funds balance or aggregate Gamepasses, Dev Products, Commissions, and Premium Payouts.',
+        '0% Additional Payout Fee: Group payouts avoid double taxation and preserve DevEx eligibility ($0.0035/R$).',
+        '14-Day Eligibility & Studio Reserve: New group members wait 14 days for payouts; reserving 10%–20% covers ads and upkeep.'
       ]
     };
   }

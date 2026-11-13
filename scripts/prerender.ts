@@ -1774,15 +1774,21 @@ QA_ENTRIES.forEach(entry => {
             </div>
           </div>
 
-          <div class="p-6 rounded-2xl bg-[#0c122e] border border-indigo-900/60 flex items-center justify-between">
+          ${(() => {
+            const relatedTool = TOOLS.find(t => t.id === entry.relatedToolId);
+            const relatedPath = relatedTool ? (relatedTool.canonicalPath || `/tools/${relatedTool.slug}`) : '/tools/robux-to-usd-calculator';
+            const relatedLabel = relatedTool ? relatedTool.name : `${entry.gameName} Calculator`;
+            return `
+          <div class="p-6 rounded-2xl bg-[#0c122e] border border-indigo-900/60 flex items-center justify-between gap-4">
             <div>
               <h3 class="text-base font-bold text-white">Interactive Precision Tool</h3>
               <p class="text-xs text-slate-400">Calculate custom amounts with live rates in our calculator tool.</p>
             </div>
-            <a href="/tools/robux-calculator" class="px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs transition-all">
-              Try the Robux Calculator →
+            <a href="${relatedPath}" class="px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs transition-all shrink-0">
+              Try the ${escapeHtml(relatedLabel)} →
             </a>
-          </div>
+          </div>`;
+          })()}
         </main>
       </div>
       ${renderFooter()}
@@ -1989,3 +1995,63 @@ const clean404Html = `<!doctype html>
 
 fs.writeFileSync(path.join(DIST_DIR, '404.html'), clean404Html.trim(), 'utf-8');
 console.log('Generated clean GitHub Pages 404.html without redirects!');
+
+/**
+ * 4. Generate Static Redirect Pages for Retired Tool Slugs (NOT tool pages)
+ *    Creates /tools/<retired-slug>/index.html and /tools/<retired-slug>.html
+ *    with canonical -> surviving URL, 0-second meta refresh, and robots noindex.
+ */
+const RETIRED_TOOL_REDIRECTS: Array<{ retiredSlug: string; targetSlug: string; targetName: string }> = [
+  {
+    retiredSlug: 'robux-calculator',
+    targetSlug: 'robux-to-usd-calculator',
+    targetName: 'Robux to USD Calculator'
+  },
+  {
+    retiredSlug: 'blox-fruits-calculator',
+    targetSlug: 'blox-fruits-trading-calculator',
+    targetName: 'Blox Fruits Trading Calculator'
+  },
+  {
+    retiredSlug: 'blox-fruits-stat-reset-planner',
+    targetSlug: 'blox-fruits-stat-calculator',
+    targetName: 'Blox Fruits Stat Calculator'
+  },
+  {
+    retiredSlug: 'roblox-developer-earnings-calculator',
+    targetSlug: 'roblox-group-payout-calculator',
+    targetName: 'Roblox Group Payout Calculator'
+  }
+];
+
+RETIRED_TOOL_REDIRECTS.forEach(({ retiredSlug, targetSlug, targetName }) => {
+  const targetPath = `/tools/${targetSlug}`;
+  const targetCanonicalUrl = `${DOMAIN}${targetPath}`;
+  const redirectHtml = `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting to ${escapeHtml(targetName)} | GamingToolsHub</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="${targetCanonicalUrl}" />
+    <meta http-equiv="refresh" content="0; url=${targetPath}" />
+    <script>
+      window.location.replace(${JSON.stringify(targetPath)});
+    </script>
+  </head>
+  <body>
+    <p>This tool has moved to <a href="${targetPath}">${escapeHtml(targetName)}</a>.</p>
+  </body>
+</html>
+`;
+
+  const retiredDir = path.join(DIST_DIR, 'tools', retiredSlug);
+  if (!fs.existsSync(retiredDir)) {
+    fs.mkdirSync(retiredDir, { recursive: true });
+  }
+  fs.writeFileSync(path.join(retiredDir, 'index.html'), redirectHtml, 'utf-8');
+  fs.writeFileSync(path.join(DIST_DIR, 'tools', `${retiredSlug}.html`), redirectHtml, 'utf-8');
+});
+
+console.log(`Generated ${RETIRED_TOOL_REDIRECTS.length} retired tool redirect pages!`);

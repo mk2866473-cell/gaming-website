@@ -33,7 +33,7 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
     { id: 'ps99', name: 'Pet Simulator 99 (PS99 Trade WFL)' },
     { id: 'economy', name: 'Robux & DevEx (Tax, USD Value, DevEx Cashout)' },
     { id: 'bloxfruits', name: 'Blox Fruits (Values, XP, Stats, Damage)' },
-    { id: 'developer', name: 'Studio Developer (Gamepasses, Team Splits, Premium)' }
+    { id: 'developer', name: 'Studio Developer (Gamepasses, Group Payouts, Team Splits, Premium)' }
   ];
 
   const filteredTools = useMemo(() => {
@@ -48,11 +48,11 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
       if (selectedSubCategory === 'ps99') {
         matchCategory = tool.id.includes('ps99') || tool.tags.includes('ps99');
       } else if (selectedSubCategory === 'economy') {
-        matchCategory = ['robux-tax-calculator', 'robux-calculator', 'roblox-devex-calculator'].includes(tool.id);
+        matchCategory = ['robux-tax-calculator', 'robux-to-usd-calculator', 'roblox-devex-calculator'].includes(tool.id);
       } else if (selectedSubCategory === 'bloxfruits') {
         matchCategory = tool.id.startsWith('blox-fruits');
       } else if (selectedSubCategory === 'developer') {
-        matchCategory = ['roblox-gamepass-revenue-calculator', 'roblox-developer-earnings-calculator', 'roblox-premium-payout-calculator'].includes(tool.id);
+        matchCategory = ['roblox-gamepass-revenue-calculator', 'roblox-group-payout-calculator', 'roblox-premium-payout-calculator'].includes(tool.id);
       }
 
       return matchQuery && matchCategory;

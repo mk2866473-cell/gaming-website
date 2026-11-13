@@ -275,11 +275,11 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <MinecraftBrewingCalculator />;
       case 'robux-tax-calculator':
         return <RobuxTaxCalculator />;
-      case 'robux-calculator':
+      case 'robux-to-usd-calculator':
         return <RobuxCalculator />;
       case 'roblox-devex-calculator':
         return <RobloxDevExCalculator />;
-      case 'blox-fruits-calculator':
+      case 'blox-fruits-trading-calculator':
         return <BloxFruitsCalculator />;
       case 'blox-fruits-xp-calculator':
         return <BloxFruitsXpCalculator />;
@@ -289,7 +289,7 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <BloxFruitsDamageCalculator />;
       case 'roblox-gamepass-revenue-calculator':
         return <RobloxGamepassRevenueCalculator />;
-      case 'roblox-developer-earnings-calculator':
+      case 'roblox-group-payout-calculator':
         return <RobloxDeveloperEarningsCalculator />;
       case 'roblox-premium-payout-calculator':
         return <RobloxPremiumPayoutCalculator />;

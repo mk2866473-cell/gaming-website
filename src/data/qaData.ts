@@ -27,7 +27,7 @@ For Roblox developers and creators using the Developer Exchange (DevEx) program,
 
 To calculate custom Robux amounts, standard store purchases cost $1.25 per 100 Robux, while DevEx payouts deliver $0.35 per 100 Robux for eligible creators.`,
     workedExample: 'Store purchase: 1,000 × $0.0125 = $12.50 USD. DevEx cash-out: 1,000 × $0.0035 = $3.50 USD.',
-    relatedToolId: 'robux-calculator'
+    relatedToolId: 'robux-to-usd-calculator'
   },
   {
     gameSlug: 'roblox',
@@ -41,7 +41,7 @@ If you are a Roblox game creator or UGC designer cashing out earned Robux throug
 
 Note that to request a DevEx payout, creators must hold at least 30,000 earned Robux and have an active Roblox Premium membership.`,
     workedExample: 'Store purchase: 5,000 × $0.0125 = $62.50 USD. DevEx cash-out: 5,000 × $0.0035 = $17.50 USD.',
-    relatedToolId: 'robux-calculator'
+    relatedToolId: 'robux-to-usd-calculator'
   },
   {
     gameSlug: 'roblox',
@@ -55,7 +55,7 @@ For developers exchanging Robux back to real currency via Developer Exchange (De
 
 The difference between the purchase cost and cash-out payout reflects platform maintenance fees, server costs, and Roblox's revenue split with creators.`,
     workedExample: 'Store purchase: 10,000 × $0.0125 = $125.00 USD. DevEx cash-out: 10,000 × $0.0035 = $35.00 USD.',
-    relatedToolId: 'robux-calculator'
+    relatedToolId: 'robux-to-usd-calculator'
   },
   {
     gameSlug: 'roblox',
@@ -69,7 +69,7 @@ Because 31,000 Robux exceeds the 30,000 Robux Developer Exchange threshold, elig
 
 Developers must ensure all 31,000 Robux were earned legitimately through game passes, developer products, or UGC item sales to qualify for DevEx payout.`,
     workedExample: 'Store purchase: 31,000 × $0.0125 = $387.50 USD. DevEx cash-out: 31,000 × $0.0035 = $108.50 USD.',
-    relatedToolId: 'robux-calculator'
+    relatedToolId: 'robux-to-usd-calculator'
   },
   {
     gameSlug: 'roblox',
@@ -83,7 +83,7 @@ For Roblox developers using DevEx to withdraw their hard-earned game revenue, 50
 
 DevEx payments are processed monthly via Tipalti to verified developer bank accounts or PayPal.`,
     workedExample: 'Store purchase: 50,000 × $0.0125 = $625.00 USD. DevEx cash-out: 50,000 × $0.0035 = $175.00 USD.',
-    relatedToolId: 'robux-calculator'
+    relatedToolId: 'robux-to-usd-calculator'
   },
   {
     gameSlug: 'roblox',
@@ -97,7 +97,7 @@ Creators cashing out 76,000 Robux through the Developer Exchange (DevEx) receive
 
 Creators must satisfy account verification and tax reporting guidelines when submitting cash-out requests of this size.`,
     workedExample: 'Store purchase: 76,000 × $0.0125 = $950.00 USD. DevEx cash-out: 76,000 × $0.0035 = $266.00 USD.',
-    relatedToolId: 'robux-calculator'
+    relatedToolId: 'robux-to-usd-calculator'
   },
   {
     gameSlug: 'roblox',
@@ -111,7 +111,7 @@ For successful Roblox developers and studio owners, cashing out 100,000 Robux vi
 
 100,000 Robux is a common monthly benchmark for popular game developers and UGC creators.`,
     workedExample: 'Store purchase: 100,000 × $0.0125 = $1,250.00 USD. DevEx cash-out: 100,000 × $0.0035 = $350.00 USD.',
-    relatedToolId: 'robux-calculator'
+    relatedToolId: 'robux-to-usd-calculator'
   },
   {
     gameSlug: 'roblox',
@@ -125,7 +125,7 @@ To be eligible for DevEx, creators must meet key requirements: be at least 13 ye
 
 The minimum threshold for cash-out is 30,000 earned Robux, which yields $105.00 USD at the standard DevEx exchange rate of $0.0035 USD per Robux. Robux acquired through trading, group payout transfers from non-earned sources, or gift cards do not qualify.`,
     workedExample: 'At 30,000 Robux: 30,000 × $0.0035 = $105.00 USD minimum cash-out.',
-    relatedToolId: 'robux-calculator'
+    relatedToolId: 'robux-to-usd-calculator'
   },
   {
     gameSlug: 'roblox',
@@ -139,7 +139,7 @@ With a Premium membership the same $5 works out to roughly 440 Robux worth of va
 
 Calculating your Robux yield per dollar helps you plan purchases for avatar accessories, game passes, or developer products effectively.`,
     workedExample: 'Standard store: $5 × 80 Robux per $1 = 400 Robux. With Premium: 400 + 40 bonus = 440 Robux.',
-    relatedToolId: 'robux-calculator'
+    relatedToolId: 'robux-to-usd-calculator'
   },
   {
     gameSlug: 'roblox',
@@ -153,7 +153,7 @@ With Premium it works out to roughly 880 Robux worth of value. Roblox Premium su
 
 Knowing the exact Robux output per $10 helps players compare standard gift cards and subscription bundles before spending.`,
     workedExample: 'Standard store: $10 × 80 Robux per $1 = 800 Robux. With Premium: 800 + 80 bonus = 880 Robux.',
-    relatedToolId: 'robux-calculator'
+    relatedToolId: 'robux-to-usd-calculator'
   },
   {
     gameSlug: 'roblox',
@@ -167,7 +167,7 @@ With Premium it works out to roughly 1,760 Robux worth of value. Premium members
 
 Understanding how much Robux $20 yields ensures you maximize value across standard store tiers and active membership plans.`,
     workedExample: 'Standard store: $20 × 80 Robux per $1 = 1,600 Robux. With Premium: 1,600 + 160 bonus = 1,760 Robux.',
-    relatedToolId: 'robux-calculator'
+    relatedToolId: 'robux-to-usd-calculator'
   },
   {
     gameSlug: 'roblox',
@@ -181,7 +181,7 @@ With Premium it works out to roughly 4,400 Robux worth of value. Subscribers enj
 
 Calculating the total currency returned per dollar spent helps players budget for major Roblox purchases efficiently.`,
     workedExample: 'Standard store: $50 × 80 Robux per $1 = 4,000 Robux. With Premium: 4,000 + 400 bonus = 4,400 Robux.',
-    relatedToolId: 'robux-calculator'
+    relatedToolId: 'robux-to-usd-calculator'
   },
   {
     gameSlug: 'roblox',

@@ -31,7 +31,7 @@ export const GAMES: GameInfo[] = [
     borderColor: 'border-rose-500/30',
     accentColor: 'text-rose-400',
     icon: 'Gamepad2',
-    badge: '16 Tools Available'
+    badge: '12 Tools Available'
   },
   {
     id: 'fortnite',
@@ -1306,51 +1306,7 @@ export const TOOLS: ToolItem[] = [
       'If you want to receive an even 1,000 Robux, set your price to 1,429 R$ (1,429 × 0.70 = 1,000.3 → 1,000 R$).',
       'For group games, pending funds automatically land in group funds once the 3–7 day escrow period ends.'
     ],
-    relatedToolIds: ['robux-calculator', 'roblox-devex-calculator', 'roblox-gamepass-revenue-calculator']
-  },
-
-  // 19. Robux Calculator / USD Value Converter
-  {
-    id: 'robux-calculator',
-    slug: 'robux-calculator',
-    name: 'Robux to USD & Real Money Calculator',
-    gameId: 'roblox',
-    categoryId: 'converters',
-    icon: 'DollarSign',
-    shortDescription: 'Convert between Robux (R$) and Real USD ($), compare official store packages, and estimate DevEx cashout values.',
-    description: 'Real-time two-way Robux to USD and USD to Robux converter. Features official store pricing ($4.99 for 400 R$ to $199.99 for 22,500 R$), +10% Roblox Premium subscriber bonus tiers, and DevEx cashout conversions.',
-    badge: 'USD Value',
-    rating: 4.95,
-    reviewsCount: 3820,
-    userCount: '140k+ users',
-    featured: true,
-    tags: ['roblox', 'robux', 'usd converter', 'real money', 'store tiers', 'premium bonus', 'devex'],
-    seoTitle: 'Robux to USD Calculator – Real Money Value & Store Packages',
-    metaDescription: 'Convert Robux to USD and USD to Robux instantly. View official purchase prices, Premium 10% bonus packages, and real DevEx developer cashout rates.',
-    h1: 'Robux to USD Real Money Value & Purchase Tier Calculator',
-    canonicalPath: '/tools/robux-calculator',
-    howToGuide: {
-      overview: 'Estimate the real-world dollar cost of purchasing Robux or converting your Robux balance into real currency.',
-      steps: [
-        { title: 'Choose Conversion Direction', description: 'Select "Robux → USD" or "USD → Robux".' },
-        { title: 'Enter Amount', description: 'Type the number of Robux or dollar budget.' },
-        { title: 'Toggle Premium Bonus', description: 'Enable the +10% Roblox Premium subscriber multiplier to see bonus package tiers.' },
-        { title: 'Compare Rates', description: 'Compare retail purchase cost ($0.0125/R$) vs developer cashout value ($0.0035/R$).' }
-      ]
-    },
-    formulaExplained: {
-      title: 'Robux Retail Value vs. DevEx Cashout Valuation',
-      details: '• Retail Store Price: ~80 Robux per $1.00 USD (Approx. $0.0125 per 1 Robux)\n• Premium Store Price (+10%): ~88 Robux per $1.00 USD\n• Developer DevEx Cashout: $0.0035 per 1 Earned Robux ($350 per 100,000 Robux)',
-      mathSnippet: 'Store_Cost = Robux * $0.0125 | DevEx_Value = Robux * $0.0035'
-    },
-    faqs: [
-      { question: 'How much is 10,000 Robux in real money?', answer: 'Purchasing 10,000 Robux directly from the Roblox store costs $99.99 USD ($89.99 with Premium discount). In developer DevEx cashout terms, 10,000 Earned Robux equals $35.00 USD.' },
-      { question: 'Is Robux worth the same when buying as when cashing out?', answer: 'No. Roblox sells Robux at ~$0.0125 each, while the developer exchange (DevEx) cashes out at $0.0035 each.' }
-    ],
-    proTips: [
-      'Subscribing to Roblox Premium gives you 10% more Robux on every single purchase tier.'
-    ],
-    relatedToolIds: ['robux-tax-calculator', 'roblox-devex-calculator', 'roblox-developer-earnings-calculator']
+    relatedToolIds: ['robux-to-usd-calculator', 'roblox-devex-calculator', 'roblox-gamepass-revenue-calculator']
   },
 
   // 20. Roblox DevEx Calculator
@@ -1394,52 +1350,7 @@ export const TOOLS: ToolItem[] = [
       'Complete your Tipalti account registration and tax forms (W-9 for US, W-8BEN for international) before submitting your first cashout request.',
       'DevEx requests are processed once per calendar month per Roblox account.'
     ],
-    relatedToolIds: ['roblox-developer-earnings-calculator', 'roblox-gamepass-revenue-calculator', 'robux-tax-calculator']
-  },
-
-  // 21. Blox Fruits Calculator
-  {
-    id: 'blox-fruits-calculator',
-    slug: 'blox-fruits-calculator',
-    name: 'Blox Fruits Value & Trading Calculator',
-    gameId: 'roblox',
-    categoryId: 'calculators',
-    icon: 'Sparkles',
-    shortDescription: 'Calculate Blox Fruits trade fairness, community trading values (Kitsune, Dragon, Leopard), and in-game 40% Beli difference rules.',
-    description: 'Comprehensive Blox Fruits trading values calculator. Compare Your Offer vs Their Offer across Mythical, Legendary, Rare, and Common fruits. Includes community trading values, demand ratings (1–10), and automated 40% in-game Beli trade limit validation.',
-    badge: 'Blox Fruits',
-    rating: 4.97,
-    reviewsCount: 6120,
-    userCount: '210k+ traders',
-    featured: true,
-    tags: ['blox fruits', 'trading value', 'kitsune', 'dragon', 'leopard', 'dough', 'buddha', 'trade calculator', 'roblox'],
-    seoTitle: 'Blox Fruits Calculator – Trading Values & 40% Beli Trade Rule Checker',
-    metaDescription: 'Calculate Blox Fruits trade fairness with real community values for Kitsune, Dragon, Leopard, Dough, and Buddha. Includes the 40% in-game Beli rule checker.',
-    h1: 'Blox Fruits Trading Value & Trade Fairness Calculator',
-    canonicalPath: '/tools/blox-fruits-calculator',
-    howToGuide: {
-      overview: 'Evaluate any trade in Blox Fruits to ensure you are getting fair market value and complying with the 40% in-game Beli limit.',
-      steps: [
-        { title: 'Add Fruits to Your Offer', description: 'Select up to 4 physical fruits you are putting on the trading table.' },
-        { title: 'Add Fruits to Their Offer', description: 'Select the fruits the other player is offering in return.' },
-        { title: 'Check 40% Beli Rule', description: 'Verify that the total Beli price difference does not exceed 40% (otherwise the game blocks the trade).' },
-        { title: 'Review Win / Fair / Loss Verdict', description: 'See the net trade value difference and demand rating comparison.' }
-      ]
-    },
-    formulaExplained: {
-      title: 'In-Game 40% Beli Rule & Market Trading Values',
-      details: '• In-Game Trade Rule: |Beli_A - Beli_B| / max(Beli_A, Beli_B) ≤ 0.40\n• Community Trading Value: Driven by supply, demand, awakening power, and PvP tier lists (e.g. Kitsune = 125M value, Dragon Rework = 180M value, Buddha = 8M value).',
-      mathSnippet: 'Beli_Diff = |Beli_You - Beli_Them| / max(Beli_You, Beli_Them) <= 40%'
-    },
-    faqs: [
-      { question: 'Why does Blox Fruits say "Value difference is too high"?', answer: 'To prevent real-world trading and scamming, the Blox Fruits in-game trade tables require that the total Beli shop values of both offers differ by no more than 40%.' },
-      { question: 'Why does Buddha fruit trade for much higher than its Beli price?', answer: 'Buddha costs 1.2M Beli in the shop, but its trading value is ~8M because it is universally recognized as the fastest grinding fruit in the game.' }
-    ],
-    proTips: [
-      'Use high-Beli "trash fruits" like Gravity or Paw/Pain to balance out the 40% Beli requirement when trading high-demand fruits.',
-      'Always trade physical fruits in the Cafe (Second Sea) or Mansion (Third Sea) safe zones.'
-    ],
-    relatedToolIds: ['blox-fruits-xp-calculator', 'blox-fruits-stat-calculator', 'blox-fruits-damage-calculator']
+    relatedToolIds: ['roblox-group-payout-calculator', 'roblox-gamepass-revenue-calculator', 'robux-tax-calculator']
   },
 
   // 22. Blox Fruits Level & XP Calculator
@@ -1483,51 +1394,53 @@ export const TOOLS: ToolItem[] = [
     proTips: [
       'Redeem active 2x EXP Twitter/Discord codes in 20-minute intervals while farming bosses for maximum leveling efficiency.'
     ],
-    relatedToolIds: ['blox-fruits-stat-calculator', 'blox-fruits-damage-calculator', 'blox-fruits-calculator']
+    relatedToolIds: ['blox-fruits-stat-calculator', 'blox-fruits-damage-calculator', 'blox-fruits-trading-calculator']
   },
 
   // 23. Blox Fruits Stat Calculator
   {
     id: 'blox-fruits-stat-calculator',
     slug: 'blox-fruits-stat-calculator',
-    name: 'Blox Fruits Stat Point & Build Calculator',
+    name: 'Blox Fruits Stat Calculator',
     gameId: 'roblox',
     categoryId: 'calculators',
     icon: 'Shield',
-    shortDescription: 'Plan 7,800 max stat points across Melee, Defense, Sword, Gun, and Blox Fruit. Calculate HP & Energy pools for PvP builds.',
-    description: 'Optimize your Blox Fruits character stats. Distribute up to 7,800 stat points (2600 cap per stat) across Melee, Defense, Sword, Gun, and Blox Fruit. Computes total HP health pools (5 HP/Def), Energy pools (5 Energy/Melee), and meta PvP presets.',
+    shortDescription: 'Plan 7,800 max stat points across Melee, Defense, Sword, Gun, and Blox Fruit. Includes Fruit/Sword/Gun/Hybrid presets, HP & Energy pools, and Stat Reset costs.',
+    description: 'Complete Blox Fruits stat point allocator and PvP build calculator up to Level 2600 (7,800 total stat points, 2,600 cap per attribute). Distribute points across Melee, Defense, Sword, Gun, and Blox Fruit with Fruit Main, Sword Main, Gun Main, and Hybrid presets, calculate HP and Energy pools, and check Stat Reset refund options (2,500 Fragments at Plokster NPC, 75 Robux Shop refund, or free codes).',
     badge: 'Stat Builder',
     rating: 4.96,
-    reviewsCount: 3210,
-    userCount: '95k+ players',
-    featured: false,
-    tags: ['blox fruits', 'stat calculator', 'stat reset', 'fruit main', 'sword main', 'hp pool', 'energy pool', 'pvp build'],
-    seoTitle: 'Blox Fruits Stat Calculator – 7,800 Stat Points & Build Planner',
-    metaDescription: 'Distribute 7,800 stat points in Blox Fruits across Melee, Defense, Sword, Gun, and Fruit. Calculate exact HP (13,100 Max) and Energy pools for PvP.',
-    h1: 'Blox Fruits Stat Point Distribution & PvP Build Planner',
+    reviewsCount: 3490,
+    userCount: '114k+ players',
+    featured: true,
+    tags: ['blox fruits', 'stat calculator', 'stat reset', 'build planner', 'fruit main', 'sword main', 'hybrid build', 'hp pool', 'energy pool', 'pvp build'],
+    seoTitle: 'Blox Fruits Stat Calculator – 7,800 Stat Points, Build & Reset Planner',
+    metaDescription: 'Distribute 7,800 stat points in Blox Fruits across Melee, Defense, Sword, Gun, and Fruit. Calculate HP (13,100 Max) and Energy pools plus Stat Reset costs.',
+    h1: 'Blox Fruits Stat Calculator & Build Allocator',
     canonicalPath: '/tools/blox-fruits-stat-calculator',
     howToGuide: {
-      overview: 'Allocate your character\'s stat points to maximize PvP combo damage and survivability.',
+      overview: 'Allocate your character\'s stat points to maximize PvP combo damage and survivability, and review in-game Stat Reset refund costs before rebuilding.',
       steps: [
-        { title: 'Set Player Level', description: 'Enter your level to compute total available stat points (Level × 3).' },
-        { title: 'Select a PvP Meta Preset', description: 'Pick Fruit Main (Melee + Defense + Fruit), Sword Main (Melee + Defense + Sword), or Gun Main.' },
-        { title: 'Fine-Tune Attribute Sliders', description: 'Adjust points up to the 2,600 cap per stat attribute.' },
-        { title: 'Review Health & Energy Pools', description: 'Check your resulting HP pool (up to 13,100 HP) and Energy capacity.' }
+        { title: 'Set Player Level', description: 'Enter your level (1 to 2,600) to compute total available stat points (Level × 3, up to 7,800 max).' },
+        { title: 'Select a Build Preset', description: 'Pick Fruit Main, Sword Main, Gun Main, or Hybrid Split to auto-fill optimal stat ratios.' },
+        { title: 'Fine-Tune Attribute Sliders', description: 'Adjust Melee, Defense, Sword, Gun, and Blox Fruit points up to the 2,600 cap per stat attribute.' },
+        { title: 'Review Health, Energy & Reset Costs', description: 'Check your resulting HP pool (up to 13,100 HP), Energy capacity, and whether to reset stats with 2,500 Fragments at Plokster or 75 Robux.' }
       ]
     },
     formulaExplained: {
-      title: 'Blox Fruits Stat Mechanics & Pool Formulas',
-      details: '• Total Health Pool (HP) = 100 + (Defense Points * 5) -> Max 13,100 HP at 2600 Defense\n• Total Energy Stamina Pool = 100 + (Melee Points * 5) -> Max 13,100 Energy at 2600 Melee\n• Max Stat per Attribute: 2600 Points\n• Stat Reset costs 2,500 Fragments at Plokster NPC in Second/Third Sea.',
-      mathSnippet: 'Max_HP = 100 + (2600 * 5) = 13,100 HP | Max_Energy = 13,100'
+      title: 'Blox Fruits Stat Mechanics, Pools & Reset Costs',
+      details: '• Total Stat Points = Player Level × 3 (7,800 total at Level 2,600; max 2,600 per stat)\n• Total Health Pool (HP) = 100 + (Defense Points × 5) → Max 13,100 HP at 2,600 Defense\n• Total Energy Stamina Pool = 100 + (Melee Points × 5) → Max 13,100 Energy at 2,600 Melee\n• Stat Reset Cost: 2,500 Fragments at Plokster NPC (Second Sea Cafe / Third Sea Floating Turtle), 75 Robux in the Shop, or 0 cost via active Stat Reset codes.',
+      mathSnippet: 'Max_HP = 100 + (2600 × 5) = 13,100 | Reset = 2,500 Fragments or 75 Robux'
     },
     faqs: [
-      { question: 'Why shouldn\'t I put points into both Sword and Blox Fruit at the same time?', answer: 'Because stat points are limited to 3 max stats at Level 2600 (2,600 × 3 = 7,800 total). Since Melee and Defense are mandatory for Energy and HP, you should specialize in either Sword OR Blox Fruit for maximum damage output.' },
-      { question: 'How do I reset my stats in Blox Fruits?', answer: 'You can reset stats using the Plokster NPC in the Cafe (Second Sea) or Floating Turtle (Third Sea) for 2,500 Fragments, or using free stat reset codes.' }
+      { question: 'Why shouldn\'t I put points into both Sword and Blox Fruit at the same time?', answer: 'Because stat points are limited to 3 max stats at Level 2600 (2,600 × 3 = 7,800 total). Since Melee and Defense are mandatory for Energy and HP, specializing in either Sword, Gun, OR Blox Fruit delivers full primary damage.' },
+      { question: 'How much does a Stat Reset cost in Blox Fruits?', answer: 'You can reset all stat points with Plokster NPC in the Cafe (Second Sea) or Floating Turtle (Third Sea) for 2,500 Fragments, buy a Stat Refund in the Shop for 75 Robux, or redeem official free stat reset codes.' },
+      { question: 'Which stats should I max first while leveling up?', answer: 'Always prioritize Defense (HP) and Melee (Energy) alongside your chosen main weapon or fruit so you have enough health to survive combos and enough energy for dashes, sky jumps, and skills.' }
     ],
     proTips: [
-      'Always max Defense and Melee first to ensure you have enough health to survive combos and enough energy to execute moves and sky jumps.'
+      'Always max Defense and Melee (2,600 at max level) alongside your primary damage attribute so you reach the full 13,100 HP and 13,100 Energy pools.',
+      'Save 2,500 Fragments from Sea Events or Raids before switching builds so you can refund stats at Plokster without spending 75 Robux.'
     ],
-    relatedToolIds: ['blox-fruits-damage-calculator', 'blox-fruits-xp-calculator', 'blox-fruits-calculator']
+    relatedToolIds: ['blox-fruits-damage-calculator', 'blox-fruits-xp-calculator', 'blox-fruits-trading-calculator']
   },
 
   // 24. Blox Fruits Damage Calculator
@@ -1571,7 +1484,7 @@ export const TOOLS: ToolItem[] = [
     proTips: [
       'Human Race V4 in Psycho Mode combined with Pale Scarf yields one of the highest burst one-shot combo damage multipliers in the entire game.'
     ],
-    relatedToolIds: ['blox-fruits-stat-calculator', 'blox-fruits-xp-calculator', 'blox-fruits-calculator']
+    relatedToolIds: ['blox-fruits-stat-calculator', 'blox-fruits-xp-calculator', 'blox-fruits-trading-calculator']
   },
 
   // 25. Roblox Gamepass Revenue Calculator
@@ -1615,50 +1528,7 @@ export const TOOLS: ToolItem[] = [
     proTips: [
       'Offer tiered gamepass pricing (Entry level 99 R$, Mid-tier 399 R$, Premium 999 R$) to capture all player spending brackets.'
     ],
-    relatedToolIds: ['roblox-developer-earnings-calculator', 'roblox-devex-calculator', 'robux-tax-calculator']
-  },
-
-  // 26. Roblox Developer Earnings Calculator
-  {
-    id: 'roblox-developer-earnings-calculator',
-    slug: 'roblox-developer-earnings-calculator',
-    name: 'Roblox Studio Team Earnings & Group Split Calculator',
-    gameId: 'roblox',
-    categoryId: 'trackers',
-    icon: 'Users',
-    shortDescription: 'Aggregate Gamepasses, Dev Products, Avatar Commissions, and Premium Payouts, and calculate group percentage payouts for team members.',
-    description: 'Complete revenue distribution calculator for Roblox game studios and development teams. Combines Gamepasses, Developer Products, Avatar Commissions, and Premium Payouts, and distributes automated percentage splits to scripters, builders, animators, and studio reserve funds with individual DevEx USD values.',
-    badge: 'Team Splits',
-    rating: 4.94,
-    reviewsCount: 1650,
-    userCount: '35k+ teams',
-    featured: false,
-    tags: ['roblox', 'team splits', 'group payouts', 'developer earnings', 'scripter', 'builder', 'studio', 'devex'],
-    seoTitle: 'Roblox Developer Team Earnings Calculator – Group Splits & DevEx Payouts',
-    metaDescription: 'Calculate Roblox studio revenue splits across team members. Combine gamepasses, dev products, avatar commissions, and premium payouts into DevEx USD shares.',
-    h1: 'Roblox Studio Earnings Aggregator & Team Revenue Split Calculator',
-    canonicalPath: '/tools/roblox-developer-earnings-calculator',
-    howToGuide: {
-      overview: 'Combine all game monetization streams and distribute automated percentage payouts to your team.',
-      steps: [
-        { title: 'Enter Monthly Net Income Streams', description: 'Input Gamepass Net Robux, Dev Products, Avatar Commissions, and Premium Payouts.' },
-        { title: 'Configure Team Member Percentage Splits', description: 'Adjust sliders for Scripter, Builder, UI Designer, and Studio Reserve Fund.' },
-        { title: 'Review Individual Shares', description: 'See each developer\'s exact monthly Robux allocation and DevEx USD equivalent.' }
-      ]
-    },
-    formulaExplained: {
-      title: 'Studio Income Aggregation & Split Math',
-      details: 'Total Group Robux = Gamepasses + Dev Products + Avatar Commissions + Premium Payouts\nIndividual Robux = floor(Total Group Robux * (Member_Percent / 100))\nIndividual USD = Individual Robux * $0.0035 DevEx Rate',
-      mathSnippet: 'Member_USD = floor(Total_Robux * Split%) * $0.0035'
-    },
-    faqs: [
-      { question: 'How do Roblox Group Recurring Payouts work?', answer: 'Roblox group owners can set recurring monthly percentage splits that automatically distribute all incoming game revenue to group members\' accounts.' },
-      { question: 'Can team members DevEx Robux received from group payouts?', answer: 'Yes! Group payouts originating from verified game earnings count as clean Earned Robux and are fully eligible for DevEx.' }
-    ],
-    proTips: [
-      'Always reserve 10%–20% of monthly group revenue for sponsorship ads, server upkeep, and contractor hiring.'
-    ],
-    relatedToolIds: ['roblox-devex-calculator', 'roblox-gamepass-revenue-calculator', 'roblox-premium-payout-calculator']
+    relatedToolIds: ['roblox-group-payout-calculator', 'roblox-devex-calculator', 'robux-tax-calculator']
   },
 
   // 27. Roblox Premium Payout Calculator
@@ -1702,7 +1572,7 @@ export const TOOLS: ToolItem[] = [
     proTips: [
       'Design engaging gameplay loops, daily streaks, or AFK reward chambers to increase premium player session duration.'
     ],
-    relatedToolIds: ['roblox-developer-earnings-calculator', 'roblox-gamepass-revenue-calculator', 'roblox-devex-calculator']
+    relatedToolIds: ['roblox-group-payout-calculator', 'roblox-gamepass-revenue-calculator', 'roblox-devex-calculator']
   },
 
   // 28. Fortnite XP Calculator

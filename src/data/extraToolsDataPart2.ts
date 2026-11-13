@@ -320,142 +320,133 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
   {
     id: 'robux-to-usd-calculator',
     slug: 'robux-to-usd-calculator',
-    name: 'Robux to USD Live DevEx Exchange Calculator',
+    name: 'Robux to USD Calculator',
     gameId: 'roblox',
     categoryId: 'converters',
     icon: 'DollarSign',
-    shortDescription: 'Convert Robux to USD at the official $0.0035 DevEx cashout rate and store purchase exchange rates.',
-    description: 'Calculates real-world cash value for developer earned Robux through the official Developer Exchange program ($350 per 100,000 Robux), as well as consumer purchase costs.',
-    badge: 'DevEx $0.0035',
+    shortDescription: 'Two-way Robux ↔ USD converter with retail purchase tiers ($0.0125/R$), +10% Premium bonuses, and DevEx cashout rates ($0.0035/R$, 30,000 R$ minimum).',
+    description: 'Real-time two-way Robux to USD and USD to Robux converter. Compare official store purchase packages ($4.99 for 400 R$ to $199.99 for 22,500 R$, plus +10% Roblox Premium bonus tiers) alongside real-world developer cashout payouts at the official $0.0035/R$ DevEx rate (30,000 Robux minimum).',
+    badge: 'USD & DevEx',
     rating: 4.98,
-    reviewsCount: 420,
-    userCount: '29.3K',
-    tags: ['roblox', 'robux to usd', 'devex', 'cashout', 'developer', 'usd'],
-    seoTitle: 'Robux to USD Calculator – Official DevEx Rate & Cashout',
-    metaDescription: 'Calculate how much Robux is worth in USD using the official Developer Exchange rate ($0.0035 per Robux).',
-    h1: 'Robux to USD Live DevEx Exchange Calculator',
+    reviewsCount: 4240,
+    userCount: '169k+ users',
+    featured: true,
+    tags: ['roblox', 'robux to usd', 'usd converter', 'real money', 'store tiers', 'premium bonus', 'devex', 'cashout'],
+    seoTitle: 'Robux to USD Calculator – Store Rates & DevEx ($0.0035/R$) Cashout',
+    metaDescription: 'Convert Robux to USD and USD to Robux instantly. Compare store purchase costs ($0.0125/R$ + 10% Premium bonus) and official DevEx cashout payouts ($0.0035/R$, 30,000 Robux minimum).',
+    h1: 'Robux to USD Converter & Official DevEx Cashout Calculator',
     canonicalPath: '/tools/robux-to-usd-calculator',
     howToGuide: {
-      overview: 'Enter any amount of Robux to see its cashout value in US Dollars.',
+      overview: 'Convert between Robux and US Dollars in both directions to compare retail purchase prices against Developer Exchange (DevEx) payouts.',
       steps: [
-        { title: 'Robux Amount', description: 'Enter Robux amount (minimum 30,000 for DevEx eligibility).' }
+        { title: 'Choose Conversion Direction', description: 'Switch between "Robux (R$) → Real USD ($)" and "Real USD ($) → Robux (R$)".' },
+        { title: 'Enter Amount or Pick a Store Tier', description: 'Type any Robux balance or dollar budget, or click an official Roblox store package ($4.99 to $199.99).' },
+        { title: 'Toggle Roblox Premium (+10%)', description: 'Enable the +10% Roblox Premium bonus (~88 R$/$ vs standard ~80 R$/$) to compare store package yields.' },
+        { title: 'Check DevEx Rate & 30,000 R$ Minimum', description: 'View official $0.0035/R$ DevEx cashout value and verify eligibility against the 30,000 Earned Robux ($105.00 USD) minimum.' }
       ]
     },
     formulaExplained: {
-      title: 'DevEx Exchange Rate Formula',
-      details: 'Official Roblox DevEx cashout conversion rate is $0.0035 USD per eligible earned Robux.',
-      mathSnippet: 'USD = Robux * 0.0035'
+      title: 'Robux Store Purchase Rate vs. Official DevEx Cashout Formula',
+      details: '• Retail Store Purchase Rate: ~$0.0125 USD per Robux (~80 Robux per $1.00 USD)\n• Premium Subscriber Store Rate (+10%): ~88 Robux per $1.00 USD\n• Official Developer Exchange (DevEx) Rate: $0.0035 USD per 1 Earned Robux ($350 per 100,000 Robux)\n• DevEx Minimum Requirement: 30,000 Earned Robux ($105.00 USD)',
+      mathSnippet: 'Store_USD = Robux * $0.0125 | DevEx_USD = Robux * $0.0035 (Min 30,000 R$)'
     },
     faqs: [
-      { question: 'What is the minimum Robux required to DevEx?', answer: 'The minimum threshold to submit a DevEx request is 30,000 earned Robux ($105.00 USD).' }
+      { question: 'How much is 10,000 Robux in real money?', answer: 'At the baseline retail store rate ($0.0125 per Robux), 10,000 Robux equals $125.00 USD (or $99.99 USD via the 10,000 R$ bundle). Through the Developer Exchange (DevEx) program at $0.0035 per Robux, 10,000 Earned Robux equals $35.00 USD.' },
+      { question: 'Is Robux worth the same when buying as when cashing out?', answer: 'No. Roblox sells Robux at ~$0.0125 each (~80 Robux per dollar), whereas the Developer Exchange (DevEx) pays creators $0.0035 per Earned Robux.' },
+      { question: 'What is the minimum Robux required to DevEx?', answer: 'The minimum threshold to submit a DevEx cashout request is 30,000 Earned Robux ($105.00 USD at $0.0035/R$). Only earned Robux from game passes, developer products, and catalog sales qualify; purchased Robux is ineligible.' }
     ],
-    proTips: ['Only earned Robux from game passes, developer products, and avatar sales qualify for DevEx; purchased Robux is ineligible.'],
-    relatedToolIds: ['roblox-devex-calculator', 'robux-tax-calculator']
+    proTips: [
+      'Subscribing to Roblox Premium gives you 10% more Robux on every official store purchase tier.',
+      'Only earned Robux from game monetization and avatar item sales qualify for the 30,000 Robux DevEx cashout threshold.'
+    ],
+    relatedToolIds: ['robux-tax-calculator', 'roblox-devex-calculator', 'roblox-group-payout-calculator']
   },
   {
     id: 'blox-fruits-trading-calculator',
     slug: 'blox-fruits-trading-calculator',
-    name: 'Blox Fruits Trading Value & 40% Rule Evaluator',
+    name: 'Blox Fruits Trading Calculator',
     gameId: 'roblox',
     categoryId: 'calculators',
     icon: 'ShoppingCart',
-    shortDescription: 'Evaluate trade fairness, community demand values (Kitsune, Dragon, Leopard, Dough), and 40% Beli difference rule.',
-    description: 'Evaluates trade offers between players in Blox Fruits. Checks the mandatory 40% in-game Beli difference threshold and grades trade fairness (Win, Fair, Loss) using current trade market values.',
+    shortDescription: 'Evaluate Blox Fruits trade fairness (Kitsune, Dragon, Leopard, Dough, Buddha) with a dedicated 40% Beli difference rule evaluator.',
+    description: 'Comprehensive Blox Fruits trading value calculator and 40% Beli rule evaluator. Compare Your Offer vs Their Offer across Mythical, Legendary, Rare, and Uncommon fruits using community market values and demand ratings (1–10), then verify in-game 40% Beli trade compliance on the dedicated evaluator.',
     badge: 'Update 21+',
     rating: 4.97,
-    reviewsCount: 610,
-    userCount: '35.1K',
-    tags: ['roblox', 'blox fruits', 'trading', 'kitsune', 'dragon', 'beli', 'trade value'],
-    seoTitle: 'Blox Fruits Trading Calculator – Value Checker & 40% Rule',
-    metaDescription: 'Check Blox Fruits trading values and verify trades comply with the in-game 40% Beli price difference rule.',
-    h1: 'Blox Fruits Trading Value & 40% Rule Evaluator',
+    reviewsCount: 6730,
+    userCount: '245k+ traders',
+    featured: true,
+    tags: ['roblox', 'blox fruits', 'trading', 'kitsune', 'dragon', 'leopard', 'dough', 'buddha', 'beli', '40% rule', 'trade value'],
+    seoTitle: 'Blox Fruits Trading Calculator – Fruit Values & 40% Beli Rule Evaluator',
+    metaDescription: 'Calculate Blox Fruits trade fairness with community values for Kitsune, Dragon, Leopard, Dough, and Buddha plus the 40% in-game Beli rule evaluator.',
+    h1: 'Blox Fruits Trading Calculator & 40% Beli Rule Evaluator',
     canonicalPath: '/tools/blox-fruits-trading-calculator',
     howToGuide: {
-      overview: 'Select fruits on Side A and Side B to verify trade validity and market value profit.',
+      overview: 'Evaluate any Blox Fruits trade for market value profit (Win / Fair / Loss) and verify compliance with the mandatory 40% in-game Beli limit.',
       steps: [
-        { title: 'Your Offer', description: 'Select fruits you are offering.' },
-        { title: 'Their Offer', description: 'Select fruits they are offering.' }
+        { title: 'Add Fruits to Your Offer', description: 'Select up to 4 physical fruits you are placing on the trading table.' },
+        { title: 'Add Fruits to Their Offer', description: 'Select up to 4 fruits the other player is offering in return.' },
+        { title: 'Review Win / Fair / Loss Verdict', description: 'Compare total community trading values and demand ratings (1–10) across both offers.' },
+        { title: 'Validate the 40% Beli Rule', description: 'Use the 40% Beli Rule Evaluator section (synced with your fruits or custom Beli amounts) to confirm the gap is 40% or lower and see exact Beli adds needed.' }
       ]
     },
     formulaExplained: {
-      title: '40% Trading Beli Limit Rule',
-      details: 'In-game trading requires Beli prices to be within 40% of each other: MinPrice = HigherPrice * 0.60.',
-      mathSnippet: 'DiffPercentage = Abs(PriceA - PriceB) / Max(PriceA, PriceB) * 100 <= 40%'
+      title: 'In-Game 40% Beli Rule & Community Trading Values',
+      details: '• In-Game 40% Trade Limit: |Beli_You - Beli_Them| / max(Beli_You, Beli_Them) ≤ 0.40 (equivalently, the lower side must be at least 60% of the higher side).\n• Community Trading Value: Reflects player demand, PvP viability, and grinding utility rather than raw NPC shop Beli price (e.g., Dragon Rework = 180M value, Kitsune = 125M value, Leopard = 40M value, Buddha = 8M value).',
+      mathSnippet: 'Beli_Diff = |Beli_A - Beli_B| / max(Beli_A, Beli_B) <= 40% | Min_Side >= 0.60 * Max_Side'
     },
     faqs: [
-      { question: 'Why does Blox Fruits have a 40% rule?', answer: 'The 40% Beli rule prevents real-world trading, scamming, and transferring fruits to alt accounts.' }
+      { question: 'Why does Blox Fruits say "Value difference is too high"?', answer: 'To prevent real-world trading, scamming, and alt-account transfers, the in-game trade tables block any trade whose total NPC Beli shop prices differ by more than 40%.' },
+      { question: 'Why does Buddha fruit trade for much higher than its Beli price?', answer: 'Buddha costs 1,200,000 Beli in the fruit shop, but carries an ~8M trading value and 10/10 demand because Awakened Buddha is universally recognized as the fastest grinding fruit.' },
+      { question: 'How do I pass the 40% Beli rule when trading high-demand fruits?', answer: 'Add low-demand Mythical or Legendary fruits with high shop Beli prices—such as Gravity (2.5M Beli) or Shadow (2.9M Beli)—as price fillers until the Beli gap drops below 40%.' }
     ],
-    proTips: ['Low-demand Mythical fruits like Gravity or Shadow are commonly used as price adds to meet the 40% requirement.'],
-    relatedToolIds: ['blox-fruits-calculator', 'blox-fruits-stat-calculator']
-  },
-  {
-    id: 'blox-fruits-stat-reset-planner',
-    slug: 'blox-fruits-stat-reset-planner',
-    name: 'Blox Fruits Stat Point & Build Allocator',
-    gameId: 'roblox',
-    categoryId: 'planners',
-    icon: 'SlidersHorizontal',
-    shortDescription: 'Plan 2,550 max stat point builds: Melee (Energy), Defense (Health), Sword, Gun, or Blox Fruit.',
-    description: 'Build optimizer for Blox Fruits level 2,550 cap. Distributes 7,650 total stat points across Melee, Defense, Sword, Gun, and Fruit stats with Fruit Main, Sword Main, or Hybrid presets.',
-    rating: 4.94,
-    reviewsCount: 280,
-    userCount: '18.9K',
-    tags: ['roblox', 'blox fruits', 'stat reset', 'build planner', 'pvp build'],
-    seoTitle: 'Blox Fruits Stat Reset Planner – Max 2550 Stat Allocator',
-    metaDescription: 'Optimize your Blox Fruits build at level 2550 with exact stat point allocation for Sword, Fruit, and Hybrid PvP builds.',
-    h1: 'Blox Fruits Stat Point & Build Allocator',
-    canonicalPath: '/tools/blox-fruits-stat-reset-planner',
-    howToGuide: {
-      overview: 'Enter current level to allocate available stat points (3 points per level).',
-      steps: [
-        { title: 'Player Level', description: 'Enter current level (1 to 2,550).' },
-        { title: 'Build Style', description: 'Choose Fruit Main, Sword Main, or Gun Main.' }
-      ]
-    },
-    formulaExplained: {
-      title: 'Stat Point Budget Formula',
-      details: 'Max points per individual stat is 2,550. Total points earned is (Level - 1) * 3.',
-      mathSnippet: 'TotalStats = (Level - 1) * 3'
-    },
-    faqs: [
-      { question: 'How much does a Stat Reset cost?', answer: 'Plokster resets stats for 2,500 Fragments, or you can purchase a reset for 75 Robux.' }
+    proTips: [
+      'Low-demand Mythicals like Gravity (2.5M Beli) are ideal price adds to meet the 40% requirement without sacrificing high-demand value.',
+      'Always verify physical fruit trades in the Cafe (Second Sea) or Mansion (Third Sea) safe zones.'
     ],
-    proTips: ['Always max Melee (energy) and Defense (health) to 2,550 first before investing in your primary damage weapon.'],
-    relatedToolIds: ['blox-fruits-stat-calculator', 'blox-fruits-xp-calculator']
+    relatedToolIds: ['blox-fruits-stat-calculator', 'blox-fruits-xp-calculator', 'blox-fruits-damage-calculator']
   },
   {
     id: 'roblox-group-payout-calculator',
     slug: 'roblox-group-payout-calculator',
-    name: 'Roblox Group Payout & Revenue Splitter',
+    name: 'Roblox Group Payout Calculator',
     gameId: 'roblox',
     categoryId: 'calculators',
     icon: 'Users',
-    shortDescription: 'Split group funds among developers, builders, and scripters with custom percentage shares and tax.',
-    description: 'Calculates developer team revenue shares from Roblox group funds. Distributes Robux payouts according to agreed royalty percentages after the 30% marketplace cut.',
-    rating: 4.90,
-    reviewsCount: 150,
-    userCount: '10.2K',
-    tags: ['roblox', 'group payout', 'revenue split', 'royalty', 'developer'],
-    seoTitle: 'Roblox Group Payout Calculator – Dev Team Royalty Splitter',
-    metaDescription: 'Split group funds fairly among development team members with custom percentages and tax deductions.',
-    h1: 'Roblox Group Payout & Revenue Splitter',
+    shortDescription: 'Split Roblox group funds & multi-stream studio team earnings (Gamepasses, Dev Products, Commissions, Premium Payouts) into exact Robux & DevEx USD shares.',
+    description: 'Complete Roblox Group Payout & Studio Team Earnings Splitter. Switch between Direct Group Funds Balance splitting or Multi-Stream Team Revenue Aggregation (Gamepasses, Developer Products, Avatar Commissions, and Premium Playtime Payouts), allocate custom percentage splits to scripters, builders, designers, and studio reserves, and preview DevEx USD payouts ($0.0035/R$) with 0% additional payout tax.',
+    badge: 'Group & Team Splits',
+    rating: 4.94,
+    reviewsCount: 1800,
+    userCount: '45k+ teams',
+    featured: true,
+    tags: ['roblox', 'group payout', 'team splits', 'revenue split', 'developer earnings', 'scripter', 'builder', 'studio', 'devex'],
+    seoTitle: 'Roblox Group Payout Calculator – Team Earnings & Revenue Splitter',
+    metaDescription: 'Split Roblox group funds and multi-source studio team earnings fairly with custom percentages, 0% payout fee math, and DevEx USD cashout values.',
+    h1: 'Roblox Group Payout & Team Earnings Split Calculator',
     canonicalPath: '/tools/roblox-group-payout-calculator',
     howToGuide: {
-      overview: 'Enter total group funds balance and member royalty percentages to calculate exact Robux payouts.',
+      overview: 'Combine studio revenue streams or enter your existing group funds balance, then assign percentage splits to calculate each developer\'s exact Robux and DevEx USD payout.',
       steps: [
-        { title: 'Group Balance', description: 'Enter group fund Robux amount.' }
+        { title: 'Choose Pool Mode', description: 'Select "Team Earnings Streams (Multi-Source)" to sum Gamepasses (70% Net), Dev Products, Avatar Commissions, and Premium Payouts, or "Group Funds Balance (Direct Split)" for a single pool.' },
+        { title: 'Configure Team Member Splits', description: 'Edit member names/roles, add or remove contributors, and adjust percentage sliders for scripters, builders, designers, and studio reserve funds.' },
+        { title: 'Review Individual Robux & DevEx USD Shares', description: 'See floored Robux payouts, DevEx USD equivalents (@ $0.0035/R$), and any rounding remainder left in group funds.' }
       ]
     },
     formulaExplained: {
-      title: 'Percentage Distribution Formula',
-      details: 'MemberPayout = Floor(TotalGroupRobux * (Percentage / 100)).',
-      mathSnippet: 'MemberShare = Math.floor(TotalRobux * (SharePct / 100))'
+      title: 'Group Payout & Studio Team Earnings Split Formulas',
+      details: '• Multi-Stream Group Total = Gamepasses (70% Net) + Dev Products + Avatar Commissions + Premium Payouts\n• Member Robux Payout = floor(Total Group Robux × (Member_Percent / 100))\n• Member DevEx USD Value = Member Robux × $0.0035\n• Group Payout Fee: 0% (Roblox already deducted its 30% marketplace fee when the Robux were originally earned)',
+      mathSnippet: 'Member_Share = floor(Total_Group_Robux × Split%) | DevEx_USD = Member_Share × $0.0035'
     },
     faqs: [
-      { question: 'Does Roblox take a tax when sending group payouts?', answer: 'No. Group payouts have 0% fee because the 30% Roblox tax was already deducted when the funds were originally earned.' }
+      { question: 'Does Roblox take a tax when sending group payouts?', answer: 'No. Group payouts have a 0% fee because the 30% Roblox marketplace tax was already deducted when the revenue was originally earned.' },
+      { question: 'How do Roblox Group Recurring Payouts work?', answer: 'Roblox group owners can configure recurring percentage splits that automatically distribute incoming group revenue across designated team members.' },
+      { question: 'Can team members DevEx Robux received from group payouts?', answer: 'Yes. Group payouts funded by verified game monetization or catalog earnings count as clean Earned Robux and qualify for DevEx at $0.0035 USD per Robux (minimum 30,000 Robux).' }
     ],
-    proTips: ['New group members must wait 14 days before becoming eligible to receive group payouts due to security restrictions.'],
-    relatedToolIds: ['robux-tax-calculator', 'roblox-developer-earnings-calculator']
+    proTips: [
+      'New group members must wait 14 days before becoming eligible to receive group payouts due to Roblox security restrictions.',
+      'Reserve 10%–20% of monthly group revenue in a Studio Reserve split for sponsorship ads, server costs, and contractor hiring.'
+    ],
+    relatedToolIds: ['robux-tax-calculator', 'roblox-devex-calculator', 'roblox-gamepass-revenue-calculator', 'roblox-premium-payout-calculator']
   },
   {
     id: 'roblox-sound-id-tester',
@@ -489,7 +480,7 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
       { question: 'Why do some Roblox sound IDs not play?', answer: 'Due to the Roblox copyright privacy update, sounds made private by their creators only play inside games owned by that creator.' }
     ],
     proTips: ['Roblox licensed APM and Monstercat libraries are free to use across any Roblox experience.'],
-    relatedToolIds: ['robux-calculator', 'roblox-gamepass-revenue-calculator']
+    relatedToolIds: ['robux-to-usd-calculator', 'roblox-gamepass-revenue-calculator']
   },
   {
     id: 'pet-sim-fusion-calculator',
@@ -524,7 +515,7 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
       { question: 'Can you fuse Huge pets?', answer: 'No, Huge and Titanic pets cannot be placed inside the standard fusion machine.' }
     ],
     proTips: ['Fusing Gold pets directly provides higher fusion points than standard base pets.'],
-    relatedToolIds: ['blox-fruits-trading-calculator', 'robux-calculator']
+    relatedToolIds: ['blox-fruits-trading-calculator', 'robux-to-usd-calculator']
   },
 
   // ================= FORTNITE EXPANSION (5 TOOLS) =================

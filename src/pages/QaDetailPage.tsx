@@ -23,7 +23,7 @@ export default function QaDetailPage({ entry, onNavigate }: QaDetailPageProps) {
 
   // Find related tool data
   const relatedTool = TOOLS.find((t) => t.id === entry.relatedToolId);
-  const relatedToolPath = relatedTool ? relatedTool.canonicalPath || `/tools/${relatedTool.slug}` : `/tools/robux-calculator`;
+  const relatedToolPath = relatedTool ? relatedTool.canonicalPath || `/tools/${relatedTool.slug}` : `/tools/robux-to-usd-calculator`;
   const relatedToolLabel = relatedTool ? relatedTool.name : `${entry.gameName} Calculator`;
 
   // Find other questions for the same game

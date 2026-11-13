@@ -53,6 +53,26 @@ import { getCodesPageBySlug } from './data/codesData';
 import { getQaEntry } from './data/qaData';
 import AdLayout from './components/ads/AdLayout';
 
+const RETIRED_TOOL_REDIRECTS: Record<string, string> = {
+  'robux-calculator': 'robux-to-usd-calculator',
+  'blox-fruits-calculator': 'blox-fruits-trading-calculator',
+  'blox-fruits-stat-reset-planner': 'blox-fruits-stat-calculator',
+  'roblox-developer-earnings-calculator': 'roblox-group-payout-calculator'
+};
+
+function resolveRedirectedRoute(path: string): string {
+  const [pathname, query = ''] = path.split('?');
+  const clean = pathname.replace(/\/+$/, '');
+  if (clean.startsWith('/tools/')) {
+    const slug = clean.replace('/tools/', '');
+    const targetSlug = RETIRED_TOOL_REDIRECTS[slug];
+    if (targetSlug) {
+      return `/tools/${targetSlug}${query ? `?${query}` : ''}`;
+    }
+  }
+  return path;
+}
+
 export default function App() {
   // Parse current route from window.location (clean HTML5 pathname) without any page-load history rewrites
   const getInitialPath = (): string => {
@@ -121,9 +141,19 @@ export default function App() {
     }
   }, [currentRoute]);
 
+  // If user lands on or navigates to a retired tool URL, rewrite URL cleanly to the surviving tool URL
+  useEffect(() => {
+    const redirected = resolveRedirectedRoute(currentRoute);
+    if (redirected !== currentRoute && typeof window !== 'undefined') {
+      window.history.replaceState(null, '', redirected);
+      setCurrentRoute(redirected);
+    }
+  }, [currentRoute]);
+
   // Programmatic navigate function using HTML5 clean URLs (No hash!)
   const navigate = (path: string) => {
-    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    const rawCleanPath = path.startsWith('/') ? path : `/${path}`;
+    const cleanPath = resolveRedirectedRoute(rawCleanPath);
     if (window.location.pathname + window.location.search !== cleanPath) {
       window.history.pushState(null, '', cleanPath);
     }
@@ -270,7 +300,8 @@ export default function App() {
 
     // 8. Individual Tool Page (/tools/:slug)
     if (cleanRoute.startsWith('/tools/')) {
-      const slug = cleanRoute.replace('/tools/', '').replace(/\/$/, '');
+      const rawSlug = cleanRoute.replace('/tools/', '').replace(/\/$/, '');
+      const slug = RETIRED_TOOL_REDIRECTS[rawSlug] || rawSlug;
       const tool = getToolBySlug(slug);
       if (tool) {
         return <ToolDetailPage tool={tool} onNavigate={navigate} />;

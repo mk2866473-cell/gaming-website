@@ -175,27 +175,7 @@ export default function ModularGamingTool({ tool }: ModularGamingToolProps) {
       };
     }
 
-    // 6. Robux to USD
-    if (tool.id === 'robux-to-usd-calculator') {
-      const robux = val1;
-      const usdEarned = robux * 0.0035;
-      const afterTax30 = robux * 0.70;
-      const storePurchaseCost = (robux / 1000) * 12.50;
-
-      return {
-        mainLabel: 'Official DevEx Cashout Value',
-        mainValue: `$${usdEarned.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`,
-        secondaryLabel: 'Gross Store Purchase Equivalent',
-        secondaryValue: `$${storePurchaseCost.toFixed(2)} USD`,
-        details: [
-          { label: 'DevEx Exchange Rate', value: '$0.0035 USD per earned Robux' },
-          { label: 'Net After 30% Market Cut', value: `${Math.floor(afterTax30).toLocaleString()} Robux` },
-          { label: 'DevEx Eligibility Minimum', value: '30,000 Earned Robux ($105.00)' }
-        ]
-      };
-    }
-
-    // 7. Fortnite V-Bucks to USD
+    // 6. Fortnite V-Bucks to USD
     if (tool.id === 'fortnite-vbucks-usd-calculator') {
       const vbucks = val1;
       const estUSD = (vbucks / 1000) * 8.99;
