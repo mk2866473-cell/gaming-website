@@ -54,6 +54,13 @@ const BloxFruitsDamageCalculator = React.lazy(() => import('../components/tools/
 const RobloxGamepassRevenueCalculator = React.lazy(() => import('../components/tools/RobloxGamepassRevenueCalculator'));
 const RobloxDeveloperEarningsCalculator = React.lazy(() => import('../components/tools/RobloxDeveloperEarningsCalculator'));
 const RobloxPremiumPayoutCalculator = React.lazy(() => import('../components/tools/RobloxPremiumPayoutCalculator'));
+const BloxFruitsMasteryCalculator = React.lazy(() => import('../components/tools/BloxFruitsMasteryCalculator'));
+const BloxFruitsAwakeningCalculator = React.lazy(() => import('../components/tools/BloxFruitsAwakeningCalculator'));
+const BloxFruitsRaceV4Calculator = React.lazy(() => import('../components/tools/BloxFruitsRaceV4Calculator'));
+const BloxFruitsRaidCalculator = React.lazy(() => import('../components/tools/BloxFruitsRaidCalculator'));
+const BloxFruitsFightingStyleCalculator = React.lazy(() => import('../components/tools/BloxFruitsFightingStyleCalculator'));
+const BloxFruitsGachaCalculator = React.lazy(() => import('../components/tools/BloxFruitsGachaCalculator'));
+const BloxFruitsFruitSpawnTimer = React.lazy(() => import('../components/tools/BloxFruitsFruitSpawnTimer'));
 // Fortnite tools
 const FortniteXpCalculator = React.lazy(() => import('../components/tools/FortniteXpCalculator'));
 const FortniteBattlePassCalculator = React.lazy(() => import('../components/tools/FortniteBattlePassCalculator'));
@@ -293,6 +300,20 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <RobloxDeveloperEarningsCalculator />;
       case 'roblox-premium-payout-calculator':
         return <RobloxPremiumPayoutCalculator />;
+      case 'blox-fruits-mastery-calculator':
+        return <BloxFruitsMasteryCalculator />;
+      case 'blox-fruits-awakening-calculator':
+        return <BloxFruitsAwakeningCalculator />;
+      case 'blox-fruits-race-v4-calculator':
+        return <BloxFruitsRaceV4Calculator />;
+      case 'blox-fruits-raid-calculator':
+        return <BloxFruitsRaidCalculator />;
+      case 'blox-fruits-fighting-style-calculator':
+        return <BloxFruitsFightingStyleCalculator />;
+      case 'blox-fruits-gacha-calculator':
+        return <BloxFruitsGachaCalculator />;
+      case 'blox-fruits-fruit-spawn-timer':
+        return <BloxFruitsFruitSpawnTimer />;
       case 'fortnite-xp-calculator':
         return <FortniteXpCalculator />;
       case 'fortnite-battle-pass-calculator':

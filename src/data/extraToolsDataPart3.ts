@@ -5371,6 +5371,426 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
       'Splash potions keep the exact same duration as their drinkable version when you add Gunpowder.'
     ],
     relatedToolIds: ['minecraft-xp-calculator', 'minecraft-stronghold-finder']
+  },
+  {
+    id: 'blox-fruits-mastery-calculator',
+    slug: 'blox-fruits-mastery-calculator',
+    name: 'Blox Fruits Mastery Calculator',
+    gameId: 'roblox',
+    categoryId: 'calculators',
+    icon: 'Zap',
+    shortDescription: 'Calculate exact Blox Fruits mastery XP from level 0 to 600 using ceil(L^2.26 + 69), estimated kills (Cake Queen / Cocoa Warriors), and 2x Mastery gains.',
+    description: 'Accurate Blox Fruits Mastery XP & Kill Calculator. Mastery is a separate XP system from player level for fruits, swords, guns, and fighting styles (max 600 mastery; fishing rods cap at 100). Sums exact level-by-level mastery XP using ceil(L^2.26 + 69), models the 2x Mastery gamepass (up to ×2.70 max combined multiplier with gamepass + party hat + enchant), and estimates kills from Cake Queen (~2,200,000 XP) or Cocoa Warriors / Chocolate Bar Battlers (~100,000 XP).',
+    badge: 'Max 600 Mastery',
+    rating: 4.98,
+    reviewsCount: 510,
+    userCount: '46k+ players',
+    featured: true,
+    tags: ['blox fruits', 'mastery calculator', 'mastery xp', '2x mastery', 'cake queen', 'cocoa warriors', 'max 600'],
+    seoTitle: 'Blox Fruits Mastery Calculator – Exact XP (0–600) & Kills Estimator',
+    metaDescription: 'Calculate exact Blox Fruits mastery XP using ceil(L^2.26 + 69), toggle the 2x Mastery gamepass, and estimate kills on Cake Queen or Cocoa Warriors.',
+    h1: 'Blox Fruits Mastery Calculator (Mastery XP & Kills)',
+    canonicalPath: '/tools/blox-fruits-mastery-calculator',
+    howToGuide: {
+      overview: 'Compute cumulative mastery XP between any two mastery levels (0 to 600) and estimate boss or mob kills required.',
+      steps: [
+        { title: 'Set Current & Target Mastery', description: 'Enter your current mastery level (0–599) and target mastery level (1–600).' },
+        { title: 'Toggle 2x Mastery Gamepass', description: 'Turn on "2x Mastery gamepass" to double mastery XP per kill (2x EXP boosts do NOT affect mastery XP).' },
+        { title: 'Pick Farming Source or Custom XP/Kill', description: 'Choose Cake Queen (~2,200,000 mastery XP/kill), Cocoa Warriors / Chocolate Bar Battlers (~100,000 XP/kill), or enter an optional average mastery XP per kill.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Blox Fruits Mastery XP Curve & Multipliers',
+      details: '• XP from mastery level L to L+1: ceil(L^2.26 + 69)\n• Cumulative XP = Sum of ceil(L^2.26 + 69) over L from current level up to target level - 1 (300 → 400 = 56,551,080 XP; 0 → 600 ≈ 348.7 million XP)\n• Mastery is a separate XP system from player level (fruits, swords, guns, and fighting styles cap at 600; fishing rods cap at 100)\n• 2x Mastery gamepass doubles gains (×2); max combined multiplier is ×2.70 (gamepass + party hat + enchant). 2x EXP does NOT affect mastery XP.',
+      mathSnippet: 'XP(L → L+1) = ceil(L^2.26 + 69) | 0 → 600 ≈ 348.7M XP | 300 → 400 = 56,551,080 XP'
+    },
+    faqs: [
+      {
+        question: 'Does 2x EXP increase Mastery XP in Blox Fruits?',
+        answer: 'No. Mastery is a separate XP system from player level, so 2x EXP boosts and codes do NOT affect mastery XP. Only the 2x Mastery gamepass doubles mastery gains, and the maximum combined multiplier is ×2.70 (gamepass + party hat + enchant).'
+      },
+      {
+        question: 'How much XP is needed to go from 0 to 600 mastery (and 300 to 400)?',
+        answer: 'Each mastery step from level L to L+1 requires ceil(L^2.26 + 69) XP. Total cumulative XP from 0 to 600 is approximately 348.7 million XP, and going from mastery 300 to 400 requires 56,551,080 XP.'
+      },
+      {
+        question: 'What is the maximum mastery level in Blox Fruits?',
+        answer: 'Fruits, swords, guns, and fighting styles all cap at 600 mastery. Fishing rods have a lower cap of 100 mastery.'
+      },
+      {
+        question: 'Which NPC gives the most mastery XP per kill?',
+        answer: 'Cake Queen gives approximately 2,200,000 mastery XP per kill, which is the highest single-kill yield. For regular mob farming, Cocoa Warriors and Chocolate Bar Battlers give approximately 100,000 mastery XP per kill.'
+      },
+      {
+        question: 'How does the 2x Mastery gamepass affect kill counts?',
+        answer: 'Turning on the 2x Mastery gamepass doubles the mastery XP earned per kill, cutting estimated kills needed in half. Stacking gamepass + party hat + enchant reaches the max ×2.70 multiplier.'
+      }
+    ],
+    proTips: [
+      'Remember that 2x EXP boosts only raise player level — you need the 2x Mastery gamepass (or up to ×2.70 with party hat + enchant) to boost mastery XP.',
+      'Cake Queen yields ~2,200,000 base mastery XP per kill, while Cocoa Warriors and Chocolate Bar Battlers yield ~100,000 per kill.'
+    ],
+    relatedToolIds: ['blox-fruits-fighting-style-calculator', 'blox-fruits-awakening-calculator', 'blox-fruits-race-v4-calculator', 'blox-fruits-raid-calculator', 'blox-fruits-xp-calculator']
+  },
+  {
+    id: 'blox-fruits-awakening-calculator',
+    slug: 'blox-fruits-awakening-calculator',
+    name: 'Blox Fruits Awakening Calculator',
+    gameId: 'roblox',
+    categoryId: 'calculators',
+    icon: 'Sparkles',
+    shortDescription: 'Calculate fragments still needed and total awakening costs for all 11 raid fruits (172,800 total) plus Lightning Admin Panel upgrades.',
+    description: 'Verified Blox Fruits Awakening & Fragment Calculator. Pick any of the 11 raid-awakening fruits (Flame, Ice, Light, Dark, Magma, Buddha, Sand, Quake, Spider, Dough, Phoenix), tick off already-awakened moves, and see exact remaining and total fragments. Also covers raid Microchip entry costs (4 players max) and Lightning\'s 21,500-fragment Admin Panel upgrades.',
+    badge: '11 Raid Fruits',
+    rating: 4.98,
+    reviewsCount: 540,
+    userCount: '52k+ players',
+    featured: true,
+    tags: ['blox fruits', 'awakening calculator', 'fragments', 'dough awakening', 'phoenix raid', 'lightning upgrades', 'microchip'],
+    seoTitle: 'Blox Fruits Awakening Calculator – Fragment Costs for All 11 Raid Fruits',
+    metaDescription: 'Check exact fragment costs for Flame, Ice, Light, Dark, Magma, Buddha, Sand, Quake, Spider, Dough (18,500), and Phoenix, plus Lightning Admin Panel upgrades.',
+    h1: 'Blox Fruits Awakening Calculator (Fragment Cost Planner)',
+    canonicalPath: '/tools/blox-fruits-awakening-calculator',
+    howToGuide: {
+      overview: 'Pick a raid fruit and check off already-awakened moves to calculate exact fragments still needed.',
+      steps: [
+        { title: 'Pick Your Raid Fruit', description: 'Select any of the 11 raid-awakening fruits (Standard 14,500 pattern, Quake 17,000, Spider 17,300, Dough 18,500, or Phoenix 18,500).' },
+        { title: 'Tick Already-Awakened Moves', description: 'Check off any Z, F, X, C, Tap, or V moves you already unlocked.' },
+        { title: 'Review Fragments Remaining & Raid Rules', description: 'See fragments still needed, total fruit cost, the 172,800 all-fruits total, and Lightning\'s separate Admin Panel upgrades.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Verified Blox Fruits Awakening Fragment Totals & Raid Rules',
+      details: '• Standard Pattern (Flame, Ice, Light, Dark, Magma, Buddha, Sand): Z 500 + F 2,000 + X 3,000 + C 4,000 + V 5,000 = 14,500 fragments each\n• Quake (4 moves only): Z 1,000 + X 3,000 + C 5,000 + V 8,000 = 17,000 fragments\n• Spider: Z 800 + F 2,500 + X 3,500 + C 4,500 + V 6,000 = 17,300 fragments\n• Dough & Phoenix: Z 500 + F 2,000 + X 3,000 + C 4,000 + Tap 4,000 + V 5,000 = 18,500 fragments each (hosting Phoenix raid needs 400+ mastery on Phoenix)\n• Total for all 11 raid fruits: 172,800 fragments\n• Raid Entry: Basic Microchip = $100,000 Beli or any physical fruit; Advanced Microchip (Phoenix/Dough only) = 1,000 fragments or physical fruit worth $1,000,000+; max 4 players per raid',
+      mathSnippet: 'Standard = 14,500 | Quake = 17,000 | Spider = 17,300 | Dough/Phoenix = 18,500 | All 11 = 172,800'
+    },
+    faqs: [
+      {
+        question: 'How many fragments does Dough awakening actually cost — 18,500 or 23,500?',
+        answer: 'Full Dough awakening costs 18,500 fragments in total (Z 500, F 2,000, X 3,000, C 4,000, Tap 4,000, V 5,000). Some websites wrongly report 23,500, but 18,500 is the verified cost.'
+      },
+      {
+        question: 'How many fragments does it cost to awaken all 11 raid fruits?',
+        answer: 'Awakening all 11 raid fruits costs 172,800 fragments in total: seven standard-pattern fruits at 14,500 each (Flame, Ice, Light, Dark, Magma, Buddha, Sand = 101,500), plus Quake (17,000), Spider (17,300), Dough (18,500), and Phoenix (18,500).'
+      },
+      {
+        question: 'Why is Lightning (formerly Rumble) listed separately from raid awakenings?',
+        answer: 'Lightning (formerly Rumble) no longer awakens in raids. It upgrades through the Admin Panel with 4 upgrades costing 1,500 / 3,000 / 6,000 / 11,000 fragments (21,500 total), plus Volt Capsule ×4, Electric Wing ×13, Angel Wings ×3, and 500 mastery.'
+      },
+      {
+        question: 'What do Basic and Advanced Raid Microchips cost, and how many players can join?',
+        answer: 'A Basic Microchip costs $100,000 Beli OR any physical fruit. An Advanced Microchip (for Phoenix and Dough raids only) costs 1,000 fragments OR a physical fruit worth $1,000,000+. A maximum of 4 players can join each raid.'
+      },
+      {
+        question: 'What mastery is needed to host a Phoenix raid?',
+        answer: 'Hosting a Phoenix raid requires 400+ mastery on Phoenix in addition to purchasing an Advanced Microchip (1,000 fragments or a $1,000,000+ physical fruit).'
+      }
+    ],
+    proTips: [
+      'A maximum of 4 players can enter each raid: Basic Microchips accept $100,000 Beli or any physical fruit, while Advanced Microchips (Phoenix/Dough only) take 1,000 fragments or a $1,000,000+ physical fruit.',
+      'Hosting a Phoenix raid requires 400+ mastery on Phoenix — verify your mastery progress before buying an Advanced Microchip.'
+    ],
+    relatedToolIds: ['blox-fruits-raid-calculator', 'blox-fruits-race-v4-calculator', 'blox-fruits-mastery-calculator', 'blox-fruits-xp-calculator', 'blox-fruits-stat-calculator']
+  },
+  {
+    id: 'blox-fruits-race-v4-calculator',
+    slug: 'blox-fruits-race-v4-calculator',
+    name: 'Blox Fruits Race V4 Progress Calculator',
+    gameId: 'roblox',
+    categoryId: 'calculators',
+    icon: 'Shield',
+    shortDescription: 'Track Race V4 awakening trials, Ancient One training fragment purchases (26,750 per race; 187,250 all 7), and V4 activations remaining (77 total).',
+    description: 'Verified Blox Fruits Race Awakening & Ancient One Progress Calculator in the Temple of Time. Track fragments spent, fragments still needed, and V4 training activations remaining across Trial 1 (1,000 f / 3 activations), Trial 2 (1,500 f / 5 activations), Trial 3 (2,000 + 2,250 + 2,500 = 6,750 f / 4, 5, 10 activations), and Trial 4 (3,000–4,000 = 17,500 f / 8, 9, 10, 11, 12 activations) across Human, Rabbit, Shark, Angel, Ghoul, Cyborg, and Draco.',
+    badge: '7 Races · 5 Gears',
+    rating: 4.98,
+    reviewsCount: 465,
+    userCount: '44k+ players',
+    featured: true,
+    tags: ['blox fruits', 'race v4', 'ancient one', 'temple of time', 'fragments', 'training activations', 'ancient clock'],
+    seoTitle: 'Blox Fruits Race V4 Progress Calculator – Fragments & Activations',
+    metaDescription: 'Track your Blox Fruits Race V4 progress at the Ancient One: 26,750 fragments per race (10 purchases), 77 V4 activations, and 187,250 total across all 7 races.',
+    h1: 'Blox Fruits Race V4 Progress Calculator (Ancient One Ladder)',
+    canonicalPath: '/tools/blox-fruits-race-v4-calculator',
+    howToGuide: {
+      overview: 'Select your current Race Awakening stage or Ancient One purchase step (0 to 10) to calculate fragments spent, fragments still needed, and V4 activations left.',
+      steps: [
+        { title: 'Pick Your Race', description: 'Choose Human, Rabbit, Shark, Angel, Ghoul, Cyborg, or Draco (all 7 races share the same 26,750-fragment ladder).' },
+        { title: 'Select Trials / Training Purchases Completed', description: 'Use the slider, milestone buttons, or clickable 10-step Ancient One ladder to mark purchases done.' },
+        { title: 'Check Remaining Fragments & Activations', description: 'See fragments spent, fragments still needed toward 26,750, and remaining V4 activations out of 77.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Ancient One Training Ladder & Activation Math',
+      details: '• After Trial 1: 1 purchase of 1,000 fragments (3 V4 activations)\n• After Trial 2: 1 purchase of 1,500 fragments (5 V4 activations)\n• Trial 3 phase: 3 purchases of 2,000, 2,250, 2,500 (subtotal 6,750 fragments; 4 / 5 / 10 activations)\n• Trial 4 phase: 5 purchases of 3,000, 3,250, 3,500, 3,750, 4,000 (subtotal 17,500 fragments; 8 / 9 / 10 / 11 / 12 activations)\n• Total per race = 26,750 fragments (10 purchases) and 77 activations | All 7 races = 187,250 fragments',
+      mathSnippet: 'Total Per Race = 26,750 Fragments (10 Purchases, 77 Activations) | All 7 Races = 187,250'
+    },
+    faqs: [
+      {
+        question: 'How many fragments does it cost to max one Race V4 at the Ancient One?',
+        answer: 'Maxing one race costs 26,750 fragments across 10 purchases at the Ancient One in the Temple of Time: 1,000 (after Trial 1) + 1,500 (after Trial 2) + 6,750 (Trial 3: 2,000, 2,250, 2,500) + 17,500 (Trial 4: 3,000, 3,250, 3,500, 3,750, 4,000).'
+      },
+      {
+        question: 'How many fragments do all 7 Race V4 awakenings cost in total?',
+        answer: 'Awakening all 7 races (Human, Rabbit, Shark, Angel, Ghoul, Cyborg, and Draco) costs 187,250 fragments in total (26,750 × 7).'
+      },
+      {
+        question: 'How many V4 activations are required to finish all training purchases?',
+        answer: 'You need 77 V4 training activations in total: Trial 1 = 3, Trial 2 = 5, Trial 3 = 4 / 5 / 10 per level, and Trial 4 = 8 / 9 / 10 / 11 / 12 per level.'
+      },
+      {
+        question: 'How many gears does Race V4 have and how many trials are required?',
+        answer: 'Race V4 has 5 gears. Completing 4 successful trials completes the awakening, and a 5th trial unlocks the Ancient Clock for gear switching.'
+      },
+      {
+        question: 'Which races can awaken to V4 in Blox Fruits?',
+        answer: 'All 7 races follow the same Ancient One training ladder: Human, Rabbit, Shark, Angel, Ghoul, Cyborg, and Draco.'
+      }
+    ],
+    proTips: [
+      'Complete 4 successful trials to finish awakening your 5 gears, then complete a 5th trial to unlock the Ancient Clock for swapping gear setups.',
+      'Plan your fragment farming ahead of Trial 4: its 5 training purchases alone cost 17,500 fragments and require 50 V4 activations (8, 9, 10, 11, and 12).'
+    ],
+    relatedToolIds: ['blox-fruits-raid-calculator', 'blox-fruits-awakening-calculator', 'blox-fruits-mastery-calculator', 'blox-fruits-stat-calculator', 'blox-fruits-xp-calculator']
+  },
+  {
+    id: 'blox-fruits-raid-calculator',
+    slug: 'blox-fruits-raid-calculator',
+    name: 'Blox Fruits Raid Rewards & Fragment Farming Calculator',
+    gameId: 'roblox',
+    categoryId: 'calculators',
+    icon: 'Zap',
+    shortDescription: 'Calculate raid fragments earned from timer speed (300 + 4.5 × seconds, capped at 1,000), fixed timeout/fail payouts, and raids needed for any fragment goal.',
+    description: 'Accurate Blox Fruits Raid Rewards & Fragment Farming Calculator with two modes: (a) Rewards Mode calculating fragments earned from seconds remaining (300 + 4.5 × seconds, capped at 1,000 at ~156+ seconds) plus fixed fail (300), timeout (90 per island completed / idling Island 1 = 90), and death (0) payouts; and (b) Farming Mode computing total raids needed for any awakening or Race V4 target.',
+    badge: 'Max 1,000 / Raid',
+    rating: 4.99,
+    reviewsCount: 590,
+    userCount: '55k+ players',
+    featured: true,
+    tags: ['blox fruits', 'raid calculator', 'fragment farming', 'raid rewards', 'microchip', 'beli drops'],
+    seoTitle: 'Blox Fruits Raid Rewards & Fragment Farming Calculator – 1,000 Cap Planner',
+    metaDescription: 'Calculate Blox Fruits raid fragment rewards (300 + 4.5 × seconds remaining, capped at 1,000) and plan how many raids you need for any fragment target.',
+    h1: 'Blox Fruits Raid Rewards & Fragment Farming Calculator',
+    canonicalPath: '/tools/blox-fruits-raid-calculator',
+    howToGuide: {
+      overview: 'Switch between Rewards Mode (single raid payout) and Farming Mode (raids needed for a target).',
+      steps: [
+        { title: 'Pick Rewards or Farming Mode', description: 'Use (a) Rewards Mode to calculate one raid\'s fragments, or (b) Farming Mode to plan toward a fragment goal.' },
+        { title: 'Enter Seconds Remaining', description: 'Input your remaining raid timer in seconds (finishing with 156+ seconds left caps payout at 1,000 fragments).' },
+        { title: 'Review Raids Needed & Microchip Costs', description: 'In Farming Mode, enter a fragment goal (e.g., 14,500) to calculate ceil(target ÷ fragments per raid) alongside Basic and Advanced Microchip costs.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Blox Fruits Raid Fragment Payout & Farming Math',
+      details: '• Clear Payout = min(1,000, 300 + 4.5 × seconds remaining) — full 1,000 requires ~156+ seconds remaining\n• Fixed Outcomes: Fail = 300 fragments; Timeout = 90 per island completed; Idling on Island 1 until timeout = 90; Death = 0\n• Farming Mode: Raids Needed = ceil(Target Fragments ÷ Fragments Per Raid)\n• Beli in Raids: Enemy drops only (~$62,000–$72,000 Beli per raid depending on theme)\n• Entry & Limit: Basic Microchip = $100,000 Beli or any physical fruit; Advanced Microchip (Phoenix/Dough) = 1,000 fragments or physical fruit worth $1,000,000+; max 4 players per raid',
+      mathSnippet: 'Fragments = min(1000, 300 + 4.5 × seconds) | Raids = ceil(Target ÷ Fragments_Per_Raid)'
+    },
+    faqs: [
+      {
+        question: 'How many fragments do you get per Blox Fruits raid?',
+        answer: 'Winning a raid awards 300 + 4.5 × seconds remaining, capped at 1,000 fragments (reached with about 156+ seconds left). For example, finishing with 100 seconds left awards 750 fragments, and 200 seconds left awards the 1,000 cap.'
+      },
+      {
+        question: 'What happens if you fail, timeout, idle on Island 1, or die in a raid?',
+        answer: 'Failing a raid awards 300 fragments; timing out awards 90 fragments per island completed (idling on Island 1 until timeout awards 90); dying awards 0 fragments.'
+      },
+      {
+        question: 'How many raids does a 14,500-fragment fruit awakening take?',
+        answer: 'If you average 100 seconds remaining per raid (750 fragments per clear), a 14,500-fragment standard fruit awakening takes ceil(14,500 ÷ 750) = 20 raids. At the full 1,000-fragment speed cap (156+ seconds left), it takes 15 raids.'
+      },
+      {
+        question: 'How much Beli do you get from raids, and what do Microchips cost?',
+        answer: 'Beli in raids comes only from enemy drops—roughly $62,000–$72,000 per raid depending on theme. A Basic Microchip costs $100,000 Beli or any physical fruit, while an Advanced Microchip (Phoenix/Dough) costs 1,000 fragments or a physical fruit worth $1,000,000+.'
+      },
+      {
+        question: 'How many players can enter a Blox Fruits raid together?',
+        answer: 'A maximum of 4 players can join each raid.'
+      }
+    ],
+    proTips: [
+      'Aim to finish raids with ~156+ seconds left to lock in the maximum 1,000-fragment cap every single run.',
+      'Use low-value physical fruits to host Basic Microchips when saving Beli, or farm enemy drops (~$62,000–$72,000 Beli per raid) to offset the $100,000 Basic Microchip price.'
+    ],
+    relatedToolIds: ['blox-fruits-awakening-calculator', 'blox-fruits-race-v4-calculator', 'blox-fruits-mastery-calculator', 'blox-fruits-fighting-style-calculator', 'blox-fruits-stat-calculator']
+  },
+  {
+    id: 'blox-fruits-fighting-style-calculator',
+    slug: 'blox-fruits-fighting-style-calculator',
+    name: 'Blox Fruits Fighting Style Cost Calculator',
+    gameId: 'roblox',
+    categoryId: 'calculators',
+    icon: 'Swords',
+    shortDescription: 'Tick fighting styles you already own to calculate Beli and fragments needed up to any target style, including the full $20,400,000 + 26,500 chain to Godhuman.',
+    description: 'Verified Blox Fruits Fighting Style Cost Calculator for Combat, Dark Step ($150,000), Electric ($500,000), Water Kung Fu ($750,000), Dragon Breath (1,500 fragments), Superhuman ($3,000,000), Death Step ($2,500,000 + 5,000 f), Sharkman Karate ($2,500,000 + 5,000 f), Electric Claw ($3,000,000 + 5,000 f), Dragon Talon ($3,000,000 + 5,000 f), and Godhuman ($5,000,000 + 5,000 f; full chain total = $20,400,000 Beli + 26,500 fragments).',
+    badge: 'Godhuman Chain',
+    rating: 4.99,
+    reviewsCount: 510,
+    userCount: '48k+ players',
+    featured: true,
+    tags: ['blox fruits', 'fighting style', 'godhuman', 'superhuman', 'death step', 'sharkman karate', 'electric claw', 'dragon talon'],
+    seoTitle: 'Blox Fruits Fighting Style Cost Calculator – Full Godhuman Chain',
+    metaDescription: 'Calculate Beli and fragments still needed for every Blox Fruits fighting style up to Godhuman ($20,400,000 Beli + 26,500 fragments full chain), plus mastery and material requirements.',
+    h1: 'Blox Fruits Fighting Style Cost Calculator (Beli, Fragments & Godhuman Path)',
+    canonicalPath: '/tools/blox-fruits-fighting-style-calculator',
+    howToGuide: {
+      overview: 'Pick your target fighting style and check off the styles you already own to see remaining Beli, fragments, mastery gates, and materials.',
+      steps: [
+        { title: 'Select Your Target Style', description: 'Choose Godhuman for the full chain or any V1/V2 style (Superhuman, Death Step, Sharkman Karate, Electric Claw, Dragon Talon).' },
+        { title: 'Tick Styles You Already Own', description: 'Check off Combat (free), Dark Step, Electric, Water Kung Fu, Dragon Breath, or V2 styles you already unlocked.' },
+        { title: 'Check Remaining Currency & Materials', description: 'Review Beli and fragments still needed (up to $20,400,000 Beli + 26,500 fragments from scratch) along with mastery, keys, quests, and Godhuman materials.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Verified Blox Fruits Fighting Style Costs & Requirements',
+      details: '• V1 Styles: Combat (Free starter) | Dark Step ($150,000) | Electric ($500,000) | Water Kung Fu ($750,000) | Dragon Breath (1,500 fragments, no Beli)\n• Superhuman: $3,000,000 — needs 300+ mastery on Dark Step, Electric, Water Kung Fu, and Dragon Breath\n• V2 Styles: Death Step ($2,500,000 + 5,000 f; 400 Dark Step + Library Key) | Sharkman Karate ($2,500,000 + 5,000 f; 400+ Water Kung Fu + Water Key) | Electric Claw ($3,000,000 + 5,000 f; 400 Electric + Previous Hero quest) | Dragon Talon ($3,000,000 + 5,000 f; 400 Dragon Breath + Fire Essence)\n• Godhuman: $5,000,000 + 5,000 f — needs 400 mastery on NINE styles (every style except Combat, Advanced Combat, and Sanguine Art) + 20 Fish Tail, 20 Magma Ore, 10 Mystic Droplet, 10 Dragon Scale\n• Full Chain Total (up to Godhuman): $20,400,000 Beli + 26,500 fragments',
+      mathSnippet: 'Full Chain Total = $20,400,000 Beli + 26,500 Fragments'
+    },
+    faqs: [
+      {
+        question: 'What is the full chain cost of getting Godhuman from scratch in Blox Fruits?',
+        answer: 'Buying every prerequisite style and Godhuman with nothing owned costs exactly $20,400,000 Beli + 26,500 fragments in total.'
+      },
+      {
+        question: 'Which fighting styles need 400 mastery for Godhuman?',
+        answer: 'Godhuman requires 400 mastery on NINE styles — every fighting style except Combat, Advanced Combat, and Sanguine Art (Dark Step, Electric, Water Kung Fu, Dragon Breath, Superhuman, Death Step, Sharkman Karate, Electric Claw, and Dragon Talon).'
+      },
+      {
+        question: 'What materials and currency does Godhuman itself cost?',
+        answer: 'Unlocking Godhuman itself costs $5,000,000 Beli + 5,000 fragments plus 20 Fish Tail, 20 Magma Ore, 10 Mystic Droplet, and 10 Dragon Scale.'
+      },
+      {
+        question: 'What are the mastery and key/quest requirements for Superhuman and V2 styles?',
+        answer: 'Superhuman ($3,000,000) needs 300+ mastery on Dark Step, Electric, Water Kung Fu, and Dragon Breath. Death Step needs 400 Dark Step + Library Key; Sharkman Karate needs 400+ Water Kung Fu + Water Key; Electric Claw needs 400 Electric + Previous Hero quest; Dragon Talon needs 400 Dragon Breath + Fire Essence.'
+      },
+      {
+        question: 'How much does each V2 fighting style cost?',
+        answer: 'Death Step and Sharkman Karate each cost $2,500,000 Beli + 5,000 fragments, while Electric Claw and Dragon Talon each cost $3,000,000 Beli + 5,000 fragments.'
+      }
+    ],
+    proTips: [
+      'Keep Dragon Breath in mind early: it costs 1,500 fragments with no Beli, while all other V1 styles use Beli ($150,000 / $500,000 / $750,000).',
+      'Level Dark Step, Electric, Water Kung Fu, and Dragon Breath to 300+ mastery first for Superhuman, then push all nine required styles to 400 mastery for Godhuman.'
+    ],
+    relatedToolIds: ['blox-fruits-mastery-calculator', 'blox-fruits-raid-calculator', 'blox-fruits-xp-calculator', 'blox-fruits-stat-calculator']
+  },
+  {
+    id: 'blox-fruits-gacha-calculator',
+    slug: 'blox-fruits-gacha-calculator',
+    name: 'Blox Fruits Gacha Cost Calculator',
+    gameId: 'roblox',
+    categoryId: 'calculators',
+    icon: 'Dices',
+    shortDescription: 'Calculate Zioles Blox Fruit Gacha prices by player level (25,000 + 150 × (level − 1) Beli), Premium ×0.8 discount, and multi-roll budgets.',
+    description: 'Exact Blox Fruits Gacha (Zioles) Cost Calculator using the verified Beli formula 25,000 + 150 × (player level − 1), with Premium/Plus ×0.8 discount support, multi-roll totals, minimum level 50 requirement, and 2-hour cooldown info. Exact gacha odds are not officially published.',
+    badge: 'Zioles Pricing',
+    rating: 4.97,
+    reviewsCount: 415,
+    userCount: '39k+ players',
+    featured: true,
+    tags: ['blox fruits', 'gacha', 'zioles', 'fruit roll cost', 'beli calculator', 'premium'],
+    seoTitle: 'Blox Fruits Gacha Cost Calculator – Zioles Beli Roll Formula',
+    metaDescription: 'Calculate your exact Blox Fruit Gacha (Zioles) roll price in Beli using 25,000 + 150 × (level − 1), with Premium ×0.8 discount and multi-roll total.',
+    h1: 'Blox Fruits Gacha Cost Calculator (Zioles Beli Price)',
+    canonicalPath: '/tools/blox-fruits-gacha-calculator',
+    howToGuide: {
+      overview: 'Enter your player level, toggle Premium/Plus (×0.8), and set how many rolls you want to budget.',
+      steps: [
+        { title: 'Enter Player Level', description: 'Type your current level (minimum level 50 to use the Blox Fruit Gacha).' },
+        { title: 'Toggle Premium / Plus', description: 'Turn on the ×0.8 Premium/Plus multiplier if applicable to reduce each roll\'s Beli price by 20%.' },
+        { title: 'Set Number of Rolls', description: 'Enter how many rolls you plan to buy (each roll is separated by a 2-hour cooldown).' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Blox Fruit Gacha (Zioles) Price Formula',
+      details: '• Standard Roll Price = 25,000 + 150 × (player level − 1) Beli\n• Premium / Plus Roll Price = [25,000 + 150 × (player level − 1)] × 0.8 Beli\n• Minimum Level: Level 50 required\n• Cooldown: 2-hour cooldown between rolls\n• Exact gacha odds are not officially published.',
+      mathSnippet: 'Price = 25,000 + 150 × (Level − 1) | Premium = Price × 0.8'
+    },
+    faqs: [
+      {
+        question: 'How is the Blox Fruit Gacha (Zioles) price calculated?',
+        answer: 'Each roll costs 25,000 + 150 × (player level − 1) Beli. At level 1,000, one roll costs 174,850 Beli (or 139,880 Beli with the Premium ×0.8 rate).'
+      },
+      {
+        question: 'How much does Premium/Plus save on Blox Fruits Gacha rolls?',
+        answer: 'Players with Premium/Plus pay ×0.8 of the standard Beli price per roll — saving 20% on every spin.'
+      },
+      {
+        question: 'What is the minimum level and cooldown for the Blox Fruit Gacha?',
+        answer: 'You must be at least level 50 to roll a random physical fruit from Zioles, and there is a 2-hour cooldown between rolls.'
+      },
+      {
+        question: 'Are Blox Fruit Gacha drop rates or rarity odds officially published?',
+        answer: 'Exact gacha odds are not officially published.'
+      },
+      {
+        question: 'What does a roll at level 1,000 cost with and without Premium?',
+        answer: 'At level 1,000, 1 roll costs 25,000 + 150 × 999 = 174,850 Beli without Premium, or 174,850 × 0.8 = 139,880 Beli with Premium.'
+      }
+    ],
+    proTips: [
+      'Lower-level accounts pay less per roll because the formula scales linearly by 150 Beli per level starting at minimum level 50.',
+      'Exact gacha odds are not officially published.'
+    ],
+    relatedToolIds: ['blox-fruits-fruit-spawn-timer', 'blox-fruits-trading-calculator', 'blox-fruits-fighting-style-calculator', 'blox-fruits-xp-calculator']
+  },
+  {
+    id: 'blox-fruits-fruit-spawn-timer',
+    slug: 'blox-fruits-fruit-spawn-timer',
+    name: 'Blox Fruits Fruit Spawn Timer',
+    gameId: 'roblox',
+    categoryId: 'gaming-utilities',
+    icon: 'Timer',
+    shortDescription: 'Live fruit spawn countdown (60 min weekday / 45 min weekend) and 20-minute uncollected fruit despawn timer across First, Second, and Third Sea.',
+    description: 'Live ticking Blox Fruits Fruit Spawn & Despawn Timer. Click "A Fruit Just Spawned" or "I Picked One Up" to track the next spawn (every 60 minutes, or every 45 minutes on weekends) and the 20-minute uncollected despawn window, with First Sea (25), Second Sea (28), and Third Sea (34) spawn point counts plus Fruit Notifier (2,700 Robux) info.',
+    badge: 'Live Timer',
+    rating: 4.98,
+    reviewsCount: 445,
+    userCount: '52k+ players',
+    featured: true,
+    tags: ['blox fruits', 'fruit spawn timer', 'despawn timer', 'fruit notifier', 'spawn points'],
+    seoTitle: 'Blox Fruits Fruit Spawn Timer – Live Spawn & 20m Despawn Clock',
+    metaDescription: 'Live Blox Fruits spawn countdown (60 min weekdays, 45 min weekends) and 20-minute uncollected fruit despawn timer for First, Second, and Third Sea.',
+    h1: 'Blox Fruits Fruit Spawn Timer (Live Spawn & 20-Min Despawn)',
+    canonicalPath: '/tools/blox-fruits-fruit-spawn-timer',
+    howToGuide: {
+      overview: 'Choose Weekday (60 min) or Weekend (45 min) mode and press a button whenever a fruit spawns or gets picked up.',
+      steps: [
+        { title: 'Select Weekday (60m) or Weekend (45m)', description: 'Pick the matching spawn cadence and choose your current Sea (25, 28, or 34 spawn points).' },
+        { title: 'Press "A Fruit Just Spawned"', description: 'Starts both the next-spawn countdown (60m or 45m) and the 20-minute uncollected fruit despawn countdown.' },
+        { title: 'Press "I Picked One Up"', description: 'Marks the active fruit as collected while keeping your next-spawn countdown ticking.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Verified Blox Fruits Spawn & Despawn Rules',
+      details: '• Spawn Interval: Every 60 minutes on weekdays; every 45 minutes on weekends\n• Despawn Window: Uncollected fruits despawn after 20 minutes\n• Spawn Points per Sea: 25 (First Sea), 28 (Second Sea), 34 (Third Sea)\n• Fruit Notifier Gamepass: Costs 2,700 Robux\n• Note: The Fruit Dealer\'s stock rotates every 4 hours (00/04/08/12/16/20 UTC) on all servers.',
+      mathSnippet: 'Weekday = 60 min | Weekend = 45 min | Despawn = 20 min'
+    },
+    faqs: [
+      {
+        question: 'How often do Blox Fruits spawn on weekdays vs weekends?',
+        answer: 'A natural fruit spawns every 60 minutes on weekdays and every 45 minutes on weekends.'
+      },
+      {
+        question: 'How long before an uncollected fruit despawns?',
+        answer: 'An uncollected fruit despawns 20 minutes after it spawns.'
+      },
+      {
+        question: 'How many fruit spawn points are in First Sea, Second Sea, and Third Sea?',
+        answer: 'There are 25 spawn points in First Sea, 28 spawn points in Second Sea, and 34 spawn points in Third Sea.'
+      },
+      {
+        question: 'How much does the Fruit Notifier gamepass cost?',
+        answer: 'The Fruit Notifier gamepass costs 2,700 Robux.'
+      },
+      {
+        question: 'How often does the Fruit Dealer stock rotate?',
+        answer: 'The Fruit Dealer\'s stock rotates every 4 hours (00/04/08/12/16/20 UTC) on all servers.'
+      }
+    ],
+    proTips: [
+      'Switch to the 45-minute Weekend mode on Saturdays and Sundays to keep your spawn alert synced with faster weekend spawns.',
+      'The Fruit Dealer\'s stock rotates every 4 hours (00/04/08/12/16/20 UTC) on all servers.'
+    ],
+    relatedToolIds: ['blox-fruits-gacha-calculator', 'blox-fruits-trading-calculator', 'blox-fruits-raid-calculator', 'blox-fruits-awakening-calculator']
   }
 ];
 

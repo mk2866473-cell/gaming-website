@@ -31,7 +31,7 @@ export const GAMES: GameInfo[] = [
     borderColor: 'border-rose-500/30',
     accentColor: 'text-rose-400',
     icon: 'Gamepad2',
-    badge: '12 Tools Available'
+    badge: '19 Tools Available'
   },
   {
     id: 'fortnite',
