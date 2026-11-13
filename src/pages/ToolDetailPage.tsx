@@ -61,6 +61,14 @@ const BloxFruitsRaidCalculator = React.lazy(() => import('../components/tools/Bl
 const BloxFruitsFightingStyleCalculator = React.lazy(() => import('../components/tools/BloxFruitsFightingStyleCalculator'));
 const BloxFruitsGachaCalculator = React.lazy(() => import('../components/tools/BloxFruitsGachaCalculator'));
 const BloxFruitsFruitSpawnTimer = React.lazy(() => import('../components/tools/BloxFruitsFruitSpawnTimer'));
+const RobloxUsernameGenerator = React.lazy(() => import('../components/tools/RobloxUsernameGenerator'));
+const RobloxFontGenerator = React.lazy(() => import('../components/tools/RobloxFontGenerator'));
+const RobloxUgcCalculator = React.lazy(() => import('../components/tools/RobloxUgcCalculator'));
+const RobloxGameRevenueEstimator = React.lazy(() => import('../components/tools/RobloxGameRevenueEstimator'));
+const RobloxShirtTemplateMaker = React.lazy(() => import('../components/tools/RobloxShirtTemplateMaker'));
+const RobloxThumbnailResizer = React.lazy(() => import('../components/tools/RobloxThumbnailResizer'));
+const RobloxStudsConverter = React.lazy(() => import('../components/tools/RobloxStudsConverter'));
+const RobloxBrickColorPicker = React.lazy(() => import('../components/tools/RobloxBrickColorPicker'));
 // Fortnite tools
 const FortniteXpCalculator = React.lazy(() => import('../components/tools/FortniteXpCalculator'));
 const FortniteBattlePassCalculator = React.lazy(() => import('../components/tools/FortniteBattlePassCalculator'));
@@ -314,6 +322,22 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <BloxFruitsGachaCalculator />;
       case 'blox-fruits-fruit-spawn-timer':
         return <BloxFruitsFruitSpawnTimer />;
+      case 'roblox-username-generator':
+        return <RobloxUsernameGenerator />;
+      case 'roblox-font-generator':
+        return <RobloxFontGenerator />;
+      case 'roblox-ugc-calculator':
+        return <RobloxUgcCalculator />;
+      case 'roblox-game-revenue-estimator':
+        return <RobloxGameRevenueEstimator />;
+      case 'roblox-shirt-template-maker':
+        return <RobloxShirtTemplateMaker />;
+      case 'roblox-thumbnail-resizer':
+        return <RobloxThumbnailResizer />;
+      case 'roblox-studs-converter':
+        return <RobloxStudsConverter />;
+      case 'roblox-brickcolor-picker':
+        return <RobloxBrickColorPicker />;
       case 'fortnite-xp-calculator':
         return <FortniteXpCalculator />;
       case 'fortnite-battle-pass-calculator':

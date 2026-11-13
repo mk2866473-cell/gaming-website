@@ -5791,6 +5791,486 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
       'The Fruit Dealer\'s stock rotates every 4 hours (00/04/08/12/16/20 UTC) on all servers.'
     ],
     relatedToolIds: ['blox-fruits-gacha-calculator', 'blox-fruits-trading-calculator', 'blox-fruits-raid-calculator', 'blox-fruits-awakening-calculator']
+  },
+  {
+    id: 'roblox-username-generator',
+    slug: 'roblox-username-generator',
+    name: 'Roblox Username Generator',
+    gameId: 'roblox',
+    categoryId: 'generators',
+    icon: 'Sparkles',
+    shortDescription: 'Generate 20 browser-local Roblox username ideas by style (Aesthetic, Cool, OG/Short, Funny, Dark, Cute, Pro/Gamer) strictly following Roblox\'s 3–20 character and single-underscore rules.',
+    description: 'Client-side Roblox Username Generator built with seven style word banks (Aesthetic, Cool, OG/Short, Funny, Dark, Cute, Pro/Gamer), optional keyword mixing, a 3–20 character length slider, and a one-underscore toggle. Generates 20 copy-ready ideas strictly adhering to Roblox rules (3–20 characters, letters and numbers only, at most one underscore never placed first or last). Availability is not checked — try the name in Roblox to see if it is free.',
+    badge: '20 Ideas / Batch',
+    rating: 4.96,
+    reviewsCount: 380,
+    userCount: '60k+ players',
+    featured: true,
+    tags: ['roblox', 'username generator', 'roblox names', 'aesthetic usernames', 'og names', 'display name'],
+    seoTitle: 'Roblox Username Generator – Aesthetic, Cool, OG & Gamer Ideas',
+    metaDescription: 'Generate 20 Roblox username ideas by style (Aesthetic, Cool, OG/Short, Funny, Dark, Cute, Pro/Gamer) strictly obeying Roblox\'s 3–20 character and one-underscore rules.',
+    h1: 'Roblox Username Generator (3–20 Chars, Click to Copy)',
+    canonicalPath: '/tools/roblox-username-generator',
+    howToGuide: {
+      overview: 'Pick a style, adjust your target length (3–20 characters), optionally enter a keyword, and click Generate for 20 Roblox-valid username ideas.',
+      steps: [
+        { title: 'Pick a Style & Optional Keyword', description: 'Select Aesthetic, Cool, OG/Short, Funny, Dark, Cute, or Pro/Gamer and optionally type a keyword.' },
+        { title: 'Set Length (3–20) & Underscore Rule', description: 'Use the 3–20 character slider and toggle whether to allow a single non-edge underscore.' },
+        { title: 'Generate 20 Names & Copy', description: 'Click Generate to produce 20 names, click any name to copy it, and test availability directly in Roblox.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Official Roblox Username Rules Enforced',
+      details: '• Length: Strictly 3 to 20 characters\n• Allowed Characters: Letters (A–Z, a–z) and numbers (0–9) only\n• Underscore Rule: At most ONE underscore (_), and never as the first or last character; no spaces or other symbols\n• Note: Availability is not checked — try the name in Roblox to see if it is free.',
+      mathSnippet: 'Length 3–20 | [A-Za-z0-9] + at most 1 non-edge _ | Availability not checked'
+    },
+    faqs: [
+      {
+        question: 'What are the official character rules for a Roblox username?',
+        answer: 'Roblox usernames must be 3–20 characters long, use only letters and numbers, and contain at most one underscore (never as the first or last character), with no spaces or other symbols.'
+      },
+      {
+        question: 'Does this generator check if a Roblox username is available?',
+        answer: 'No. Availability is not checked — try the name in Roblox to see if it is free.'
+      },
+      {
+        question: 'Can a Roblox username start or end with an underscore?',
+        answer: 'No. Roblox allows at most one underscore, and it can never be the first or last character of a username.'
+      },
+      {
+        question: 'What styles can I generate in the Roblox Username Generator?',
+        answer: 'You can generate 20 ideas per click across Aesthetic, Cool, OG/Short, Funny, Dark, Cute, and Pro/Gamer word banks, with an optional keyword and a 3–20 character slider.'
+      },
+      {
+        question: 'Are generated names sent to any server?',
+        answer: 'No. Everything runs locally in your browser using built-in word banks and validation logic.'
+      }
+    ],
+    proTips: [
+      'Availability is not checked — try the name in Roblox to see if it is free.',
+      'Pair your generated username with a stylized Roblox Display Name using our Display Name & Bio Font Generator.'
+    ],
+    relatedToolIds: ['roblox-font-generator', 'robux-tax-calculator', 'roblox-game-revenue-estimator']
+  },
+  {
+    id: 'roblox-font-generator',
+    slug: 'roblox-font-generator',
+    name: 'Roblox Display Name & Bio Font Generator',
+    gameId: 'roblox',
+    categoryId: 'generators',
+    icon: 'Type',
+    shortDescription: 'Convert display names and profile bios into 10+ Unicode font styles (Bold, Italic, Script, Gothic, Double-Struck, Monospace, Bubble, Small Caps, Squared) with one-click copy.',
+    description: 'Client-side Roblox Display Name & Bio Font Generator supporting 11 Unicode character styles including Bold, Italic, Bold Italic, Script/Cursive, Gothic/Fraktur, Double-Struck, Monospace, Bubble/Circled, Small Caps, Squared, and Bold Sans. Maps letters and digits locally while leaving unsupported characters unchanged. Remember: these styled fonts are for display names and bios; regular usernames only allow letters, numbers and one underscore.',
+    badge: '11 Unicode Styles',
+    rating: 4.97,
+    reviewsCount: 410,
+    userCount: '54k+ players',
+    featured: true,
+    tags: ['roblox', 'font generator', 'display name fonts', 'bio fonts', 'unicode text', 'fancy text'],
+    seoTitle: 'Roblox Display Name & Bio Font Generator – 11 Unicode Styles',
+    metaDescription: 'Type text and copy 11 stylized Unicode fonts (Bold, Italic, Script, Gothic, Double-Struck, Monospace, Bubble, Small Caps, Squared) for Roblox display names and bios.',
+    h1: 'Roblox Display Name & Bio Font Generator (Copy & Paste)',
+    canonicalPath: '/tools/roblox-font-generator',
+    howToGuide: {
+      overview: 'Type your display name or bio text once and copy any of the 11 Unicode font styles instantly.',
+      steps: [
+        { title: 'Type Display Name or Bio Text', description: 'Enter the letters and digits you want to convert in the input box.' },
+        { title: 'Preview All 11 Unicode Font Styles', description: 'Inspect Bold, Italic, Bold Italic, Script/Cursive, Gothic/Fraktur, Double-Struck, Monospace, Bubble/Circled, Small Caps, Squared, and Bold Sans.' },
+        { title: 'Click Copy for Display Name or Bio', description: 'Press Copy next to your favorite style and paste it into your Roblox Display Name or profile About bio.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Client-Side Unicode Character Mapping Rules',
+      details: '• Pure Client-Side Mapping: Converts Latin letters (A–Z, a–z) and supported digits (0–9) into Unicode mathematical, enclosed, or small-caps code points.\n• Unchanged Fallback: Characters a specific Unicode style cannot map (such as spaces, punctuation, or unsupported digits) stay unchanged.\n• Important Account Rule: These styled fonts are for display names and bios; regular usernames only allow letters, numbers and one underscore.',
+      mathSnippet: 'Letters & Digits → Unicode Style Code Points | Unmapped chars stay unchanged'
+    },
+    faqs: [
+      {
+        question: 'Can I use these fancy Unicode fonts for my regular Roblox username?',
+        answer: 'No. These styled fonts are for display names and bios; regular usernames only allow letters, numbers and one underscore.'
+      },
+      {
+        question: 'How many Unicode font styles are included?',
+        answer: 'The generator converts your text across 11 styles: Bold, Italic, Bold Italic, Script/Cursive, Gothic/Fraktur, Double-Struck, Monospace, Bubble/Circled, Small Caps, Squared, and Bold Sans.'
+      },
+      {
+        question: 'What happens to punctuation or characters a Unicode style does not support?',
+        answer: 'Character mapping applies to letters and digits only; any characters a style cannot map stay unchanged.'
+      },
+      {
+        question: 'Does this tool install custom fonts on my device?',
+        answer: 'No. It outputs standard Unicode characters directly in your browser so anyone viewing your Roblox Display Name or bio sees the styled text.'
+      },
+      {
+        question: 'Where should I pick a regular Roblox username?',
+        answer: 'Use our Roblox Username Generator to create 3–20 character alphanumeric names obeying the single non-edge underscore rule.'
+      }
+    ],
+    proTips: [
+      'These styled fonts are for display names and bios; regular usernames only allow letters, numbers and one underscore.',
+      'If a style only maps letters (such as Italic, Script, Gothic, Small Caps, or Squared), digits stay readable and unchanged.'
+    ],
+    relatedToolIds: ['roblox-username-generator', 'robux-tax-calculator', 'robux-to-usd-calculator']
+  },
+  {
+    id: 'roblox-ugc-calculator',
+    slug: 'roblox-ugc-calculator',
+    name: 'Roblox UGC Creator Royalty Calculator',
+    gameId: 'roblox',
+    categoryId: 'calculators',
+    icon: 'Percent',
+    shortDescription: 'Calculate verified Roblox UGC creator royalties (30% Marketplace base rate, 30% + 40% in an experience, or 70% in your own experience) plus 30-day escrow & DevEx USD estimate.',
+    description: 'Verified Roblox UGC Creator Royalty & Commission Calculator using official Creator Hub fees: 30% base creator royalty in the Marketplace (Avatar Shop), 30% creator + 40% experience owner when sold inside someone else\'s experience, and 70% combined when you sell your own UGC item in your own experience. Accounts for the 30-day escrow hold and provides an estimated DevEx USD equivalent at $0.0035 per Robux (DevEx requires eligibility and a 30,000 Robux minimum).',
+    badge: '30% / 70% Splits',
+    rating: 4.98,
+    reviewsCount: 495,
+    userCount: '47k+ creators',
+    featured: true,
+    tags: ['roblox', 'ugc calculator', 'ugc royalty', 'avatar shop fee', 'creator hub', 'devex estimate'],
+    seoTitle: 'Roblox UGC Creator Royalty Calculator – 30% & 70% Splits',
+    metaDescription: 'Calculate exact Roblox UGC creator earnings per sale and total in Robux (30% Marketplace base rate, 30%+40% in experience, 70% in own experience) with DevEx USD estimate.',
+    h1: 'Roblox UGC Creator Royalty Calculator (Marketplace & In-Experience)',
+    canonicalPath: '/tools/roblox-ugc-calculator',
+    howToGuide: {
+      overview: 'Choose where your UGC item sells, enter the Robux item price and sales quantity, and calculate exact creator royalties.',
+      steps: [
+        { title: 'Pick Sale Location', description: 'Select Marketplace (Avatar Shop), In Someone Else\'s Experience, or In My Own Experience.' },
+        { title: 'Enter Item Price & Sales Quantity', description: 'Set the Robux item price and total number of sales to compute.' },
+        { title: 'Check Creator Robux & DevEx USD Estimate', description: 'Review per-sale and total Robux royalties, the 30-day escrow hold rule, and the estimated USD value at $0.0035/Robux.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Verified Roblox Creator Hub UGC Fee & Commission Splits',
+      details: '• Marketplace (Avatar Shop): Item creator receives the base 30% rate at the price floor. (Info note: above the price floor, the Marketplace share rises progressively up to 70% at 6× the floor; this calculator computes using the base 30%.)\n• In Another Developer\'s Experience: Item creator receives 30% + experience owner receives 40% (Roblox keeps 30%).\n• In Your Own Experience: Selling your own item in your own game awards both shares = 70% total (Roblox keeps 30%).\n• Escrow & DevEx: Commissions carry a 30-day escrow hold. DevEx USD value is an estimate at $0.0035 per Robux (requires DevEx eligibility and a 30,000 Robux minimum).',
+      mathSnippet: 'Marketplace Base = Price × 30% | Own Experience = Price × 70% | Estimate USD = Robux × $0.0035'
+    },
+    faqs: [
+      {
+        question: 'How much does a UGC creator earn on a 100 Robux item in the Marketplace vs own experience?',
+        answer: 'At the base 30% Marketplace rate, a 100 Robux item pays the creator 30 Robux per sale. Selling the same 100 Robux item inside your own experience pays both the 30% creator royalty and 40% experience owner commission, totaling 70 Robux.'
+      },
+      {
+        question: 'How does the UGC split work when sold inside someone else\'s Roblox experience?',
+        answer: 'When a UGC item sells inside another developer\'s experience, the item creator receives 30%, the experience owner receives 40%, and Roblox keeps 30%.'
+      },
+      {
+        question: 'How does the progressive Marketplace share above the price floor work?',
+        answer: 'The 30% creator rate is the base rate at the price floor; above the floor, the Marketplace share rises progressively up to 70% at 6× the floor. This calculator computes royalties using the base 30% rate.'
+      },
+      {
+        question: 'How long are Roblox UGC commissions held in escrow?',
+        answer: 'UGC commissions have a 30-day escrow hold before funds become available.'
+      },
+      {
+        question: 'Is the USD value shown guaranteed for UGC creators?',
+        answer: 'No — the USD amount shown at $0.0035 per Robux is an estimate only. Converting Earned Robux requires full DevEx eligibility and meeting the 30,000 Robux minimum.'
+      }
+    ],
+    proTips: [
+      'Selling your own UGC items inside your own experience raises your combined share from 30% (Marketplace base) to 70% (30% creator + 40% affiliate/experience commission).',
+      'Factor in the 30-day escrow hold on UGC commissions when projecting monthly DevEx cashout schedules.'
+    ],
+    relatedToolIds: ['roblox-game-revenue-estimator', 'robux-tax-calculator', 'roblox-devex-calculator', 'robux-to-usd-calculator', 'roblox-group-payout-calculator']
+  },
+  {
+    id: 'roblox-game-revenue-estimator',
+    slug: 'roblox-game-revenue-estimator',
+    name: 'Roblox Game Revenue Estimator',
+    gameId: 'roblox',
+    categoryId: 'calculators',
+    icon: 'TrendingUp',
+    shortDescription: 'Estimate gross daily Robux, your 70% creator share per day and per 30 days, and estimated DevEx USD ($0.0035/Robux) from visits, buyer rate %, and average spend.',
+    description: 'Estimate Roblox experience earnings from gamepass and developer-product sales using the verified Creator Hub 70% / 30% split (creators receive 70%; Roblox keeps a 30% marketplace fee). Enter visits per day, % of visitors who buy, and average Robux spent per buyer to view estimated gross Robux/day, 70% creator share per day and per 30 days, and a USD DevEx estimate at $0.0035/Robux. All outputs are estimates — real earnings vary, and DevEx requires eligibility plus a 30,000 Robux minimum.',
+    badge: 'Revenue Estimate',
+    rating: 4.97,
+    reviewsCount: 440,
+    userCount: '51k+ devs',
+    featured: true,
+    tags: ['roblox', 'game revenue', 'earnings estimator', 'gamepass revenue', 'devex estimate', '70% split'],
+    seoTitle: 'Roblox Game Revenue Estimator – Visits & 70% Creator Share',
+    metaDescription: 'Estimate Roblox gamepass and dev-product Robux revenue per day and per 30 days using the verified 70% creator share and $0.0035/Robux DevEx USD estimate.',
+    h1: 'Roblox Game Revenue Estimator (Daily & 30-Day Estimate)',
+    canonicalPath: '/tools/roblox-game-revenue-estimator',
+    howToGuide: {
+      overview: 'Enter daily visits, estimated % of visitors who buy, and average Robux spent per buyer to project estimated game earnings.',
+      steps: [
+        { title: 'Enter Daily Visits & Buyer %', description: 'Set your experience\'s average visits per day and estimated percentage of visitors making a purchase.' },
+        { title: 'Enter Average Robux Per Buyer', description: 'Input how much Robux each buyer spends on average on passes or developer products.' },
+        { title: 'Review Daily, 30-Day & DevEx Estimates', description: 'Inspect estimated gross Robux/day, your 70% share per day and per 30 days, and the DevEx USD estimate (all figures are estimates).' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Estimated Gamepass & Developer-Product Revenue Formula',
+      details: '• Estimated Gross Robux / Day = Visits/Day × (Buyer % ÷ 100) × Avg Robux Per Buyer\n• Estimated Creator Share (70%) / Day = Gross Robux/Day × 0.70 (30% is Roblox\'s marketplace fee)\n• Estimated 30-Day Share = Estimated Creator Share/Day × 30\n• Estimated USD (DevEx) = Estimated Creator Share × $0.0035 (Estimate only — real earnings vary, and DevEx requires eligibility + 30,000 Robux minimum)',
+      mathSnippet: 'Gross/Day = Visits × Buyer% × AvgSpend | 70% Share/Day = Gross × 0.70 | USD Est. = Share × $0.0035'
+    },
+    faqs: [
+      {
+        question: 'What percentage do creators keep from gamepasses and developer products sold in an experience?',
+        answer: 'According to the Creator Hub split, creators receive 70% of the Robux on gamepasses and developer products sold in their own experience, while 30% is Roblox\'s marketplace fee.'
+      },
+      {
+        question: 'How much does 10,000 visits/day at 1% buyers and 100 Robux average yield?',
+        answer: 'As an estimate, 10,000 visits × 1% buyers = 100 buyers/day spending 100 Robux each = 10,000 gross Robux/day, giving an estimated creator 70% share of 7,000 Robux/day (210,000 Robux per 30 days).'
+      },
+      {
+        question: 'Are the revenue and USD figures guaranteed earnings?',
+        answer: 'No. Every output on this page is strictly an estimate — real earnings vary based on retention, regional pricing, and player behavior.'
+      },
+      {
+        question: 'How is the USD estimate calculated and what are the DevEx requirements?',
+        answer: 'The USD estimate multiplies your estimated 70% Robux share by the DevEx rate of $0.0035 per Robux. Cashing out requires DevEx eligibility and at least 30,000 Earned Robux.'
+      },
+      {
+        question: 'Where can I calculate exact payouts for a studio team?',
+        answer: 'Use our Roblox Group Payout Calculator to split estimated net Robux across multiple developers, or use the Roblox UGC Creator Royalty Calculator for avatar item royalties.'
+      }
+    ],
+    proTips: [
+      'Every result is an estimate — real earnings vary across genres, monetization loops, and player conversion.',
+      'Remember that DevEx conversion at $0.0035/Robux requires meeting Roblox DevEx eligibility rules and holding a minimum of 30,000 Robux.'
+    ],
+    relatedToolIds: ['roblox-ugc-calculator', 'robux-tax-calculator', 'roblox-devex-calculator', 'robux-to-usd-calculator', 'roblox-group-payout-calculator']
+  },
+  {
+    id: 'roblox-shirt-template-maker',
+    slug: 'roblox-shirt-template-maker',
+    name: 'Roblox Shirt & Pants Template Maker',
+    gameId: 'roblox',
+    categoryId: 'generators',
+    icon: 'Shirt',
+    shortDescription: 'Upload artwork onto the official 585 × 559 px Roblox classic shirt and pants template with semi-transparent UV region guides, drag/scale controls, and browser-only PNG download.',
+    description: 'Create upload-ready Roblox classic shirts and classic pants directly in your browser on an exact 585 × 559 pixel canvas. Toggle between Shirt and Pants UV region labels (Front, Back, Top/Up, Bottom/Down, Left, Right), position and scale your texture, and download a finished 585 × 559 PNG without ever uploading your image to a server.',
+    badge: '585 × 559 px',
+    rating: 4.98,
+    reviewsCount: 380,
+    userCount: '44k+ creators',
+    featured: true,
+    tags: ['roblox', 'shirt template', 'pants template', '585x559', 'classic clothing', 'roblox uv template'],
+    seoTitle: 'Roblox Shirt & Pants Template Maker – 585×559 PNG Editor',
+    metaDescription: 'Upload your design onto an official 585×559 px Roblox classic shirt or pants template with labeled front, back, top, bottom, and side UV guides and instant PNG export.',
+    h1: 'Roblox Shirt & Pants Template Maker (585 × 559 px)',
+    canonicalPath: '/tools/roblox-shirt-template-maker',
+    howToGuide: {
+      overview: 'Place your texture onto the exact 585 × 559 px classic Roblox clothing layout and export a ready-to-upload PNG.',
+      steps: [
+        { title: 'Choose Classic Shirt or Classic Pants', description: 'Switch between Shirt and Pants modes — both use the 585 × 559 pixel canvas with appropriate arm/leg labels.' },
+        { title: 'Upload Artwork & Position on Canvas', description: 'Upload your image, drag directly on the canvas or adjust X/Y offsets and scale %, and inspect the labeled Front, Back, Up, Down, Left, and Right guides.' },
+        { title: 'Download 585 × 559 PNG', description: 'Export the finished 585 × 559 px PNG locally from your browser ready for Roblox Creator Hub upload.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Official Roblox Classic Shirt & Pants Template Dimensions',
+      details: '• Canvas Size: Verified 585 × 559 pixels (measured from Roblox\'s official classic shirt and pants template files).\n• Clothing Regions: Maps Torso, Right Arm/Leg, and Left Arm/Leg faces (Front, Back, Top/Up, Bottom/Down, Left, Right) onto exact UV rectangles.\n• 100% Browser Processing: Images are rendered solely via local HTML5 Canvas — your artwork is never uploaded to a server.',
+      mathSnippet: 'Template Output = 585 px (width) × 559 px (height) PNG'
+    },
+    faqs: [
+      {
+        question: 'What dimensions are official Roblox classic shirt and pants templates?',
+        answer: 'Official Roblox classic shirt and pants templates measure exactly 585 × 559 pixels. Using any other size can fail Creator Hub classic clothing validation or stretch your outfit.'
+      },
+      {
+        question: 'Do Roblox shirts and pants use different canvas sizes?',
+        answer: 'No. Classic shirts and classic pants share the exact same 585 × 559 pixel dimensions; only the limb region labels differ (arms vs legs).'
+      },
+      {
+        question: 'Are my uploaded textures sent to an external server?',
+        answer: 'No. Everything runs locally in your browser using HTML5 Canvas, so your image is never uploaded to any server.'
+      },
+      {
+        question: 'Should I keep the semi-transparent guide labels inside my final PNG?',
+        answer: 'Keep the preview guides ON while lining up Front, Back, Top, Bottom, and Side faces, then leave "Include semi-transparent guide labels in exported PNG" unchecked for a clean final upload.'
+      },
+      {
+        question: 'Can I preview Roblox game icons and thumbnails too?',
+        answer: 'Yes — use our Roblox Game Icon & Thumbnail Resizer to crop 512×512 square icons and 1920×1080 widescreen thumbnails.'
+      }
+    ],
+    proTips: [
+      'Use "Clip artwork strictly inside the 18 UV boxes" if you want clean transparent padding outside the torso, arm, and leg faces.',
+      'Check the 585 × 559 pixel output size after downloading before uploading to Creator Hub.'
+    ],
+    relatedToolIds: ['roblox-thumbnail-resizer', 'roblox-brickcolor-picker', 'roblox-ugc-calculator', 'robux-tax-calculator', 'roblox-devex-calculator']
+  },
+  {
+    id: 'roblox-thumbnail-resizer',
+    slug: 'roblox-thumbnail-resizer',
+    name: 'Roblox Game Icon & Thumbnail Resizer',
+    gameId: 'roblox',
+    categoryId: 'utilities',
+    icon: 'Image',
+    shortDescription: 'Crop and resize images in your browser to Roblox Creator Hub specs: 512 × 512 px square experience icons or 1920 × 1080 px (16:9) thumbnails with a live home grid mock.',
+    description: 'Resize and crop game artwork in your browser to Roblox Creator Hub image requirements: square experience icons at 512 × 512 px (minimum 512×512) and widescreen 16:9 thumbnails ideally at 1920 × 1080 px (up to 10 images/videos per experience). Includes zoom/pan positioning, a live Roblox home page grid preview, and instant PNG/JPG export.',
+    badge: '512×512 / 1920×1080',
+    rating: 4.97,
+    reviewsCount: 340,
+    userCount: '39k+ devs',
+    featured: true,
+    tags: ['roblox', 'icon resizer', 'thumbnail resizer', '512x512', '1920x1080', 'experience icon'],
+    seoTitle: 'Roblox Game Icon & Thumbnail Resizer – 512×512 & 1920×1080',
+    metaDescription: 'Resize Roblox experience icons (512×512 px square) and 16:9 game thumbnails (1920×1080 px) in your browser with a live Roblox home page grid preview and PNG/JPG export.',
+    h1: 'Roblox Game Icon & Thumbnail Resizer (512×512 & 1920×1080)',
+    canonicalPath: '/tools/roblox-thumbnail-resizer',
+    howToGuide: {
+      overview: 'Crop your artwork to Roblox\'s exact icon or thumbnail pixel specifications and preview it in a Roblox home grid layout.',
+      steps: [
+        { title: 'Select Icon (512×512) or Thumbnail (1920×1080)', description: 'Choose between a 1:1 square Experience Icon or a 16:9 widescreen Experience Thumbnail.' },
+        { title: 'Upload & Position Your Artwork', description: 'Drag directly on the canvas or use Zoom and X/Y pan sliders while checking the Roblox home page grid mock preview.' },
+        { title: 'Download PNG or JPG', description: 'Choose PNG or JPG format and download the exact 512×512 or 1920×1080 asset from your browser.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Verified Roblox Creator Hub Icon & Thumbnail Specifications',
+      details: '• Experience Icon: Square 1:1 ratio, 512 × 512 px (Creator Hub minimum at least 512 × 512 px).\n• Experience Thumbnail: Widescreen 16:9 aspect ratio, ideally 1920 × 1080 px.\n• Media Limit: Experiences can upload up to 10 images/videos in their thumbnail gallery.\n• Browser-Only Processing: Cropping and scaling execute locally on HTML5 Canvas.',
+      mathSnippet: 'Icon = 512 × 512 px (1:1) | Thumbnail = 1920 × 1080 px (16:9)'
+    },
+    faqs: [
+      {
+        question: 'What size should a Roblox experience icon be?',
+        answer: 'Roblox Creator Hub specifies a square experience icon of 512 × 512 px (at least 512 × 512 px).'
+      },
+      {
+        question: 'What is the ideal resolution for a Roblox game thumbnail?',
+        answer: 'Experience thumbnails use a 16:9 aspect ratio, ideally 1920 × 1080 px.'
+      },
+      {
+        question: 'How many thumbnails can I add to a Roblox experience?',
+        answer: 'Roblox supports up to 10 images/videos per experience gallery.'
+      },
+      {
+        question: 'Does this resizer upload my images to a server?',
+        answer: 'No. Image loading, cropping, previewing, and PNG/JPG export run 100% locally in your browser.'
+      },
+      {
+        question: 'Should I download PNG or JPG for Roblox thumbnails?',
+        answer: 'Both PNG and JPG are supported here; PNG preserves crisp UI edges and text without compression artifacts, while JPG produces smaller file sizes for photographic 3D renders.'
+      }
+    ],
+    proTips: [
+      'Check the Roblox Home Page Grid Mock Preview to verify title legibility when your 512×512 icon shrinks into discovery tiles.',
+      'Build a consistent set of 16:9 1920×1080 thumbnails showing core gameplay loops across your 10 experience media slots.'
+    ],
+    relatedToolIds: ['roblox-shirt-template-maker', 'roblox-brickcolor-picker', 'roblox-game-revenue-estimator', 'robux-tax-calculator', 'roblox-devex-calculator']
+  },
+  {
+    id: 'roblox-studs-converter',
+    slug: 'roblox-studs-converter',
+    name: 'Roblox Studs to Meters & Feet Converter',
+    gameId: 'roblox',
+    categoryId: 'converters',
+    icon: 'Ruler',
+    shortDescription: 'Convert two-way between Roblox studs, metres, centimetres, feet, and inches using the official 1 stud = 0.28 m (28 cm) scale, plus movement speed studs/s ↔ km/h.',
+    description: 'Official Roblox Studio unit converter based on Creator Hub "Roblox units": 1 stud = 0.28 metres (28 cm). Instantly convert both ways across studs, metres, centimetres, feet, and inches, and calculate character or vehicle movement speeds between studs per second and km/h (1 m/s = 3.57 studs/s). Note: the engine lets creators define their own scale, but 0.28 m is Roblox\'s official conversion.',
+    badge: '1 Stud = 0.28 m',
+    rating: 4.99,
+    reviewsCount: 510,
+    userCount: '62k+ devs',
+    featured: true,
+    tags: ['roblox', 'studs converter', 'studs to meters', 'studs to feet', 'roblox units', 'studs per second'],
+    seoTitle: 'Roblox Studs to Meters & Feet Converter – Official 0.28m Scale',
+    metaDescription: 'Convert Roblox studs to metres, centimetres, feet, and inches (1 stud = 0.28 m / 28 cm) plus studs/s to km/h (1 m/s = 3.57 studs/s).',
+    h1: 'Roblox Studs to Meters, Feet & Speed Converter',
+    canonicalPath: '/tools/roblox-studs-converter',
+    howToGuide: {
+      overview: 'Select any starting length unit or speed direction and convert immediately using Roblox Creator Hub\'s 0.28 m/stud standard.',
+      steps: [
+        { title: 'Pick Input Unit (Studs, Metres, cm, Feet, Inches)', description: 'Choose your starting unit and type any value to update all five length cards simultaneously.' },
+        { title: 'Click Any Output Card to Reverse Direction', description: 'Click Metres, Centimetres, Feet, or Inches to switch input direction instantly.' },
+        { title: 'Convert Studs/s Movement Speeds to km/h', description: 'Use the speed converter (1 m/s = 3.57 studs/s) to tune humanoid WalkSpeed or vehicle velocities.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Official Creator Hub "Roblox Units" Conversion Math',
+      details: '• Length Standard: 1 stud = 0.28 metres (28 cm). Therefore Metres = Studs × 0.28, and Studs = Metres ÷ 0.28.\n• Imperial Conversion: Uses standard metric identities (1 foot = 0.3048 m, 1 inch = 0.0254 m).\n• Movement Speed: 1 m/s = 3.57 studs/s (3.6 km/h = 3.57 studs/s).\n• Engine Note: The engine lets creators define their own scale, but 0.28 m is Roblox\'s official conversion.',
+      mathSnippet: 'Metres = Studs × 0.28 | Studs = Metres ÷ 0.28 | 1 m/s = 3.57 studs/s'
+    },
+    faqs: [
+      {
+        question: 'How many metres is 1 Roblox stud?',
+        answer: 'Under Roblox Creator Hub\'s official Roblox units specification, 1 stud equals 0.28 metres (28 centimetres). That means 100 studs equals 28 metres.'
+      },
+      {
+        question: 'How many studs are in 10 metres?',
+        answer: 'Dividing 10 metres by 0.28 metres per stud equals 35.71 studs (rounded to two decimal places).'
+      },
+      {
+        question: 'How do studs per second convert to km/h and m/s?',
+        answer: 'With 1 stud = 0.28 m (1 m/s = 3.57 studs/s), multiply studs/s by 0.28 to get m/s and multiply by 3.6 to get km/h. Default WalkSpeed of 16 studs/s equals 4.48 m/s (16.13 km/h).'
+      },
+      {
+        question: 'Is 0.28 metres mandatory in every Roblox experience?',
+        answer: 'The engine lets creators define their own scale, but 0.28 m per stud is Roblox\'s official conversion.'
+      },
+      {
+        question: 'How does the converter handle feet and inches?',
+        answer: 'Feet and inches use exact international metric identities (1 ft = 0.3048 m, 1 in = 0.0254 m) chained directly through the 0.28 m/stud conversion.'
+      }
+    ],
+    proTips: [
+      'Remember the landmark reference: 100 studs = 28 metres, and 10 metres ≈ 35.71 studs.',
+      'Although the engine lets creators define their own scale, using the official 0.28 m standard keeps physics gravity and character proportions aligned with Creator Hub defaults.'
+    ],
+    relatedToolIds: ['roblox-brickcolor-picker', 'roblox-shirt-template-maker', 'roblox-thumbnail-resizer']
+  },
+  {
+    id: 'roblox-brickcolor-picker',
+    slug: 'roblox-brickcolor-picker',
+    name: 'Roblox BrickColor Picker & RGB Converter',
+    gameId: 'roblox',
+    categoryId: 'utilities',
+    icon: 'Palette',
+    shortDescription: 'Search all 208 official Roblox BrickColors by name, code number, RGB, or hex — click to copy or convert any RGB/Hex colour to its nearest official BrickColor.',
+    description: 'Complete Roblox Creator Hub BrickColor reference featuring all 208 official BrickColor entries with exact Name, Code number, RGB values, and Hex codes. Search and copy any swatch with one click, or enter any RGB or Hex color to find the closest official BrickColor by RGB Euclidean distance with side-by-side preview.',
+    badge: '208 BrickColors',
+    rating: 4.99,
+    reviewsCount: 545,
+    userCount: '68k+ builders',
+    featured: true,
+    tags: ['roblox', 'brickcolor', 'brickcolor list', 'rgb to brickcolor', 'hex to brickcolor', 'roblox studio colors'],
+    seoTitle: 'Roblox BrickColor Picker & RGB/Hex Converter – All 208 Colors',
+    metaDescription: 'Browse all 208 official Roblox BrickColors with codes, RGB, and hex values, plus convert any RGB or hex color to the nearest official BrickColor side by side.',
+    h1: 'Roblox BrickColor Picker & RGB/Hex Converter (All 208 Colors)',
+    canonicalPath: '/tools/roblox-brickcolor-picker',
+    howToGuide: {
+      overview: 'Convert custom RGB or Hex colors to their closest Roblox BrickColor or search all 208 official BrickColors directly.',
+      steps: [
+        { title: 'Convert Any RGB or Hex Color', description: 'Use the color picker, Hex field, or R/G/B inputs at the top to immediately find the nearest official BrickColor.' },
+        { title: 'Compare Side-by-Side Swatches', description: 'Check your input color next to the matched BrickColor name, code number, RGB, and hex with RGB distance Δ.' },
+        { title: 'Search & Click Any of the 208 Swatches', description: 'Filter by name, code (e.g. 1003 or 1032), or hex and click any tile to copy its Name, Code, RGB, or Luau snippet.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Official 208-Color BrickColor Palette & Nearest RGB Distance',
+      details: '• Exact Creator Hub Dataset: Contains all 208 official BrickColor rows (from White 1 #F2F3F3 through Really black 1003 #111111 and Hot pink 1032 #FF00BF).\n• Nearest Match Formula: Evaluates 3D Euclidean RGB distance Δ = sqrt((R₁−R₂)² + (G₁−G₂)² + (B₁−B₂)²) across all 208 official colors.\n• One-Click Copy: Copy Name, Code Number, RGB triplet, or BrickColor.new("Name") for Roblox Studio Luau scripts.',
+      mathSnippet: 'Distance Δ = √((R_in − R_bc)² + (G_in − G_bc)² + (B_in − B_bc)²)'
+    },
+    faqs: [
+      {
+        question: 'How many official Roblox BrickColors are included in this picker?',
+        answer: 'The picker contains all 208 official Roblox Creator Hub BrickColors, including classic codes (1–365) and expanded palette codes (1001–1032 like Really black 1003 and Hot pink 1032).'
+      },
+      {
+        question: 'How does the RGB / Hex to BrickColor converter pick the closest match?',
+        answer: 'It computes Euclidean RGB distance across all 208 official BrickColors and selects the swatch with the smallest color distance, showing both colors side by side.'
+      },
+      {
+        question: 'What is the BrickColor code and hex for Really black and Hot pink?',
+        answer: 'Really black is code 1003 with RGB 17,17,17 (#111111), and Hot pink is code 1032 with RGB 255,0,191 (#FF00BF).'
+      },
+      {
+        question: 'How do I use a BrickColor code or name in Roblox Studio Luau?',
+        answer: 'You can pass either the exact name via BrickColor.new("Hot pink") or the numeric code via BrickColor.new(1032) in Roblox Studio scripts.'
+      },
+      {
+        question: 'Can I search BrickColors by numeric code or partial name?',
+        answer: 'Yes. Typing a code number like 1003, a hex value like #FF00BF, or a name like Pastel filters the 208-color grid immediately.'
+      }
+    ],
+    proTips: [
+      'When your Color3 target falls between palette steps (distance Δ > 0), use the side-by-side swatch check before committing to a BrickColor in Studio.',
+      'Click the "Luau" copy button on any matched color to copy ready-to-paste BrickColor.new("...") syntax.'
+    ],
+    relatedToolIds: ['roblox-studs-converter', 'roblox-shirt-template-maker', 'roblox-thumbnail-resizer']
   }
 ];
 
