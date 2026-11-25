@@ -1781,12 +1781,13 @@ QA_ENTRIES.forEach(entry => {
             </div>
           </div>
 
+          ${entry.workedExample ? `
           <div class="p-6 rounded-2xl bg-violet-950/30 border border-violet-500/40 space-y-3">
             <h2 class="text-lg font-bold text-white">Worked Example</h2>
             <div class="p-4 rounded-xl bg-[#070b19] border border-violet-500/30 font-mono text-sm text-slate-200">
               ${escapeHtml(entry.workedExample)}
             </div>
-          </div>
+          </div>` : ''}
 
           ${(() => {
             const relatedTool = TOOLS.find(t => t.id === entry.relatedToolId);
@@ -1819,7 +1820,9 @@ QA_ENTRIES.forEach(entry => {
       answerCount: 1,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: `${entry.shortAnswer}\n\n${entry.explanation}\n\nWorked Example: ${entry.workedExample}`
+        text: entry.workedExample
+          ? `${entry.shortAnswer}\n\n${entry.explanation}\n\nWorked Example: ${entry.workedExample}`
+          : `${entry.shortAnswer}\n\n${entry.explanation}`
       }
     }
   };

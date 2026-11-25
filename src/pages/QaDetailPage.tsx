@@ -118,16 +118,18 @@ export default function QaDetailPage({ entry, onNavigate }: QaDetailPageProps) {
             </section>
 
             {/* Worked Example Box */}
-            <section className="rounded-2xl bg-violet-950/30 border border-violet-500/40 p-6 sm:p-8 space-y-4 shadow-sm">
-              <div className="flex items-center gap-2 text-violet-300">
-                <Sparkles className="w-5 h-5 text-violet-400 shrink-0" />
-                <h2 className="text-lg font-bold text-white">Worked Example</h2>
-              </div>
+            {entry.workedExample && (
+              <section className="rounded-2xl bg-violet-950/30 border border-violet-500/40 p-6 sm:p-8 space-y-4 shadow-sm">
+                <div className="flex items-center gap-2 text-violet-300">
+                  <Sparkles className="w-5 h-5 text-violet-400 shrink-0" />
+                  <h2 className="text-lg font-bold text-white">Worked Example</h2>
+                </div>
 
-              <div className="bg-[#070b19] border border-violet-500/30 rounded-xl p-4 sm:p-5 font-mono text-sm text-slate-200 leading-relaxed">
-                {entry.workedExample}
-              </div>
-            </section>
+                <div className="bg-[#070b19] border border-violet-500/30 rounded-xl p-4 sm:p-5 font-mono text-sm text-slate-200 leading-relaxed">
+                  {entry.workedExample}
+                </div>
+              </section>
+            )}
 
             {/* Try the Calculator CTA Button */}
             <section className="bg-gradient-to-r from-violet-950/80 via-indigo-950/70 to-[#0c122e] border border-violet-500/50 rounded-2xl p-6 sm:p-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">

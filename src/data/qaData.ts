@@ -10,7 +10,7 @@ export interface QaEntry {
   slug: string;          // question slug
   shortAnswer: string;   // shown in the highlighted answer box
   explanation: string;   // 2-4 short paragraphs
-  workedExample: string; // one worked example
+  workedExample?: string; // one worked example
   relatedToolId: string;
 }
 
@@ -664,6 +664,81 @@ Fragile Resin items restore 60 Resin instantly and are best saved for heavy farm
     explanation: 'The top-5 assignment is South American Imports ($13,500/hr), Pharmaceutical Research ($11,475/hr), Cash Creation ($9,450/hr), Cargo and Shipments ($8,571/hr) and Sporting Goods ($7,500/hr) — together $50,496 per active hour. Goods only produce while you are in an active session.\n\nThat is gross production value: when you sell, Tony takes 10% (capped at $100,000 per sale), so the long-run net rate is about $45,446 per active hour.',
     workedExample: '$13,500 + $11,475 + $9,450 + $8,571 + $7,500 = $50,496 of goods produced per active hour with the top-5 upgraded setup.',
     relatedToolId: 'gta-online-nightclub-profit-calculator'
+  },
+  {
+    gameSlug: 'gta-6',
+    gameName: 'Grand Theft Auto VI',
+    question: 'When did GTA 6 come out?',
+    slug: 'when-did-gta-6-come-out',
+    shortAnswer: 'GTA 6 (Grand Theft Auto VI) was released on 19 November 2026 for PlayStation 5 and Xbox Series X|S.',
+    explanation: 'Rockstar launched GTA 6 on consoles first, as a single-player experience set in the state of Leonida — including a return to Vice City — following the story of Jason and Lucia.\n\nThere is no PC version yet (see the PC question below), and the game is not on PS4 or Xbox One.',
+    relatedToolId: 'gta-6-cheat-code-finder'
+  },
+  {
+    gameSlug: 'gta-6',
+    gameName: 'Grand Theft Auto VI',
+    question: 'Is GTA 6 on PC?',
+    slug: 'is-gta-6-on-pc',
+    shortAnswer: 'No — GTA 6 is not available on PC, and Rockstar has not announced a PC version or a PC release date.',
+    explanation: 'At launch GTA 6 is a console game: PlayStation 5 and Xbox Series X|S only. Rockstar\'s official game page lists exactly those two platforms.\n\nAny website showing a confirmed PC release date is speculating — as of 25 November 2026 there is no official PC announcement to report.',
+    relatedToolId: 'gta-6-cheat-code-finder'
+  },
+  {
+    gameSlug: 'gta-6',
+    gameName: 'Grand Theft Auto VI',
+    question: 'How much does GTA 6 cost?',
+    slug: 'how-much-does-gta-6-cost',
+    shortAnswer: 'GTA 6 costs $79.99 for the Standard Edition and $99.99 for the Ultimate Edition in the US — the same price on PS5 and Xbox.',
+    explanation: 'Both editions contain the same main game. The Ultimate Edition adds an exclusive collection of premium vehicles, weapons, apparel and other items threaded through Jason and Lucia\'s story.\n\nPrices vary by country; the figures here are the US PlayStation Store and Microsoft Store prices.',
+    workedExample: '$99.99 − $79.99 = $20 — the Ultimate Edition costs $20 more, and the Ultimate Edition Upgrade is also sold separately for $20 if you buy Standard first and upgrade later.',
+    relatedToolId: 'gta-6-cheat-code-finder'
+  },
+  {
+    gameSlug: 'gta-6',
+    gameName: 'Grand Theft Auto VI',
+    question: 'How much storage does GTA 6 need?',
+    slug: 'how-much-storage-does-gta-6-need',
+    shortAnswer: 'GTA 6 needs up to 212 GB of free space, depending on your device — that is Rockstar\'s official figure.',
+    explanation: 'Rockstar gives one figure for both consoles: "up to 212 GB of available space depending on your device". The Xbox Store lists an approximate size of about 210 GB, so plan for the full 212 GB to be safe, plus extra room for future updates.\n\nStorage is tightest on the 512 GB Xbox Series S, where the game takes well over half of the usable drive.',
+    workedExample: 'An Xbox Series S (512 GB) has about 364 GB of usable storage. 364 GB − 212 GB for GTA 6 leaves roughly 152 GB for everything else.',
+    relatedToolId: 'gta-6-cheat-code-finder'
+  },
+  {
+    gameSlug: 'gta-6',
+    gameName: 'Grand Theft Auto VI',
+    question: 'Does GTA 6 have an online mode?',
+    slug: 'does-gta-6-have-an-online-mode',
+    shortAnswer: 'Not at launch — GTA 6 launched as a single-player game only, and no GTA 6 online mode is available yet.',
+    explanation: 'Take-Two and Rockstar describe GTA 6 as a single-player experience, and the launch version contains the story of Jason and Lucia only.\n\nA new version of GTA Online is expected to arrive later, but Rockstar has not announced it or given it a date — as of 25 November 2026, any launch date for it is rumour, not fact. The existing GTA Online (the GTA 5 game) is a separate game and keeps running.',
+    relatedToolId: 'gta-6-cheat-code-finder'
+  },
+  {
+    gameSlug: 'gta-6',
+    gameName: 'Grand Theft Auto VI',
+    question: 'How many cheat codes are in GTA 6?',
+    slug: 'how-many-cheat-codes-are-in-gta-6',
+    shortAnswer: 'GTA 6 has 61 cheat codes: 10 player cheats, 11 combat cheats, 21 vehicle spawns, 3 environment cheats and 16 screen filters.',
+    explanation: 'Every cheat is locked until you finish the main story, and each one also has its own unlock challenge. Only 21 of the 61 D-pad inputs are public so far — 19 of them verified across multiple sources and 2 reported by a single source — while the other 40 cheats are confirmed but their inputs have not been discovered yet.\n\nThe full list, with every input found so far, is on the GTA 6 codes page and in the Cheat Code Finder tool. Last checked 25 November 2026.',
+    workedExample: '10 + 11 + 21 + 3 + 16 = 61 cheats in total.',
+    relatedToolId: 'gta-6-cheat-code-finder'
+  },
+  {
+    gameSlug: 'gta-6',
+    gameName: 'Grand Theft Auto VI',
+    question: 'How do you enter cheat codes in GTA 6?',
+    slug: 'how-do-you-enter-cheat-codes-in-gta-6',
+    shortAnswer: 'Finish the main story and complete the cheat\'s unlock challenge first. Then press Up on the D-pad to open your phone, hold L1 (PS5) or LB (Xbox) and press R1 or RB, and enter the cheat\'s D-pad sequence.',
+    explanation: 'Cheats only exist after the credits: a Cheats list appears under Progress > Cheats, showing which cheats you have unlocked and which challenges are still open. Entering a known sequence before the story is finished does nothing.\n\nAll inputs use the D-pad only, so every sequence is identical on PS5 and Xbox Series X|S. Warning: activating a cheat disables trophies/achievements and blocks saving for the rest of that play session, so make a clean save first.',
+    relatedToolId: 'gta-6-cheat-code-finder'
+  },
+  {
+    gameSlug: 'gta-6',
+    gameName: 'Grand Theft Auto VI',
+    question: 'What is the GTA 6 money cheat code?',
+    slug: 'what-is-the-gta-6-money-cheat-code',
+    shortAnswer: 'The GTA 6 money cheat instantly gives you $250,000. After finishing the story, open the phone, hold L1/LB and press R1/RB, then enter: Up, Right, Down, Left, Up, Left, Down, Right.',
+    explanation: 'The money cheat is one of four cheats that unlock the moment the story ends (with Unlimited Focus, Attack Force and Cycle Weather) — no extra challenge is needed beyond finishing the story.\n\nOne catch: using any cheat blocks saving for the rest of that session, so the $250,000 cannot be carried into a normal save file. It is spending money for that session only.',
+    relatedToolId: 'gta-6-cheat-code-finder'
   }
 ];
 
