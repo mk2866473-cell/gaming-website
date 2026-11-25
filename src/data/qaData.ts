@@ -584,6 +584,86 @@ Fragile Resin items restore 60 Resin instantly and are best saved for heavy farm
     explanation: 'Every crop grows with one variant, and the variant multiplies the crop\'s whole value — including its weight bonus and any environmental mutations. Environmental mutations such as Wet or Shocked do not multiply each other; they add together inside one bracket, and the variant then multiplies the result.\n\nGold appears far more often than Rainbow, which is why most steady Sheckle income comes from Gold crops stacked with weather mutations.',
     workedExample: 'A Carrot (base value 20 Sheckles) at double its base weight with the Gold variant and the Shocked and Frozen mutations sells for 20 × 4 × 20 × 109 = 174,400 Sheckles.',
     relatedToolId: 'grow-a-garden-crop-value-calculator'
+  },
+  {
+    gameSlug: 'gta-online',
+    gameName: 'GTA Online',
+    question: 'How long is the Cayo Perico cooldown in GTA Online?',
+    slug: 'how-long-is-the-cayo-perico-cooldown-in-gta-online',
+    shortAnswer: 'The Cayo Perico Heist cooldown is 144 minutes (2 hours 24 minutes) after a solo finale, and 48 minutes after a finale played with a crew.',
+    explanation: 'The cooldown starts when the finale ends and runs in real time, whether you stay in the session or not. Solo players wait three in-game days; playing the finale with at least one other player cuts it to one in-game day.\n\nThere is no way to skip the wait legitimately — most players fill it with other businesses or a different heist.',
+    workedExample: 'Finish a solo Cayo Perico finale at 8:00 PM and the next finale unlocks at 10:24 PM. Run the same finale with a crew and it unlocks at 8:48 PM instead.',
+    relatedToolId: 'gta-online-cooldown-planner'
+  },
+  {
+    gameSlug: 'gta-online',
+    gameName: 'GTA Online',
+    question: 'What is the Payphone Hit cooldown in GTA Online?',
+    slug: 'what-is-the-payphone-hit-cooldown-in-gta-online',
+    shortAnswer: 'The Payphone Hit cooldown is 10 minutes in GTA Online.',
+    explanation: 'Older guides still say 20 minutes — that was the pre-2024 value. Rockstar cut the cooldown to 10 minutes on 4 January 2024, at the same time as the assassination bonus was reduced.\n\nThe short cooldown is what makes Payphone Hits one of the fastest repeatable money loops for Agency owners: finish a hit, do something else for ten minutes, and the next call can come in.',
+    workedExample: 'Finish a Payphone Hit at 3:00 PM and the next one can trigger from 3:10 PM — six hits an hour at most, cooldown-wise.',
+    relatedToolId: 'gta-online-cooldown-planner'
+  },
+  {
+    gameSlug: 'gta-online',
+    gameName: 'GTA Online',
+    question: 'How much is the Pink Diamond worth in Cayo Perico?',
+    slug: 'how-much-is-the-pink-diamond-worth-in-cayo-perico',
+    shortAnswer: 'The Pink Diamond is worth $910,000 on Normal and $1,001,000 on Hard in the Cayo Perico Heist — the most valuable regular primary target.',
+    explanation: 'Hard mode pays exactly 10% more than Normal for every primary target. The other regular targets are Sinsimito Tequila ($400,000), the Ruby Necklace ($560,000) and Bearer Bonds ($616,000) on Normal.\n\nBeware old guides: before Title Update 1.73 the Pink Diamond was listed at $1,300,000. That value is outdated — the current repeat-run value is $910,000. The fencing fee (10%) and Pavel\'s cut (2%) then come off the total take, and repeat runs also charge a $100,000 setup fee.',
+    workedExample: 'A solo Hard run that takes only the Pink Diamond and no secondary loot: $1,001,000 gross, minus 12% in fees ($120,120) and the $100,000 setup fee = $780,880 kept, before any Elite Challenge bonus.',
+    relatedToolId: 'gta-online-cayo-perico-payout-calculator'
+  },
+  {
+    gameSlug: 'gta-online',
+    gameName: 'GTA Online',
+    question: 'How much is a full Nightclub warehouse worth in GTA Online?',
+    slug: 'how-much-is-a-full-nightclub-warehouse-worth-in-gta-online',
+    shortAnswer: 'A completely full Nightclub warehouse — all 7 goods types across 5 floors, 360 crates — sells for $1,931,500 gross, and you keep $1,831,500 after Tony\'s cut.',
+    explanation: 'Tony takes 10% of every warehouse sale, but his cut is capped at $100,000. On a full-warehouse sale the 10% would be $193,150, so the cap is what saves you money on the biggest sales.\n\nFilling all 7 types takes a long time even with 5 technicians and the Equipment Upgrade, which is why most players sell earlier with the 5 best goods types assigned.',
+    workedExample: '10% of $1,931,500 is $193,150, but Tony\'s cut stops at the $100,000 cap: $1,931,500 − $100,000 = $1,831,500 in your account.',
+    relatedToolId: 'gta-online-nightclub-profit-calculator'
+  },
+  {
+    gameSlug: 'gta-online',
+    gameName: 'GTA Online',
+    question: 'How long does the Acid Lab take to pay for itself in GTA Online?',
+    slug: 'how-long-does-the-acid-lab-take-to-pay-for-itself-in-gta-online',
+    shortAnswer: 'An upgraded, named Acid Lab pays for its $1,000,000 setup in about 15.6 active hours of production, earning $63,960 net per active hour with bought supplies.',
+    explanation: 'The all-in upgraded setup is $750,000 for the lab installation plus $250,000 for the Equipment Upgrade. With the upgrade and a product name (+5% value), a full 160-unit batch sells for $351,840 against $96,000 of bought supplies — $255,840 net per 4-hour batch, which is $63,960 per active hour.\n\nProduction only ticks while you are online and in a session, so 15.6 active hours is play time, not real calendar time. A standard, unnamed lab earns only $7,600 per active hour and needs about 98.7 hours to pay back its $750,000 setup.',
+    workedExample: '$1,000,000 ÷ $63,960 per hour = 15.6 active hours to break even on the upgraded, named setup.',
+    relatedToolId: 'gta-online-business-roi-calculator'
+  },
+  {
+    gameSlug: 'gta-online',
+    gameName: 'GTA Online',
+    question: 'How much does the Fleeca Job pay on Hard in GTA Online?',
+    slug: 'how-much-does-the-fleeca-job-pay-on-hard-in-gta-online',
+    shortAnswer: 'The Fleeca Job pays $251,563 on Hard in GTA Online (2 players). It pays $100,625 on Easy and $201,250 on Normal, with an $11,500 setup cost paid by the host.',
+    explanation: 'Fleeca is the smallest apartment heist — one setup and a two-player finale — so its payout is the lowest of the original heists, but it is also the fastest to complete and the usual first heist new players run.\n\nThe two players agree their own cut split in the finale lobby; the host\'s setup cost comes out of the host\'s own money, not out of the take.',
+    workedExample: 'On Hard with a 60/40 split: the host\'s 60% of $251,563 is $150,937 (shares round down), the second player gets $100,625, and $1 stays unallocated.',
+    relatedToolId: 'gta-online-heist-split-calculator'
+  },
+  {
+    gameSlug: 'gta-online',
+    gameName: 'GTA Online',
+    question: 'How much is a full Acid Lab batch worth in GTA Online?',
+    slug: 'how-much-is-a-full-acid-lab-batch-worth-in-gta-online',
+    shortAnswer: 'A full 160-unit Acid Lab batch sells for $351,840 with the Equipment Upgrade and a product name — $255,840 net after $96,000 of bought supplies. A standard unnamed batch sells for $237,600.',
+    explanation: 'The Equipment Upgrade raises the value from $1,485 to $2,095 per unit and halves supply use to 1 unit per product unit. Naming the product adds a permanent +5%, taking the upgraded unit value to $2,199.\n\nA standard lab needs 320 supply units ($192,000) for a full batch because it uses 2 per product unit; the upgraded lab needs only 160 ($96,000) — the supply saving is half of why the upgrade pays off so fast.',
+    workedExample: '160 units × $2,199 = $351,840 gross; $351,840 − $96,000 supplies = $255,840 net per full upgraded, named batch.',
+    relatedToolId: 'gta-online-acid-lab-profit-calculator'
+  },
+  {
+    gameSlug: 'gta-online',
+    gameName: 'GTA Online',
+    question: 'How much does a Nightclub make per hour in GTA Online?',
+    slug: 'how-much-does-a-nightclub-make-per-hour-in-gta-online',
+    shortAnswer: 'A Nightclub with the 5 best technicians and the Equipment Upgrade produces $50,496 worth of goods per active hour in GTA Online.',
+    explanation: 'The top-5 assignment is South American Imports ($13,500/hr), Pharmaceutical Research ($11,475/hr), Cash Creation ($9,450/hr), Cargo and Shipments ($8,571/hr) and Sporting Goods ($7,500/hr) — together $50,496 per active hour. Goods only produce while you are in an active session.\n\nThat is gross production value: when you sell, Tony takes 10% (capped at $100,000 per sale), so the long-run net rate is about $45,446 per active hour.',
+    workedExample: '$13,500 + $11,475 + $9,450 + $8,571 + $7,500 = $50,496 of goods produced per active hour with the top-5 upgraded setup.',
+    relatedToolId: 'gta-online-nightclub-profit-calculator'
   }
 ];
 

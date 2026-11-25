@@ -35,7 +35,8 @@ import {
   MonopolyGoIcon,
   SkIcon,
   CmIcon,
-  GrowAGardenIcon
+  GrowAGardenIcon,
+  GtaOnlineIcon
 } from './GameIcons';
 
 interface NavbarProps {
@@ -68,7 +69,8 @@ const GAME_NAV_ICONS: Record<string, React.ReactNode> = {
   afkj: <AfkjIcon className="w-4 h-4 text-purple-400" />,
   mogo: <MonopolyGoIcon className="w-4 h-4 text-red-400" />,
   sk: <SkIcon className="w-4 h-4 text-blue-400" />,
-  cm: <CmIcon className="w-4 h-4 text-amber-400" />
+  cm: <CmIcon className="w-4 h-4 text-amber-400" />,
+  gtaonline: <GtaOnlineIcon className="w-4 h-4" />
 };
 
 export default function Navbar({ currentPath, onNavigate, onOpenSearch }: NavbarProps) {

@@ -233,6 +233,12 @@ const GrowAGardenMutationCalculator = React.lazy(() => import('../components/too
 const GrowAGardenEggHatchingCalculator = React.lazy(() => import('../components/tools/GrowAGardenEggHatchingCalculator'));
 const GrowAGardenTradeCalculator = React.lazy(() => import('../components/tools/GrowAGardenTradeCalculator'));
 const GrowAGardenStockTimer = React.lazy(() => import('../components/tools/GrowAGardenStockTimer'));
+const GtaOnlineNightclubProfitCalculator = React.lazy(() => import('../components/tools/GtaOnlineNightclubProfitCalculator'));
+const GtaOnlineAcidLabProfitCalculator = React.lazy(() => import('../components/tools/GtaOnlineAcidLabProfitCalculator'));
+const GtaOnlineCayoPericoPayoutCalculator = React.lazy(() => import('../components/tools/GtaOnlineCayoPericoPayoutCalculator'));
+const GtaOnlineHeistSplitCalculator = React.lazy(() => import('../components/tools/GtaOnlineHeistSplitCalculator'));
+const GtaOnlineBusinessRoiCalculator = React.lazy(() => import('../components/tools/GtaOnlineBusinessRoiCalculator'));
+const GtaOnlineCooldownPlanner = React.lazy(() => import('../components/tools/GtaOnlineCooldownPlanner'));
 const ModularGamingTool = React.lazy(() => import('../components/tools/ModularGamingTool'));
 
 interface ToolDetailPageProps {
@@ -722,6 +728,18 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <GrowAGardenTradeCalculator />;
       case 'grow-a-garden-stock-timer':
         return <GrowAGardenStockTimer />;
+      case 'gta-online-nightclub-profit-calculator':
+        return <GtaOnlineNightclubProfitCalculator />;
+      case 'gta-online-acid-lab-profit-calculator':
+        return <GtaOnlineAcidLabProfitCalculator />;
+      case 'gta-online-cayo-perico-payout-calculator':
+        return <GtaOnlineCayoPericoPayoutCalculator />;
+      case 'gta-online-heist-split-calculator':
+        return <GtaOnlineHeistSplitCalculator />;
+      case 'gta-online-business-roi-calculator':
+        return <GtaOnlineBusinessRoiCalculator />;
+      case 'gta-online-cooldown-planner':
+        return <GtaOnlineCooldownPlanner />;
       default:
         return <ModularGamingTool tool={tool} />;
     }

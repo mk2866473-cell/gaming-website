@@ -166,6 +166,16 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
         path: '/baldurs-gate-3',
         icon: getGameIcon('bg3', 'w-5 h-5'),
         accent: 'border-amber-500/30 group-hover:border-amber-500/60'
+      },
+      {
+        id: 'gtaonline',
+        name: 'GTA Online',
+        subtitle: 'Businesses, Heists & Cooldowns',
+        description: 'Nightclub Warehouse, Acid Lab profit, Cayo Perico payouts, Heist Splits, Business ROI payback, and Cooldown Planner.',
+        count: TOOLS.filter(t => t.gameId === 'gtaonline').length,
+        path: '/games/gta-online',
+        icon: getGameIcon('gtaonline', 'w-5 h-5'),
+        accent: 'border-emerald-500/30 group-hover:border-emerald-500/60'
       }
     ];
   }, []);

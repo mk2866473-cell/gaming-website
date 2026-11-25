@@ -33,6 +33,7 @@ const MonopolyGoHubPage = React.lazy(() => import('./pages/MonopolyGoHubPage'));
 const SevenKnightsHubPage = React.lazy(() => import('./pages/SevenKnightsHubPage'));
 const CoinMasterHubPage = React.lazy(() => import('./pages/CoinMasterHubPage'));
 const GrowAGardenHubPage = React.lazy(() => import('./pages/GrowAGardenHubPage'));
+const GtaOnlineHubPage = React.lazy(() => import('./pages/GtaOnlineHubPage'));
 const ToolsDirectoryPage = React.lazy(() => import('./pages/ToolsDirectoryPage'));
 const ToolDetailPage = React.lazy(() => import('./pages/ToolDetailPage'));
 const GamesPage = React.lazy(() => import('./pages/GamesPage'));
@@ -298,6 +299,11 @@ export default function App() {
       return <GrowAGardenHubPage onNavigate={navigate} />;
     }
 
+    // 7.19 Dedicated GTA Online Hub
+    if (cleanRoute === '/gta-online' || cleanRoute === '/games/gta-online' || cleanRoute === '/gtaonline' || cleanRoute === '/games/gtaonline') {
+      return <GtaOnlineHubPage onNavigate={navigate} />;
+    }
+
     // 8. Individual Tool Page (/tools/:slug)
     if (cleanRoute.startsWith('/tools/')) {
       const rawSlug = cleanRoute.replace('/tools/', '').replace(/\/$/, '');
@@ -379,6 +385,9 @@ export default function App() {
       }
       if (gameSlug === 'cm' || gameSlug === 'coin-master') {
         return <CoinMasterHubPage onNavigate={navigate} />;
+      }
+      if (gameSlug === 'gtaonline' || gameSlug === 'gta-online') {
+        return <GtaOnlineHubPage onNavigate={navigate} />;
       }
       return <GamesPage selectedGameSlug={gameSlug} onNavigate={navigate} />;
     }

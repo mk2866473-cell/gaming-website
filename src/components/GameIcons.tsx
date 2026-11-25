@@ -594,6 +594,32 @@ export function GrowAGardenIcon({ className = 'w-5 h-5', size = 20 }: IconProps)
   );
 }
 
+/**
+ * GTA Online: Bold Money Green & Gold Criminal Enterprise Crest
+ */
+export function GtaOnlineIcon({ className = 'w-5 h-5', size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+      <defs>
+        <linearGradient id="gtaGreen" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#4ade80" />
+          <stop offset="0.5" stopColor="#16a34a" />
+          <stop offset="1" stopColor="#14532d" />
+        </linearGradient>
+      </defs>
+      <rect x="2.5" y="2.5" width="19" height="19" rx="4.5" fill="#052e16" stroke="url(#gtaGreen)" strokeWidth="1.6" />
+      <path d="M12 5.5V18.5" stroke="#86efac" strokeWidth="1.5" strokeLinecap="round" />
+      <path
+        d="M15.2 8.8C15.2 7.5 13.8 6.8 12 6.8C10.1 6.8 8.8 7.7 8.8 9C8.8 10.4 10.1 11 12.1 11.4C14.1 11.8 15.5 12.4 15.5 14C15.5 15.4 14.1 16.4 12 16.4C10 16.4 8.6 15.5 8.5 14.1"
+        stroke="#4ade80"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+      <circle cx="18" cy="6" r="1.3" fill="#facc15" />
+    </svg>
+  );
+}
+
 
 /**
      * Helper function to get the appropriate custom vector logo for any game ID
@@ -671,6 +697,9 @@ export function getGameIcon(gameId: string, className = 'w-5 h-5'): React.ReactN
     case 'cm':
     case 'coin-master':
       return <CmIcon className={className} />;
+    case 'gtaonline':
+    case 'gta-online':
+      return <GtaOnlineIcon className={className} />;
     default:
       return <MinecraftIcon className={className} />;
   }

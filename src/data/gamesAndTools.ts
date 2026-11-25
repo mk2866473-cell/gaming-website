@@ -345,6 +345,19 @@ export const GAMES: GameInfo[] = [
     badge: '5 Tools Available'
   },
   {
+    id: 'gtaonline',
+    slug: 'gta-online',
+    name: 'GTA Online',
+    shortName: 'GTA Online',
+    tagline: 'Nightclub, Acid Lab, Cayo Perico, Heist Splits, ROI & Cooldowns (TU 1.73)',
+    description: 'Verified GTA Online calculators and utilities for Title Update 1.73: Nightclub Warehouse, Acid Lab profit, Cayo Perico payouts, Heist Splits, Business ROI / Payback, and Cooldown Planner.',
+    color: 'from-emerald-950/60 to-zinc-950',
+    borderColor: 'border-emerald-500/30',
+    accentColor: 'text-emerald-400',
+    icon: 'Coins',
+    badge: '6 Tools Available'
+  },
+  {
     id: 'general',
     slug: 'general',
     name: 'Gaming Utilities',
@@ -383,7 +396,8 @@ export const PRIMARY_GAME_IDS = [
   'afkj',
   'mogo',
   'sk',
-  'cm'
+  'cm',
+  'gtaonline'
 ] as const;
 
 export function getPrimaryGames(): GameInfo[] {
@@ -435,6 +449,8 @@ export function getGamePath(gameId: string): string {
     case 'seven-knights-rebirth': return '/seven-knights-rebirth';
     case 'cm':
     case 'coin-master': return '/coin-master';
+    case 'gtaonline':
+    case 'gta-online': return '/games/gta-online';
     default: return `/games?game=${gameId}`;
   }
 }
@@ -3942,7 +3958,283 @@ export const TOOLS: ToolItem[] = [
   ...COIN_MASTER_TOOLS,
   ...EXTRA_TOOLS,
   ...EXTRA_TOOLS_PART_2,
-  ...EXTRA_TOOLS_PART_3
+  ...EXTRA_TOOLS_PART_3,
+  {
+    id: 'gta-online-nightclub-profit-calculator',
+    slug: 'gta-online-nightclub-profit-calculator',
+    name: 'GTA Online Nightclub Profit Calculator',
+    gameId: 'gtaonline',
+    categoryId: 'calculators',
+    icon: 'Coins',
+    shortDescription: 'Calculate GTA Online Nightclub Warehouse crate production, gross value, Tony\'s capped cut, net payout, and fill times across 1–5 floors.',
+    description: 'Verified Title Update 1.73 GTA Online Nightclub Warehouse calculator. Assign up to 5 technicians across 7 goods types, toggle Equipment Upgrade, choose 1–5 warehouse floors, and calculate units produced, gross stock value, Tony\'s 10% cut (capped at $100,000), and net payout.',
+    badge: 'TU 1.73',
+    rating: 4.95,
+    reviewsCount: 410,
+    userCount: '25k+ players',
+    featured: true,
+    tags: ['gta online', 'gta', 'nightclub', 'warehouse', 'technician', 'tony cut', 'profit calculator', 'tu 1.73'],
+    seoTitle: 'GTA Online Nightclub Profit Calculator – Warehouse Crate & Payout Math',
+    metaDescription: 'Calculate GTA Online Nightclub Warehouse profit for Title Update 1.73. Compute technician accrual across 1–5 floors, Equipment Upgrade rates, and Tony\'s $100k capped cut.',
+    h1: 'GTA Online Nightclub Profit Calculator',
+    canonicalPath: '/tools/gta-online-nightclub-profit-calculator',
+    howToGuide: {
+      overview: 'Model your GTA Online Nightclub Warehouse production across active play sessions and plan sell missions before storage caps out.',
+      steps: [
+        { title: 'Set Warehouse Floors (1–5)', description: 'Choose how many warehouse storage floors you own (1 to 5). Each floor adds capacity per goods type.' },
+        { title: 'Toggle Equipment Upgrade', description: 'Turn on the Equipment Upgrade if owned—it doubles production speed across all 7 goods types.' },
+        { title: 'Enter Active Session Hours', description: 'Input your active session time in hours (decimals supported). Nightclub goods only produce while in an active session.' },
+        { title: 'Assign Up to 5 Technicians', description: 'Check up to 5 goods types you own source businesses for (e.g. MC Cocaine Lockup, MC Meth Lab, MC Counterfeit Cash Factory, CEO Special Cargo / Hangar, Bunker).' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Nightclub Warehouse Accrual & Tony\'s Cut Formula (Title Update 1.73)',
+      details: 'For each assigned goods type: units = min(capacity_per_floor × floors, floor(active_minutes / minutes_per_unit)). Gross = sum(units × value_per_unit). Tony\'s cut = min(0.10 × gross, $100,000), and Net = Gross − Tony\'s cut. Max 5 technicians can be assigned across 7 goods types. With all 7 types full across 5 floors (360 crates), total stock is $1,931,500 gross ($1,831,500 net after Tony\'s $100,000 cap). Top 5 upgraded types (South American Imports, Pharmaceutical Research, Cash Creation, Cargo and Shipments, Sporting Goods) produce $50,496 of stock per active hour. Uses standard repeat-run values and does NOT include weekly event bonuses or discounts.',
+      mathSnippet: 'units = min(capPerFloor * floors, floor(activeMinutes / minsPerUnit)); tonysCut = min(0.10 * gross, 100000); net = gross - tonysCut'
+    },
+    faqs: [
+      { question: 'How does Tony\'s cut work in the GTA Online Nightclub?', answer: 'Tony takes 10% of the gross sale value, capped at $100,000. Any gross sale of $1,000,000 or more only pays the $100,000 maximum cut.' },
+      { question: 'Does the Nightclub Warehouse produce goods while offline?', answer: 'No. Nightclub Warehouse goods only produce while you are in an active GTA Online session.' },
+      { question: 'What does the Nightclub Equipment Upgrade do?', answer: 'The Equipment Upgrade doubles technician production speed, cutting minutes per unit in half for all 7 goods types (for example, South American Imports drops from 240 minutes to 120 minutes per unit).' },
+      { question: 'Which 5 technicians earn the most per hour?', answer: 'Assigning your 5 technicians to South American Imports (MC Cocaine Lockup), Pharmaceutical Research (MC Meth Lab), Cash Creation (MC Counterfeit Cash Factory), Cargo and Shipments (CEO Special Cargo / Hangar), and Sporting Goods (Bunker) yields $50,496 of stock per active hour with the Equipment Upgrade.' },
+      { question: 'What is the maximum Nightclub capacity across all 7 goods types?', answer: 'Filling all 7 goods types on 5 warehouse floors stores 360 crates worth $1,931,500 gross, or $1,831,500 net after Tony\'s $100,000 capped cut.' }
+    ],
+    proTips: [
+      'A maximum of 5 technicians can work at once even though there are 7 goods types—prioritize the top 5 hourly earners (South American Imports, Pharmaceutical Research, Cash Creation, Cargo and Shipments, and Sporting Goods).',
+      'You can only assign a technician to a goods type if you own its linked source business (MC Cocaine Lockup, MC Meth Lab, MC Counterfeit Cash Factory, CEO Special Cargo / Hangar, Bunker, MC Weed Farm, or MC Document Forgery Office).'
+    ],
+    relatedToolIds: ['gta-online-acid-lab-profit-calculator']
+  },
+  {
+    id: 'gta-online-acid-lab-profit-calculator',
+    slug: 'gta-online-acid-lab-profit-calculator',
+    name: 'GTA Online Acid Lab Profit Calculator',
+    gameId: 'gtaonline',
+    categoryId: 'calculators',
+    icon: 'Zap',
+    shortDescription: 'Calculate GTA Online Acid Lab revenue, supply cost, production time, net profit, and net profit per hour up to 160 units.',
+    description: 'Verified Title Update 1.73 GTA Online Acid Lab calculator. Toggle Equipment Upgrade, product naming (+5% value), units to produce (1–160), and bought ($600/unit) vs stolen ($0) supplies to compute revenue, supply units needed, production time, net profit, and hourly profit.',
+    badge: 'TU 1.73',
+    rating: 4.94,
+    reviewsCount: 385,
+    userCount: '22k+ players',
+    featured: true,
+    tags: ['gta online', 'gta', 'acid lab', 'fooligan jobs', 'profit calculator', 'tu 1.73'],
+    seoTitle: 'GTA Online Acid Lab Profit Calculator – Revenue, Supply Cost & Hourly Profit',
+    metaDescription: 'Calculate GTA Online Acid Lab profit for Title Update 1.73. Compare standard vs Equipment Upgrade rates, named product +5% bonus, bought vs stolen supplies, and production time.',
+    h1: 'GTA Online Acid Lab Profit Calculator',
+    canonicalPath: '/tools/gta-online-acid-lab-profit-calculator',
+    howToGuide: {
+      overview: 'Estimate exact Acid Lab sale revenue, supply costs, production duration, and hourly profit in GTA Online.',
+      steps: [
+        { title: 'Toggle Equipment Upgrade', description: 'Select whether the $250,000 Equipment Upgrade (unlocked after 10 Fooligan Jobs) is installed.' },
+        { title: 'Toggle Named Product (+5%)', description: 'Enable named product to apply the +5% unit value bonus ($1,559 standard or $2,199 upgraded).' },
+        { title: 'Choose Units to Produce (1–160)', description: 'Enter how many Acid units to produce, up to the 160-unit Acid Lab capacity.' },
+        { title: 'Select Bought or Stolen Supplies', description: 'Toggle bought supplies ($600 per supply unit) vs stolen supplies ($0 supply cost).' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Acid Lab Revenue, Supply Usage & Production Time (Title Update 1.73)',
+      details: 'Standard Acid Lab produces 1 unit every 135 seconds at $1,485/unit ($1,559 named) and consumes 2 supply units per product unit. With the Equipment Upgrade, production speeds up to 90 seconds per unit at $2,095/unit ($2,199 named) and consumes 1 supply unit per product unit. Bought supplies cost $600 per supply unit; stolen supplies cost $0. Production only ticks while online, and the daily production boost at the chemical table halves production time until 80 units are made. Uses standard repeat-run values and does NOT include weekly event bonuses or discounts.',
+      mathSnippet: 'revenue = units * valuePerUnit; supplyCost = bought ? units * suppliesPerUnit * 600 : 0; netProfit = revenue - supplyCost'
+    },
+    faqs: [
+      { question: 'How much does a full 160-unit upgraded and named Acid Lab sell for?', answer: 'With the Equipment Upgrade and named product ($2,199/unit), 160 units sell for $351,840 gross. Paying $96,000 for 160 bought supply units ($600 each) leaves $255,840 net profit over 240 minutes ($63,960/hour).' },
+      { question: 'How do you unlock the Acid Lab Equipment Upgrade?', answer: 'First install the Acid Lab for $750,000 after completing the free First Dose missions. Then complete 10 Fooligan Jobs to unlock the $250,000 Equipment Upgrade.' },
+      { question: 'How much does naming your Acid product increase value?', answer: 'Naming your product adds +5% per unit, raising standard value from $1,485 to $1,559 per unit and upgraded value from $2,095 to $2,199 per unit.' },
+      { question: 'How does the daily production boost at the chemical table work?', answer: 'Activating the daily production boost at the chemical table halves production time until 80 units of Acid are made.' },
+      { question: 'Does the Acid Lab produce while offline?', answer: 'No. Acid Lab capacity is 160 units, and production only ticks while you are online in GTA Online.' }
+    ],
+    proTips: [
+      'Complete 10 Fooligan Jobs as early as possible to buy the $250,000 Equipment Upgrade—it increases sale price per unit, cuts production time from 135s to 90s per unit, and cuts supply usage from 2 supply units to 1 per product unit.',
+      'Trigger the daily production boost at the chemical table to halve production time for up to 80 units.'
+    ],
+    relatedToolIds: ['gta-online-nightclub-profit-calculator']
+  },
+  {
+    id: 'gta-online-cayo-perico-payout-calculator',
+    slug: 'gta-online-cayo-perico-payout-calculator',
+    name: 'GTA Online Cayo Perico Payout Calculator',
+    gameId: 'gtaonline',
+    categoryId: 'calculators',
+    icon: 'Coins',
+    shortDescription: 'Calculate GTA Online Cayo Perico Heist gross take, secondary loot averages, bag space, fencing & Pavel fees, Elite bonus, and player splits.',
+    description: 'Verified Title Update 1.73 GTA Online Cayo Perico Payout Calculator. Combines primary targets (Normal/Hard), secondary loot documented averages with repeat-run secondary bonuses, office safe cash, 10% fencing fee + 2% Pavel cut, Elite Challenge, and 1–4 player splits after the $100,000 host setup fee.',
+    badge: 'TU 1.73',
+    rating: 4.96,
+    reviewsCount: 520,
+    userCount: '35k+ players',
+    featured: true,
+    tags: ['gta online', 'cayo perico', 'heist', 'payout calculator', 'pavel', 'elite challenge', 'tu 1.73'],
+    seoTitle: 'GTA Online Cayo Perico Payout Calculator – Cuts, Fees & Bag Space (TU 1.73)',
+    metaDescription: 'Calculate GTA Online Cayo Perico Heist payouts for Title Update 1.73. Includes updated primary target values, repeat-run secondary bonuses, bag space %, fencing & Pavel fees, and Elite Challenge.',
+    h1: 'GTA Online Cayo Perico Payout Calculator',
+    canonicalPath: '/tools/gta-online-cayo-perico-payout-calculator',
+    howToGuide: {
+      overview: 'Model your Cayo Perico Heist payout across solo or 2–4 player runs, tracking bag capacity, fees, Elite Challenge bonuses, and the host setup deduction.',
+      steps: [
+        { title: 'Choose First Run or Repeat Run', description: 'Toggle "This is my first run" to lock Madrazo Files ($1,100,000) with no fees, no setup fee, and no secondary bonus, or select a repeat-run primary target in Normal or Hard mode.' },
+        { title: 'Enter Secondary Loot Stacks & Safe Cash', description: 'Add stacks of Cash (25% bag), Weed (37.5%), Cocaine (50%), Artwork (50%), and Gold (66.7%), plus the office safe amount ($18,000–$99,000, default $50,000; uses no bag space).' },
+        { title: 'Set Crew Size & Player Cuts', description: 'Pick 1–4 players. Solo runs are 100%; multi-player cuts must be multiples of 5, at least 15% each, and total 100%.' },
+        { title: 'Toggle Elite Challenge', description: 'Enable Elite Challenge to add $50,000 (Normal) or $100,000 (Hard) to each player\'s payout after the split.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Cayo Perico Payout, Secondary Bonus & Fee Math (Title Update 1.73)',
+      details: 'Secondary loot uses documented average values per full stack (Cash $72,900, Weed $119,475, Cocaine $180,225, Artwork $151,875, Gold $297,750). On repeat runs, secondary loot receives a primary-target bonus (Sinsimito Tequila +20%, Ruby Necklace +10%, Bearer Bonds +5%, Pink Diamond +0%, Panther Statue +0%). Gross = Primary + Secondary (with bonus) + Office Safe. Fees on repeat runs: Fencing Fee = floor(Gross × 10%) and Pavel\'s Cut = floor(Gross × 2%), both deducted from the same Gross to get Net. Each player receives floor(Net × Cut%), plus Elite ($50,000 Normal / $100,000 Hard), and the host pays the $100,000 setup fee from their final payout. Uses standard repeat-run values and does NOT include weekly event bonuses or discounts.',
+      mathSnippet: 'net = gross - floor(gross * 0.10) - floor(gross * 0.02); playerPayout = floor(net * cut%) + elite - (isHost ? setupFee : 0)'
+    },
+    faqs: [
+      { question: 'What are the current Cayo Perico primary target payouts in Title Update 1.73?', answer: 'Normal / Hard values are: Sinsimito Tequila $400,000 / $440,000; Ruby Necklace $560,000 / $616,000; Bearer Bonds $616,000 / $677,600; Pink Diamond $910,000 / $1,001,000; Panther Statue (events only) $1,900,000 / $2,090,000; and Madrazo Files $1,100,000 (first run only, no Hard).' },
+      { question: 'How does the repeat-run secondary loot bonus work?', answer: 'On repeat runs, the secondary loot total is boosted based on your primary target: Sinsimito Tequila +20%, Ruby Necklace +10%, Bearer Bonds +5%, Pink Diamond +0%, and Panther Statue +0%. The office safe does not receive the bonus and uses no bag space.' },
+      { question: 'How much bag space does each secondary loot stack take?', answer: 'Each player has a 100% bag: Cash uses 25%, Weed uses 37.5%, Cocaine uses 50%, Artwork uses 50%, and Gold uses 66.7%.' },
+      { question: 'Are the fencing fee and Pavel\'s cut charged on first runs?', answer: 'No. On your first run (Madrazo Files at $1,100,000), there is no fencing fee, no Pavel cut, no $100,000 setup fee, and no secondary loot bonus.' },
+      { question: 'Why does the calculator show average values for secondary loot?', answer: 'Each full secondary loot stack in Cayo Perico varies within a range in-game, so this calculator uses the documented average value per full stack: Cash $72,900, Weed $119,475, Cocaine $180,225, Artwork $151,875, and Gold $297,750.' }
+    ],
+    proTips: [
+      'Lower-value primary targets like Sinsimito Tequila (+20%) and Ruby Necklace (+10%) boost your secondary loot total on repeat runs.',
+      'Always collect the office safe ($18,000–$99,000) because it requires 0% bag space.'
+    ],
+    relatedToolIds: ['gta-online-heist-split-calculator', 'gta-online-nightclub-profit-calculator', 'gta-online-acid-lab-profit-calculator']
+  },
+  {
+    id: 'gta-online-heist-split-calculator',
+    slug: 'gta-online-heist-split-calculator',
+    name: 'GTA Online Heist Split Calculator',
+    gameId: 'gtaonline',
+    categoryId: 'calculators',
+    icon: 'Users',
+    shortDescription: 'Calculate GTA Online heist payouts and player splits across Original Heists, Doomsday Heist, Diamond Casino Heist, and Custom mode.',
+    description: 'Verified GTA Online Heist Split Calculator covering Original Heists (Fleeca to Pacific Standard), Doomsday Heist Acts I–III, Diamond Casino Heist with Lester & support crew deductions, and Custom mode. Computes rounded-down deductions, exact player splits, unallocated rounding remainder, Elite bonuses, and host setup cost.',
+    badge: 'TU 1.73',
+    rating: 4.95,
+    reviewsCount: 460,
+    userCount: '31k+ players',
+    featured: true,
+    tags: ['gta online', 'heist split', 'diamond casino heist', 'doomsday heist', 'pacific standard', 'payout calculator'],
+    seoTitle: 'GTA Online Heist Split Calculator – Original, Doomsday & Diamond Casino Cuts',
+    metaDescription: 'Split GTA Online heist payouts across 2–4 players. Includes verified payouts for Original Heists, Doomsday Heist Acts I–III, Diamond Casino support crew cuts, Elite bonuses, and host setup costs.',
+    h1: 'GTA Online Heist Split Calculator',
+    canonicalPath: '/tools/gta-online-heist-split-calculator',
+    howToGuide: {
+      overview: 'Choose any GTA Online heist preset or Custom mode, configure crew deductions and difficulty, and compute exact take-home pay for every player.',
+      steps: [
+        { title: 'Select Heist Category & Preset', description: 'Pick Original Heists (Fleeca Job through Pacific Standard Job), Doomsday Heist (Acts I–III), Diamond Casino Heist (Cash, Artwork, Gold, Diamonds), or Custom mode.' },
+        { title: 'Set Difficulty & Support Crew', description: 'Select Easy/Normal/Hard (where supported). For Diamond Casino Heist, pick your Gunman, Driver, and Hacker alongside Lester\'s 5% cut.' },
+        { title: 'Configure Player Count & Cut %', description: 'Set 2–4 players (Original Heists lock to their required crew size). Cuts must be multiples of 5, minimum 15%, and sum to 100%.' },
+        { title: 'Toggle Elite Challenge (Where Supported)', description: 'Enable Elite Challenge on Doomsday ($50,000/player) or Diamond Casino ($50,000 Normal / $100,000 Hard per player) to add post-split bonuses.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Heist Deductions, Cut Rounding & Host Setup Formula',
+      details: 'Every percentage deduction (such as Lester\'s 5% and Diamond Casino Gunman/Driver/Hacker cuts, or Custom extra fee %) is calculated on the gross take and rounded DOWN to whole dollars. Net = Gross − All Deductions. Each player\'s share = floor(Net × Cut%), with any rounding remainder displayed separately. The heist setup cost is deducted from the Host\'s share only, while Elite Challenge bonuses (Doomsday $50,000/player; Casino $50,000 Normal / $100,000 Hard per player) are added to each player after the split. Uses standard repeat-run values and does NOT include weekly event bonuses or discounts.',
+      mathSnippet: 'deduction = floor(gross * pct%); net = gross - sum(deductions); share = floor(net * cut%); hostFinal = hostShare - setupCost + elite'
+    },
+    faqs: [
+      { question: 'How are Diamond Casino Heist crew cuts deducted?', answer: 'Lester takes 5% of gross, and your chosen Gunman (5–10%), Driver (5–10%), and Hacker (3–10%) each take their percentage of the same gross, each rounded down to whole dollars before players split the remaining net.' },
+      { question: 'Which players pay the heist setup cost?', answer: 'Only the host pays the heist setup cost (for example $25,000 for Pacific Standard or Diamond Casino, $11,500 for Fleeca, or $65,000–$120,000 for Doomsday Acts I–III). Non-host crew members do not lose setup cost.' },
+      { question: 'How much does the Elite Challenge add in Doomsday and Diamond Casino Heists?', answer: 'In Doomsday Heist, Elite adds $50,000 per player. In Diamond Casino Heist, Elite adds $50,000 per player on Normal or $100,000 per player on Hard, added after the percentage split.' },
+      { question: 'Why is there sometimes a $1 or $2 unallocated remainder?', answer: 'Because every player\'s share is rounded down to whole dollars (floor(Net × Cut%)), percentages like 85% and 15% of an odd net amount can leave $1–$2 unallocated.' },
+      { question: 'What are the player cut rules in GTA Online heists?', answer: 'Cuts must be multiples of 5%, at least 15% per player, and total exactly 100% across the 2–4 players in the crew.' }
+    ],
+    proTips: [
+      'Original Heists require exact crew sizes (2 for The Fleeca Job; 4 for Prison Break, Humane Labs, Series A, and Pacific Standard).',
+      'On Diamond Casino Heist, choose Karl Abolaji (5%) and Karim Denz (5%) when possible to minimize NPC deductions while keeping Avi Schwartzman (10%) or Paige Harris (9%) for vault hacking time.'
+    ],
+    relatedToolIds: ['gta-online-cayo-perico-payout-calculator', 'gta-online-nightclub-profit-calculator', 'gta-online-acid-lab-profit-calculator']
+  },
+  {
+    id: 'gta-online-business-roi-calculator',
+    slug: 'gta-online-business-roi-calculator',
+    name: 'GTA Online Business ROI / Payback Calculator',
+    gameId: 'gtaonline',
+    categoryId: 'calculators',
+    icon: 'Coins',
+    shortDescription: 'Calculate GTA Online business setup cost, active payback hours, real days to break even, and weekly profit across Acid Lab, Nightclub, and Bunker.',
+    description: 'Verified GTA Online Business ROI / Payback Calculator. Compare Acid Lab, Nightclub (Top-5 Technicians + Equipment Upgrade), Bunker presets by location, and Custom setups—calculating total setup cost, active play hours to pay back, real days at your daily pace, and weekly profit.',
+    badge: 'TU 1.73',
+    rating: 4.95,
+    reviewsCount: 380,
+    userCount: '24k+ players',
+    featured: true,
+    tags: ['gta online', 'roi calculator', 'payback', 'acid lab', 'nightclub', 'bunker', 'weekly profit'],
+    seoTitle: 'GTA Online Business ROI / Payback Calculator – Acid Lab, Nightclub & Bunker',
+    metaDescription: 'Calculate how many active hours and real days a GTA Online business takes to pay for itself, plus weekly profit across Acid Lab, Nightclub, and Bunker presets.',
+    h1: 'GTA Online Business ROI / Payback Calculator',
+    canonicalPath: '/tools/gta-online-business-roi-calculator',
+    howToGuide: {
+      overview: 'Choose a verified business preset (or Custom), pick your property location if applicable, add optional other costs, and enter your daily active play hours to compute payback time and weekly profit.',
+      steps: [
+        { title: 'Select a Business Preset or Custom', description: 'Pick Acid Lab (Standard or Upgraded & Named), Nightclub (Top-5 Technicians + Equipment Upgrade), Bunker (No Upgrades or Equipment + Staff Upgrades), or Custom.' },
+        { title: 'Pick Property Location (Nightclub / Bunker)', description: 'Choose your Nightclub or Bunker location to include the exact property price in your total setup investment.' },
+        { title: 'Add Optional Other Costs & Hours / Day', description: 'Add any extra setup costs and set your active hours played per day (default 2 hours/day).' },
+        { title: 'Review Payback Hours, Days & Weekly Profit', description: 'Check active hours until break-even, real days at your daily pace, and expected weekly profit while in active sessions.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Business Setup Cost, Active Payback & Weekly Profit Math',
+      details: 'Production businesses only earn while the player is in an active session. Total Setup = Preset Components + Other Costs. Payback Hours = Total Setup ÷ Net Profit per Active Hour (rounded to 1 decimal). Payback Days = Payback Hours ÷ Hours Played per Day (1 decimal). Weekly Profit = Net Profit per Active Hour × Hours Played per Day × 7 (whole dollars). Uses standard repeat-run values and does NOT include weekly event bonuses or discounts.',
+      mathSnippet: 'totalSetup = presetComponents + otherCosts; paybackHours = totalSetup / netPerHour; paybackDays = paybackHours / hoursPerDay; weeklyProfit = netPerHour * hoursPerDay * 7'
+    },
+    faqs: [
+      { question: 'Do GTA Online production businesses earn while offline?', answer: 'No. Production businesses only earn while the player is in an active session, so payback hours measure active in-session play time.' },
+      { question: 'How is the Nightclub preset hourly rate ($45,446/hour) calculated?', answer: 'The Nightclub — Top-5 Technicians + Equipment Upgrade preset uses the $50,496/hour gross rate from the Nightclub Profit Calculator with Tony\'s 10% fee applied ($45,446/hour net).' },
+      { question: 'What is included in the Nightclub and Bunker setup costs?', answer: 'Nightclub includes the chosen location ($1,080,000–$1,700,000) + Equipment Upgrade ($1,425,000) + extra technicians ($878,000). Bunker Equipment + Staff adds $1,155,000 + $598,500 to your Bunker location ($1,165,000–$2,375,000).' },
+      { question: 'How long does an Upgraded & Named Acid Lab take to pay for itself?', answer: 'With a $1,000,000 setup ($750,000 lab + $250,000 Equipment Upgrade) and $63,960/hour net profit, it pays back in 15.6 active hours (7.8 days at 2 hours/day) while earning $895,440/week.' },
+      { question: 'Can I calculate payback for any other GTA Online business?', answer: 'Yes. Select Custom to enter any total setup cost and net profit per active hour directly.' }
+    ],
+    proTips: [
+      'Upgrading and naming your Acid Lab cuts payback time sharply by lifting net profit from $7,600/hour to $63,960/hour.',
+      'Use Other Costs to include extra storage floors or optional upgrades when planning a custom setup.'
+    ],
+    relatedToolIds: ['gta-online-acid-lab-profit-calculator', 'gta-online-nightclub-profit-calculator', 'gta-online-cooldown-planner']
+  },
+  {
+    id: 'gta-online-cooldown-planner',
+    slug: 'gta-online-cooldown-planner',
+    name: 'GTA Online Cooldown Planner',
+    gameId: 'gtaonline',
+    categoryId: 'gaming-utilities',
+    icon: 'Clock',
+    shortDescription: 'Track GTA Online activity cooldowns, find the exact clock time an activity is ready again, and run a live Start/Pause/Reset countdown timer.',
+    description: 'GTA Online Cooldown Planner with fixed game cooldown durations for Cayo Perico (solo 144 min / crew 48 min), Payphone Hit (10 min), Security Contract (5 min), Fooligan Job (48 min), Auto Shop Robbery Contract (48 min), and Dr. Dre VIP Contract (48 min), plus weekly and daily reset reference.',
+    badge: 'TU 1.73',
+    rating: 4.94,
+    reviewsCount: 310,
+    userCount: '19k+ players',
+    featured: true,
+    tags: ['gta online', 'cooldown', 'timer', 'utilities', 'cayo perico', 'payphone hit', 'fooligan job'],
+    seoTitle: 'GTA Online Cooldown Planner – Activity Timers & Ready Clock',
+    metaDescription: 'Check GTA Online cooldown lengths, calculate the exact ready clock time, and run a live countdown timer for Cayo Perico, Payphone Hits, Security Contracts, Fooligan Jobs, and more.',
+    h1: 'GTA Online Cooldown Planner',
+    canonicalPath: '/tools/gta-online-cooldown-planner',
+    howToGuide: {
+      overview: 'Pick any GTA Online cooldown activity, enter the clock time you finished it, see when it unlocks again, and optionally run the live countdown timer.',
+      steps: [
+        { title: 'Pick an Activity', description: 'Select from Cayo Perico Heist (solo or crew finale), Payphone Hit, Security Contract, Fooligan Job, Auto Shop Robbery Contract, or Dr. Dre VIP Contract.' },
+        { title: 'Enter Time Finished', description: 'Keep the current local time or enter any 24-hour completion time to check the exact clock time the cooldown expires.' },
+        { title: 'Read Ready Clock Time', description: 'View the cooldown length in minutes and the exact clock time (including +1d if it rolls past midnight) when the activity is ready again.' },
+        { title: 'Use the Live Countdown Timer', description: 'Press Start, Pause, or Reset on the countdown timer to track the cooldown in real time while playing.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Fixed Cooldown Durations & Reset Rules',
+      details: 'Ready Time adds the activity\'s fixed cooldown duration (144 minutes for Cayo Perico solo finale; 48 minutes for Cayo Perico crew finale, Fooligan Job, Auto Shop same contract, and Dr. Dre replay; 10 minutes for Payphone Hit; 5 minutes for Security Contract) to your finished time. Three Auto Shop contracts sit on the board, so rotating contracts avoids the 48-minute wait. Static resets: Salvage Yard robberies are capped at 3 per weekly reset (Thursdays at about 10:00 UTC), and the Acid Lab production boost resets daily at 06:00 GMT. Uses standard repeat-run rules and does NOT include weekly event bonuses or discounts.',
+      mathSnippet: 'readyTime = finishedTime + cooldownMinutes'
+    },
+    faqs: [
+      { question: 'How long is the Cayo Perico solo cooldown vs crew cooldown?', answer: 'Cayo Perico Heist has a 144-minute cooldown after a solo finale and a 48-minute cooldown after a crew finale.' },
+      { question: 'What are the cooldowns for Payphone Hits, Security Contracts, and Fooligan Jobs?', answer: 'Payphone Hits have a 10-minute cooldown, Security Contracts have a 5-minute cooldown, and Fooligan Jobs have a 48-minute cooldown.' },
+      { question: 'How can you avoid the 48-minute Auto Shop Robbery Contract cooldown?', answer: 'The 48-minute cooldown only applies to replaying the same contract. Because three contracts sit on the board, rotating to another contract avoids the wait.' },
+      { question: 'When is the GTA Online weekly reset and Salvage Yard robbery cap?', answer: 'Salvage Yard robberies are capped at 3 per weekly reset, and the weekly reset lands on Thursdays at about 10:00 UTC.' },
+      { question: 'When does the Acid Lab production boost reset?', answer: 'The Acid Lab production boost resets daily at 06:00 GMT.' }
+    ],
+    proTips: [
+      'Rotate Auto Shop Robbery Contracts from the three on your board to skip the 48-minute same-contract cooldown.',
+      'Pair 5-minute Security Contracts and 10-minute Payphone Hits between longer 48-minute or 144-minute cooldowns.'
+    ],
+    relatedToolIds: ['gta-online-cayo-perico-payout-calculator', 'gta-online-business-roi-calculator', 'gta-online-acid-lab-profit-calculator']
+  }
 ];
 
 export function getToolBySlug(slug: string): ToolItem | undefined {

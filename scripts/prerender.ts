@@ -1033,6 +1033,13 @@ const gameHubConfigs: {
     description: 'Calculate crop Sheckle sell values, weight scaling factors, variant multipliers, environmental mutation brackets, and friend boost bonuses in Roblox Grow a Garden.',
   },
   {
+    id: 'gtaonline',
+    slug: 'gta-online',
+    aliases: ['/gta-online', '/gtaonline'],
+    title: 'GTA Online Calculators & Tools – Nightclub, Acid Lab, Cayo Perico & Heists | GamingToolsHub',
+    description: 'Verified Title Update 1.73 GTA Online calculators and utilities: Nightclub Warehouse, Acid Lab profit, Cayo Perico payouts, Heist Splits, Business ROI / Payback, and Cooldown Planner.',
+  },
+  {
     id: 'general',
     slug: 'general',
     aliases: ['/general'],
