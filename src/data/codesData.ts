@@ -23,6 +23,7 @@ export interface CodesPageData {
   intro: string;
   codes: GameCode[];
   unconfirmed?: GameCode[];
+  undiscovered?: { name: string; reward: string }[];
   links?: DailyLink[];
   linksNote?: string;
   redeemSteps: string[];
@@ -443,6 +444,158 @@ export const CODES_PAGES: CodesPageData[] = [
       'Coin Master opens automatically.',
       'The spins are credited to your balance.',
       'Each link works once and expires in about 3 days.'
+    ]
+  },
+
+  // Entry 3 — GTA 6
+  {
+    slug: 'gta-6',
+    gameName: 'GTA 6',
+    gameHubPath: '/games/gta-6',
+    kind: 'codes',
+    lastChecked: '25 November 2026',
+    relatedToolPath: '/tools/gta-6-cheat-code-finder',
+    relatedToolLabel: 'GTA 6 Cheat Code Finder',
+    intro:
+      'GTA 6 brings back cheat codes — 61 of them — but with a twist: every cheat stays locked until you finish the main story, and each one also has its own unlock challenge. The sequences below are entered on the in-game phone with the D-pad and are the same on PS5 and Xbox Series X|S. 19 inputs are verified so far; this page is updated as more are discovered.',
+    note:
+      "Using any cheat disables trophies/achievements and blocks saving for the rest of that play session — so money from the $250,000 cheat cannot be carried into a normal save. Make a clean save before using cheats. More cheat inputs are still being discovered; check the 'Last checked' date at the top of this page.",
+    codes: [
+      {
+        code: 'Up, Right, Down, Left, Up, Left, Down, Right',
+        reward: '$250,000 — instantly gives you $250,000. Unlock: finish the story.'
+      },
+      {
+        code: 'Up, Left, Right, Up, Up, Left, Right, Up, Left, Right',
+        reward: 'Drunk — instantly makes you and your partner drunk. Unlock: spend $2,500 on alcohol.'
+      },
+      {
+        code: 'Left, Down, Right, Down, Up, Down, Up',
+        reward: 'Raise Heat Level — raises your heat level across the map. Unlock: lose a 3-star wanted level 25 times.'
+      },
+      {
+        code: 'Left, Down, Right, Down, Up, Right, Up',
+        reward: 'Raise Wanted Level — raises your wanted level across the map. Unlock: lose a 3-star wanted level 50 times.'
+      },
+      {
+        code: 'Down, Up, Up, Down, Up, Down, Up, Down, Up, Right',
+        reward: 'Unlimited Focus — Focus never runs out. Unlock: finish the story.'
+      },
+      {
+        code: 'Down, Up, Left, Up, Up, Up, Up, Up, Down, Down',
+        reward: 'Body Armor — adds body armor to your loadout. Unlock: complete 100 workouts.'
+      },
+      {
+        code: 'Down, Up, Right, Down, Left, Left, Up, Up, Down, Left',
+        reward: 'Max Ammo — fills all ammo to maximum. Unlock: win 25 bronze medals or higher at shooting ranges.'
+      },
+      {
+        code: 'Down, Up, Right, Down, Left, Left, Up, Down, Down, Down',
+        reward: 'Infinite Ammo — ammo never runs out. Unlock: win 25 silver medals or higher at shooting ranges.'
+      },
+      {
+        code: 'Down, Up, Right, Down, Left, Left, Up, Down, Down, Up',
+        reward: 'No Reload — ammo never runs out, with no need to reload. Unlock: win 25 gold medals at shooting ranges.'
+      },
+      {
+        code: 'Down, Up, Left, Left, Right, Down, Down, Up, Down',
+        reward: 'Attack Force — bullets and melee attacks launch targets on impact. Unlock: finish the story.'
+      },
+      {
+        code: 'Down, Up, Left, Left, Right, Down, Down, Up, Right',
+        reward: 'Exploding Balls — sports balls explode on impact. Unlock: hit 20 enemies with explosive damage.'
+      },
+      {
+        code: 'Down, Up, Left, Left, Right, Down, Left, Up, Down',
+        reward: 'Vehicle Force — vehicle collisions launch targets. Unlock: kill 25 enemies with a vehicle (civilians count).'
+      },
+      {
+        code: 'Left, Up, Right, Down, Left, Left, Up, Left',
+        reward: 'Maibatsu Boomazoom — spawns a Maibatsu Boomazoom. Unlock: complete 5 shopping challenges.'
+      },
+      {
+        code: 'Left, Up, Right, Down, Left, Right, Right, Up',
+        reward: 'MTL Pumper — spawns an MTL Pumper. Unlock: discover the MTL Pumper in the Progress menu.'
+      },
+      {
+        code: 'Left, Up, Right, Down, Left, Right, Right, Down',
+        reward: 'HVY Bulldozer — spawns an HVY Bulldozer. Unlock: discover the HVY Bulldozer in the Progress menu.'
+      },
+      {
+        code: 'Down, Right, Up, Down, Right, Up, Right',
+        reward: 'Cycle Weather — changes the weather. Unlock: finish the story.'
+      },
+      {
+        code: 'Down, Down, Up, Right, Right, Up, Left, Left, Right, Right',
+        reward: "Cataclysm — murky smoke fills the world. Unlock: discover Martha's Vamos in the Progress menu."
+      },
+      {
+        code: 'Down, Down, Up, Right, Right, Up, Left, Left, Down, Right',
+        reward: 'Dollhouse — vivid filter with a narrow aspect ratio. Unlock: spend 8 hours with your partner.'
+      },
+      {
+        code: 'Down, Down, Up, Right, Right, Up, Left, Left, Left, Right',
+        reward: 'Faded Glory — color CRT TV filter. Unlock: rob 50 stores with your partner.'
+      }
+    ],
+    unconfirmed: [
+      {
+        code: 'Down, Down, Up, Right, Right, Up, Left, Left, Right, Down',
+        reward: 'Videotape — videotape-style filter. Unlock: complete 50 activities with your partner. (Reported by one source so far.)'
+      },
+      {
+        code: 'Down, Down, Up, Right, Right, Up, Left, Left, Right, Left',
+        reward: 'Dark Mirror — flips the world upside down and turns it black. Unlock: make $500,000 selling vehicles. (Reported by one source so far.)'
+      }
+    ],
+    undiscovered: [
+      { name: 'No Fall Damage', reward: 'You are immune to fall damage. Unlock: survive a freefall from 40 feet 20 times.' },
+      { name: 'Parachute', reward: 'Adds a parachute to your loadout. Unlock: complete 50 skydives or BASE jumps from 300 feet or higher.' },
+      { name: 'Repair Vehicle', reward: 'Fully repairs your current vehicle. Unlock: win 1st place in 10 races at Gellhorn Raceway, Thrillbilly Mud Club, and Boone Speedway.' },
+      { name: 'Unlimited Nitrous', reward: 'Nitrous and fuel never run out on vehicles. Unlock: complete 50 stunt jumps.' },
+      { name: 'All Explosive Weapons', reward: 'Adds all explosive weapons to your loadout with full ammo. Unlock: throw 100 grenades.' },
+      { name: 'Incendiary Ammo', reward: 'All ammo is incendiary. Unlock: burn 100 enemies with fire damage.' },
+      { name: 'Exploding Bottles', reward: 'Bottles explode when damaged. Unlock: throw 100 molotovs.' },
+      { name: 'Explosive Shotgun', reward: 'Adds a Mason & Keen Shortstraw that fires explosive shells. Unlock: hit 100 enemies with explosive damage.' },
+      { name: 'Hauners H-AT', reward: 'Adds a Hauners H-AT to your loadout. Unlock: blow up 100 vehicles.' },
+      { name: 'Speeder 700 GT', reward: 'Spawns a Speeder 700 GT. Unlock: complete 5 combat challenges.' },
+      { name: 'Bravado Banshee', reward: 'Spawns a Bravado Banshee. Unlock: complete all combat challenges.' },
+      { name: 'Maibatsu Sanchez', reward: 'Spawns a Maibatsu Sanchez. Unlock: complete 5 criminal challenges.' },
+      { name: 'Western Zombie Bobber', reward: 'Spawns a Western Zombie Bobber. Unlock: complete all criminal challenges.' },
+      { name: 'Nagasaki Sea Sparrow', reward: 'Spawns a Nagasaki Sea Sparrow. Unlock: complete 5 exploration challenges.' },
+      { name: 'Nagasaki Carbon RS', reward: 'Spawns a Nagasaki Carbon RS. Unlock: complete all exploration challenges.' },
+      { name: 'Tuff BMX', reward: 'Spawns a Tuff BMX. Unlock: complete 5 fitness challenges.' },
+      { name: "'65 Vapid Dominator", reward: "Spawns a '65 Vapid Dominator. Unlock: complete all fitness challenges." },
+      { name: 'Truffade Thrax', reward: 'Spawns a Truffade Thrax. Unlock: complete all shopping challenges.' },
+      { name: 'Vapid Stanier G2 Taxi', reward: 'Spawns a Vapid Stanier G2 Taxi. Unlock: complete 5 sports challenges.' },
+      { name: 'Brimstone Golfer', reward: 'Spawns a Brimstone Golfer. Unlock: complete all sports challenges.' },
+      { name: 'Airboat 09', reward: 'Spawns an Airboat 09. Unlock: complete 5 survival challenges.' },
+      { name: 'Hauners Rhino Tank', reward: 'Spawns a Hauners Rhino Tank. Unlock: complete all survival challenges.' },
+      { name: 'Lapwing Mallard', reward: 'Spawns a Lapwing Mallard. Unlock: complete 5 vehicle challenges.' },
+      { name: 'Progen Emerus', reward: 'Spawns a Progen Emerus. Unlock: complete all vehicle challenges.' },
+      { name: 'Hauners P-996 Lazer', reward: 'Spawns a Hauners P-996 Lazer. Unlock: complete all challenges.' },
+      { name: 'Interstate Ambulance', reward: 'Spawns an Interstate Ambulance. Unlock: discover the Interstate Ambulance in the Progress menu.' },
+      { name: 'Inflatable Flamingo', reward: 'Spawns an Inflatable Flamingo. Unlock: destroy 50 cocaine flamingos.' },
+      { name: 'Move Time Forward', reward: 'Moves the time of day forward. Unlock: find 10 collectible watches.' },
+      { name: 'Pause Time of Day', reward: 'Pauses the time of day. Unlock: find 20 collectible watches.' },
+      { name: 'Golden Hour', reward: 'Golden filter with a widescreen aspect ratio. Unlock: spend 4 hours holding hands.' },
+      { name: 'Powdered Sugar', reward: 'Turns the world white with sparkling highlights. Unlock: scan all space debris with WAiNK.' },
+      { name: 'Pinhole', reward: 'Pinhole camera filter. Unlock: clear 25 gang operations with your partner.' },
+      { name: 'Neon Jungle', reward: 'Adds neon highlights to the world. Unlock: discover all 16 Girlypop Vehicles.' },
+      { name: 'Yesteryear', reward: 'Black-and-white CRT TV filter. Unlock: discover the Ridgeway.' },
+      { name: 'Migraine', reward: 'Blurred, distorted filter. Unlock: survive 6 minutes with a 6-star wanted level.' },
+      { name: 'Bubblegum', reward: 'Purple and yellow world with sparkling highlights. Unlock: find all 24 Vice City Flamingos collectible cards.' },
+      { name: 'Fast Forward', reward: 'Motion blur and faster cloud movement. Unlock: complete 50 meditations.' },
+      { name: 'Fisheye', reward: 'Fisheye lens filter. Unlock: catch 100 fish.' },
+      { name: 'Pixel Art', reward: 'Pixelated filter. Unlock: make $250,000 selling collectibles.' },
+      { name: 'Hellscape', reward: 'Red and orange world with heat haze. Unlock: steal 100 cop vehicles.' }
+    ],
+    redeemSteps: [
+      'Finish the main story first — cheats stay locked until the credits roll, and each cheat also needs its own unlock challenge completed (check Progress > Cheats).',
+      'Press Up on the D-pad to open your in-game phone.',
+      'Hold L1 (PS5) or LB (Xbox) and press R1 or RB.',
+      "Enter the cheat's D-pad sequence — the same sequence works on PS5 and Xbox Series X|S.",
+      'A confirmation message appears when the cheat activates. Remember: cheats disable trophies/achievements and saving for that session.'
     ]
   }
 ];

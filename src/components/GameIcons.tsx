@@ -622,6 +622,29 @@ export function GtaOnlineIcon({ className = 'w-5 h-5', size = 20 }: IconProps) {
 
 
 /**
+ * Grand Theft Auto VI: Vice City Coral & Sunset Palm "VI" Emblem
+ */
+export function Gta6Icon({ className = 'w-5 h-5', size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+      <defs>
+        <linearGradient id="gta6Vice" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#fb7185" />
+          <stop offset="0.55" stopColor="#ec4899" />
+          <stop offset="1" stopColor="#8b5cf6" />
+        </linearGradient>
+      </defs>
+      <rect x="2.5" y="2.5" width="19" height="19" rx="4.5" fill="#1e0918" stroke="url(#gta6Vice)" strokeWidth="1.6" />
+      <path d="M6.2 7.5L9.5 16.5L12.8 7.5" stroke="#fda4af" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M16.6 7.5V16.5" stroke="#f472b6" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M14.8 7.5H18.4" stroke="#f472b6" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M14.8 16.5H18.4" stroke="#f472b6" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+
+/**
      * Helper function to get the appropriate custom vector logo for any game ID
      */
 export function getGameIcon(gameId: string, className = 'w-5 h-5'): React.ReactNode {
@@ -700,6 +723,9 @@ export function getGameIcon(gameId: string, className = 'w-5 h-5'): React.ReactN
     case 'gtaonline':
     case 'gta-online':
       return <GtaOnlineIcon className={className} />;
+    case 'gta6':
+    case 'gta-6':
+      return <Gta6Icon className={className} />;
     default:
       return <MinecraftIcon className={className} />;
   }

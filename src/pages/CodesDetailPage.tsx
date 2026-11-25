@@ -264,6 +264,36 @@ export default function CodesDetailPage({ pageData, onNavigate }: CodesDetailPag
                 </div>
               </div>
             )}
+
+            {/* Confirmed cheats — input not yet discovered box (if present) */}
+            {pageData.undiscovered && pageData.undiscovered.length > 0 && (
+              <div className="mt-8 rounded-2xl bg-[#0c122e] border border-indigo-900/60 p-5 sm:p-6 space-y-4">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="text-base font-bold text-white">
+                    Confirmed cheats — input not yet discovered
+                  </h3>
+                  <span className="text-xs font-mono text-slate-400">
+                    {pageData.undiscovered.length} Cheats
+                  </span>
+                </div>
+                <div className="space-y-2.5">
+                  {pageData.undiscovered.map((item) => (
+                    <div
+                      key={item.name}
+                      className="bg-[#070b19] border border-indigo-950/90 rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5"
+                    >
+                      <div className="text-xs sm:text-sm text-slate-300 min-w-0">
+                        <strong className="text-white font-bold mr-2">{item.name}</strong>
+                        <span>{item.reward}</span>
+                      </div>
+                      <span className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-400 whitespace-nowrap shrink-0 self-end sm:self-auto">
+                        Not yet discovered
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
         )}
 

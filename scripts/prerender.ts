@@ -1040,6 +1040,13 @@ const gameHubConfigs: {
     description: 'Verified Title Update 1.73 GTA Online calculators and utilities: Nightclub Warehouse, Acid Lab profit, Cayo Perico payouts, Heist Splits, Business ROI / Payback, and Cooldown Planner.',
   },
   {
+    id: 'gta6',
+    slug: 'gta-6',
+    aliases: ['/gta-6', '/gta6'],
+    title: 'Grand Theft Auto VI (GTA 6) Tools & Cheat Code Finder | GamingToolsHub',
+    description: 'Verified Grand Theft Auto VI (GTA 6) cheat codes and utilities for PS5 and Xbox Series X|S: search all 61 cheats, filter by category, check unlock conditions, and copy verified D-pad inputs.',
+  },
+  {
     id: 'general',
     slug: 'general',
     aliases: ['/general'],

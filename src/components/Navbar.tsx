@@ -36,7 +36,8 @@ import {
   SkIcon,
   CmIcon,
   GrowAGardenIcon,
-  GtaOnlineIcon
+  GtaOnlineIcon,
+  Gta6Icon
 } from './GameIcons';
 
 interface NavbarProps {
@@ -70,7 +71,8 @@ const GAME_NAV_ICONS: Record<string, React.ReactNode> = {
   mogo: <MonopolyGoIcon className="w-4 h-4 text-red-400" />,
   sk: <SkIcon className="w-4 h-4 text-blue-400" />,
   cm: <CmIcon className="w-4 h-4 text-amber-400" />,
-  gtaonline: <GtaOnlineIcon className="w-4 h-4" />
+  gtaonline: <GtaOnlineIcon className="w-4 h-4" />,
+  gta6: <Gta6Icon className="w-4 h-4" />
 };
 
 export default function Navbar({ currentPath, onNavigate, onOpenSearch }: NavbarProps) {

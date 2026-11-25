@@ -176,6 +176,16 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
         path: '/games/gta-online',
         icon: getGameIcon('gtaonline', 'w-5 h-5'),
         accent: 'border-emerald-500/30 group-hover:border-emerald-500/60'
+      },
+      {
+        id: 'gta6',
+        name: 'Grand Theft Auto VI',
+        subtitle: 'All 61 Cheat Codes & D-Pad Inputs',
+        description: 'Search all 61 GTA 6 cheats for PS5 and Xbox Series X|S, filter by category, check unlock challenges, and copy D-pad inputs.',
+        count: TOOLS.filter(t => t.gameId === 'gta6').length,
+        path: '/games/gta-6',
+        icon: getGameIcon('gta6', 'w-5 h-5'),
+        accent: 'border-rose-500/30 group-hover:border-rose-500/60'
       }
     ];
   }, []);

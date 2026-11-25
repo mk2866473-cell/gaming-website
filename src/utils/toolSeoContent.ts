@@ -1020,6 +1020,35 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
+  // 4z3. GTA 6 Cheat Code Finder
+  if (id === 'gta-6-cheat-code-finder') {
+    return [
+      {
+        title: 'Example 1: Activating the $250,000 Cash Cheat',
+        scenario: 'A player finishes the Grand Theft Auto VI main story and wants to test the $250,000 cash cheat without risking their clean story save.',
+        inputValues: {
+          'Cheat Name': '$250,000 (Player)',
+          'Unlock Requirement': 'Finish the story',
+          'D-Pad Sequence': 'Up, Right, Down, Left, Up, Left, Down, Right (↑ → ↓ ← ↑ ← ↓ →)'
+        },
+        calculation: 'Make a clean save first, open the phone (Up), hold L1/LB + press R1/RB, then enter ↑ → ↓ ← ↑ ← ↓ →.',
+        result: '$250,000 added instantly (trophies/achievements and saving disabled for the rest of the session)',
+        takeaway: 'Saving is disabled while any cheat is active, so cash from the $250,000 cheat cannot be carried into a normal save.'
+      },
+      {
+        title: 'Example 2: Checking Unconfirmed vs Undiscovered Cheats',
+        scenario: 'A player filters by Filters or searches "tank" to see which cheat inputs are verified versus still locked behind challenges.',
+        inputValues: {
+          'Videotape (Filters)': 'Complete 50 activities with your partner',
+          'Hauners Rhino Tank (Vehicle)': 'Complete all survival challenges'
+        },
+        calculation: 'Videotape shows ↓ ↓ ↑ → → ↑ ← ← → ↓ with the "Unconfirmed — reported by one source so far" note; Hauners Rhino Tank shows "Input not yet discovered".',
+        result: 'Verified: 19 | Unconfirmed: 2 | Not yet discovered: 40 (61 total)',
+        takeaway: 'Every cheat remains locked until the story credits roll and its specific unlock challenge is completed.'
+      }
+    ];
+  }
+
   // 4. Roblox Robux Tax / DevEx / Developer Earnings Calculator
   if (name.includes('robux') || name.includes('devex') || name.includes('gamepass') || name.includes('developer')) {
     return [
@@ -1819,6 +1848,22 @@ export function getToolDeepDive(tool: ToolItem): ToolDeepDive {
     };
   }
 
+  if (tool.id === 'gta-6-cheat-code-finder') {
+    return {
+      title: 'Grand Theft Auto VI (GTA 6) Cheat System & Unlock Rules',
+      summary: 'How all 61 GTA 6 cheats unlock after the story, how D-pad entry works on PS5 and Xbox Series X|S, and session penalties.',
+      paragraphs: [
+        'Grand Theft Auto VI features 61 cheats across five categories: Player (10), Combat (11), Vehicle (21), Environment (3), and Filters (16). Unlike earlier GTA entries, every cheat stays locked until the main story credits roll, and most cheats also require completing a specific challenge tracked under Progress > Cheats in the pause menu.',
+        'To enter an unlocked cheat, press Up on the D-pad to open your in-game phone, hold L1 (PS5) or LB (Xbox) and press R1 or RB, then enter the D-pad sequence. Sequences are identical on PS5 and Xbox Series X|S. Activating any cheat disables trophies and achievements for the rest of that play session and blocks game saving while active.'
+      ],
+      keyPoints: [
+        'Post-Story Unlock Gate: All 61 cheats remain locked until the main story is finished.',
+        'Cross-Console Parity: D-pad cheat sequences are identical on PS5 and Xbox Series X|S.',
+        'Session Penalties: Trophies/achievements are disabled for the rest of the session and saving is blocked while a cheat is active.'
+      ]
+    };
+  }
+
   const game = getGameById(tool.gameId);
   const gameName = game?.name || 'Gaming';
   const name = tool.name;
@@ -1873,7 +1918,8 @@ export function getEnhancedToolFaqs(tool: ToolItem): EnhancedToolFaq[] {
     tool.id === 'gta-online-cayo-perico-payout-calculator' ||
     tool.id === 'gta-online-heist-split-calculator' ||
     tool.id === 'gta-online-business-roi-calculator' ||
-    tool.id === 'gta-online-cooldown-planner'
+    tool.id === 'gta-online-cooldown-planner' ||
+    tool.id === 'gta-6-cheat-code-finder'
   ) {
     return existing.slice(0, 5);
   }

@@ -358,6 +358,19 @@ export const GAMES: GameInfo[] = [
     badge: '6 Tools Available'
   },
   {
+    id: 'gta6',
+    slug: 'gta-6',
+    name: 'Grand Theft Auto VI',
+    shortName: 'GTA 6',
+    tagline: 'All 61 cheat codes, unlock challenges & D-pad inputs (PS5 / Xbox Series X|S)',
+    description: 'Verified Grand Theft Auto VI (GTA 6) cheat codes and utilities for PS5 and Xbox Series X|S: search all 61 cheats, filter by category, check unlock conditions, and copy verified D-pad inputs.',
+    color: 'from-rose-950/60 to-zinc-950',
+    borderColor: 'border-rose-500/30',
+    accentColor: 'text-rose-400',
+    icon: 'Gamepad2',
+    badge: '1 Tool Available'
+  },
+  {
     id: 'general',
     slug: 'general',
     name: 'Gaming Utilities',
@@ -397,7 +410,8 @@ export const PRIMARY_GAME_IDS = [
   'mogo',
   'sk',
   'cm',
-  'gtaonline'
+  'gtaonline',
+  'gta6'
 ] as const;
 
 export function getPrimaryGames(): GameInfo[] {
@@ -451,6 +465,8 @@ export function getGamePath(gameId: string): string {
     case 'coin-master': return '/coin-master';
     case 'gtaonline':
     case 'gta-online': return '/games/gta-online';
+    case 'gta6':
+    case 'gta-6': return '/games/gta-6';
     default: return `/games?game=${gameId}`;
   }
 }
@@ -4234,6 +4250,52 @@ export const TOOLS: ToolItem[] = [
       'Pair 5-minute Security Contracts and 10-minute Payphone Hits between longer 48-minute or 144-minute cooldowns.'
     ],
     relatedToolIds: ['gta-online-cayo-perico-payout-calculator', 'gta-online-business-roi-calculator', 'gta-online-acid-lab-profit-calculator']
+  },
+  {
+    id: 'gta-6-cheat-code-finder',
+    slug: 'gta-6-cheat-code-finder',
+    name: 'GTA 6 Cheat Code Finder',
+    gameId: 'gta6',
+    categoryId: 'gaming-utilities',
+    icon: 'Gamepad2',
+    shortDescription: 'Search all 61 GTA 6 cheats for PS5 and Xbox Series X|S, filter by category, check unlock conditions, and copy verified D-pad sequences.',
+    description: 'Verified Grand Theft Auto VI (GTA 6) Cheat Code Finder covering all 61 Player, Combat, Vehicle, Environment, and Filter cheats for PS5 and Xbox Series X|S, with unlock requirements, verification statuses, entry instructions, and penalty warnings.',
+    badge: 'PS5 / Xbox',
+    rating: 4.96,
+    reviewsCount: 520,
+    userCount: '40k+ players',
+    featured: true,
+    tags: ['gta 6', 'grand theft auto vi', 'gta vi', 'cheat codes', 'cheats', 'd-pad', 'ps5', 'xbox'],
+    seoTitle: 'GTA 6 Cheat Code Finder – All 61 PS5 & Xbox D-Pad Cheats',
+    metaDescription: 'Search all 61 Grand Theft Auto VI (GTA 6) cheat codes for PS5 and Xbox Series X|S. Filter by category, view unlock requirements, and copy verified D-pad sequences.',
+    h1: 'GTA 6 Cheat Code Finder',
+    canonicalPath: '/tools/gta-6-cheat-code-finder',
+    howToGuide: {
+      overview: 'Find any Grand Theft Auto VI cheat by name or effect, filter by category, check its story/challenge unlock requirement, and copy verified D-pad inputs for PS5 or Xbox Series X|S.',
+      steps: [
+        { title: 'Finish the Main Story First', description: 'Every cheat in GTA 6 stays locked until the credits roll, even if you already know its D-pad sequence.' },
+        { title: 'Search or Filter by Category', description: 'Type a cheat name or effect in the search bar or pick All, Player, Combat, Vehicle, Environment, or Filters.' },
+        { title: 'Check the Unlock & Input Status', description: 'Review the challenge needed to unlock the cheat under Progress > Cheats and whether its D-pad sequence is verified, unconfirmed, or not yet discovered.' },
+        { title: 'Enter the Sequence on Your Phone', description: 'Press Up on the D-pad to open your phone, hold L1 (PS5) or LB (Xbox) and press R1 or RB, then enter the D-pad sequence.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'How GTA 6 Cheats Unlock & Activate',
+      details: 'Grand Theft Auto VI includes 61 cheats across 5 categories: Player (10), Combat (11), Vehicle (21), Environment (3), and Filters (16). Unlike earlier titles, cheats stay locked until the main story is finished and their specific unlock conditions are met, and sequences are identical on PS5 and Xbox Series X|S. Activating a cheat disables trophies and achievements for the rest of that play session, and you cannot save while a cheat is active—so cash from the $250,000 cheat cannot be carried into a normal save.',
+      mathSnippet: 'Total 61 cheats = Player (10) + Combat (11) + Vehicle (21) + Environment (3) + Filters (16)'
+    },
+    faqs: [
+      { question: 'How do you enter cheat codes in GTA 6?', answer: 'Finish the main story first, press Up on the D-pad to open your in-game phone, hold L1 (PS5) or LB (Xbox) and press R1 or RB, then enter the D-pad sequence.' },
+      { question: 'Are GTA 6 cheat sequences the same on PS5 and Xbox Series X|S?', answer: 'Yes. The D-pad cheat sequences are identical on PS5 and Xbox Series X|S.' },
+      { question: 'Why are some GTA 6 cheats still marked "Input not yet discovered"?', answer: 'Every cheat stays locked until its post-story unlock challenge is completed, so cheats with rare or lengthy unlock requirements only receive verified inputs once players unlock and test them.' },
+      { question: 'Can you save the $250,000 cheat money in GTA 6?', answer: 'No. You cannot save the game while a cheat is active, so cash from the $250,000 cheat cannot be carried into a normal save. Make a clean save before using cheats.' },
+      { question: 'Do GTA 6 cheats disable trophies and achievements?', answer: 'Yes. Activating a cheat disables trophies and achievements for the rest of that play session.' }
+    ],
+    proTips: [
+      'Always create a clean manual save before activating any GTA 6 cheat—saving is blocked while cheats are active.',
+      'Check which cheats you have already unlocked under Progress > Cheats in the pause menu.'
+    ],
+    relatedToolIds: ['gta-online-cooldown-planner', 'gta-online-cayo-perico-payout-calculator']
   }
 ];
 

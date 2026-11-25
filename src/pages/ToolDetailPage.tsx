@@ -239,6 +239,7 @@ const GtaOnlineCayoPericoPayoutCalculator = React.lazy(() => import('../componen
 const GtaOnlineHeistSplitCalculator = React.lazy(() => import('../components/tools/GtaOnlineHeistSplitCalculator'));
 const GtaOnlineBusinessRoiCalculator = React.lazy(() => import('../components/tools/GtaOnlineBusinessRoiCalculator'));
 const GtaOnlineCooldownPlanner = React.lazy(() => import('../components/tools/GtaOnlineCooldownPlanner'));
+const Gta6CheatCodeFinder = React.lazy(() => import('../components/tools/Gta6CheatCodeFinder'));
 const ModularGamingTool = React.lazy(() => import('../components/tools/ModularGamingTool'));
 
 interface ToolDetailPageProps {
@@ -740,6 +741,8 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <GtaOnlineBusinessRoiCalculator />;
       case 'gta-online-cooldown-planner':
         return <GtaOnlineCooldownPlanner />;
+      case 'gta-6-cheat-code-finder':
+        return <Gta6CheatCodeFinder />;
       default:
         return <ModularGamingTool tool={tool} />;
     }

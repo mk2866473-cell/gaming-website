@@ -211,6 +211,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://gamingtoolshub.com/games/gta-6</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://gamingtoolshub.com/games/general</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -1771,6 +1777,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://gamingtoolshub.com/tools/gta-6-cheat-code-finder</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://gamingtoolshub.com/codes</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>daily</changefreq>
@@ -1838,6 +1850,12 @@
   </url>
   <url>
     <loc>https://gamingtoolshub.com/codes/coin-master</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gamingtoolshub.com/codes/gta-6</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
