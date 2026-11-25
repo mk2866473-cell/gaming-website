@@ -105,6 +105,8 @@ const PalworldCraftingCalculator = React.lazy(() => import('../components/tools/
 const PalworldMaterialCalculator = React.lazy(() => import('../components/tools/PalworldMaterialCalculator'));
 const PalworldCondensationCalculator = React.lazy(() => import('../components/tools/PalworldCondensationCalculator'));
 const PalworldTechPointCalculator = React.lazy(() => import('../components/tools/PalworldTechPointCalculator'));
+const PalworldPassiveInheritanceCalculator = React.lazy(() => import('../components/tools/PalworldPassiveInheritanceCalculator'));
+const PalworldEggIncubationCalculator = React.lazy(() => import('../components/tools/PalworldEggIncubationCalculator'));
 const TeamGenerator = React.lazy(() => import('../components/tools/TeamGenerator'));
 const GamingDecisionWheel = React.lazy(() => import('../components/tools/GamingDecisionWheel'));
 const HelldiversBreakpointCalculator = React.lazy(() => import('../components/tools/HelldiversBreakpointCalculator'));
@@ -413,6 +415,10 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <PalworldCondensationCalculator />;
       case 'palworld-tech-point-calculator':
         return <PalworldTechPointCalculator />;
+      case 'palworld-passive-inheritance-calculator':
+        return <PalworldPassiveInheritanceCalculator />;
+      case 'palworld-egg-incubation-calculator':
+        return <PalworldEggIncubationCalculator />;
       case 'team-generator':
         return <TeamGenerator />;
       case 'gaming-decision-wheel':

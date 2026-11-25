@@ -2963,6 +2963,152 @@ export const TOOLS: ToolItem[] = [
     ],
     relatedToolIds: ['palworld-crafting-calculator', 'palworld-capture-calculator', 'palworld-base-team-calculator']
   },
+
+  // 59b. Palworld Passive Inheritance Odds Calculator
+  {
+    id: 'palworld-passive-inheritance-calculator',
+    slug: 'palworld-passive-inheritance-calculator',
+    name: 'Palworld Passive Inheritance Odds Calculator',
+    gameId: 'palworld',
+    categoryId: 'calculators',
+    icon: 'Dices',
+    shortDescription: 'Calculate exact per-egg passive inheritance probabilities using the datamined Palworld 1.0 pool model and Special Cake rules.',
+    description: 'Calculates exact per-egg breeding probabilities, expected eggs, and 90%-confidence egg counts using the datamined Palworld 1.0 inheritance model. Supports up to 4 passives per parent, unique pool deduplication (P = 1–8), Extras Allowed vs Exact Set Only matching, and Special Cake.',
+    badge: '1.0 Breeding',
+    rating: 4.97,
+    reviewsCount: 340,
+    userCount: '24.5K',
+    featured: false,
+    tags: ['palworld', 'passive inheritance', 'breeding odds', 'special cake', 'passives', 'egg probability'],
+    seoTitle: 'Palworld Passive Inheritance Odds Calculator – Datamined 1.0 Breeding Math',
+    metaDescription: 'Calculate exact per-egg Palworld passive skill inheritance odds, expected eggs, and 90% egg targets using the datamined 1.0 model and Special Cake.',
+    h1: 'Palworld Passive Inheritance Odds Calculator',
+    canonicalPath: '/tools/palworld-passive-inheritance-calculator',
+    howToGuide: {
+      overview: 'Pick the passives carried by Parent A and Parent B, tick 1 to 4 passives the child must inherit from the combined unique pool, and choose Extras Allowed or Exact Set Only (plus Special Cake if used).',
+      steps: [
+        {
+          title: 'Pick Parent A & Parent B Passives',
+          description: 'Select up to 4 passives for each parent. Duplicates across both parents merge into the combined unique pool P (1–8) and count once — which parent or gender holds a passive makes no difference (2+2, 3+1, and 4+0 splits have identical odds).'
+        },
+        {
+          title: 'Tick Desired Child Passives',
+          description: 'Check 1 to 4 passives from the combined unique pool that your bred child must carry (D ≤ P, D ≤ 4).'
+        },
+        {
+          title: 'Choose Matching Mode & Special Cake',
+          description: 'Pick "Extras allowed" (child carries all desired passives, extra traits are fine) or "Exact set only" (child carries only the desired passives). Toggle Special Cake ON to force exactly 4 inherited passives from the pool (or the whole pool if P ≤ 4).'
+        }
+      ]
+    },
+    formulaExplained: {
+      title: 'Datamined Palworld 1.0 Inheritance & Combinatorics Model',
+      details: 'Under the datamined Palworld 1.0 model, both parents combine into a unique pool of size P (duplicates count once). The child first rolls how many passives k to inherit without replacement from the pool: k = 1 (40%), 2 (30%), 3 (20%), or 4 (10%), with 0 impossible. When k ≥ P, the child inherits the entire pool (m = min(k, P)). Afterward, a random roll adds r = 0 (40%), 1 (30%), 2 (20%), or 3 (10%) brand-new random passives, capped at 4 passives total.\n\nWith Special Cake enabled, the inherit-count roll is skipped and the child always inherits m = min(4, P) passives from the pool. Avoid outdated pre-1.0 guides claiming "24% from the male parent, 20% from the female, 34% inherit nothing" — that old table is wrong under the 1.0 model.\n\nReference odds (% per egg, Extras allowed, no Special Cake — columns: Want 1 / Want 2 / Want 3 / Want 4):\n• Pool 1: 100.00%\n• Pool 2: 80.00% / 60.00%\n• Pool 3: 63.33% / 40.00% / 30.00%\n• Pool 4: 50.00% / 25.00% / 15.00% / 10.00%\n• Pool 5: 40.00% / 15.00% / 6.00% / 2.00%\n• Pool 6: 33.33% / 10.00% / 3.00% / 0.67%\n• Pool 7: 28.57% / 7.14% / 1.71% / 0.29%\n• Pool 8: 25.00% / 5.36% / 1.07% / 0.14%',
+      mathSnippet: 'Extras Allowed (No Cake): P(success) = Σ[k=1..4] W(k) × C(P−D, min(k,P)−D) / C(P, min(k,P)), W = {1: 0.40, 2: 0.30, 3: 0.20, 4: 0.10}'
+    },
+    faqs: [
+      {
+        question: 'Does having the same passive on both parents increase inheritance odds in Palworld?',
+        answer: 'No. Duplicates are removed when forming the breeding pool — a passive carried by both parents counts once and is no more likely to pass than a passive carried by one parent.'
+      },
+      {
+        question: 'Do parent genders or how passives are split (2+2 vs 3+1 vs 4+0) affect the odds?',
+        answer: 'No. Which parent holds which passive and the parents\' genders make zero difference under the Palworld 1.0 model. A 2+2 split, a 3+1 split, and a 4+0 split with the same 4 unique passives all have identical odds (10.00% per egg without Special Cake).'
+      },
+      {
+        question: 'Why do some guides mention 24% male, 20% female, and 34% nothing?',
+        answer: 'That table comes from an outdated pre-1.0 estimate and is wrong under the datamined Palworld 1.0 model. In 1.0, the inherit-count roll is 40% / 30% / 20% / 10% for 1 / 2 / 3 / 4 passives (inheriting 0 is impossible), followed by a 40% / 30% / 20% / 10% roll for 0 / 1 / 2 / 3 extra random passives up to 4 total.'
+      },
+      {
+        question: 'How does Special Cake work and what is the recipe?',
+        answer: 'Special Cake forces the child to inherit 4 passives from the parent pool (or the whole pool if P ≤ 4) plus all active skills. With a clean pool of exactly the 4 wanted passives, Special Cake makes getting all 4 certain (100.00%). Recipe: Flour ×20, Caramel Cotton Candy ×8, Milk ×15, Egg ×15, Mammorest Meat ×2, crafted at the Ancient Kitchen (Tech 74).'
+      },
+      {
+        question: 'Do other cakes like Vegetable Cake or Mushroom Cake change passive odds?',
+        answer: 'No. Only Special Cake changes passive inheritance odds. Vegetable Cake gives 2 eggs per breeding cycle, while Mushroom Cake and Extravagant Vegetable Cake affect IVs instead of passive inheritance.'
+      }
+    ],
+    proTips: [
+      'Keep your combined unique pool clean: going from Pool 4 to Pool 5 drops 4-passive Extras-Allowed odds from 10.00% (10 eggs) to 2.00% (50 eggs), and Pool 8 drops to 0.14% (700 eggs).',
+      'Duplicate passives across parents are stripped into the unique pool, so a 2+2, 3+1, and 4+0 split with the same 4 unique passives all give the exact same 10.00% per-egg rate.',
+      'With a clean Pool 4 of only your 4 target passives, Special Cake raises the chance from 10.00% to 100.00% (1 egg). Even at Pool 5, Special Cake doubles 4-passive odds from 2.00% to 20.00% (5 eggs).',
+      'In Exact Set Only mode with fewer than 4 desired passives, the random-add roll must also hit 0 extra traits (40% chance), so e.g. Pool 3 / Want 3 drops from 30.00% (Extras Allowed) to 12.00% (Exact Set Only).'
+    ],
+    relatedToolIds: ['palworld-breeding-calculator', 'palworld-breeding-path-finder', 'palworld-passive-skills-stacker']
+  },
+
+  // 59c. Palworld Egg Incubation Time Calculator
+  {
+    id: 'palworld-egg-incubation-calculator',
+    slug: 'palworld-egg-incubation-calculator',
+    name: 'Palworld Egg Incubation Time Calculator',
+    gameId: 'palworld',
+    categoryId: 'calculators',
+    icon: 'Egg',
+    shortDescription: 'Calculate exact egg hatch times from egg size or Pal rarity (1–20), your world setting, and incubator speed bonus.',
+    description: 'Calculates exact Palworld Egg Incubator hatch times from Regular, Large, or Huge egg size (or Pal rarity 1–20), your world\'s PalEggDefaultHatchingTime hours setting, and incubator temperature hatching-speed bonus.',
+    badge: '1.0 World Settings',
+    rating: 4.96,
+    reviewsCount: 285,
+    userCount: '19.8K',
+    featured: false,
+    tags: ['palworld', 'egg incubation', 'hatch time', 'egg incubator', 'PalEggDefaultHatchingTime', 'world settings'],
+    seoTitle: 'Palworld Egg Incubation Time Calculator – Exact Hatch Timers by Size & World Setting',
+    metaDescription: 'Calculate exact Palworld egg incubation times for Regular, Large, and Huge eggs using Casual, Normal, Hard, Hardcore, Dedicated Server (72 h), or custom world settings.',
+    h1: 'Palworld Egg Incubation Time Calculator',
+    canonicalPath: '/tools/palworld-egg-incubation-calculator',
+    howToGuide: {
+      overview: 'Pick your egg size (Regular, Large, or Huge) or enter the Pal\'s rarity (1–20), choose your world difficulty preset or custom hours, and add any incubator speed bonus.',
+      steps: [
+        {
+          title: 'Choose Egg Size or Enter Pal Rarity (1–20)',
+          description: 'Select Regular (÷12, rarity 1–4), Large (÷2, rarity 5–7), or Huge (÷1, rarity 8–20). Egg element/type (Scorching, Damp, Verdant, Dragon…) does not change hatch time — only size does.'
+        },
+        {
+          title: 'Select World Setting or Custom Hours',
+          description: 'Pick Casual/Easy (0.5 h), Normal (1 h), Hard (2 h), Hardcore (2 h), or classic Dedicated server default (72 h), or type any custom PalEggDefaultHatchingTime hours value (0 hatches every egg instantly).'
+        },
+        {
+          title: 'Add Incubator Temperature Speed Bonus',
+          description: 'Enter the incubator\'s hatching-speed bonus percentage earned by keeping the egg at a comfortable temperature (at +100%, hatch time halves) to read the exact time and compare all three egg sizes side by side.'
+        }
+      ]
+    },
+    formulaExplained: {
+      title: 'Palworld Egg Incubation Formula & Base Hatch Times',
+      details: 'In Palworld\'s world settings (world options / PalWorldSettings.ini), "Egg incubation time" (PalEggDefaultHatchingTime) sets the number of hours a Huge egg takes to hatch at 0% speed bonus. Regular eggs divide that base time by 12, Large eggs divide it by 2, and Huge eggs divide it by 1. Setting the option to 0 makes every egg hatch instantly.\n\nPalworld 1.0 halved incubation times in newly created Normal and Hard worlds — that is why a fresh world uses 1 h (Normal) or 2 h (Hard / Hardcore), while older dedicated servers still run the classic 72 h default (Casual / Easy uses 0.5 h).\n\nBase hatch times at 0% speed bonus:\n• Setting 0.5 (Casual): Regular 2m 30s · Large 15m · Huge 30m\n• Setting 1 (Normal world): Regular 5m · Large 30m · Huge 1h\n• Setting 2 (Hard / Hardcore): Regular 10m · Large 1h · Huge 2h\n• Setting 72 (Classic server default): Regular 6h · Large 36h (1d 12h) · Huge 72h (3d 0h)',
+      mathSnippet: 'Hatch Time (s) = PalEggDefaultHatchingTime (h) × 3,600 ÷ Size Divisor (12 | 2 | 1) ÷ (1 + Speed Bonus % ÷ 100)'
+    },
+    faqs: [
+      {
+        question: 'Does egg element (Scorching, Damp, Verdant, Dragon) change incubation time in Palworld?',
+        answer: 'No. An egg\'s element/type does not change its base incubation time — only the egg\'s size (Regular ÷12, Large ÷2, Huge ÷1) determines the hatch duration. Element only determines what temperature keeps the incubator comfortable for the speed bonus.'
+      },
+      {
+        question: 'How do I tell if an egg is Regular, Large, or Huge from Pal rarity?',
+        answer: 'Egg size maps directly from the Pal\'s rarity (1–20): rarity 1–4 produces a Regular egg (÷12), rarity 5–7 produces a Large egg (÷2), and rarity 8–20 produces a Huge egg (÷1).'
+      },
+      {
+        question: 'Why do some Palworld servers take 72 hours for a Huge egg while single-player takes 1 hour?',
+        answer: 'Palworld 1.0 halved incubation times in newly created Normal (1 h) and Hard (2 h) worlds, while older dedicated servers still run the classic 72 h default (PalEggDefaultHatchingTime=72). Casual/Easy defaults to 0.5 h, and setting it to 0 hatches every egg instantly.'
+      },
+      {
+        question: 'How does the incubator temperature speed bonus work?',
+        answer: 'Keeping the Egg Incubator at a comfortable temperature for the egg\'s element grants a hatching-speed bonus percentage. The formula divides hatch time by (1 + speedBonusPercent ÷ 100), so a +100% speed bonus cuts the remaining hatch time in half (e.g. a 72 h Huge egg becomes 36h 0m / 1d 12h).'
+      },
+      {
+        question: 'Where do I change the Palworld egg incubation time setting?',
+        answer: 'You can change "Egg incubation time" in your world options menu or edit PalEggDefaultHatchingTime directly in PalWorldSettings.ini. Setting it to 0 makes every egg hatch instantly.'
+      }
+    ],
+    proTips: [
+      'Palworld 1.0 halved new-world defaults to 1 h on Normal (Regular 5m / Large 30m / Huge 1h) and 2 h on Hard (10m / 1h / 2h), while Casual/Easy uses 0.5 h (2m 30s / 15m / 30m).',
+      'On a classic 72 h dedicated server (6h / 36h / 72h at 0% bonus), keeping a Huge egg comfortable at +100% speed bonus cuts the 72 h wait in half to 36h 0m (1d 12h).',
+      'Setting PalEggDefaultHatchingTime to 0 in world options or PalWorldSettings.ini hatches every egg instantly regardless of size.',
+      'Egg element never changes the base timer — focus temperature heaters or coolers solely on hitting a comfortable environment to earn the hatching-speed bonus.'
+    ],
+    relatedToolIds: ['palworld-breeding-calculator', 'palworld-passive-inheritance-calculator', 'palworld-condensation-calculator']
+  },
   {
     id: 'crk-team-builder',
     slug: 'crk-team-builder',

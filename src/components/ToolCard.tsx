@@ -9,7 +9,7 @@ import {
   Disc3, ArrowRight, Wrench, Flame, Percent, 
   DollarSign, TrendingUp, ShoppingCart, Award, Shield, 
   Sword, Layers, SlidersHorizontal, Calculator, Heart, Target, Hammer, Box,
-  Dna, Coins, Activity, Gauge, Swords, Gamepad2
+  Dna, Coins, Activity, Gauge, Swords, Gamepad2, Dices, Egg
 } from 'lucide-react';
 import { ToolItem, getGameById, getCategoryById } from '../data/gamesAndTools';
 import { getGameIcon } from './GameIcons';
@@ -47,7 +47,9 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Dna: <Dna className="w-3.5 h-3.5 text-cyan-400" />,
   Coins: <Coins className="w-3.5 h-3.5 text-amber-400" />,
   Activity: <Activity className="w-3.5 h-3.5 text-emerald-400" />,
-  Gauge: <Gauge className="w-3.5 h-3.5 text-rose-400" />
+  Gauge: <Gauge className="w-3.5 h-3.5 text-rose-400" />,
+  Dices: <Dices className="w-3.5 h-3.5 text-cyan-400" />,
+  Egg: <Egg className="w-3.5 h-3.5 text-cyan-400" />
 };
 
 type StatusBadgeType = 'Popular' | 'New' | 'Updated' | 'Java + Bedrock' | 'Featured';

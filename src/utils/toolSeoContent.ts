@@ -1049,6 +1049,65 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
+  // 4z4. Palworld Passive Inheritance Odds Calculator
+  if (id === 'palworld-passive-inheritance-calculator') {
+    return [
+      {
+        title: 'Example 1: Clean 4-Passive Breeding Pool (Extras Allowed, No Cake)',
+        scenario: 'Breeding two parents that together have 4 unique desired passives (2+2, 3+1, or 4+0 split) without a Special Cake.',
+        inputValues: {
+          'Pool P': '4 unique passives',
+          'Desired D': '4 passives',
+          'Mode & Cake': 'Extras allowed · Special Cake OFF'
+        },
+        calculation: 'Only k = 4 inherits all 4 passives: 0.10 × C(0,0) / C(4,4) = 0.10 = 10.00%. Expected eggs = ceil(1 / 0.10) = 10 eggs; 90% chance = ceil(ln(0.10) / ln(0.90)) = 22 eggs.',
+        result: '10.00% per egg (10 expected eggs · 22 eggs for 90% chance)',
+        takeaway: 'Using a Special Cake on the same clean Pool 4 locks inheritance to 4 from the pool, raising odds to 100.00% (1 egg).'
+      },
+      {
+        title: 'Example 2: Extra Unwanted Passive in the Pool (Pool 5 vs Pool 8)',
+        scenario: 'Adding just one extra unwanted passive to the parent pool (Pool 5) or having 8 unique passives (Pool 8) while wanting 4 passives.',
+        inputValues: {
+          'Pool 5 / Want 4': 'Extras allowed · Special Cake OFF',
+          'Pool 8 / Want 4': 'Extras allowed · Special Cake OFF'
+        },
+        calculation: 'Pool 5: 0.10 × 1 / C(5,4) = 0.10 / 5 = 2.00% (50 eggs). Pool 8: 0.10 × 1 / C(8,4) = 0.10 / 70 = 0.14% (700 eggs).',
+        result: 'Pool 5: 2.00% (50 eggs) · Pool 8: 0.14% (700 eggs)',
+        takeaway: 'With Special Cake ON, Pool 5 / Want 4 rises to 20.00% (5 eggs) and Pool 8 / Want 4 rises to 1.43% (70 eggs).'
+      }
+    ];
+  }
+
+  // 4z5. Palworld Egg Incubation Time Calculator
+  if (id === 'palworld-egg-incubation-calculator') {
+    return [
+      {
+        title: 'Example 1: Normal World (Setting 1 h) Across All Egg Sizes at 0% Bonus',
+        scenario: 'Comparing Regular (rarity 1–4), Large (rarity 5–7), and Huge (rarity 8–20) eggs in a fresh Palworld 1.0 Normal world with no temperature speed bonus.',
+        inputValues: {
+          'World Setting': 'Normal (1 h)',
+          'Speed Bonus': '0%',
+          'Size Divisors': 'Regular ÷12 · Large ÷2 · Huge ÷1'
+        },
+        calculation: 'Regular = 1 × 3,600 ÷ 12 = 300 s (5m 0s). Large = 1 × 3,600 ÷ 2 = 1,800 s (30m 0s). Huge = 1 × 3,600 ÷ 1 = 3,600 s (1h 0m).',
+        result: 'Regular: 5m 0s · Large: 30m 0s · Huge: 1h 0m',
+        takeaway: 'Palworld 1.0 halved new-world Normal and Hard defaults to 1 h and 2 h, while Casual/Easy is 0.5 h (2m 30s / 15m / 30m).'
+      },
+      {
+        title: 'Example 2: Classic Dedicated Server (72 h) with Comfort Speed Bonus',
+        scenario: 'Hatching a Huge egg with +100% temperature bonus and a Regular egg with +50% temperature bonus on an older 72 h dedicated server.',
+        inputValues: {
+          'World Setting': 'Dedicated server default (72 h)',
+          'Huge Egg Speed': '+100%',
+          'Regular Egg Speed': '+50%'
+        },
+        calculation: 'Huge (+100%) = 72 × 3,600 ÷ 1 ÷ 2 = 129,600 s (36h 0m / 1d 12h). Regular (+50%) = 72 × 3,600 ÷ 12 ÷ 1.5 = 14,400 s (4h 0m).',
+        result: 'Huge (+100%): 36h 0m (1d 12h) · Regular (+50%): 4h 0m',
+        takeaway: 'Keeping the incubator at a comfortable temperature for the egg\'s element at +100% cuts hatch time in half; setting PalEggDefaultHatchingTime to 0 hatches instantly.'
+      }
+    ];
+  }
+
   // 4. Roblox Robux Tax / DevEx / Developer Earnings Calculator
   if (name.includes('robux') || name.includes('devex') || name.includes('gamepass') || name.includes('developer')) {
     return [
@@ -1864,6 +1923,38 @@ export function getToolDeepDive(tool: ToolItem): ToolDeepDive {
     };
   }
 
+  if (tool.id === 'palworld-passive-inheritance-calculator') {
+    return {
+      title: 'Palworld 1.0 Datamined Passive Inheritance Mechanics & Special Cake',
+      summary: 'How Palworld 1.0 combines both parents into a unique pool P (1–8), rolls 40/30/20/10 for inherited and random passives, and how Special Cake works.',
+      paragraphs: [
+        'Under the datamined Palworld 1.0 breeding model, both parents\' passives merge into a single unique pool of size P (1 to 8). Duplicate passives shared by both parents count only once, and parent gender or split (2+2 vs 3+1 vs 4+0) does not affect probabilities. First, the egg rolls k inherited passives without replacement from the pool with weights 40% (1), 30% (2), 20% (3), and 10% (4) — inheriting 0 is impossible, and if k ≥ P the child inherits the whole pool. Next, a random roll adds r = 0 (40%), 1 (30%), 2 (20%), or 3 (10%) random passives up to the 4-passive cap.',
+        'Ignore outdated pre-1.0 guides that claim "24% from the male parent, 20% from the female, 34% inherit nothing" — that table is incorrect under the 1.0 model. If you want guaranteed 4-passive inheritance, bake Special Cake at the Ancient Kitchen (Tech 74) using Flour ×20, Caramel Cotton Candy ×8, Milk ×15, Egg ×15, and Mammorest Meat ×2. Special Cake forces the child to inherit 4 passives from the pool (or the full pool if P ≤ 4) plus all active skills, making a clean Pool 4 parent pair 100.00% guaranteed. Other cakes do not change passive odds (Vegetable Cake gives 2 eggs per cycle; Mushroom and Extravagant Vegetable Cake affect IVs).'
+      ],
+      keyPoints: [
+        'Unique Pool & Roll Weights: Inherit 1/2/3/4 passives at 40%/30%/20%/10% (0 impossible), then add 0/1/2/3 random passives at 40%/30%/20%/10% up to 4 total.',
+        'Order & Gender Agnostic: Duplicates count once; 2+2, 3+1, and 4+0 splits produce identical odds.',
+        'Special Cake Recipe: Flour ×20, Caramel Cotton Candy ×8, Milk ×15, Egg ×15, Mammorest Meat ×2 at Ancient Kitchen (Tech 74).'
+      ]
+    };
+  }
+
+  if (tool.id === 'palworld-egg-incubation-calculator') {
+    return {
+      title: 'Palworld Egg Incubation Formula & PalEggDefaultHatchingTime Settings',
+      summary: 'How Palworld converts PalEggDefaultHatchingTime into exact hatch seconds across Regular, Large, and Huge eggs plus temperature speed bonuses.',
+      paragraphs: [
+        'In Palworld\'s world options and PalWorldSettings.ini, PalEggDefaultHatchingTime defines the number of hours a Huge egg takes to hatch with a 0% incubator speed bonus. Hatch time in seconds equals settingHours × 3,600 ÷ sizeDivisor ÷ (1 + speedBonusPercent ÷ 100). Size divisors are ÷12 for Regular eggs (Pal rarity 1–4), ÷2 for Large eggs (rarity 5–7), and ÷1 for Huge eggs (rarity 8–20). An egg\'s element/type (Scorching, Damp, Verdant, Dragon…) never alters its base incubation timer — only the egg size does.',
+        'Palworld 1.0 halved incubation times in newly created Normal and Hard worlds, so fresh worlds default to 1 h (Normal: 5m / 30m / 1h) and 2 h (Hard & Hardcore: 10m / 1h / 2h), while Casual/Easy uses 0.5 h (2m 30s / 15m / 30m) and older dedicated servers often keep the classic 72 h default (6h / 36h / 72h). Setting PalEggDefaultHatchingTime to 0 hatches every egg instantly, and keeping the incubator at a comfortable temperature for the egg\'s element grants the hatching-speed bonus (halving hatch time at +100%).'
+      ],
+      keyPoints: [
+        'Exact Formula: Hatch Time (s) = settingHours × 3,600 ÷ sizeDivisor (12 | 2 | 1) ÷ (1 + speedBonusPercent ÷ 100).',
+        'Rarity-to-Size Mapping: Rarity 1–4 → Regular (÷12), 5–7 → Large (÷2), 8–20 → Huge (÷1); element does not affect base time.',
+        'World Presets: Casual 0.5 h, Normal 1 h, Hard/Hardcore 2 h, Classic Dedicated Server 72 h, or 0 for instant hatching.'
+      ]
+    };
+  }
+
   const game = getGameById(tool.gameId);
   const gameName = game?.name || 'Gaming';
   const name = tool.name;
@@ -1919,7 +2010,9 @@ export function getEnhancedToolFaqs(tool: ToolItem): EnhancedToolFaq[] {
     tool.id === 'gta-online-heist-split-calculator' ||
     tool.id === 'gta-online-business-roi-calculator' ||
     tool.id === 'gta-online-cooldown-planner' ||
-    tool.id === 'gta-6-cheat-code-finder'
+    tool.id === 'gta-6-cheat-code-finder' ||
+    tool.id === 'palworld-passive-inheritance-calculator' ||
+    tool.id === 'palworld-egg-incubation-calculator'
   ) {
     return existing.slice(0, 5);
   }

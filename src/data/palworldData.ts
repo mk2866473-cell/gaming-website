@@ -264,3 +264,387 @@ export const CONDENSATION_RANKS: CondensationRank[] = [
   { rank: 3, stars: '★★★', palsRequired: 32, cumulativePals: 52, statMultiplier: '+15% HP, ATK, DEF', partnerSkillBonus: 'Partner Skill Lv. 4' },
   { rank: 4, stars: '★★★★ (Max)', palsRequired: 64, cumulativePals: 116, statMultiplier: '+20% HP, ATK, DEF', partnerSkillBonus: 'Partner Skill Lv. 5 (+1 Work Suitability to ALL skills)' }
 ];
+
+// Palworld 1.0 Datamined Passive Inheritance Mechanics
+export type PassiveInheritanceMode = 'extras-allowed' | 'exact-only';
+
+export const PALWORLD_INHERIT_WEIGHTS: Record<1 | 2 | 3 | 4, number> = {
+  1: 0.40,
+  2: 0.30,
+  3: 0.20,
+  4: 0.10
+};
+
+export const PALWORLD_RANDOM_ADD_WEIGHTS: Record<0 | 1 | 2 | 3, number> = {
+  0: 0.40,
+  1: 0.30,
+  2: 0.20,
+  3: 0.10
+};
+
+export const PALWORLD_SPECIAL_CAKE_RECIPE = {
+  station: 'Ancient Kitchen (Tech 74)',
+  ingredients: [
+    { name: 'Flour', count: 20 },
+    { name: 'Caramel Cotton Candy', count: 8 },
+    { name: 'Milk', count: 15 },
+    { name: 'Egg', count: 15 },
+    { name: 'Mammorest Meat', count: 2 }
+  ]
+} as const;
+
+// Extras allowed, Special Cake OFF (% per egg) for Pool 1..8 and Desired 1..4
+export const PALWORLD_INHERITANCE_REFERENCE_TABLE: {
+  poolSize: number;
+  odds: [number, number | null, number | null, number | null];
+}[] = [
+  { poolSize: 1, odds: [100.00, null, null, null] },
+  { poolSize: 2, odds: [80.00, 60.00, null, null] },
+  { poolSize: 3, odds: [63.33, 40.00, 30.00, null] },
+  { poolSize: 4, odds: [50.00, 25.00, 15.00, 10.00] },
+  { poolSize: 5, odds: [40.00, 15.00, 6.00, 2.00] },
+  { poolSize: 6, odds: [33.33, 10.00, 3.00, 0.67] },
+  { poolSize: 7, odds: [28.57, 7.14, 1.71, 0.29] },
+  { poolSize: 8, odds: [25.00, 5.36, 1.07, 0.14] }
+];
+
+export function binomialCoefficient(n: number, k: number): number {
+  if (k < 0 || k > n) return 0;
+  if (k === 0 || k === n) return 1;
+  const r = Math.min(k, n - k);
+  let result = 1;
+  for (let i = 1; i <= r; i++) {
+    result = (result * (n - i + 1)) / i;
+  }
+  return Math.round(result);
+}
+
+export interface InheritanceRollBreakdown {
+  k: number;
+  rollWeight: number;
+  inheritedCount: number;
+  drawMatchProbability: number;
+  randomZeroFactor: number;
+  contribution: number;
+}
+
+export interface PassiveInheritanceResult {
+  poolSize: number;
+  desiredCount: number;
+  mode: PassiveInheritanceMode;
+  specialCake: boolean;
+  probability: number;
+  percentageFormatted: string;
+  expectedEggs: number | null;
+  eggsFor90Percent: number | null;
+  breakdown: InheritanceRollBreakdown[];
+}
+
+export function calculatePassiveInheritanceOdds(
+  poolSize: number,
+  desiredCount: number,
+  mode: PassiveInheritanceMode,
+  specialCake: boolean
+): PassiveInheritanceResult {
+  if (poolSize <= 0 || desiredCount <= 0 || desiredCount > poolSize || desiredCount > 4) {
+    return {
+      poolSize,
+      desiredCount,
+      mode,
+      specialCake,
+      probability: 0,
+      percentageFormatted: '0.00%',
+      expectedEggs: null,
+      eggsFor90Percent: null,
+      breakdown: []
+    };
+  }
+
+  const breakdown: InheritanceRollBreakdown[] = [];
+  let probability = 0;
+
+  if (mode === 'extras-allowed') {
+    if (specialCake) {
+      const m = Math.min(4, poolSize);
+      const drawMatchProbability =
+        m >= desiredCount
+          ? binomialCoefficient(poolSize - desiredCount, m - desiredCount) / binomialCoefficient(poolSize, m)
+          : 0;
+      probability = drawMatchProbability;
+      breakdown.push({
+        k: 4,
+        rollWeight: 1,
+        inheritedCount: m,
+        drawMatchProbability,
+        randomZeroFactor: 1,
+        contribution: drawMatchProbability
+      });
+    } else {
+      for (const k of [1, 2, 3, 4] as const) {
+        const w = PALWORLD_INHERIT_WEIGHTS[k];
+        const m = Math.min(k, poolSize);
+        const drawMatchProbability =
+          m >= desiredCount
+            ? binomialCoefficient(poolSize - desiredCount, m - desiredCount) / binomialCoefficient(poolSize, m)
+            : 0;
+        const contribution = w * drawMatchProbability;
+        probability += contribution;
+        breakdown.push({
+          k,
+          rollWeight: w,
+          inheritedCount: m,
+          drawMatchProbability,
+          randomZeroFactor: 1,
+          contribution
+        });
+      }
+    }
+  } else {
+    // mode === 'exact-only'
+    if (specialCake) {
+      const m = Math.min(4, poolSize);
+      if (m === desiredCount) {
+        const drawMatchProbability = 1 / binomialCoefficient(poolSize, desiredCount);
+        const randomZeroFactor = m < 4 ? 0.40 : 1;
+        const contribution = drawMatchProbability * randomZeroFactor;
+        probability = contribution;
+        breakdown.push({
+          k: 4,
+          rollWeight: 1,
+          inheritedCount: m,
+          drawMatchProbability,
+          randomZeroFactor,
+          contribution
+        });
+      } else {
+        breakdown.push({
+          k: 4,
+          rollWeight: 1,
+          inheritedCount: m,
+          drawMatchProbability: 0,
+          randomZeroFactor: m < 4 ? 0.40 : 1,
+          contribution: 0
+        });
+      }
+    } else if (desiredCount === 4) {
+      const drawMatchProbability = 1 / binomialCoefficient(poolSize, 4);
+      const contribution = PALWORLD_INHERIT_WEIGHTS[4] * drawMatchProbability;
+      probability = contribution;
+      for (const k of [1, 2, 3, 4] as const) {
+        const m = Math.min(k, poolSize);
+        breakdown.push({
+          k,
+          rollWeight: PALWORLD_INHERIT_WEIGHTS[k],
+          inheritedCount: m,
+          drawMatchProbability: k === 4 ? drawMatchProbability : 0,
+          randomZeroFactor: 1,
+          contribution: k === 4 ? contribution : 0
+        });
+      }
+    } else {
+      for (const k of [1, 2, 3, 4] as const) {
+        const w = PALWORLD_INHERIT_WEIGHTS[k];
+        const m = Math.min(k, poolSize);
+        const matchesExactCount = m === desiredCount;
+        const drawMatchProbability = matchesExactCount ? 1 / binomialCoefficient(poolSize, desiredCount) : 0;
+        const randomZeroFactor = 0.40;
+        const contribution = matchesExactCount ? w * drawMatchProbability * randomZeroFactor : 0;
+        probability += contribution;
+        breakdown.push({
+          k,
+          rollWeight: w,
+          inheritedCount: m,
+          drawMatchProbability,
+          randomZeroFactor,
+          contribution
+        });
+      }
+    }
+  }
+
+  probability = Math.min(1, Math.max(0, probability));
+  const expectedEggs = probability > 1e-12 ? Math.ceil(1 / probability - 1e-12) : null;
+  const eggsFor90Percent =
+    probability >= 1 - 1e-12
+      ? 1
+      : probability > 1e-12
+        ? Math.ceil(Math.log(0.10) / Math.log(1 - probability) - 1e-12)
+        : null;
+
+  return {
+    poolSize,
+    desiredCount,
+    mode,
+    specialCake,
+    probability,
+    percentageFormatted: `${(probability * 100).toFixed(2)}%`,
+    expectedEggs,
+    eggsFor90Percent,
+    breakdown
+  };
+}
+
+// ============================================================================
+// Egg Incubation Time Calculator (PalEggDefaultHatchingTime)
+// ============================================================================
+
+export type EggSize = 'regular' | 'large' | 'huge';
+
+export type IncubationPresetId =
+  | 'casual'
+  | 'normal'
+  | 'hard'
+  | 'hardcore'
+  | 'dedicated'
+  | 'custom';
+
+export interface EggSizeMeta {
+  id: EggSize;
+  label: string;
+  shortLabel: string;
+  divisor: number;
+  rarityMin: number;
+  rarityMax: number;
+  defaultRarity: number;
+}
+
+export const EGG_SIZE_CONFIG: Record<EggSize, EggSizeMeta> = {
+  regular: {
+    id: 'regular',
+    label: 'Regular Egg',
+    shortLabel: 'Regular',
+    divisor: 12,
+    rarityMin: 1,
+    rarityMax: 4,
+    defaultRarity: 1
+  },
+  large: {
+    id: 'large',
+    label: 'Large Egg',
+    shortLabel: 'Large',
+    divisor: 2,
+    rarityMin: 5,
+    rarityMax: 7,
+    defaultRarity: 5
+  },
+  huge: {
+    id: 'huge',
+    label: 'Huge Egg',
+    shortLabel: 'Huge',
+    divisor: 1,
+    rarityMin: 8,
+    rarityMax: 20,
+    defaultRarity: 8
+  }
+};
+
+export const EGG_SIZE_ORDER: EggSize[] = ['regular', 'large', 'huge'];
+
+export interface IncubationWorldPreset {
+  id: Exclude<IncubationPresetId, 'custom'>;
+  label: string;
+  hours: number;
+  note: string;
+}
+
+export const INCUBATION_WORLD_PRESETS: IncubationWorldPreset[] = [
+  { id: 'casual', label: 'Casual / Easy', hours: 0.5, note: '0.5 h' },
+  { id: 'normal', label: 'Normal', hours: 1, note: '1 h (Palworld 1.0+)' },
+  { id: 'hard', label: 'Hard', hours: 2, note: '2 h (Palworld 1.0+)' },
+  { id: 'hardcore', label: 'Hardcore', hours: 2, note: '2 h' },
+  { id: 'dedicated', label: 'Dedicated server default', hours: 72, note: '72 h classic' }
+];
+
+export function getEggSizeFromRarity(rarity: number): EggSize {
+  const clamped = Math.min(20, Math.max(1, Math.round(rarity)));
+  if (clamped <= 4) return 'regular';
+  if (clamped <= 7) return 'large';
+  return 'huge';
+}
+
+export interface FormattedHatchDuration {
+  primary: string;
+  daysText: string | null;
+  isInstant: boolean;
+}
+
+export function formatEggHatchDuration(totalSeconds: number): FormattedHatchDuration {
+  if (!Number.isFinite(totalSeconds) || totalSeconds <= 0) {
+    return {
+      primary: '0s',
+      daysText: null,
+      isInstant: true
+    };
+  }
+
+  const roundedSeconds = Math.round(totalSeconds);
+  if (roundedSeconds === 0) {
+    return {
+      primary: `${totalSeconds.toFixed(2)}s`,
+      daysText: null,
+      isInstant: false
+    };
+  }
+
+  const totalHours = Math.floor(roundedSeconds / 3600);
+  const remAfterHours = roundedSeconds % 3600;
+  const minutes = Math.floor(remAfterHours / 60);
+  const seconds = remAfterHours % 60;
+
+  let primary: string;
+  if (totalHours >= 1) {
+    primary = seconds > 0 ? `${totalHours}h ${minutes}m ${seconds}s` : `${totalHours}h ${minutes}m`;
+  } else if (minutes >= 1) {
+    primary = `${minutes}m ${seconds}s`;
+  } else {
+    primary = `${seconds}s`;
+  }
+
+  let daysText: string | null = null;
+  if (roundedSeconds >= 86400) {
+    const days = Math.floor(roundedSeconds / 86400);
+    const remHours = Math.floor((roundedSeconds % 86400) / 3600);
+    const remMins = Math.floor((roundedSeconds % 3600) / 60);
+    daysText = remMins > 0 ? `${days}d ${remHours}h ${remMins}m` : `${days}d ${remHours}h`;
+  }
+
+  return {
+    primary,
+    daysText,
+    isInstant: false
+  };
+}
+
+export interface EggIncubationResult {
+  size: EggSize;
+  sizeMeta: EggSizeMeta;
+  settingHours: number;
+  speedBonusPercent: number;
+  rawSeconds: number;
+  roundedSeconds: number;
+  formatted: FormattedHatchDuration;
+}
+
+export function calculateEggIncubationTime(
+  size: EggSize,
+  settingHours: number,
+  speedBonusPercent: number = 0
+): EggIncubationResult {
+  const sizeMeta = EGG_SIZE_CONFIG[size];
+  const safeHours = Number.isFinite(settingHours) && settingHours > 0 ? settingHours : 0;
+  const safeSpeed = Number.isFinite(speedBonusPercent) && speedBonusPercent > 0 ? speedBonusPercent : 0;
+  const rawSeconds = (safeHours * 3600) / sizeMeta.divisor / (1 + safeSpeed / 100);
+  const roundedSeconds = Math.round(rawSeconds);
+
+  return {
+    size,
+    sizeMeta,
+    settingHours: safeHours,
+    speedBonusPercent: safeSpeed,
+    rawSeconds,
+    roundedSeconds,
+    formatted: formatEggHatchDuration(rawSeconds)
+  };
+}
+
+

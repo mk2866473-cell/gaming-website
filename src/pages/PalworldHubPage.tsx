@@ -7,7 +7,7 @@ import React, { useState, useMemo } from 'react';
 import { 
   Search, ArrowRight, ShieldCheck, Zap, 
   Target, Award, Heart, Sword, Layers, Box, Wrench, Users, Hammer, GitMerge, Cpu,
-  Dna, Activity, Workflow
+  Dna, Activity, Workflow, Dices, Egg
 } from 'lucide-react';
 import { TOOLS } from '../data/gamesAndTools';
 import SEOHead from '../components/SEOHead';
@@ -30,7 +30,9 @@ const PALWORLD_TOOL_ICONS: Record<string, React.ReactNode> = {
   'palworld-crafting-calculator': <Hammer className="w-5 h-5" />,
   'palworld-material-calculator': <Box className="w-5 h-5" />,
   'palworld-condensation-calculator': <Layers className="w-5 h-5" />,
-  'palworld-tech-point-calculator': <Cpu className="w-5 h-5" />
+  'palworld-tech-point-calculator': <Cpu className="w-5 h-5" />,
+  'palworld-passive-inheritance-calculator': <Dices className="w-5 h-5" />,
+  'palworld-egg-incubation-calculator': <Egg className="w-5 h-5" />
 };
 
 export default function PalworldHubPage({ onNavigate }: PalworldHubPageProps) {
