@@ -8,7 +8,7 @@ import { TrendingUp, DollarSign, Users, Info } from 'lucide-react';
 
 export const CREATOR_SHARE_RATE = 0.7;
 export const MARKETPLACE_FEE_RATE = 0.3;
-export const DEVEX_RATE_USD = 0.0035;
+export const DEVEX_RATE_USD = 0.0038;
 export const DEVEX_MIN_ROBUX = 30000;
 
 export function estimateGameRevenue(
@@ -192,7 +192,7 @@ export default function RobloxGameRevenueEstimator() {
               ~${estimate.usdEstimate30Days.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </span>
             <span className="text-[11px] text-zinc-400 font-mono">
-              Daily estimate: ~${estimate.usdEstimatePerDay.toFixed(2)} @ $0.0035/R$
+              Daily estimate: ~${estimate.usdEstimatePerDay.toFixed(2)} @ $0.0038/R$
             </span>
           </div>
         </div>
@@ -212,9 +212,9 @@ export default function RobloxGameRevenueEstimator() {
           <div className="bg-zinc-950 border border-zinc-800 rounded-xl p-4 flex items-start gap-2.5">
             <DollarSign className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
             <div className="space-y-1">
-              <span className="font-bold text-white block">DevEx Rate Estimate ($0.0035 / R$) &amp; 30,000 Minimum</span>
+              <span className="font-bold text-white block">DevEx Rate Estimate ($0.0038 / R$) &amp; 30,000 Minimum</span>
               <p className="text-zinc-400 text-[11px] leading-relaxed">
-                USD figures are <strong>estimates</strong> calculated at the official DevEx rate of <strong>$0.0035 per Robux</strong>. Cashing out requires meeting full DevEx eligibility criteria and holding at least <strong>30,000 Earned Robux</strong>.
+                USD figures are <strong>estimates</strong> calculated at the official DevEx rate of <strong>$0.0038 per Robux</strong>. Cashing out requires meeting full DevEx eligibility criteria and holding at least <strong>30,000 Earned Robux</strong>.
               </p>
             </div>
           </div>

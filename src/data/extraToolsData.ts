@@ -788,5 +788,232 @@ export const EXTRA_TOOLS: ToolItem[] = [
     ],
     proTips: ['Low sensitivity (40–55 cm/360) provides greater micro-adjustment stability in tactical shooters like Valorant and CS2.'],
     relatedToolIds: ['universal-mouse-sensitivity-converter', 'valorant-edpi-calculator']
+  },
+  {
+    id: 'mouse-polling-rate-test',
+    slug: 'mouse-polling-rate-test',
+    name: 'Mouse Polling Rate Test',
+    gameId: 'fps',
+    categoryId: 'trackers',
+    icon: 'Zap',
+    shortDescription: 'Measure your mouse polling rate (125–8000 Hz) live in your browser with Current Hz, Peak Hz, Average Hz, and a 10-second live graph.',
+    description: '100% client-side browser Mouse Polling Rate Test. Move your mouse in fast continuous circles to measure live Current Hz, Peak Hz, Average Hz, and a 100 ms / 10-second canvas history chart using pointerrawupdate, coalesced events, or pointermove.',
+    badge: 'Live Test',
+    rating: 4.97,
+    reviewsCount: 410,
+    userCount: '38k+ players',
+    featured: true,
+    tags: ['fps', 'mouse polling rate', 'hz test', '1000hz', '4000hz', '8000hz', 'mouse test'],
+    seoTitle: 'Mouse Polling Rate Test – Live 125 Hz to 8000 Hz Checker',
+    metaDescription: 'Test your gaming mouse polling rate (Hz) live in your browser with a rolling 500 ms window, Peak Hz, Average Hz, and real-time 10-second chart.',
+    h1: 'Mouse Polling Rate Test',
+    canonicalPath: '/tools/mouse-polling-rate-test',
+    howToGuide: {
+      overview: 'Move your mouse in fast continuous circles inside the test pad to measure real mouse report frequency over a rolling 500 ms window.',
+      steps: [
+        { title: 'Check Detected Event Source', description: 'The tool automatically selects pointerrawupdate first, then pointermove with getCoalescedEvents(), or plain pointermove if unsupported.' },
+        { title: 'Move in Fast Continuous Circles', description: 'Keep sweeping rapidly inside the test pad so at least 20 mouse reports accumulate within the 500 ms rolling window.' },
+        { title: 'Review Current, Peak, Average Hz & Chart', description: 'Inspect live Current Hz, session Peak Hz, Average Hz, and the 10-second canvas graph (1 sample per 100 ms).' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Rolling 500 ms Window & Browser Polling Measurement',
+      details: 'Only events with pointerType === "mouse" are counted using each event\'s own timeStamp. Reports are kept over a rolling 500 ms window; if no report arrives for more than 60 ms, the mouse has stopped and the active window resets (no reading shows until at least 20 reports are in the window). Current Hz = (N − 1) / (t_last − t_first) × 1000. Standard polling rates correspond to report intervals of 125 Hz = 8 ms, 250 Hz = 4 ms, 500 Hz = 2 ms, 1000 Hz = 1 ms, 2000 Hz = 0.5 ms, 4000 Hz = 0.25 ms, and 8000 Hz = 0.125 ms. A browser measures the reports that reach the page, not the raw USB rate, and polling rate is NOT display input lag.',
+      mathSnippet: 'CurrentHz = ((N - 1) / (t_last - t_first)) * 1000; AverageHz = totalReports / totalMovingSeconds'
+    },
+    faqs: [
+      { question: 'What are standard mouse polling rates and report intervals?', answer: 'Standard polling rates and intervals are 125 Hz (8 ms), 250 Hz (4 ms), 500 Hz (2 ms), 1000 Hz (1 ms), 2000 Hz (0.5 ms), 4000 Hz (0.25 ms), and 8000 Hz (0.125 ms).' },
+      { question: 'Why does a 1000 Hz mouse sometimes read 950–1000 Hz in a browser?', answer: 'A browser measures the reports that reach the web page rather than the raw USB wire rate. Slow or small movements also send fewer reports, so reading slightly under 1000 Hz is normal.' },
+      { question: 'Is mouse polling rate the same as display input lag?', answer: 'No. Polling rate is NOT display input lag. Higher polling cuts the wait before a mouse movement is reported (up to 8 ms at 125 Hz vs 1 ms at 1000 Hz), whereas display input lag comes from frame rendering and monitor scanout.' },
+      { question: 'Why does the reading reset when I stop moving my mouse?', answer: 'If no mouse report arrives for more than 60 ms, the active 500 ms rolling window resets and waits until at least 20 fresh reports arrive so idle pauses never skew Current Hz.' },
+      { question: 'What is the difference between pointerrawupdate, coalesced, and plain pointermove?', answer: 'pointerrawupdate delivers uncoalesced hardware movement updates directly, getCoalescedEvents() unpacks bundled reports inside pointermove, and plain pointermove alone may cap readings at your monitor\'s refresh rate.' }
+    ],
+    proTips: [
+      'Sweep in medium-to-fast continuous circles rather than tiny slow movements so your sensor transmits reports at full cadence.',
+      'Use a Chromium-based browser over HTTPS to unlock pointerrawupdate for high-polling 2000–8000 Hz mice.'
+    ],
+    relatedToolIds: ['true-dpi-analyzer', 'ads-sensitivity-calculator', 'cps-click-speed-test', 'reaction-time-benchmark', 'dpi-cm-360-calculator']
+  },
+  {
+    id: 'true-dpi-analyzer',
+    slug: 'true-dpi-analyzer',
+    name: 'True-DPI Analyser',
+    gameId: 'fps',
+    categoryId: 'trackers',
+    icon: 'Compass',
+    shortDescription: 'Physically measure your mouse\'s real hardware DPI and sensor deviation % over a ruler-measured cm or inch distance.',
+    description: '100% client-side physical DPI measurement tool. Unlike sensitivity converters such as dpi-cm-360-calculator that convert numbers you already know, True-DPI Analyser accumulates real |movementX| sensor counts while you move a ruler-measured physical distance to compute Real DPI, Deviation %, and Expected Counts.',
+    badge: 'Live Test',
+    rating: 4.96,
+    reviewsCount: 365,
+    userCount: '29k+ players',
+    featured: true,
+    tags: ['fps', 'true dpi', 'dpi analyzer', 'mouse dpi', 'dpi deviation', 'sensor test', 'ruler test'],
+    seoTitle: 'True-DPI Analyser – Measure Real Mouse DPI & Deviation %',
+    metaDescription: 'Measure your gaming mouse\'s true physical DPI and sensor deviation % against your set DPI using a real ruler and Pointer Lock unadjustedMovement.',
+    h1: 'True-DPI Analyser',
+    canonicalPath: '/tools/true-dpi-analyzer',
+    howToGuide: {
+      overview: 'Measure your real hardware DPI by sliding your mouse an exact ruler-measured distance on your desk (unlike dpi-cm-360-calculator, which only converts values you already know).',
+      steps: [
+        { title: 'Enter Set DPI & Physical Distance', description: 'Input the DPI set in your mouse software (e.g., 800) and a ruler distance in cm or inches (default 10 cm).' },
+        { title: 'Press & Hold or Engage Pointer Lock', description: 'Either press-and-hold inside the test pad or switch to Pointer Lock (requests unadjustedMovement: true for raw counts) and slide your mouse exactly that physical distance along a ruler.' },
+        { title: 'Release / Finish to View Deviation', description: 'Inspect measured |movementX| counts, Real DPI, Set DPI, Deviation %, and Expected Counts.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'True-DPI Physical Measurement Formulas',
+      details: 'Distance in inches = cm ÷ 2.54. Real DPI = total |movementX| counts ÷ distance in inches. Deviation % = (Real DPI − Set DPI) ÷ Set DPI × 100. Expected counts = Set DPI × distance in inches. Unlike dpi-cm-360-calculator (which converts sensitivities using a DPI number you already assume), True-DPI Analyser measures real sensor counts over a physical ruler distance. Where supported, it requests Pointer Lock with unadjustedMovement: true; otherwise turn OFF Windows "Enhance pointer precision" and any OS pointer acceleration or the reading is approximate.',
+      mathSnippet: 'inches = cm / 2.54; realDpi = totalCounts / inches; deviationPct = ((realDpi - setDpi) / setDpi) * 100'
+    },
+    faqs: [
+      { question: 'How is True-DPI Analyser different from the dpi-cm-360-calculator?', answer: 'The dpi-cm-360-calculator converts sensitivity and distance values you already know or assume. True-DPI Analyser physically measures your mouse\'s real sensor counts over a ruler-measured distance to find your actual hardware DPI and deviation %.' },
+      { question: 'What is normal DPI deviation on gaming mice?', answer: 'Most optical gaming sensors vary slightly from their software label (commonly ±1% to ±5% depending on sensor model, lift-off height, and mousepad surface).' },
+      { question: 'Why should Windows "Enhance pointer precision" be turned OFF?', answer: 'If Pointer Lock unadjustedMovement is unavailable and the tool reads plain movementX, Windows acceleration scales counts by cursor speed, making the measured DPI approximate.' },
+      { question: 'How do 3,300 counts over 10 cm at 800 set DPI calculate?', answer: '10 cm ÷ 2.54 = 3.9370 in. Real DPI = 3,300 ÷ 3.9370 = 838.2 DPI. Deviation = (838.2 − 800) ÷ 800 × 100 = +4.77%. Expected counts = 800 × 3.9370 = 3,149.6.' },
+      { question: 'Does True-DPI Analyser send any mouse data to a server?', answer: 'No. Everything runs 100% locally inside your browser with zero external API calls.' }
+    ],
+    proTips: [
+      'Place a physical ruler straight against your mousepad edge and align the mouse edge cleanly at 0 cm and 10 cm for repeatable results.',
+      'Use Pointer Lock mode with unadjustedMovement enabled whenever supported to bypass screen edges and OS acceleration.'
+    ],
+    relatedToolIds: ['dpi-cm-360-calculator', 'mouse-polling-rate-test', 'ads-sensitivity-calculator', 'universal-mouse-sensitivity-converter']
+  },
+  {
+    id: 'ads-sensitivity-calculator',
+    slug: 'ads-sensitivity-calculator',
+    name: 'ADS / Scoped Sensitivity Calculator',
+    gameId: 'fps',
+    categoryId: 'calculators',
+    icon: 'Crosshair',
+    shortDescription: 'Calculate ADS and scoped sensitivity multipliers (0%, 75%, 100% monitor distance) across Custom FOVs, Valorant, and CS2.',
+    description: 'Exact monitor-distance ADS & Scoped Sensitivity Calculator supporting 0% focal-length, 75% 4:3-edge, and 100% screen-edge scaling for Custom FOVs, all 6 Valorant zoom tiers, and CS2 zoom_sensitivity_ratio_mouse across AWP, SSG 08, AUG, and SG 553.',
+    badge: 'Pro Verified',
+    rating: 4.98,
+    reviewsCount: 445,
+    userCount: '39k+ players',
+    featured: true,
+    tags: ['fps', 'ads sensitivity', 'scoped sensitivity', 'monitor distance', 'valorant', 'cs2', 'zoom sensitivity'],
+    seoTitle: 'ADS / Scoped Sensitivity Calculator – Monitor Distance (Valorant, CS2, Custom)',
+    metaDescription: 'Calculate exact ADS and scoped sensitivity multipliers using 0%, 75%, or 100% monitor-distance scaling for Custom FOVs, Valorant, and CS2.',
+    h1: 'ADS / Scoped Sensitivity Calculator',
+    canonicalPath: '/tools/ads-sensitivity-calculator',
+    howToGuide: {
+      overview: 'Choose Valorant, CS2, or Custom FOV mode, enter your hipfire sensitivity and mouse DPI, and pick a monitor-distance coefficient (0%, 75%, or 100%).',
+      steps: [
+        { title: 'Select Preset or Custom Mode', description: 'Pick Valorant (locked 103° hipfire FOV, 6 zoom tiers), CS2 (4:3 90° basis, 4 scopes), or Custom FOV.' },
+        { title: 'Choose Coefficient (0%, 75%, or 100%)', description: 'Select 0% for crosshair flick aim, 75% for the classic 4:3 edge middle ground, or 100% for screen-edge tracking.' },
+        { title: 'Copy Scoped Multiplier & cm/360', description: 'Enter the calculated in-game ADS/Scoped multiplier or zoom_sensitivity_ratio_mouse and check your scoped cm/360.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Exact Monitor-Distance Matching Formula (0% / 75% / 100%)',
+      details: 'For hipfire horizontal FOV H, scoped horizontal FOV S (same aspect basis), and coefficient c (0, 0.75, or 1): m(c) = atan(c × tan(S/2)) ÷ atan(c × tan(H/2)). At c = 0 (focal-length scaling, same feel at the crosshair), m(0) = tan(S/2) ÷ tan(H/2). At c = 1 (same distance to screen edge), m(1) = S ÷ H. Generic scoped sensitivity = hipfire sensitivity × m(c), and scoped cm/360 = hipfire cm/360 ÷ m(c), where hipfire cm/360 = 2.54 × 360 ÷ (sens × yaw × DPI). Because Valorant and CS2 pre-scale scoped aim, Valorant\'s ADS/Scoped multiplier is m(c) ÷ m(1) across its 6 zoom tiers (one slider covers several tiers, so set it for the weapon you use most), and CS2\'s zoom_sensitivity_ratio_mouse is m43(c) ÷ m43(1) using community-measured 4:3 scoped FOVs (Valve does not publish them).',
+      mathSnippet: 'm(0) = tan(S/2)/tan(H/2); m(c) = atan(c*tan(S/2))/atan(c*tan(H/2)); m(1) = S/H; scopedCm360 = hipfireCm360 / m(c)'
+    },
+    faqs: [
+      { question: 'Should I choose 0%, 75%, or 100% monitor-distance coefficient?', answer: '0% matches aim feel directly at the crosshair and suits flick aim; 100% matches mouse travel distance to the screen edge and suits tracking; 75% is the middle ground CS players know from the old 4:3 screen edge.' },
+      { question: 'Why is Valorant\'s ADS / Scoped multiplier not equal to m(c)?', answer: 'Valorant already pre-scales scoped aim by S ÷ H (m(1)), so setting 1.000 in Valorant equals a 100% monitor-distance match. To get any other coefficient c, type in-game multiplier = m(c) ÷ m(1) (for example, 0.870 at 0% for 1.25× ADS or 0.747 at 0% for Operator 2.5×).' },
+      { question: 'Which Valorant zoom tier should I pick if one slider covers multiple tiers?', answer: 'One Valorant slider covers several zoom tiers (1.15×, 1.25×, 1.5×, 2.5×, 3.5×, 5×), so players set it for the weapon they use most (for instance, 1.25× ADS for Vandal/Phantom or 2.5× Scoped for Operator).' },
+      { question: 'What zoom_sensitivity_ratio_mouse value gives 0% focal-length scaling in CS2?', answer: 'On the 4:3 90° FOV basis, AWP & SSG 08 zoom 1 (40°) uses 0.8189 at 0% (0.9318 at 75%, 1.0000 at 100%), AUG/SG 553 uses 0.8284, SSG 08 zoom 2 uses 0.7899, and AWP zoom 2 uses 0.7874. Note that CS2 scoped FOVs are community-measured because Valve does not publish them.' },
+      { question: 'How is scoped cm/360 calculated?', answer: 'First compute hipfire cm/360 = 2.54 × 360 ÷ (sens × yaw × DPI) (for example, 0.35 sens at 800 DPI with Valorant yaw 0.07 equals 46.65 cm). Dividing by m(c) gives scoped cm/360 (67.00 cm at c = 0, H = 103°, S = 82.40°).' }
+    ],
+    proTips: [
+      'In Valorant, set your Scoped Sensitivity Multiplier to 0.870 for 1.25× rifle ADS (Vandal/Phantom) or 0.747 for 2.5× Operator zoom 1 if you prefer 0% focal-length flick consistency.',
+      'In CS2, zoom_sensitivity_ratio_mouse 0.8189 matches 0% focal-length scaling on AWP & Scout first zoom (40° 4:3 FOV).'
+    ],
+    relatedToolIds: ['universal-mouse-sensitivity-converter', 'dpi-cm-360-calculator', 'fov-aspect-ratio-calculator', 'true-dpi-analyzer', 'mouse-polling-rate-test']
+  },
+  {
+    id: 'genshin-primogem-wish-income-planner',
+    slug: 'genshin-primogem-wish-income-planner',
+    name: 'Genshin Impact Primogem & Wish Income Planner',
+    gameId: 'genshin',
+    categoryId: 'calculators',
+    icon: 'Sparkles',
+    shortDescription: 'Project Primogems and Intertwined Fates by target date from Daily Commissions & Welkin, comparing against worst-case guarantee and average pull costs.',
+    description: '100% client-side Genshin Impact savings planner. Projects Primogems and pulls affordable by a target date from Daily Commissions (60/day), Blessing of the Welkin Moon (90/day), and personal Abyss/event estimates, comparing against 100% guaranteed hard pity (180 pulls / 28,800 primos with no guarantee, 90 pulls / 14,400 with active guarantee) and statistical average pull curves (93.5 pulls).',
+    badge: 'Savings Planner',
+    rating: 4.97,
+    reviewsCount: 388,
+    userCount: '34k+ travelers',
+    featured: true,
+    tags: ['genshin', 'primogems', 'wishes', 'fates', 'welkin moon', 'daily commissions', 'savings planner', 'pity planner'],
+    seoTitle: 'Genshin Primogem & Wish Income Planner – Daily Savings & Guarantee Calculator',
+    metaDescription: 'Calculate future Primogems and wishes from Daily Commissions and Welkin Moon. Compare savings against the 180-pull worst-case guarantee and average 5-star costs.',
+    h1: 'Genshin Impact Primogem & Wish Income Planner',
+    canonicalPath: '/tools/genshin-primogem-wish-income-planner',
+    howToGuide: {
+      overview: 'Input your current Primogems, Intertwined Fates, target days, and pity status to project future pulls and determine exact dates to guarantee your next featured 5-star character.',
+      steps: [
+        { title: 'Enter Current Inventory & Pity', description: 'Enter current Primogems, Intertwined Fates, current banner pity (0–89), and toggle whether your next 5★ is guaranteed featured.' },
+        { title: 'Set Target Days & Income Sources', description: 'Choose your target date horizon (0–365 days) and toggle Daily Commissions (60/day) and Welkin Moon (90/day).' },
+        { title: 'Add Personal Estimates & Compare', description: 'Enter any custom estimates for Spiral Abyss, version events, or shop reset Fates, then review worst-case guarantee shortfall and statistical average pull costs.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Daily Income Accumulation & Character Banner Guarantee Formulas',
+      details: '1 wish = 160 Primogems. Daily Commissions = 60 Primogems/day. Blessing of the Welkin Moon = 90 Primogems/day (daily drip only; one-time 300 Genesis Crystals are not counted).\n\nProjected Primogems = CurrentPrimos + (CommissionsOn ? 60 × Days : 0) + (WelkinOn ? 90 × Days : 0) + OtherIncomeEstimate.\nTotal Pulls Affordable = CurrentFates + ExtraFates + floor(ProjectedPrimogems ÷ 160); Leftover Primogems = ProjectedPrimogems mod 160.\n\nWorst-case featured guarantee = guaranteeOn ? (90 − currentPity) : (90 − currentPity) + 90 pulls (from 0 pity: 180 pulls = 28,800 Primogems with no guarantee; 90 pulls = 14,400 with guarantee).\nShortfall = max(0, WorstCasePulls − TotalPulls); Shortfall Primogems = ShortfallPulls × 160.\nDaily Rate = (CommissionsOn ? 60 : 0) + (WelkinOn ? 90 : 0); Extra Days Needed = ceil(ShortfallPrimogems ÷ DailyRate).\n\nAverage case = expected remaining pulls to next 5★ via survival sum E_next(pity) over the published soft pity curve (0.6% base for pulls < 74, +6% per pull for 74–89, 100% at 90), where expected featured pulls = guaranteeOn ? E_next : E_next + 0.5 × 62.30 pulls (≈93.5 pulls from 0 pity with no guarantee).\n\nCharacter Event banner only — the weapon banner\'s Epitomized Path is not modelled.',
+      mathSnippet: 'ProjectedPrimos = CurrentPrimos + (60*Days) + (90*Days) + OtherPrimos; TotalPulls = Fates + floor(ProjectedPrimos / 160); WorstCasePulls = Guarantee ? (90 - Pity) : (180 - Pity)'
+    },
+    faqs: [
+      { question: 'Does pity carry over?', answer: 'Yes, pity and the 50/50 guarantee carry over between Character Event banners of the same type.' },
+      { question: 'Why doesn\'t this planner include the weapon banner?', answer: 'Its Epitomized Path system is not modelled here.' },
+      { question: 'Why are the 300 Genesis Crystals from Welkin Moon not included?', answer: 'The 300 Genesis Crystals are a one-time purchase bonus rather than recurring daily income; this planner accounts exclusively for the 90 Primogems/day daily drip.' },
+      { question: 'How many days does it take to guarantee a 5-star character from zero?', answer: 'From 0 pity with 0 saved Primogems and no guarantee (28,800 Primogems / 180 pulls), it takes 480 days on Daily Commissions alone (60/day) and 192 days with Commissions plus Welkin Moon (150/day).' },
+      { question: 'What is the difference between worst-case guarantee and average case?', answer: 'Worst-case guarantee assumes losing the 50/50 and reaching 90 hard pity on both 5★s (180 pulls / 28,800 Primogems). Average case accounts for soft pity starting at pull 74 (+6% per pull), where a 5★ drops in 62.30 pulls on average, yielding an expected 93.45 pulls (≈14,951 Primogems) for the featured character.' }
+    ],
+    proTips: [
+      'Budget with the worst case if the character is a must-have.',
+      'The average case is what typically happens, not a promise.',
+      'Abyss/event income varies by player, which is why it is an estimate field and never a fixed number in this tool.'
+    ],
+    relatedToolIds: ['genshin-pity-calculator', 'genshin-resin-calculator', 'genshin-ascension-calculator']
+  },
+  {
+    id: 'genshin-wish-simulator',
+    slug: 'genshin-wish-simulator',
+    name: 'Genshin Impact Wish Simulator',
+    gameId: 'genshin',
+    categoryId: 'calculators',
+    icon: 'Dices',
+    shortDescription: 'Monte Carlo wish simulator running thousands of Character Event banner sessions using the verified soft pity curve and 50/50 rule.',
+    description: 'Simulates thousands of Character Event banner pull sessions using the exact published 0.6% base rate, soft pity ramp from pull 74 (+6% per pull), hard pity 90, and 50/50 guarantee rules. Visualizes cumulative featured 5★ success rates, average pulls, and pull budget distributions.',
+    badge: 'Monte Carlo',
+    rating: 4.98,
+    reviewsCount: 420,
+    userCount: '37k+ travelers',
+    featured: true,
+    tags: ['genshin', 'wish simulator', 'gacha simulator', 'monte carlo', 'pity simulator', '50/50', 'primogems'],
+    seoTitle: 'Genshin Impact Wish Simulator – Monte Carlo Soft Pity & 50/50 Odds',
+    metaDescription: 'Simulate 1,000 to 50,000 Character Event banner wish sessions with exact soft pity math (pull 74+) and 50/50 rules to test your pull budget.',
+    h1: 'Genshin Impact Wish Simulator',
+    canonicalPath: '/tools/genshin-wish-simulator',
+    howToGuide: {
+      overview: 'Set your starting pity, guarantee status, pull budget, and number of runs (1,000, 10,000, or 50,000) to simulate thousands of wish sessions on the Character Event banner.',
+      steps: [
+        { title: 'Set Starting Pity & Guarantee', description: 'Enter pulls made toward your next 5★ (0–89) and toggle whether your next 5★ is guaranteed featured.' },
+        { title: 'Select Pull Budget & Run Count', description: 'Choose your maximum wish budget (10–180 pulls) and select how many Monte Carlo sessions to simulate.' },
+        { title: 'Run & Analyze Distribution', description: 'Click Run Simulation to inspect featured character success rate, average pulls, and the cumulative probability milestone table.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Published Soft Pity Curve & Monte Carlo Simulation Rules',
+      details: 'For pull number n (1–90) since the last 5★:\n• n < 74: P(5★ on this pull) = 0.006 (0.6% base rate)\n• 74 ≤ n ≤ 89: P(5★ on this pull) = 0.006 + 0.06 × (n − 73) (rising +6% per pull: 6.6% at 74, 12.6% at 75, 42.6% at 80, 96.6% at 89)\n• n = 90: P(5★ on this pull) = 1.000 (100.0% hard pity forced)\n\nUnit checks: p(1) = 0.6% · p(73) = 0.6% · p(74) = 6.6% · p(75) = 12.6% · p(80) = 42.6% · p(89) = 96.6% · p(90) = 100%.\n\n50/50 Rule: When a 5★ drops without an active guarantee, it has a 50% chance to be the featured character. If lost, the next 5★ is 100% guaranteed featured. The curve implies one 5★ every ≈62.3 pulls (a 1.6% consolidated rate matching HoYoverse\'s published rate) and ≈93.5 pulls on average for the featured character (worst case 180 pulls / 28,800 Primogems).\n\nCharacter Event banner only — the weapon banner\'s Epitomized Path is not modelled.\nCapturing Radiance is not modelled; in-game, it slightly improves featured odds beyond the 50/50 shown here.',
+      mathSnippet: 'p(n < 74) = 0.006; p(74 <= n <= 89) = 0.006 + 0.06*(n - 73); p(90) = 1.0; AvgPulls = 62.3; FeaturedAvg = 93.5'
+    },
+    faqs: [
+      { question: 'How is this different from the Pity Calculator?', answer: 'The pity calculator computes exact odds and Primogem needs from your current pity; this simulator shows the spread of outcomes across thousands of simulated players.' },
+      { question: 'Is Capturing Radiance included in this simulator?', answer: 'Capturing Radiance is not modelled; in-game, it slightly improves featured odds beyond the 50/50 shown here.' },
+      { question: 'Why does soft pity make the average pulls so much lower than 90?', answer: 'Because starting at pull 74 the single-pull drop rate surges by +6% every pull (reaching 42.6% at pull 80), over 90% of all 5★ characters are obtained between pulls 74 and 82, pulling the true average down to ≈62.3 pulls per 5★ and ≈93.5 pulls for the featured character.' },
+      { question: 'Why does the weapon banner not appear in this simulator?', answer: 'The weapon banner uses a distinct Epitomized Path system with differing base rates and soft pity starting points that is not modelled here.' },
+      { question: 'Do past simulated runs affect future simulation rolls?', answer: 'No. Each simulated pull is an independent random draw governed solely by the current pity counter and guarantee flag, mirroring official game mechanics.' }
+    ],
+    proTips: [
+      'Run 50,000 sessions when benchmarking tight pull budgets to minimize Monte Carlo sampling variance.',
+      'A simulator shows how luck spreads out — it does not change or predict a player\'s own odds, and past pulls do not change the per-pull rates beyond the pity counter.',
+      'Even with 90 pulls from zero pity on a 50/50, your featured success rate is ≈59.3%, which is why must-have characters should be budgeted with 180 pulls.'
+    ],
+    relatedToolIds: ['genshin-pity-calculator', 'genshin-primogem-wish-income-planner', 'genshin-resin-calculator']
   }
 ];

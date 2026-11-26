@@ -121,7 +121,7 @@ export const GAMES: GameInfo[] = [
     borderColor: 'border-violet-500/30',
     accentColor: 'text-violet-400',
     icon: 'Crosshair',
-    badge: '12 Tools Available'
+    badge: '15 Tools Available'
   },
   {
     id: 'esports',
@@ -1349,16 +1349,16 @@ export const TOOLS: ToolItem[] = [
     gameId: 'roblox',
     categoryId: 'converters',
     icon: 'TrendingUp',
-    shortDescription: 'Calculate USD cashouts from Earned Robux using the official $0.0035 DevEx rate, minimum thresholds, and tax estimates.',
-    description: 'Official Roblox Developer Exchange (DevEx) calculator. Converts Earned Robux to US Dollars at the verified rate of $0.0035/Robux ($350 per 100,000 R$). Checks 30,000 Robux minimum eligibility thresholds and estimates W-9 / W-8BEN tax withholdings.',
+    shortDescription: 'Calculate USD cashouts from Earned Robux using the official $0.0038 DevEx rate, minimum thresholds, and tax estimates.',
+    description: 'Official Roblox Developer Exchange (DevEx) calculator. Converts Earned Robux to US Dollars at the verified rate of $0.0038/Robux ($380 per 100,000 R$). Checks 30,000 Robux minimum eligibility thresholds and estimates W-9 / W-8BEN tax withholdings.',
     badge: 'Developer',
     rating: 4.96,
     reviewsCount: 3150,
     userCount: '85k+ developers',
     featured: true,
     tags: ['roblox', 'devex', 'developer exchange', 'cashout', 'usd', 'studio', 'earnings', 'tipalti'],
-    seoTitle: 'Roblox DevEx Calculator – Official $0.0035 Cashout & Tax Estimator',
-    metaDescription: 'Calculate your Roblox DevEx cashout in USD. Features official $0.0035/R$ rate, 30,000 Robux minimum eligibility checks, and tax withholding estimations.',
+    seoTitle: 'Roblox DevEx Calculator – Official $0.0038 Cashout & Tax Estimator',
+    metaDescription: 'Calculate your Roblox DevEx cashout in USD. Features official $0.0038/R$ rate, 30,000 Robux minimum eligibility checks, and tax withholding estimations.',
     h1: 'Roblox DevEx (Developer Exchange) USD Cashout Calculator',
     canonicalPath: '/tools/roblox-devex-calculator',
     howToGuide: {
@@ -1370,12 +1370,12 @@ export const TOOLS: ToolItem[] = [
       ]
     },
     formulaExplained: {
-      title: 'Official DevEx Rate ($0.0035 USD per Robux)',
-      details: 'Gross USD = Earned Robux * 0.0035\nNet Take-Home = Gross USD - Tax Withheld - Wire/Tipalti Processing Fee\n\nEvery 100,000 Earned Robux cashes out to exactly $350.00 USD before local taxes.',
-      mathSnippet: 'USD_Gross = Earned_Robux * 0.0035 ($350 per 100k R$)'
+      title: 'Official DevEx Rate ($0.0038 USD per Robux)',
+      details: 'Gross USD = Earned Robux * 0.0038\nNet Take-Home = Gross USD - Tax Withheld - Wire/Tipalti Processing Fee\n\nEvery 100,000 Earned Robux cashes out to exactly $380.00 USD before local taxes.',
+      mathSnippet: 'USD_Gross = Earned_Robux * 0.0038 ($380 per 100k R$)'
     },
     faqs: [
-      { question: 'What is the minimum amount of Robux needed for DevEx?', answer: 'The minimum threshold to submit a DevEx request is 30,000 Earned Robux (which converts to $105.00 USD).' },
+      { question: 'What is the minimum amount of Robux needed for DevEx?', answer: 'The minimum threshold to submit a DevEx request is 30,000 Earned Robux (which converts to $114.00 USD).' },
       { question: 'What counts as "Earned Robux"?', answer: 'Earned Robux are Robux generated through game monetization (gamepasses, dev products, paid access, premium payouts) or UGC catalog sales. Robux from trading limiteds or purchasing gift cards cannot be cashed out.' }
     ],
     proTips: [
@@ -1550,8 +1550,8 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Gamepass Revenue & Conversion Rate Math',
-      details: '• Monthly Net Robux = Monthly Sales * floor(Price * 0.70)\n• Monthly DevEx USD = Monthly Net Robux * $0.0035\n• Visitor Conversion Rate = (Monthly Sales / (Daily Visits * 30)) * 100%',
-      mathSnippet: 'Net_Robux = Sales * floor(Price * 0.70) | USD = Net_Robux * 0.0035'
+      details: '• Monthly Net Robux = Monthly Sales * floor(Price * 0.70)\n• Monthly DevEx USD = Monthly Net Robux * $0.0038\n• Visitor Conversion Rate = (Monthly Sales / (Daily Visits * 30)) * 100%',
+      mathSnippet: 'Net_Robux = Sales * floor(Price * 0.70) | USD = Net_Robux * 0.0038'
     },
     faqs: [
       { question: 'What is a typical gamepass conversion rate on Roblox?', answer: 'Most successful Roblox experiences achieve a gamepass purchase conversion rate between 0.05% and 0.5% of total monthly visits.' },
@@ -1594,7 +1594,7 @@ export const TOOLS: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Engagement-Based Premium Payout (EBP) Algorithm',
-      details: 'Total Premium Hours = (Monthly Premium Visits * Avg Minutes) / 60\nProjected Robux = floor(Total Premium Hours * Payout Rate per Hour)\nDevEx Cashout = Projected Robux * $0.0035',
+      details: 'Total Premium Hours = (Monthly Premium Visits * Avg Minutes) / 60\nProjected Robux = floor(Total Premium Hours * Payout Rate per Hour)\nDevEx Cashout = Projected Robux * $0.0038',
       mathSnippet: 'EBP_Robux = floor(((Visits * Session_Mins) / 60) * Rate_Per_Hour)'
     },
     faqs: [
@@ -4165,7 +4165,7 @@ export const TOOLS: ToolItem[] = [
       'A maximum of 5 technicians can work at once even though there are 7 goods types—prioritize the top 5 hourly earners (South American Imports, Pharmaceutical Research, Cash Creation, Cargo and Shipments, and Sporting Goods).',
       'You can only assign a technician to a goods type if you own its linked source business (MC Cocaine Lockup, MC Meth Lab, MC Counterfeit Cash Factory, CEO Special Cargo / Hangar, Bunker, MC Weed Farm, or MC Document Forgery Office).'
     ],
-    relatedToolIds: ['gta-online-acid-lab-profit-calculator']
+    relatedToolIds: ['gta-online-acid-lab-profit-calculator', 'gta-online-bunker-profit-calculator', 'gta-online-mc-business-profit-calculator', 'gta-online-special-cargo-crate-value-calculator', 'gta-online-hangar-cargo-calculator']
   },
   {
     id: 'gta-online-acid-lab-profit-calculator',
@@ -4349,7 +4349,7 @@ export const TOOLS: ToolItem[] = [
       'Upgrading and naming your Acid Lab cuts payback time sharply by lifting net profit from $7,600/hour to $63,960/hour.',
       'Use Other Costs to include extra storage floors or optional upgrades when planning a custom setup.'
     ],
-    relatedToolIds: ['gta-online-acid-lab-profit-calculator', 'gta-online-nightclub-profit-calculator', 'gta-online-cooldown-planner']
+    relatedToolIds: ['gta-online-acid-lab-profit-calculator', 'gta-online-nightclub-profit-calculator', 'gta-online-bunker-profit-calculator', 'gta-online-mc-business-profit-calculator', 'gta-online-vehicle-cargo-calculator', 'gta-online-cooldown-planner']
   },
   {
     id: 'gta-online-cooldown-planner',
@@ -4396,6 +4396,231 @@ export const TOOLS: ToolItem[] = [
       'Pair 5-minute Security Contracts and 10-minute Payphone Hits between longer 48-minute or 144-minute cooldowns.'
     ],
     relatedToolIds: ['gta-online-cayo-perico-payout-calculator', 'gta-online-business-roi-calculator', 'gta-online-acid-lab-profit-calculator']
+  },
+  {
+    id: 'gta-online-bunker-profit-calculator',
+    slug: 'gta-online-bunker-profit-calculator',
+    name: 'GTA Online Bunker Profit Calculator',
+    gameId: 'gtaonline',
+    categoryId: 'calculators',
+    icon: 'Shield',
+    shortDescription: 'Calculate GTA Online Bunker gross sale, supply cost, net profit, production time, hourly rate, and delivery vehicle count up to 100 units.',
+    description: 'Verified Title Update 1.73 GTA Online Bunker Profit Calculator using current base values. Model 0–100 stock units, Equipment + Staff Upgrades, Local vs Los Santos sales (×1.5), bought ($3,750/unit) vs stolen ($0) supplies, net/hour, and single vs multi-vehicle delivery counts.',
+    badge: 'TU 1.73',
+    rating: 4.96,
+    reviewsCount: 342,
+    userCount: '29k+ players',
+    featured: true,
+    tags: ['gta online', 'gta', 'bunker', 'gunrunning', 'profit calculator', 'delivery vehicles', 'tu 1.73'],
+    seoTitle: 'GTA Online Bunker Profit Calculator – Stock Units, Net/Hour & Vehicles',
+    metaDescription: 'Calculate GTA Online Bunker gross value, supply cost, net profit, production time, net per hour, and delivery vehicle counts using Title Update 1.73 base values.',
+    h1: 'GTA Online Bunker Profit Calculator',
+    canonicalPath: '/tools/gta-online-bunker-profit-calculator',
+    howToGuide: {
+      overview: 'Estimate Gunrunning Bunker payouts, production times, net profit per active hour, and solo-safe vehicle thresholds using Title Update 1.73 base rates.',
+      steps: [
+        { title: 'Set Stock Units (0–100)', description: 'Adjust stock units from 0 to 100 (1 full supply bar costs $75,000 and produces 20 units).' },
+        { title: 'Toggle Equipment + Staff Upgrades', description: 'Compare No Upgrades ($5,000/unit local, 10 min/unit) against Equipment + Staff Upgrades ($7,000/unit local, 7 min/unit).' },
+        { title: 'Choose Sale Destination & Supplies', description: 'Select Local (×1.0) or Los Santos (×1.5), and Bought ($3,750/unit) or Stolen ($0) supplies.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Gunrunning Bunker Profit & Delivery Vehicle Formula (Title Update 1.73)',
+      details: 'Unit value = ($7,000 upgraded or $5,000 no upgrades) × (1.5 for Los Santos or 1 for Local). Gross = units × unit value. Bought supplies cost $3,750 per unit (one $75,000 supply bar produces 20 units); stolen supplies cost $0. Net = Gross − Supply Cost. Production minutes = units × (7 upgraded or 10 no upgrades). Net per hour = round(Net ÷ (Production minutes ÷ 60)), or 0 when units = 0. Selling 25 units or fewer always uses 1 delivery vehicle; above 25 units ranges from ceil(units ÷ 50) to min(4, ceil(units ÷ 25)) depending on the delivery-vehicle type drawn. Equipment upgrade costs $1,155,000 and Staff upgrade costs $598,500. High Demand and weekly bonuses are not included in these base values.',
+      mathSnippet: 'unitValue = (upgraded ? 7000 : 5000) * (losSantos ? 1.5 : 1); supplyCost = bought ? units * 3750 : 0; net = gross - supplyCost'
+    },
+    faqs: [
+      { question: 'How much does a full 100-unit upgraded Bunker sell for in Los Santos?', answer: 'With Equipment + Staff Upgrades, 100 units sold to Los Santos at $10,500/unit yield $1,050,000 gross. Subtracting $375,000 for bought supplies leaves $675,000 net across 700 minutes ($57,857/hour).' },
+      { question: 'How many Bunker stock units guarantee a single delivery vehicle?', answer: 'Selling 25 units or fewer always uses 1 delivery vehicle. Above 25 units, vehicle counts range from ceil(units ÷ 50) up to min(4, ceil(units ÷ 25)) depending on the delivery-vehicle type drawn (2–4 vehicles at 100 units).' },
+      { question: 'How many stock units does one $75,000 Bunker supply bar make?', answer: 'A full supply bar costs $75,000 and produces 20 units of Bunker stock, matching $3,750 per unit for bought supplies.' },
+      { question: 'What are the Bunker Equipment and Staff upgrade costs and effects?', answer: 'Equipment costs $1,155,000 and Staff costs $598,500. Together they raise local unit value from $5,000 to $7,000 and speed up production from 10 minutes to 7 minutes per unit.' },
+      { question: 'Are High Demand or weekly bonuses included in this Bunker calculator?', answer: 'No. All outputs reflect current post–Title Update 1.73 base values without High Demand, GTA+, or weekly event bonuses.' }
+    ],
+    proTips: [
+      'Buy one $75,000 supply bar to produce 20 units ($210,000 Los Santos sale when upgraded) for a guaranteed single delivery vehicle.',
+      'Equip both Staff and Equipment upgrades before buying supplies—upgraded Los Santos sales reach $57,857/hour net versus $22,500/hour without upgrades.'
+    ],
+    relatedToolIds: ['gta-online-mc-business-profit-calculator', 'gta-online-business-roi-calculator', 'gta-online-nightclub-profit-calculator']
+  },
+  {
+    id: 'gta-online-mc-business-profit-calculator',
+    slug: 'gta-online-mc-business-profit-calculator',
+    name: 'GTA Online MC Businesses Profit Calculator',
+    gameId: 'gtaonline',
+    categoryId: 'calculators',
+    icon: 'Briefcase',
+    shortDescription: 'Compare all 5 GTA Online MC Businesses (Cocaine, Meth, Cash, Weed, Document Forgery) with Title Update 1.73 base payouts, supply costs, and hourly profit.',
+    description: 'Verified Title Update 1.73 GTA Online Motorcycle Club (MC) Businesses calculator covering Cocaine Lockup, Methamphetamine Lab, Counterfeit Cash Factory, Weed Farm, and Document Forgery Office. Computes units, gross, supply cost, net profit (including negative unupgraded margins), production time, net/hour, and a live 5-business comparison table.',
+    badge: 'TU 1.73',
+    rating: 4.95,
+    reviewsCount: 318,
+    userCount: '27k+ players',
+    featured: true,
+    tags: ['gta online', 'gta', 'mc business', 'cocaine lockup', 'meth lab', 'counterfeit cash', 'weed farm', 'tu 1.73'],
+    seoTitle: 'GTA Online MC Businesses Profit Calculator – All 5 Businesses Compared',
+    metaDescription: 'Calculate GTA Online MC Business profits across Cocaine, Meth, Cash, Weed, and Document Forgery with Title Update 1.73 base values and live comparison table.',
+    h1: 'GTA Online MC Businesses Profit Calculator',
+    canonicalPath: '/tools/gta-online-mc-business-profit-calculator',
+    howToGuide: {
+      overview: 'Calculate exact units, gross payout, supply cost, net profit, production minutes, and hourly earnings across all 5 MC Businesses using Title Update 1.73 base values.',
+      steps: [
+        { title: 'Pick an MC Business Preset', description: 'Select Cocaine Lockup, Methamphetamine Lab, Counterfeit Cash Factory, Weed Farm, or Document Forgery Office.' },
+        { title: 'Set Stock Percentage (0–100%)', description: 'Choose your stock level; selling around 25% capacity or less keeps the sale to a single delivery vehicle.' },
+        { title: 'Configure Upgrades, Buyer & Supplies', description: 'Toggle Equipment + Staff Upgrades, Local vs Far (+50%) sale destination, and Bought ($75,000/bar) vs Stolen ($0) supplies, then compare all 5 businesses in the table.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'MC Business Stock, Supply Cost & Net/Hour Formula (Title Update 1.73)',
+      details: 'Units = floor(capacityUnits × stockPercent ÷ 100). Unit value = (upgraded or base local unit value) × (1.5 for Far sales or 1 for Local). Gross = units × unitValue. Supply cost (when bought) = round(fullStockSupplyCost × units ÷ capacityUnits), where supplies are bought in bars of $75,000. Net = Gross − Supply Cost (unupgraded businesses with bought supplies can show negative net profit, such as Counterfeit Cash at −$16,500). Production minutes = units × minutesPerUnit, and Net per hour = round(Net ÷ (Production minutes ÷ 60)) or 0 when units = 0. Money Fronts boosts, High Demand and weekly bonuses are not included.',
+      mathSnippet: 'units = floor(cap * pct / 100); supplyCost = bought ? round(fullCost * units / cap) : 0; net = gross - supplyCost'
+    },
+    faqs: [
+      { question: 'Which GTA Online MC Business makes the most net profit per hour?', answer: 'With Equipment + Staff Upgrades, Far sales, and bought supplies at 100% stock, Cocaine Lockup leads at $337,500 net over 300 minutes ($67,500/hour), followed by Meth ($43,125/hr), Counterfeit Cash ($40,781/hr), Weed ($36,563/hr), and Document Forgery ($22,500/hr).' },
+      { question: 'Can an MC Business lose money when buying supplies without upgrades?', answer: 'Yes. Without Equipment + Staff Upgrades, buying supplies for a full 100% Counterfeit Cash Factory Far sale produces $283,500 gross against $300,000 in supply costs, resulting in −$16,500 net.' },
+      { question: 'How much do supplies cost and how much more do Far buyers pay?', answer: 'Supplies are bought in bars of $75,000 for every MC business, and Far buyers pay 50% more than Local buyers (×1.5 multiplier).' },
+      { question: 'How much stock keeps an MC Business sale to one delivery vehicle?', answer: 'Selling at about a quarter (25%) of capacity or less keeps the sale to a single delivery vehicle.' },
+      { question: 'Are Money Fronts boosts, High Demand, or weekly bonuses included?', answer: 'No. This calculator uses current post–Title Update 1.73 base values only; Money Fronts boosts, High Demand, and weekly event multipliers are not included.' }
+    ],
+    proTips: [
+      'Avoid buying supplies on unupgraded MC Businesses—install Equipment + Staff Upgrades first or supply them via Stash Houses / stealing.',
+      'Even if you prefer not to run MC sell missions, owning the top MC Businesses feeds your Nightclub Warehouse passively.'
+    ],
+    relatedToolIds: ['gta-online-bunker-profit-calculator', 'gta-online-business-roi-calculator', 'gta-online-nightclub-profit-calculator']
+  },
+  {
+    id: 'gta-online-special-cargo-crate-value-calculator',
+    slug: 'gta-online-special-cargo-crate-value-calculator',
+    name: 'GTA Online Special Cargo Crate Value Calculator',
+    gameId: 'gtaonline',
+    categoryId: 'calculators',
+    icon: 'Package',
+    shortDescription: 'Calculate GTA Online CEO Special Cargo per-crate sale value, gross revenue, sourcing cost, net profit, and land delivery trucks across Small, Medium, and Large warehouses.',
+    description: 'Verified Title Update 1.73 GTA Online Special Cargo Crate Value Calculator covering 1–111 crates across Small (16), Medium (42), and Large (111) warehouses, 1/2/3-crate mission sourcing costs, land delivery truck thresholds, and a full-warehouse comparison table.',
+    badge: 'TU 1.73',
+    rating: 4.96,
+    reviewsCount: 365,
+    userCount: '33k+ players',
+    featured: true,
+    tags: ['gta online', 'gta', 'special cargo', 'ceo warehouse', 'crates', 'profit calculator', 'tu 1.73'],
+    seoTitle: 'GTA Online Special Cargo Crate Value Calculator – 1–111 Crates & Warehouse Payouts',
+    metaDescription: 'Calculate GTA Online CEO Special Cargo crate value, sourcing cost ($2k/$8k/$18k), net profit, and delivery trucks across Small, Medium, and Large warehouses.',
+    h1: 'GTA Online Special Cargo Crate Value Calculator',
+    canonicalPath: '/tools/gta-online-special-cargo-crate-value-calculator',
+    howToGuide: {
+      overview: 'Model CEO Special Cargo sales from 1 to 111 crates and compare Small, Medium, and Large warehouse profits across 1-, 2-, and 3-crate sourcing missions.',
+      steps: [
+        { title: 'Pick Warehouse Size', description: 'Select Small (16 crates), Medium (42 crates), or Large (111 crates).' },
+        { title: 'Set Crates to Sell (1–Capacity)', description: 'Choose how many crates you are selling in one sale—per-crate value scales from $10,000 (1 crate) up to $20,000 (111 crates).' },
+        { title: 'Choose Sourcing Method', description: 'Select 1-crate ($2,000), 2-crate ($8,000), or 3-crate ($18,000) missions to calculate exact sourcing cost, net profit, and land delivery trucks.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'CEO Special Cargo Value Scaling & Sourcing Cost Formula (Title Update 1.73)',
+      details: 'Per-crate sale value depends on total crates sold in ONE sale (rising from $10,000 for 1 crate to $20,000 for 111 crates). Gross = crates × perCrate. Sourcing cost equals crates × $2,000 for 1-crate missions; floor(crates ÷ 2) × $8,000 + ($2,000 if odd) for 2-crate missions; and floor(crates ÷ 3) × $18,000 + ($2,000 if rem 1, $8,000 if rem 2) for 3-crate missions. Land sales require 1 truck (≤9 crates), 2 trucks (10–29), or 3 trucks (30+). Rare special items, High Demand, and weekly bonuses are not included.',
+      mathSnippet: 'gross = crates * crateValueByCount[crates]; net = gross - sourcingCost'
+    },
+    faqs: [
+      { question: 'How much does a full 111-crate Large Special Cargo warehouse sell for?', answer: 'A full 111-crate Large warehouse sells at $20,000 per crate for $2,220,000 gross. Using 3-crate sourcing ($666,000) yields $1,554,000 net; 1-crate sourcing ($222,000) yields $1,998,000 net.' },
+      { question: 'Why does per-crate value change in Special Cargo?', answer: 'Per-crate value rises with the size of a single sale—which is why selling 1 crate pays $10,000 while selling a full 111-crate Large warehouse pays $20,000 per crate.' },
+      { question: 'How many delivery trucks does a Special Cargo land sale use?', answer: 'Land sales spawn 1 truck for 1–9 crates, 2 trucks for 10–29 crates, and 3 trucks for 30 or more crates.' },
+      { question: 'What are the sourcing mission costs for 1, 2, and 3 crates?', answer: 'Sourcing missions cost $2,000 for 1 crate, $8,000 for 2 crates, and $18,000 for 3 crates (with any remainder on partial last runs priced at 1- or 2-crate rates).' },
+      { question: 'Are special items, High Demand, or weekly bonuses included?', answer: 'No. Rare special items, High Demand lobby bonuses, and weekly event multipliers are not included in these base values.' }
+    ],
+    proTips: [
+      'Always hold crates until your warehouse is full—selling 111 crates together doubles the per-crate rate from $10,000 to $20,000.',
+      'Use 3-crate missions for speed ($1,554,000 net on a Large warehouse) or 1-crate sourcing to maximize profit per crate ($1,998,000 net).'
+    ],
+    relatedToolIds: ['gta-online-hangar-cargo-calculator', 'gta-online-vehicle-cargo-calculator', 'gta-online-nightclub-profit-calculator', 'gta-online-business-roi-calculator']
+  },
+  {
+    id: 'gta-online-hangar-cargo-calculator',
+    slug: 'gta-online-hangar-cargo-calculator',
+    name: 'GTA Online Hangar Air Freight Cargo Calculator',
+    gameId: 'gtaonline',
+    categoryId: 'calculators',
+    icon: 'Plane',
+    shortDescription: 'Calculate GTA Online Hangar Air Freight payouts across Tier 1, Tier 2, and Tier 3 cargo up to 50 crates with stockpile bonuses and Ron\'s 5% cut.',
+    description: 'Verified Title Update 1.73 GTA Online Hangar Air Freight Cargo Calculator using Rockstar\'s permanent $30,000 base per crate across Tier 1 (+35% per 25), Tier 2 (+12% per 10), and Tier 3 (+5% per 5), deducting Ron\'s 5% cut with $0 sourcing cost.',
+    badge: 'TU 1.73',
+    rating: 4.96,
+    reviewsCount: 334,
+    userCount: '28k+ players',
+    featured: true,
+    tags: ['gta online', 'gta', 'hangar', 'air freight', 'smuggler', 'narcotics', 'chemicals', 'tu 1.73'],
+    seoTitle: 'GTA Online Hangar Air Freight Cargo Calculator – Tier Bonuses & Ron\'s Cut',
+    metaDescription: 'Calculate GTA Online Hangar Air Freight cargo gross, tier stockpile bonuses (+70% max on Tier 1), Ron\'s 5% cut, and net payout across 50 crates.',
+    h1: 'GTA Online Hangar Air Freight Cargo Calculator',
+    canonicalPath: '/tools/gta-online-hangar-cargo-calculator',
+    howToGuide: {
+      overview: 'Enter crates held across Tier 1, Tier 2, and Tier 3 Air Freight cargo types (50 crates total capacity) to compute stockpile bonuses, gross payout, Ron\'s 5% cut, and net profit.',
+      steps: [
+        { title: 'Enter Tier 1, Tier 2, and Tier 3 Crates (Total ≤ 50)', description: 'Assign up to 50 total crates across Tier 1 (Narcotics, Chemicals, Medical Supplies), Tier 2 (Animal Materials, Art & Antiques, Jewelry & Gemstones), and Tier 3 (Tobacco & Alcohol, Counterfeit Goods).' },
+        { title: 'Inspect Stockpile Tier Bonuses', description: 'Check how each tier hits +35% per 25 crates (Tier 1), +12% per 10 crates (Tier 2), or +5% per 5 crates (Tier 3).' },
+        { title: 'Review Gross, Ron\'s 5% Cut & Net Payout', description: 'Compare total gross, Ron\'s 5% fee, $0 stolen sourcing cost, and final net profit.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Hangar Air Freight Tier Bonus & Ron\'s Cut Formula (Title Update 1.73)',
+      details: 'All 8 Hangar cargo types have a permanent $30,000 base per crate (triple the obsolete $10,000 rate). Total crates across all tiers cannot exceed 50. For each tier: bonusPct = bonusRate × floor(cratesInTier ÷ bonusStep), where Tier 1 grants +35% per 25 crates, Tier 2 grants +12% per 10 crates, and Tier 3 grants +5% per 5 crates. TierGross = crates × $30,000 × (1 + bonusPct ÷ 100). Ron\'s cut = 5% of total gross; Net = Gross − Ron\'s cut; sourcing cost = $0. Stockpile bonuses require crates of the SAME type; High Demand, GTA+ and weekly bonuses are not included.',
+      mathSnippet: 'bonusPct = rate * floor(crates / step); tierGross = crates * 30000 * (1 + bonusPct / 100); net = gross - 0.05 * gross'
+    },
+    faqs: [
+      { question: 'How much does a full 50-crate Tier 1 Hangar sell for?', answer: '50 crates of a single Tier 1 type (Narcotics, Chemicals, or Medical Supplies) unlock a +70% stockpile bonus for $2,550,000 gross, $127,500 Ron\'s cut (5%), and $2,422,500 net.' },
+      { question: 'Do Hangar stockpile bonuses apply across mixed cargo types?', answer: 'No. The stockpile bonus only counts crates of the SAME type, so filling one single type (especially Tier 1 at 25 or 50 crates) pays far more than a mixed hangar.' },
+      { question: 'Why is the base Hangar value $30,000 per crate instead of $10,000?', answer: 'The $30,000 base already includes Rockstar\'s permanent tripling of Air Freight payouts—older $10,000-per-crate tables are obsolete.' },
+      { question: 'How much does Ron take from Hangar sales and what is the sourcing cost?', answer: 'Ron takes 5% of total gross (for example, $127,500 on a $2,550,000 Tier 1 sale), and sourcing cost is $0 because all Hangar cargo is stolen in source missions.' },
+      { question: 'Are High Demand, GTA+, or weekly bonuses included?', answer: 'No. This calculator uses current post–Title Update 1.73 base values only without High Demand, GTA+, or weekly event bonuses.' }
+    ],
+    proTips: [
+      'Stockpile 50 crates of one Tier 1 cargo type (Narcotics, Chemicals, or Medical Supplies) for the full +70% bonus ($2,422,500 net) or alternate two 25-crate Tier 1 batches (+35% each).',
+      'Always use Rooster/land source missions wisely and focus on one type at a time so your stockpile bonus is never diluted.'
+    ],
+    relatedToolIds: ['gta-online-special-cargo-crate-value-calculator', 'gta-online-nightclub-profit-calculator', 'gta-online-business-roi-calculator']
+  },
+  {
+    id: 'gta-online-vehicle-cargo-calculator',
+    slug: 'gta-online-vehicle-cargo-calculator',
+    name: 'GTA Online Vehicle Cargo (Import/Export) Calculator',
+    gameId: 'gtaonline',
+    categoryId: 'calculators',
+    icon: 'Car',
+    shortDescription: 'Calculate GTA Online Vehicle Cargo (Import/Export) gross payout, modification costs, net profit, and collection bonuses across Standard, Mid, and Top Range cars.',
+    description: 'Verified Title Update 1.73 GTA Online Vehicle Cargo (Import/Export) Calculator covering Private, Showroom, Specialist Dealer, and 2/3/4-car Collection sales across Standard, Mid, and Top Range vehicles up to the 40-car warehouse cap.',
+    badge: 'TU 1.73',
+    rating: 4.96,
+    reviewsCount: 348,
+    userCount: '31k+ players',
+    featured: true,
+    tags: ['gta online', 'gta', 'vehicle cargo', 'import export', 'top range', 'collections', 'tu 1.73'],
+    seoTitle: 'GTA Online Vehicle Cargo (Import/Export) Calculator – Buyers & Collections',
+    metaDescription: 'Calculate GTA Online Vehicle Cargo (Import/Export) payouts for Private, Showroom, Specialist Dealer, and all 10 Collections across Standard, Mid, and Top Range cars.',
+    h1: 'GTA Online Vehicle Cargo (Import/Export) Calculator',
+    canonicalPath: '/tools/gta-online-vehicle-cargo-calculator',
+    howToGuide: {
+      overview: 'Enter how many Standard, Mid, and Top Range cars you are selling (up to 40 total warehouse capacity), then select Private, Showroom, Specialist Dealer, or Collection sale.',
+      steps: [
+        { title: 'Pick Sale Mode', description: 'Select Private Buyer ($0 mod cost), Showroom, Specialist Dealer (highest net profit per car), or Collection Sale (choose 2-, 3-, or 4-car collection bonus).' },
+        { title: 'Set Standard, Mid & Top Range Counts', description: 'Enter vehicle counts per range (combined total capped at the 40-car vehicle warehouse limit).' },
+        { title: 'Inspect Gross, Mod Costs & Collection Bonus', description: 'Review the per-range table, total gross, upfront modification costs, $0 stolen sourcing cost, collection bonus, and total net payout.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Import/Export Buyer Margins & Collection Bonus Formula (Title Update 1.73)',
+      details: 'Sourcing cost is always $0 because vehicles are stolen. For buyer-type sales: Standard pays $15,000 (Private, $0 mod), $26,250 − $3,750 = $22,500 net (Showroom), or $37,500 − $7,500 = $30,000 net (Specialist); Mid pays $25,000 (Private), $43,750 − $6,250 = $37,500 net (Showroom), or $62,500 − $12,500 = $50,000 net (Specialist); Top pays $40,000 (Private), $70,000 − $10,000 = $60,000 net (Showroom), or $100,000 − $20,000 = $80,000 net (Specialist). Collection sales pay Specialist net value with $0 modification cost plus the set bonus added once ($20,000 for 2 cars, $35,000 for 3 cars, $50,000 for 4 cars). All prices assume cars are delivered undamaged (repair costs are not included); High Demand and weekly bonuses are not included.',
+      mathSnippet: 'buyerNet = sum(count * (gross - modCost)); collectionNet = sum(count * (specialistGross - specialistModCost)) + collectionBonus'
+    },
+    faqs: [
+      { question: 'How much net profit does 1 Top Range car earn with a Specialist Dealer?', answer: 'Selling 1 Top Range car to a Specialist Dealer pays $100,000 gross minus $20,000 upfront modification cost for $80,000 net profit ($0 sourcing cost).' },
+      { question: 'How do Vehicle Cargo Collection sales pay out?', answer: 'Collection sales pay each car at Specialist net value ($30,000 Standard, $50,000 Mid, $80,000 Top) with $0 modification cost, plus the one-time collection bonus ($20,000 for 2 cars, $35,000 for 3 cars, or $50,000 for 4 cars).' },
+      { question: 'How many cars can a Vehicle Warehouse hold?', answer: 'A Vehicle Warehouse holds up to 40 cars total across Standard, Mid, and Top Range vehicles.' },
+      { question: 'What are all 10 Import/Export Vehicle Cargo collections?', answer: 'The 10 collections are Fading Power (2 cars, $20,000), End of Empires (2, $20,000), Uninsurable (3, $35,000), No Direct Sunlight (3, $35,000), Stay Declasse (3, $35,000), Pastel Perfection (3, $35,000), Birds of Paradise (4, $50,000), Molten Metal (4, $50,000), Hip to be Square (4, $50,000), and Shades of Blue (4, $50,000).' },
+      { question: 'Are repair costs, High Demand, or weekly bonuses included?', answer: 'No. Prices assume cars are delivered undamaged (repair costs are not included), and High Demand lobby bonuses or weekly event multipliers are excluded.' }
+    ],
+    proTips: [
+      'Always sell Top Range cars to a Specialist Dealer for $80,000 net ($100,000 gross − $20,000 mod cost) instead of Private ($40,000) or Showroom ($60,000).',
+      'Four-car collections of Top Range vehicles reach $370,000 total net ($320,000 car value + $50,000 bonus) with $0 modification fees.'
+    ],
+    relatedToolIds: ['gta-online-special-cargo-crate-value-calculator', 'gta-online-business-roi-calculator', 'gta-online-hangar-cargo-calculator']
   },
   {
     id: 'gta-6-cheat-code-finder',

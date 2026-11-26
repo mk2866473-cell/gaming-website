@@ -297,15 +297,147 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
+  // 3g. Minecraft RGB Gradient Text Generator
+  if (id === 'minecraft-rgb-gradient-text-generator') {
+    return [
+      {
+        title: 'Example 1: 2-Stop Red-to-Blue Gradient on "HELLO"',
+        scenario: 'Generating an RGB gradient across the 5-character string "HELLO" from pure Red (#FF0000) to pure Blue (#0000FF).',
+        inputValues: { 'Text': 'HELLO (n = 5)', 'Stop 1': '#FF0000', 'Stop 2': '#0000FF' },
+        calculation: 'Positions t = i / 4 → 0, 0.25, 0.5, 0.75, 1. Per-character colours: H = #FF0000, E = #BF0040, L = #800080, L = #4000BF, O = #0000FF.',
+        result: '&#FF0000H&#BF0040E&#800080L&#4000BFL&#0000FFO | MiniMessage: <gradient:#FF0000:#0000FF>HELLO</gradient>',
+        takeaway: 'Each RGB channel rounds individually at every character step (e.g. 255 × 0.25 = 63.75 → 64 = 0x40).'
+      },
+      {
+        title: 'Example 2: 2-Stop Orange-to-Violet Gradient on "GRADIENT" (With Space Position Note)',
+        scenario: 'Interpolating 8 characters ("GRADIENT") from #FF5500 to #5500FF and exporting for chat plugins or §x legacy hex.',
+        inputValues: { 'Text': 'GRADIENT (n = 8)', 'Stop 1': '#FF5500', 'Stop 2': '#5500FF' },
+        calculation: 't = i / 7 yields #FF5500, #E74924, #CE3D49, #B6316D, #9E2492, #8618B6, #6D0CDB, #5500FF. Spaces in multi-word strings advance index i without receiving a colour code.',
+        result: '8 interpolated stops from #FF5500 (G) to #5500FF (T)',
+        takeaway: 'Adding 3–5 stops interpolates piecewise across consecutive stops while keeping the per-character <#RRGGBB>, &#, §x, and JSON formats ready to copy.'
+      }
+    ];
+  }
+
+  // 3h. Minecraft MOTD Generator
+  if (id === 'minecraft-motd-generator') {
+    return [
+      {
+        title: 'Example 1: Classic 2-Line server.properties MOTD (Green Bold + Yellow)',
+        scenario: 'Setting Line 1 to "My Server" in Green (§a) + Bold (§l) and Line 2 to "Season 2" in Yellow (§e) for vanilla server.properties.',
+        inputValues: { 'Line 1': 'My Server (Green §a + Bold §l)', 'Line 2': 'Season 2 (Yellow §e)' },
+        calculation: 'Colour code is emitted before format codes (§a§l, not §l§a), lines join with literal \\n, and every § escapes to \\u00A7.',
+        result: 'motd=\\u00A7a\\u00A7lMy Server\\n\\u00A7eSeason 2',
+        takeaway: 'Always emit colour codes before formatting codes because any colour code resets active bold, italic, underline, strikethrough, or obfuscated styling.'
+      },
+      {
+        title: 'Example 2: Per-Line §x Hex Gradient With Bold & Visible-Length Check',
+        scenario: 'Styling Line 1 ("EMERALD REALMS") with a 2-stop #55FF55 → #5555FF gradient + Bold and Line 2 with Gray (§7) text.',
+        inputValues: { 'Line 1': 'EMERALD REALMS (14 visible chars, Bold + Gradient)', 'Line 2': '1.21 Survival (13 visible chars, Gray §7)' },
+        calculation: 'Each non-space character in Line 1 receives §x§R§R§G§G§B§B§l before the character; spaces count for gradient position without emitting a colour code. Both lines stay well below the 59-character wrapping warning.',
+        result: 'Clean 2-line server-list MOTD with copyable server.properties, §, and & formats',
+        takeaway: 'Watch the visible-character counter above 59 characters to avoid line wrapping on narrower client GUI scales.'
+      }
+    ];
+  }
+
+  // 3i. Minecraft Armor Trim Previewer
+  if (id === 'minecraft-armor-trim-previewer') {
+    return [
+      {
+        title: 'Example 1: Full 4-Piece Silence + Amethyst Armor Trim Set Cost',
+        scenario: 'Applying the Silence trim pattern with Amethyst Shard (#9A5CC6) across Helmet, Chestplate, Leggings, and Boots starting from 1 found Silence template.',
+        inputValues: { 'Starting Templates': '1 Silence Template', 'Target Pieces': '4 (Full Set)', 'Matching Block': 'Cobbled Deepslate' },
+        calculation: 'Each duplication craft uses 7 Diamonds + 1 Template (top-middle) + 1 Cobbled Deepslate (centre) → 2 Templates (net +1 template). Starting from 1 template, a full 4-piece set needs 3 duplication crafts = 21 Diamonds + 3 Cobbled Deepslate, plus 4 Amethyst Shards at the Smithing Table.',
+        result: '3 duplication crafts = 21 diamonds + 3 Cobbled Deepslate (+ 4 Amethyst Shards)',
+        takeaway: 'Duplication costs zero XP at the Smithing Table, preserves enchantments/durability/names, and trims are cosmetic only.'
+      },
+      {
+        title: 'Example 2: Resin Brick Bolt Trim on a Turtle Shell Helmet',
+        scenario: 'Previewing the Bolt pattern with Resin Brick (#FC7812) on a Turtle Shell (which counts as a helmet for armor trims).',
+        inputValues: { 'Piece': 'Helmet (Turtle Shell)', 'Pattern': 'Bolt (Matching Block: Block of Copper)', 'Material': 'Resin Brick (#FC7812)' },
+        calculation: 'Applying one Bolt trim on a Smithing Table consumes 1 Bolt Smithing Template + 1 Resin Brick with zero XP cost. If duplicating first, 7 Diamonds + 1 Bolt Template + 1 Block of Copper yields 2 templates.',
+        result: '1 of 198 combinations per piece (18 patterns × 11 materials)',
+        takeaway: 'In-game trims use a shaded palette (darker when the trim material matches the armour material), whereas this tool renders a stylised preview.'
+      }
+    ];
+  }
+
+  // 3j. Minecraft Shield Designer
+  if (id === 'minecraft-shield-designer') {
+    return [
+      {
+        title: 'Example 1: One Patterned 3-Layer Shield Crafted From Scratch',
+        scenario: 'Crafting a Green Shield with 3 Loom layers (Base Gradient Black, Creeper Charge Lime, Bordure Black) from base ingredients.',
+        inputValues: { 'Base Shield': '6 Planks + 1 Iron Ingot', 'Base Banner': '6 Green Wool + 1 Stick', 'Loom Layers': '3 Layers (3 Dyes + Creeper Charge Pattern)' },
+        calculation: 'Step 1: 6 Wool + 1 Stick → Banner. Step 2: 3 Loom layers → 3 Dyes (+ reusable Creeper Charge pattern item). Step 3: 6 Planks + 1 Iron Ingot → Plain Shield. Step 4: Combine Shield + Banner.',
+        result: '6 planks + 1 iron ingot + 6 wool + 1 stick + 3 dyes',
+        takeaway: 'Combining consumes the banner, preserves shield durability and enchantments, and cannot be washed in a cauldron or repainted.'
+      },
+      {
+        title: 'Example 2: Max 6-Layer Bastion Shield & Resolution Difference',
+        scenario: 'Applying the maximum 6 Survival Loom layers onto a shield and inspecting how it differs from a wall banner.',
+        inputValues: { 'Layers': '6 (Survival Maximum)', 'Special Patterns': 'Snout (piglin) + Bordure Indented (curly_border)' },
+        calculation: 'Total from scratch: 6 Planks + 1 Iron Ingot + 6 Wool + 1 Stick + 6 Dyes (plus reusable Snout and Bordure Indented Banner Pattern items).',
+        result: '6 planks + 1 iron ingot + 6 wool + 1 stick + 6 dyes',
+        takeaway: 'Shields render patterns at half the resolution of banners, so bold borders, crosses, and emblems read clearest in-game.'
+      }
+    ];
+  }
+
+  // 3k. Minecraft Potion Effect Duration Converter
+  if (id === 'minecraft-potion-duration-converter') {
+    return [
+      {
+        title: 'Example 1: Fire Resistance (Redstone Extended, 480 s) Across All 4 Delivery Forms',
+        scenario: 'Converting a Redstone-extended Potion of Fire Resistance (8:00 = 480 seconds) into Splash, Lingering, and Tipped Arrow durations.',
+        inputValues: { 'Potion': 'Fire Resistance (Extended)', 'Base Duration': '480 s (8:00)', 'Tick Rate': '20 ticks/sec' },
+        calculation: 'Drinkable/Splash (×1.0) = 480 × 20 = 9,600 ticks (480 s). Lingering (×1/4) = 9,600 ÷ 4 = 2,400 ticks (120 s / 2:00). Tipped Arrow (×1/8) = 9,600 ÷ 8 = 1,200 ticks (60 s / 1:00).',
+        result: 'Drink/Splash: 480 s (9,600 ticks) · Lingering: 120 s (2,400 ticks) · Arrow: 60 s (1,200 ticks)',
+        takeaway: 'Redstone and Glowstone are mutually exclusive—Fire Resistance has no Level II variant.'
+      },
+      {
+        title: 'Example 2: Regeneration Base (45 s) Tipped Arrow Tick Flooring',
+        scenario: 'Calculating exact duration when 45 seconds is divided by 8 for Tipped Arrows of Regeneration.',
+        inputValues: { 'Potion': 'Regeneration (Base)', 'Base Duration': '45 s (0:45)', 'Arrow Multiplier': '×1/8' },
+        calculation: 'Drinkable/Splash = 900 ticks (45 s). Lingering = floor(45 × 20 × 0.25) = 225 ticks (11.25 s). Tipped Arrow = floor(45 × 20 × 0.125) = floor(112.5) = 112 ticks → 112 ÷ 20 = 5.6 s.',
+        result: 'Drink/Splash: 45 s (900 ticks) · Lingering: 11.25 s (225 ticks) · Arrow: 5.6 s (112 ticks)',
+        takeaway: 'Fractional ticks always round down (minimum 1 tick), making Regeneration tipped arrows 5.6 s rather than 5.625 s.'
+      }
+    ];
+  }
+
+  // 3l. Minecraft Block Gradient Generator
+  if (id === 'minecraft-block-gradient-generator') {
+    return [
+      {
+        title: 'Example 1: 5-Step White Concrete to Black Concrete Gradient',
+        scenario: 'Generating a 5-block transition from White Concrete (#CFD5D6) to Black Concrete (#080A0F) using the 45 common blocks palette.',
+        inputValues: { 'Start Block': 'White Concrete (#CFD5D6)', 'End Block': 'Black Concrete (#080A0F)', 'Steps': '5' },
+        calculation: 'Targets: Step 2 = 157,162,164 (closest unused: Smooth Stone #A0A0A0), Step 3 = 108,112,114 (closest unused: Tuff #6F6F69), Step 4 = 58,61,65 (closest unused: Gray Concrete #373A3E).',
+        result: 'White Concrete → Smooth Stone → Tuff → Gray Concrete → Black Concrete',
+        takeaway: 'Endpoints stay exact while interior steps match unique unused blocks from the 45 common blocks palette by Euclidean RGB distance.'
+      },
+      {
+        title: 'Example 2: Warm Wood & Terracotta Wall Gradient (4 Steps)',
+        scenario: 'Building a 4-step warm facade from Sand (#DBD0A4) to Dark Oak Planks (#442C15) using average texture colours.',
+        inputValues: { 'Start Block': 'Sand (#DBD0A4)', 'End Block': 'Dark Oak Planks (#442C15)', 'Steps': '4' },
+        calculation: 'Interpolates per RGB channel at t = 1/3 and 2/3, selecting the nearest unused blocks across wood planks, terracotta, and stone.',
+        result: '4 unique palette blocks with hex swatches & copyable text list',
+        takeaway: 'Keep steps between 3 and 20; colours are average texture colours across the 45 common blocks.'
+      }
+    ];
+  }
+
   // 4a. Robux to USD Converter (store purchase vs DevEx — 30% marketplace tax stays in robux-tax-calculator only)
   if (id === 'robux-to-usd-calculator') {
     return [
       {
         title: 'Example 1: Comparing Store Purchase Value vs DevEx Cashout for 10,000 Robux',
         scenario: 'A player compares what 10,000 Robux costs to buy in USD at the baseline store rate versus what 10,000 Earned Robux pays out via Developer Exchange.',
-        inputValues: { 'Robux Amount': '10,000 R$', 'Store Rate': '$0.0125/R$ (~80 R$/$)', 'DevEx Rate': '$0.0035/R$' },
-        calculation: 'Store Value = 10,000 × $0.0125 = $125.00 USD (or $99.99 via the official 10,000 R$ bundle). DevEx Value = 10,000 × $0.0035 = $35.00 USD.',
-        result: 'Store Purchase Value: $125.00 USD | DevEx Cashout Equivalent: $35.00 USD',
+        inputValues: { 'Robux Amount': '10,000 R$', 'Store Rate': '$0.0125/R$ (~80 R$/$)', 'DevEx Rate': '$0.0038/R$' },
+        calculation: 'Store Value = 10,000 × $0.0125 = $125.00 USD (or $99.99 via the official 10,000 R$ bundle). DevEx Value = 10,000 × $0.0038 = $38.00 USD.',
+        result: 'Store Purchase Value: $125.00 USD | DevEx Cashout Equivalent: $38.00 USD',
         takeaway: 'Store rates and DevEx cashout rates are very different—note also that 10,000 R$ is below the 30,000 Robux minimum required to submit a DevEx request.'
       },
       {
@@ -319,10 +451,10 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
       {
         title: 'Example 3: Reaching the 30,000 Robux DevEx Cashout Minimum (50,000 R$ Payout)',
         scenario: 'A studio developer checks whether 50,000 Earned Robux clears the 30,000 Robux DevEx minimum and calculates the USD payout.',
-        inputValues: { 'Earned Balance': '50,000 R$', 'DevEx Minimum': '30,000 R$ ($105.00)', 'DevEx Rate': '$0.0035/R$' },
-        calculation: '50,000 >= 30,000 minimum threshold (Eligible). USD Payout = 50,000 × $0.0035 = $175.00 USD.',
-        result: 'Eligible for DevEx · Payout: $175.00 USD',
-        takeaway: 'Every 30,000 Earned Robux yields at least $105.00 USD, and every 100,000 Earned Robux cashes out to $350.00 USD.'
+        inputValues: { 'Earned Balance': '50,000 R$', 'DevEx Minimum': '30,000 R$ ($114.00)', 'DevEx Rate': '$0.0038/R$' },
+        calculation: '50,000 >= 30,000 minimum threshold (Eligible). USD Payout = 50,000 × $0.0038 = $190.00 USD.',
+        result: 'Eligible for DevEx · Payout: $190.00 USD',
+        takeaway: 'Every 30,000 Earned Robux yields at least $114.00 USD, and every 100,000 Earned Robux cashes out to $380.00 USD.'
       }
     ];
   }
@@ -394,16 +526,16 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
         title: 'Example 1: Splitting Multi-Stream Studio Team Earnings (500,000 R$ Pool)',
         scenario: 'A Roblox development studio earns 250,000 R$ from Gamepasses (70% Net), 150,000 R$ from Dev Products, 30,000 R$ from Avatar Commissions, and 70,000 R$ from Premium Playtime Payouts.',
         inputValues: { 'Total Pool': '500,000 Net R$', 'Splits': '40% / 30% / 15% / 15%' },
-        calculation: 'Lead Dev (40%) = 200,000 R$ ($700.00 DevEx USD); Lead Builder (30%) = 150,000 R$ ($525.00 USD); UI/VFX (15%) = 75,000 R$ ($262.50 USD); Studio Reserve (15%) = 75,000 R$ ($262.50 USD).',
-        result: '500,000 Net R$ Distributed | $1,750.00 Total DevEx USD (0% extra group payout tax)',
+        calculation: 'Lead Dev (40%) = 200,000 R$ ($760.00 DevEx USD); Lead Builder (30%) = 150,000 R$ ($570.00 USD); UI/VFX (15%) = 75,000 R$ ($285.00 USD); Studio Reserve (15%) = 75,000 R$ ($285.00 USD).',
+        result: '500,000 Net R$ Distributed | $1,900.00 Total DevEx USD (0% extra group payout tax)',
         takeaway: 'Group payouts carry a 0% additional fee because the 30% Roblox marketplace cut was already taken when each stream was earned.'
       },
       {
         title: 'Example 2: Direct Group Funds Payout Split with 14-Day Eligibility Check',
         scenario: 'Distributing 100,000 R$ sitting in Group Funds across 3 equal collaborators (33% each) and checking remainder.',
         inputValues: { 'Group Funds Pool': '100,000 R$', '3 Members': '33% each (99% allocated)' },
-        calculation: 'Per Member = floor(100,000 × 0.33) = 33,000 R$ ($115.50 DevEx USD — above 30k DevEx minimum). Remainder left in group = 1,000 R$.',
-        result: '33,000 R$ ($115.50 USD) per member | 1,000 R$ unallocated remainder',
+        calculation: 'Per Member = floor(100,000 × 0.33) = 33,000 R$ ($125.40 DevEx USD — above 30k DevEx minimum). Remainder left in group = 1,000 R$.',
+        result: '33,000 R$ ($125.40 USD) per member | 1,000 R$ unallocated remainder',
         takeaway: 'Remember that newly joined group members must wait 14 days before Roblox allows sending them group payouts.'
       }
     ];
@@ -622,8 +754,8 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
         title: 'Example 2: Selling 1,000 Units at 100 Robux Inside Your Own Experience (+ DevEx Estimate)',
         scenario: 'Budgeting total creator royalties and estimated DevEx USD payout for 1,000 sales of a 100 Robux item sold in your own game.',
         inputValues: { 'Item Price': '100 Robux', 'Sales': '1,000', 'Location': 'Own Experience (70%)' },
-        calculation: 'Creator Earnings = 70 × 1,000 = 70,000 Robux (held in 30-day escrow). Estimated DevEx USD = 70,000 × $0.0035 = $245.00 USD estimate (above 30,000 Robux DevEx minimum).',
-        result: '70,000 Robux | ~$245.00 USD (Estimate Only)',
+        calculation: 'Creator Earnings = 70 × 1,000 = 70,000 Robux (held in 30-day escrow). Estimated DevEx USD = 70,000 × $0.0038 = $266.00 USD estimate (above 30,000 Robux DevEx minimum).',
+        result: '70,000 Robux | ~$266.00 USD (Estimate Only)',
         takeaway: 'DevEx USD outputs are estimates only and require full DevEx eligibility plus at least 30,000 Earned Robux.'
       }
     ];
@@ -636,16 +768,16 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
         title: 'Example 1: Estimating Revenue at 10,000 Visits/Day (1% Buyers, 100 R$ Avg)',
         scenario: 'Projecting daily and 30-day gamepass/dev-product revenue estimates for an experience averaging 10,000 daily visits.',
         inputValues: { 'Visits/Day': '10,000', 'Buyers %': '1%', 'Avg Spend': '100 Robux' },
-        calculation: 'Buyers/Day Estimate = 10,000 × 1% = 100 buyers. Gross Robux/Day Estimate = 100 × 100 = 10,000 R$. Creator 70% Share/Day Estimate = 10,000 × 0.70 = 7,000 R$/day (210,000 R$ per 30 days; DevEx estimate ~$24.50/day or ~$735.00 per 30 days).',
+        calculation: 'Buyers/Day Estimate = 10,000 × 1% = 100 buyers. Gross Robux/Day Estimate = 100 × 100 = 10,000 R$. Creator 70% Share/Day Estimate = 10,000 × 0.70 = 7,000 R$/day (210,000 R$ per 30 days; DevEx estimate ~$26.60/day or ~$798.00 per 30 days).',
         result: 'Estimated Gross: 10,000 R$/day | Estimated 70% Share: 7,000 R$/day (210,000 R$/30 days)',
-        takeaway: 'All outputs are estimates (real earnings vary), and DevEx payouts at $0.0035/Robux require DevEx eligibility plus the 30,000 Robux minimum.'
+        takeaway: 'All outputs are estimates (real earnings vary), and DevEx payouts at $0.0038/Robux require DevEx eligibility plus the 30,000 Robux minimum.'
       },
       {
         title: 'Example 2: Checking the 30,000 Robux DevEx Threshold at 5,000 Visits/Day',
         scenario: 'Estimating whether a smaller game averaging 5,000 visits/day, 0.5% buyer conversion, and 80 R$ average spend clears the 30,000 Robux DevEx minimum over 30 days.',
         inputValues: { 'Visits/Day': '5,000', 'Buyers %': '0.5%', 'Avg Spend': '80 Robux' },
-        calculation: 'Buyers/Day Estimate = 25. Gross Estimate = 25 × 80 = 2,000 R$/day. 70% Share Estimate = 1,400 R$/day × 30 = 42,000 Robux over 30 days (~$147.00 DevEx USD estimate).',
-        result: 'Estimated 42,000 R$ / 30 Days (~$147.00 USD Estimate)',
+        calculation: 'Buyers/Day Estimate = 25. Gross Estimate = 25 × 80 = 2,000 R$/day. 70% Share Estimate = 1,400 R$/day × 30 = 42,000 Robux over 30 days (~$159.60 DevEx USD estimate).',
+        result: 'Estimated 42,000 R$ / 30 Days (~$159.60 USD Estimate)',
         takeaway: 'Every result is an estimate — monitor live Creator Hub analytics because real conversion and pricing vary.'
       }
     ];
@@ -1020,6 +1152,314 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
+  // 4z2b. GTA Online Bunker Profit Calculator
+  if (id === 'gta-online-bunker-profit-calculator') {
+    return [
+      {
+        title: 'Example 1: Full 100-Unit Upgraded Bunker Sold to Los Santos (Bought Supplies)',
+        scenario: 'A player owns Equipment + Staff Upgrades ($1,155,000 + $598,500), buys supplies ($3,750/unit), and sells a full 100 units to Los Santos (×1.5).',
+        inputValues: {
+          'Stock Units': '100',
+          'Upgrades': 'Equipment + Staff ON ($7,000 local)',
+          'Destination': 'Los Santos (×1.5 = $10,500/unit)',
+          'Supplies': 'Bought ($3,750/unit)'
+        },
+        calculation: 'Gross = 100 × $10,500 = $1,050,000. Supply cost = 100 × $3,750 = $375,000. Net = $1,050,000 − $375,000 = $675,000. Production = 100 × 7 = 700 minutes. Net/hour = round($675,000 ÷ (700 ÷ 60)) = $57,857. Vehicles = 2–4 (depends on vehicle type drawn).',
+        result: 'Gross: $1,050,000 | Net: $675,000 | 700 min | $57,857/hr | 2–4 vehicles',
+        takeaway: 'Upgrading both Equipment and Staff turns a 100-unit Bunker into $57,857/hour net versus $22,500/hour unupgraded.'
+      },
+      {
+        title: 'Example 2: Solo-Safe 25 Units Upgraded Bunker Sold Local (Stolen Supplies)',
+        scenario: 'Selling 25 units from an upgraded Bunker locally using stolen supplies ($0 cost) to guarantee a single delivery vehicle.',
+        inputValues: {
+          'Stock Units': '25',
+          'Upgrades': 'Equipment + Staff ON ($7,000/unit)',
+          'Destination': 'Local (×1.0)',
+          'Supplies': 'Stolen ($0)'
+        },
+        calculation: 'Gross = 25 × $7,000 = $175,000. Supply cost = $0. Net = $175,000. Production = 25 × 7 = 175 minutes. Units ≤ 25 → Delivery vehicles = 1 (guaranteed).',
+        result: 'Gross: $175,000 | Net: $175,000 | 175 min | Vehicles: 1 (guaranteed)',
+        takeaway: 'Keeping Bunker stock at 25 units or fewer guarantees 1 delivery vehicle.'
+      }
+    ];
+  }
+
+  // 4z2c. GTA Online MC Businesses Profit Calculator
+  if (id === 'gta-online-mc-business-profit-calculator') {
+    return [
+      {
+        title: 'Example 1: Full Upgraded Cocaine Lockup Sold Far (Bought Supplies)',
+        scenario: 'Running Cocaine Lockup at 100% stock (10 units) with Equipment + Staff Upgrades, Far sale (×1.5), and bought supplies ($187,500 full stock).',
+        inputValues: {
+          'Business': 'Cocaine Lockup (10 units cap)',
+          'Upgrades': 'Equipment + Staff ON ($35,000 local)',
+          'Destination': 'Far (×1.5 = $52,500/unit)',
+          'Supplies': 'Bought ($187,500)'
+        },
+        calculation: 'Gross = 10 × $52,500 = $525,000. Supply cost = $187,500. Net = $525,000 − $187,500 = $337,500. Production = 10 × 30 = 300 minutes (5 hrs). Net/hour = $337,500 ÷ 5 = $67,500.',
+        result: 'Gross: $525,000 | Net: $337,500 | 300 min | $67,500/hr',
+        takeaway: 'Cocaine Lockup is the highest-earning MC Business at $67,500/hour net with upgrades.'
+      },
+      {
+        title: 'Example 2: Unupgraded Counterfeit Cash Factory (100% Far, Bought Supplies)',
+        scenario: 'Checking what happens when buying $300,000 of supplies for a base Counterfeit Cash Factory without Equipment or Staff upgrades.',
+        inputValues: {
+          'Business': 'Counterfeit Cash Factory (40 units cap)',
+          'Upgrades': 'OFF ($4,725 local)',
+          'Destination': 'Far (×1.5 = $7,087.50/unit)',
+          'Supplies': 'Bought ($300,000 full stock)'
+        },
+        calculation: 'Gross = 40 × $7,087.50 = $283,500. Supply cost = $300,000. Net = $283,500 − $300,000 = −$16,500.',
+        result: 'Gross: $283,500 | Supply Cost: $300,000 | Net: −$16,500',
+        takeaway: 'Buying supplies on unupgraded Counterfeit Cash loses money (−$16,500) even on a Far sale.'
+      }
+    ];
+  }
+
+  // 4z2d. GTA Online Special Cargo Crate Value Calculator
+  if (id === 'gta-online-special-cargo-crate-value-calculator') {
+    return [
+      {
+        title: 'Example 1: Full Large Warehouse (111 Crates) — 3-Crate vs 1-Crate Sourcing',
+        scenario: 'Selling a full 111-crate Large CEO warehouse at the maximum $20,000/crate tier and comparing 3-crate sourcing vs 1-crate sourcing.',
+        inputValues: {
+          'Warehouse': 'Large (111 Crates)',
+          'Per-Crate Value': '$20,000',
+          'Gross Sale': '$2,220,000',
+          'Delivery Trucks (Land)': '3 trucks'
+        },
+        calculation: '3-crate sourcing: 37 × $18,000 = $666,000 sourcing → Net = $2,220,000 − $666,000 = $1,554,000. 1-crate sourcing: 111 × $2,000 = $222,000 sourcing → Net = $2,220,000 − $222,000 = $1,998,000.',
+        result: '3-Crate Net: $1,554,000 | 1-Crate Net: $1,998,000 | 3 Trucks',
+        takeaway: 'Full Large sales pay $20,000 per crate compared to $10,000 for a single crate.'
+      },
+      {
+        title: 'Example 2: Medium (42 Crates) & Small (16 Crates) with 3-Crate Sourcing',
+        scenario: 'Comparing full Medium and Small warehouses sourced with 3-crate missions (note Small 16 crates leaves 1 crate remainder at $2,000).',
+        inputValues: {
+          'Medium': '42 crates ($17,500/crate)',
+          'Small': '16 crates ($15,000/crate)',
+          'Sourcing': '3-crate missions'
+        },
+        calculation: 'Medium: Gross = 42 × $17,500 = $735,000; Sourcing = 14 × $18,000 = $252,000; Net = $483,000 (3 trucks). Small: Gross = 16 × $15,000 = $240,000; Sourcing = 5 × $18,000 + $2,000 = $92,000; Net = $148,000 (2 trucks).',
+        result: 'Medium: $483,000 net (3 trucks) | Small: $148,000 net (2 trucks)',
+        takeaway: 'Per-crate rates climb significantly from Small ($15,000) to Medium ($17,500) to Large ($20,000).'
+      }
+    ];
+  }
+
+  // 4z2e. GTA Online Hangar Air Freight Cargo Calculator
+  if (id === 'gta-online-hangar-cargo-calculator') {
+    return [
+      {
+        title: 'Example 1: Full 50-Crate Tier 1 Stockpile (Narcotics / Chemicals / Medical Supplies)',
+        scenario: 'Filling all 50 Hangar crate slots with one Tier 1 cargo type ($30,000 base/crate, +35% per 25 crates) with $0 sourcing cost.',
+        inputValues: {
+          'Tier 1 Crates': '50 (Single Cargo Type)',
+          'Stockpile Bonus': '+70% (2 × 35%)',
+          'Base Rate': '$30,000/crate'
+        },
+        calculation: 'Gross = 50 × $30,000 × 1.70 = $2,550,000. Ron\'s cut (5%) = $127,500. Net = $2,550,000 − $127,500 = $2,422,500.',
+        result: 'Gross: $2,550,000 | Ron\'s Cut: $127,500 | Net: $2,422,500',
+        takeaway: 'Keeping all 50 crates in one Tier 1 cargo type unlocks the top +70% bonus for $2,422,500 net.'
+      },
+      {
+        title: 'Example 2: Mixed Hangar — 25 Tier 1 + 25 Tier 3 Crates',
+        scenario: 'Holding 25 crates of a Tier 1 type (+35%) alongside 25 crates of a Tier 3 type (+25% = 5 × 5%).',
+        inputValues: {
+          'Tier 1': '25 crates (+35% bonus)',
+          'Tier 3': '25 crates (+25% bonus)',
+          'Sourcing Cost': '$0 (stolen)'
+        },
+        calculation: 'Tier 1 Gross = 25 × $30,000 × 1.35 = $1,012,500. Tier 3 Gross = 25 × $30,000 × 1.25 = $937,500. Total Gross = $1,950,000. Ron\'s cut (5%) = $97,500. Net = $1,852,500.',
+        result: 'Gross: $1,950,000 | Ron\'s Cut: $97,500 | Net: $1,852,500',
+        takeaway: 'Splitting between Tier 1 and Tier 3 lowers total net from $2,422,500 to $1,852,500 because stockpile bonuses require crates of the same type.'
+      }
+    ];
+  }
+
+  // 4z2f. GTA Online Vehicle Cargo (Import/Export) Calculator
+  if (id === 'gta-online-vehicle-cargo-calculator') {
+    return [
+      {
+        title: 'Example 1: Mixed 4-Car Specialist Dealer Sale (2 Top + 1 Mid + 1 Standard)',
+        scenario: 'Selling 2 Top Range, 1 Mid Range, and 1 Standard Range vehicle together via Specialist Dealer with $0 stolen sourcing cost.',
+        inputValues: {
+          'Cars': '2 Top + 1 Mid + 1 Standard',
+          'Sale Mode': 'Specialist Dealer',
+          'Sourcing Cost': '$0 (stolen)'
+        },
+        calculation: 'Top: 2 × ($100,000 − $20,000) = $200,000 gross, $40,000 mod cost, $160,000 net. Mid: 1 × ($62,500 − $12,500) = $62,500 gross, $12,500 mod cost, $50,000 net. Standard: 1 × ($37,500 − $7,500) = $37,500 gross, $7,500 mod cost, $30,000 net. Total = $300,000 gross − $60,000 mod costs = $240,000 net.',
+        result: 'Total Gross: $300,000 | Mod Costs: $60,000 | Total Net: $240,000',
+        takeaway: 'Every Specialist Dealer sale nets $80,000 per Top car, $50,000 per Mid car, and $30,000 per Standard car when delivered undamaged.'
+      },
+      {
+        title: 'Example 2: 4-Car Collection Sale (4 Top Range Cars)',
+        scenario: 'Exporting a 4-car Top Range collection (such as Birds of Paradise, Molten Metal, Hip to be Square, or Shades of Blue).',
+        inputValues: {
+          'Cars': '4 Top Range',
+          'Sale Mode': 'Collection Sale (4 Cars)',
+          'Modification Cost': '$0'
+        },
+        calculation: 'Car value at Specialist net = 4 × ($100,000 − $20,000) = $320,000. 4-car collection bonus = +$50,000. Modification costs = $0. Total Net = $320,000 + $50,000 = $370,000.',
+        result: 'Car Value: $320,000 | Collection Bonus: $50,000 | Mod Costs: $0 | Total Net: $370,000',
+        takeaway: 'Collection sales waive modification fees completely and add a $20,000 / $35,000 / $50,000 bonus on top of Specialist net values.'
+      }
+    ];
+  }
+
+  // 4z2g. Mouse Polling Rate Test
+  if (id === 'mouse-polling-rate-test') {
+    return [
+      {
+        title: 'Example 1: Measuring a 1000 Hz Gaming Mouse Over a 500 ms Rolling Window',
+        scenario: 'Sweeping a 1000 Hz mouse in continuous circles inside the test pad so 501 mouse reports spaced 1 ms apart fill the 500 ms window.',
+        inputValues: {
+          'Window Span': '500 ms',
+          'Reports (N)': '501 reports (1 ms apart)',
+          'Event Source': 'pointerrawupdate / coalesced'
+        },
+        calculation: 'Current Hz = (501 − 1) / (500 − 0) × 1000 = 500 / 500 × 1000 = 1,000 Hz. Wait before movement is reported drops to 1 ms max (compared to 8 ms at 125 Hz).',
+        result: 'Current Hz: 1,000 Hz (1.00 ms average interval)',
+        takeaway: 'Readings between 950 and 1,000 Hz are normal in a browser because browsers measure reports delivered to the page rather than raw USB packets.'
+      },
+      {
+        title: 'Example 2: Comparing 125 Hz Office Mouse vs 4000 Hz / 8000 Hz Wireless & Wired Mice',
+        scenario: 'Testing a standard 125 Hz office mouse (8 ms spacing) versus high-speed 4000 Hz (0.25 ms) and 8000 Hz (0.125 ms) mice.',
+        inputValues: {
+          '125 Hz (8 ms)': '63 reports over 496 ms',
+          '4000 Hz (0.25 ms)': '2,001 reports over 500 ms',
+          '8000 Hz (0.125 ms)': '4,001 reports over 500 ms'
+        },
+        calculation: '125 Hz: (63 − 1) / 496 × 1000 = 125 Hz. 4000 Hz: 2000 / 500 × 1000 = 4,000 Hz. 8000 Hz: 4000 / 500 × 1000 = 8,000 Hz.',
+        result: '125 Hz (8 ms) vs 4,000 Hz (0.25 ms) vs 8,000 Hz (0.125 ms)',
+        takeaway: 'Higher polling reduces report wait time, but polling rate is NOT display input lag.'
+      }
+    ];
+  }
+
+  // 4z2h. True-DPI Analyser
+  if (id === 'true-dpi-analyzer') {
+    return [
+      {
+        title: 'Example 1: 3,300 Counts Over 10 cm at 800 Set DPI',
+        scenario: 'Moving a mouse rated at 800 DPI across an exact 10 cm ruler distance while recording 3,300 raw |movementX| counts.',
+        inputValues: {
+          'Measured Counts': '3,300',
+          'Physical Distance': '10 cm (3.9370 in)',
+          'Set DPI': '800'
+        },
+        calculation: 'Inches = 10 ÷ 2.54 = 3.9370 in. Real DPI = 3,300 ÷ 3.9370 = 838.2 DPI. Deviation = (838.2 − 800) ÷ 800 × 100 = +4.77%. Expected = 800 × 3.9370 = 3,149.6.',
+        result: 'Real DPI: 838.2 | Deviation: +4.77% | Expected: 3,149.6 counts',
+        takeaway: 'A +4.77% positive DPI deviation means your actual cm/360 is slightly faster than your mouse software claims.'
+      },
+      {
+        title: 'Example 2: Near-Zero Deviation at 400 DPI Over 5 cm (787 Counts)',
+        scenario: 'Testing a 400 DPI profile across a 5 cm ruler sweep that accumulates 787 counts.',
+        inputValues: {
+          'Measured Counts': '787',
+          'Physical Distance': '5 cm (1.9685 in)',
+          'Set DPI': '400'
+        },
+        calculation: 'Inches = 5 ÷ 2.54 = 1.9685 in. Real DPI = 787 ÷ 1.9685 = 399.8 DPI. Deviation = (399.8 − 400) ÷ 400 × 100 = −0.05%.',
+        result: 'Real DPI: 399.8 | Deviation: −0.05% | Expected: 787.4 counts',
+        takeaway: 'Unlike dpi-cm-360-calculator (which converts values you already know), True-DPI Analyser verifies your actual physical sensor accuracy.'
+      }
+    ];
+  }
+
+  // 4z2i. ADS / Scoped Sensitivity Calculator
+  if (id === 'ads-sensitivity-calculator') {
+    return [
+      {
+        title: 'Example 1: Custom Mode (H = 103°, S = 82.40°, Hipfire Sens 0.5)',
+        scenario: 'Converting a 0.5 hipfire sensitivity from 103° FOV to 82.40° ADS FOV across 0%, 75%, and 100% monitor-distance coefficients.',
+        inputValues: {
+          'Hipfire Sens': '0.5',
+          'Hipfire / Scoped FOV': '103° → 82.40°',
+          'Coefficients': '0% / 75% / 100%'
+        },
+        calculation: '0%: m(0) = tan(41.20°)/tan(51.50°) = 0.6964 → scoped sens 0.3482. 75%: m(0.75) = atan(0.75·tan(41.20°))/atan(0.75·tan(51.50°)) = 0.7685 → scoped sens 0.3842. 100%: m(1) = 82.40/103 = 0.8000 → scoped sens 0.4000.',
+        result: '0%: 0.3482 | 75%: 0.3842 | 100%: 0.4000',
+        takeaway: 'At 0.35 sens / 800 DPI (Valorant yaw 0.07), hipfire is 46.65 cm/360 and 0% scoped is 67.00 cm/360.'
+      },
+      {
+        title: 'Example 2: Valorant Multiplier & CS2 zoom_sensitivity_ratio_mouse (0% vs 75% vs 100%)',
+        scenario: 'Finding the exact in-game multiplier for Valorant (pre-scaled from 103°) and CS2 (pre-scaled on 90° 4:3 basis).',
+        inputValues: {
+          'Valorant 1.25× ADS / 2.5× Op': 'm(c) ÷ m(1)',
+          'CS2 AWP Zoom 1 (40°)': 'm43(c) ÷ m43(1)'
+        },
+        calculation: 'Valorant 1.25× ADS: 0% = 0.870, 75% = 0.961, 100% = 1.000. Operator 2.5×: 0% = 0.747, 75% = 0.909, 100% = 1.000. CS2 AWP Zoom 1: 0% = 0.8189, 75% = 0.9318, 100% = 1.0000.',
+        result: 'Valorant: 0.870 (1.25×) / 0.747 (2.5×) | CS2 AWP z1: 0.8189',
+        takeaway: 'Valorant and CS2 pre-scale scoped aim, so 1.0 corresponds to 100% monitor distance while 0% uses ~0.747–0.870 in Valorant and 0.8189 in CS2.'
+      }
+    ];
+  }
+
+  // 4z2j. Genshin Impact Primogem & Wish Income Planner
+  if (id === 'genshin-primogem-wish-income-planner') {
+    return [
+      {
+        title: 'Example 1: 42-Day Patch Savings (0 Primos, 0 Fates, Commissions Only, No Guarantee)',
+        scenario: 'A free-to-play traveler starts at 0 Primogems, 0 Fates, and 0 pity, saving across a 42-day version cycle with Daily Commissions active (60/day).',
+        inputValues: {
+          'Current Primos & Fates': '0 Primos, 0 Fates',
+          'Days Until Target': '42 days (1 Patch)',
+          'Daily Income': 'Commissions ON (60/day), Welkin OFF',
+          'Pity & Guarantee': 'Pity 0, No Guarantee (50/50)'
+        },
+        calculation: 'Projected Primos = 60 × 42 = 2,520 Primogems. Total pulls = floor(2,520 ÷ 160) = 15 pulls. Leftover = 2,520 mod 160 = 120 Primogems. Worst-case needed = 180 pulls (28,800 Primos). Shortfall = 180 − 15 = 165 pulls (26,400 Primos). Extra days needed at 60/day = ceil(26,400 ÷ 60) = 440 days.',
+        result: 'Projected: 2,520 Primos (15 pulls, 120 leftover) | Shortfall: 165 pulls (26,400 Primos) | Extra Days: 440',
+        takeaway: 'Commissions alone provide 15 pulls per patch. To guarantee a featured 5★ from zero (180 pulls / 28,800 Primos) without events requires 480 total days.'
+      },
+      {
+        title: 'Example 2: Patch Savings with Welkin Moon & Event Income (3,200 Saved, 5 Fates)',
+        scenario: 'A traveler with 3,200 saved Primogems, 5 Fates, Welkin Moon active, and a 1,600 Primogem event/Abyss estimate prepares for an upcoming banner in 42 days.',
+        inputValues: {
+          'Current Primos & Fates': '3,200 Primos, 5 Fates',
+          'Days Until Target': '42 days',
+          'Daily Income': 'Commissions ON (60/day) + Welkin ON (90/day)',
+          'Other Estimates': '1,600 Primos event estimate, 0 extra Fates'
+        },
+        calculation: 'Projected Primos = 3,200 + (60 × 42) + (90 × 42) + 1,600 = 3,200 + 2,520 + 3,780 + 1,600 = 11,100 Primogems. Pulls from Primos = floor(11,100 ÷ 160) = 69 pulls. Total pulls = 5 + 69 = 74 pulls. Leftover = 11,100 mod 160 = 60 Primogems. Worst-case needed = 180 pulls. Shortfall = 180 − 74 = 106 pulls (16,960 Primos). Extra days at 150/day = ceil(16,960 ÷ 150) = 114 days.',
+        result: 'Projected: 11,100 Primos (74 pulls, 60 leftover) | Shortfall: 106 pulls (16,960 Primos) | Extra Days: 114',
+        takeaway: 'With 74 pulls, the traveler reaches the soft pity threshold (pull 74) where 5★ probabilities surge, even though 106 pulls remain for a 100% worst-case guarantee.'
+      }
+    ];
+  }
+
+  // 4z2k. Genshin Impact Wish Simulator
+  if (id === 'genshin-wish-simulator') {
+    return [
+      {
+        title: 'Example 1: 90-Pull Budget from Zero Pity (50/50 Coin Flip)',
+        scenario: 'A player saves 90 pulls (14,400 Primogems) for a featured Character Event banner starting from 0 pity with no guarantee active.',
+        inputValues: {
+          'Pull Budget': '90 pulls (14,400 Primos)',
+          'Starting Pity': '0',
+          'Guarantee Status': 'Off (50/50)',
+          'Runs': '10,000'
+        },
+        calculation: 'Soft pity activates at pull 74, surging drop rate by +6% per pull until pull 90 guarantees a 5★ (100% of runs get at least one 5★ by pull 90). If the 50/50 is won, the featured character is acquired immediately; if lost, 90 pulls are exhausted.',
+        result: 'Featured Success Rate: ≈59.3% | Any 5★ Rate: 100.0% | Avg Pulls to First 5★: ≈62.3 pulls',
+        takeaway: 'Even though 90 pulls guarantee a 5-star, you only have a ≈59.3% chance to get the featured character because the 50/50 can be lost.'
+      },
+      {
+        title: 'Example 2: 180-Pull Worst-Case Guarantee Benchmark',
+        scenario: 'A player commits 180 pulls (28,800 Primogems) to guarantee a must-have promotional character from 0 pity without an active guarantee.',
+        inputValues: {
+          'Pull Budget': '180 pulls (28,800 Primos)',
+          'Starting Pity': '0',
+          'Guarantee Status': 'Off (50/50)',
+          'Runs': '50,000'
+        },
+        calculation: 'Even if the first 5★ is a standard character at hard pity 90, the second 5★ is guaranteed featured by pull 180. The average pulls across all 50,000 runs converges to ≈93.5 pulls (≈14,951 Primogems) due to soft pity.',
+        result: 'Featured Success Rate: 100.0% | Avg Pulls to Featured: ≈93.5 pulls (≈14,951 Primos)',
+        takeaway: '180 pulls is the mathematical absolute maximum. Over 99% of players obtain their featured character well before pull 165.'
+      }
+    ];
+  }
+
   // 4z3. GTA 6 Cheat Code Finder
   if (id === 'gta-6-cheat-code-finder') {
     return [
@@ -1122,9 +1562,9 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
       {
         title: 'Example 2: Cashing Out 50,000 Robux via DevEx (Developer Exchange)',
         scenario: 'A creator meets the 30,000 Robux minimum DevEx threshold and submits an exchange request for 50,000 earned Robux.',
-        inputValues: { 'Robux Amount': '50,000 R$', 'Official DevEx Rate': '$0.0035 USD per Robux' },
-        calculation: 'USD Payout = 50,000 × $0.0035 = $175.00 USD.',
-        result: 'Net Cash Payout: $175.00 USD (Sent to Tipalti account)',
+        inputValues: { 'Robux Amount': '50,000 R$', 'Official DevEx Rate': '$0.0038 USD per Robux' },
+        calculation: 'USD Payout = 50,000 × $0.0038 = $190.00 USD.',
+        result: 'Net Cash Payout: $190.00 USD (Sent to Tipalti account)',
         takeaway: 'DevEx requires 13+ age verification, an active ID, and clean earned Robux from game passes or developer products.'
       },
       {
@@ -1132,7 +1572,7 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
         scenario: 'An experience sells 1,200 VIP gamepasses in a month at 250 Robux each.',
         inputValues: { 'Total Sales': '1,200 units', 'Item Price': '250 R$' },
         calculation: 'Gross Revenue = 1,200 × 250 = 300,000 R$. Net Revenue (70%) = 300,000 × 0.70 = 210,000 Robux.',
-        result: 'Net Creator Earnings: 210,000 R$ (Equivalent to $735.00 USD via DevEx)',
+        result: 'Net Creator Earnings: 210,000 R$ (Equivalent to $798.00 USD via DevEx)',
         takeaway: 'Offering bundled tiers (e.g., 250 R$ VIP + 99 R$ Trail Pass) increases average revenue per paying user by 35%.'
       }
     ];
@@ -1454,19 +1894,121 @@ export function getToolDeepDive(tool: ToolItem): ToolDeepDive {
     };
   }
 
+  if (tool.id === 'minecraft-rgb-gradient-text-generator') {
+    return {
+      title: 'How Minecraft RGB Gradients, MiniMessage & §x Hex Codes Work',
+      summary: 'Per-character linear RGB interpolation across 2–5 colour stops, whitespace positioning, and formatting code order.',
+      paragraphs: [
+        'For any text of n characters, each character at index i receives an interpolation factor t = i / (n − 1) (or t = 0 when n = 1). Each colour channel is computed via round(start + (end − start) × t), producing exact hex values across 2-stop fades or piecewise across consecutive stops when using 3 to 5 colours.',
+        'Spaces are included when counting character index i and total length n so gradients cross word boundaries evenly, but spaces never receive redundant colour codes in &#RRGGBB, §x, MiniMessage, or JSON chat-component outputs.',
+        'When Bold or Italic toggles are active, style codes (&l / &o or §l / §o) are placed immediately after the character colour code because Minecraft resets formatting whenever a new colour code is read. MiniMessage provides both the per-character <#RRGGBB> form for all 2–5 stops and the compact <gradient:#START:#END>text</gradient> tag for 2-stop gradients.'
+      ],
+      keyPoints: [
+        'Exact Interpolation Formula: t = i / (n − 1) (n = 1 → t = 0) with rounded R, G, and B channels per character.',
+        'Space Handling: Spaces advance the gradient index without emitting colour codes.',
+        'Four Ready-to-Copy Outputs: &#RRGGBB, §x§R§R§G§G§B§B, MiniMessage (<#RRGGBB> & 2-stop <gradient>), and JSON chat-component array.'
+      ]
+    };
+  }
+
+  if (tool.id === 'minecraft-motd-generator') {
+    return {
+      title: 'How Minecraft Server MOTD Formatting & server.properties Escaping Work',
+      summary: '16 legacy colour codes, colour-before-format ordering, literal \\n line breaks, and \\u00A7 escaping for server.properties.',
+      paragraphs: [
+        'Minecraft Multiplayer server list entries display up to two MOTD lines styled with the 16 legacy colour codes (§0 Black through §f White) or, on supported server software and proxies, per-character §x§R§R§G§G§B§B hex gradients. Formatting toggles cover Bold (§l), Italic (§o), Underline (§n), Strikethrough (§m), and Obfuscated (§k).',
+        'Because every Minecraft colour code resets active formatting flags, the colour code must always appear before any formatting codes (for example §a§lMy Server rather than §l§aMy Server). Line 1 and Line 2 are joined with a literal \\n separator.',
+        'Vanilla server.properties requires non-ASCII section signs to be escaped as \\u00A7 (producing motd=\\u00A7a\\u00A7lMy Server\\n\\u00A7eSeason 2), while Spigot, Paper, Velocity, and MOTD plugins typically accept § or & codes directly. Each line includes a live visible-character counter with a wrapping warning past 59 visible characters.'
+      ],
+      keyPoints: [
+        'Colour Before Format Rule: Emits §0–§f or §x hex codes ahead of §l, §o, §n, §m, and §k so styles are never cleared.',
+        'Three Copyable Formats: Escaped server.properties (motd=\\u00A7...), raw § form, and plugin & form joined with literal \\n.',
+        'Visible Character Guidance: Live counter warns past 59 visible characters without enforcing a hard cutoff.'
+      ]
+    };
+  }
+
+  if (tool.id === 'minecraft-armor-trim-previewer') {
+    return {
+      title: 'How Java 1.21.x Armor Trims, Shading & Duplication Work',
+      summary: '18 trim patterns × 11 materials (198 combinations per piece), Smithing Table rules, and 7-diamond template duplication.',
+      paragraphs: [
+        'Minecraft Java 1.21.x features 18 armor trim patterns (Sentry, Vex, Wild, Coast, Dune, Wayfinder, Raiser, Shaper, Host, Ward, Silence, Tide, Snout, Rib, Eye, Spire, Flow, Bolt) and 11 trim materials from Iron Ingot (#ECECEC) to Resin Brick (#FC7812), yielding 198 combinations per armour piece across Helmet (including Turtle Shell), Chestplate, Leggings, and Boots.',
+        'This previewer shows a stylised armour-piece silhouette using each material\'s display colour, not a pixel-exact in-game texture render. In-game trims apply a shaded palette that becomes darker whenever the trim material matches the base armour material.',
+        'Applying a trim on a Smithing Table combines Template + Armour Piece + Trim Material with zero XP cost; the template and material are consumed while enchantments, durability, and custom names remain intact, and trims are cosmetic only. Duplicating a template on a Crafting Table takes 7 Diamonds + 1 Template (top-middle) + 1 Matching Block (centre) → 2 Templates (net +1), so a full 4-piece set starting from 1 template needs 3 duplication crafts = 21 diamonds + 3 matching blocks.'
+      ],
+      keyPoints: [
+        '198 Combinations Per Piece: 18 trim patterns × 11 trim materials across Helmet (incl. Turtle Shell), Chestplate, Leggings, and Boots.',
+        'Cosmetic & Zero XP: Consumes template + material at a Smithing Table while keeping enchantments, durability, and custom names.',
+        '4-Piece Set Cost (From 1 Template): 3 duplication crafts = 21 diamonds + 3 matching blocks (each craft is net +1 template).'
+      ]
+    };
+  }
+
+  if (tool.id === 'minecraft-shield-designer') {
+    return {
+      title: 'How Minecraft Patterned Shields & Loom Banner Transfer Work',
+      summary: 'Reusing all 16 dye colours and 42 Loom patterns (up to 6 layers) with shield proportions, half-resolution notice, and crafting rules.',
+      paragraphs: [
+        'To craft a patterned shield in Minecraft, start by making a banner from 6 wool of one colour + 1 stick, then add up to 6 pattern layers in a Loom (1 dye per layer; the 10 special patterns also need their banner-pattern item). Separately, craft a shield from 6 planks + 1 iron ingot.',
+        'Combine the shield + banner in a crafting grid: the banner is consumed, the shield must have no pre-existing pattern, and durability and enchantments stay unchanged. Once patterned, a shield cannot be repainted or washed in a cauldron.',
+        'Shields render patterns at half the resolution of banners, so the in-game result looks slightly different from a full-height wall banner. One patterned shield from scratch with 3 layers costs 6 planks + 1 iron ingot + 6 wool + 1 stick + 3 dyes.'
+      ],
+      keyPoints: [
+        'Exact 4-Step Craft: Banner (6 wool + 1 stick) → Loom layers (max 6) → Shield (6 planks + 1 iron ingot) → Combine in crafting grid.',
+        'Permanent Pattern: Banner is consumed; shield must be unpatterned; cannot be repainted or washed in a cauldron; durability & enchantments stay unchanged.',
+        'Half-Resolution Rendering: Shields render patterns at half the resolution of banners.'
+      ]
+    };
+  }
+
+  if (tool.id === 'minecraft-potion-duration-converter') {
+    return {
+      title: 'How Minecraft Java Edition Potion Multipliers & Ticks Work',
+      summary: 'Exact Java Edition duration conversions across Drinkable (×1.0), Splash (×1.0), Lingering (×1/4), and Tipped Arrows (×1/8, min 1 tick).',
+      paragraphs: [
+        'In Minecraft Java Edition, status effect lengths run at 20 game ticks per second. Splash potions keep the exact same ×1.0 duration as drinkable potions, Lingering potions cut duration to ×1/4, and Tipped Arrows cut duration to ×1/8 with a minimum of 1 tick.',
+        'Because effect timers are stored as integer ticks, any fractional tick after multiplying is floored via resultTicks = floor(durationSeconds × 20 × multiplier) and converted back with resultTicks ÷ 20. Redstone (extended duration) and Glowstone (Level II) are mutually exclusive—only valid variants exist per potion, and Slowness Level II corresponds to Slowness IV (20 s).',
+        'Instant effects (Healing and Harming) have no timed duration: in Java Edition, their lingering clouds apply at 1/2 potency while tipped arrows apply at full strength. For full brewing recipes, check our Minecraft Brewing Calculator.'
+      ],
+      keyPoints: [
+        'Exact Delivery Multipliers: Drinkable ×1.0, Splash ×1.0 (same as drinkable), Lingering ×1/4, Tipped Arrow ×1/8 (min 1 tick).',
+        '20 Ticks = 1 Second: Durations floor to whole game ticks before displaying mm:ss, decimal seconds, and ticks.',
+        '19 Java Presets + Custom Mode: Includes Base, Redstone-extended, Glowstone Level II, Instant effects, and custom seconds.'
+      ]
+    };
+  }
+
+  if (tool.id === 'minecraft-block-gradient-generator') {
+    return {
+      title: 'How Minecraft Block Gradient Interpolation Works',
+      summary: 'Generating 3–20 block gradients across 45 common blocks using average texture colours and Euclidean RGB distance.',
+      paragraphs: [
+        'This generator works from a curated palette of 45 common Minecraft blocks rather than the entire game block list, using each block’s average texture colour as its RGB reference point.',
+        'For a gradient of N steps (3–20) between Start block A and End block B, step 1 is always Start block A and step N is always End block B. Each interior step i computes target RGB channels via round(A + (B − A) × i / (steps − 1)) and selects the closest unused palette block by Euclidean RGB distance.',
+        'Whenever two unused palette blocks have identical Euclidean distance to a step’s target colour, the generator resolves the tie by choosing whichever block appears earliest in the 45-block palette order.'
+      ],
+      keyPoints: [
+        '45 Common Blocks: Uses average texture colours across concrete, wool, stone, deepslate, wood planks, and mineral blocks.',
+        'Unique Interior Matching: Endpoints stay locked while each middle step chooses the nearest unused palette block.',
+        '3–20 Steps & Copyable Strip: Displays connected swatches, hex codes, target RGBs, and a ready-to-copy block sequence.'
+      ]
+    };
+  }
+
   if (tool.id === 'robux-to-usd-calculator') {
     return {
       title: 'How Robux to USD & DevEx Exchange Rates Work',
-      summary: 'Comparing standard retail purchase pricing ($0.0125/R$ + 10% Premium bonus) with the official Developer Exchange rate ($0.0035/R$, 30,000 R$ minimum).',
+      summary: 'Comparing standard retail purchase pricing ($0.0125/R$ + 10% Premium bonus) with the official Developer Exchange rate ($0.0038/R$, 30,000 R$ minimum).',
       paragraphs: [
         'Robux carries two distinct real-world USD exchange rates depending on whether you are buying Robux from the Roblox store or cashing out Earned Robux as a creator. On the retail store side, packages average ~$0.0125 USD per Robux (~80 Robux per $1.00 USD), ranging from $4.99 for 400 R$ up to $199.99 for 22,500 R$. Active Roblox Premium subscribers receive a +10% Robux bonus (~88 Robux per $1.00 USD) across purchase bundles.',
-        'On the developer side, the official Developer Exchange (DevEx) program converts eligible Earned Robux into real money at $0.0035 USD per Robux ($105.00 USD at the 30,000 Robux minimum, and $350.00 USD per 100,000 Earned Robux).',
+        'On the developer side, the official Developer Exchange (DevEx) program converts eligible Earned Robux into real money at $0.0038 USD per Robux ($114.00 USD at the 30,000 Robux minimum, and $380.00 USD per 100,000 Earned Robux).',
         'To qualify for DevEx payouts, your account must hold at least 30,000 Earned Robux acquired legitimately through game monetization (game passes, developer products, premium payouts) or catalog sales, meet the 13+ age requirement, and maintain verified Tipalti payout credentials.'
       ],
       keyPoints: [
         'Two-Way Conversion: Convert Robux → USD and USD → Robux with +10% Roblox Premium bundle toggling.',
-        'Dual Rate Clarity: Displays retail store value (~$0.0125/R$, ~80 R$/$) alongside official DevEx cashout value ($0.0035/R$).',
-        '30,000 Robux DevEx Minimum: Real-time eligibility check highlights the $105.00 USD minimum cashout threshold.'
+        'Dual Rate Clarity: Displays retail store value (~$0.0125/R$, ~80 R$/$) alongside official DevEx cashout value ($0.0038/R$).',
+        '30,000 Robux DevEx Minimum: Real-time eligibility check highlights the $114.00 USD minimum cashout threshold.'
       ]
     };
   }
@@ -1510,11 +2052,11 @@ export function getToolDeepDive(tool: ToolItem): ToolDeepDive {
       summary: 'Combining multi-stream studio revenue or direct group funds, 0% group payout fee rules, DevEx eligibility, and the 14-day member wait.',
       paragraphs: [
         'Roblox studios distribute game earnings using Group Payouts, allowing owners to split either an existing Group Funds balance or combined monthly creator revenue streams—Gamepasses (70% Net), Developer Products, Avatar Commissions (40%), and Engagement-Based Premium Payouts—across scripters, builders, designers, and studio reserve funds.',
-        'Because Roblox already deducts its 30% marketplace fee when players purchase passes or products in your experience, sending Group Payouts carries a 0% additional tax. Payouts funded by verified experience or catalog earnings remain clean Earned Robux, eligible for Developer Exchange (DevEx) at $0.0035 USD per Robux once a developer reaches the 30,000 Robux minimum. Keep in mind that newly added group members must wait 14 days before they are eligible to receive payouts.'
+        'Because Roblox already deducts its 30% marketplace fee when players purchase passes or products in your experience, sending Group Payouts carries a 0% additional tax. Payouts funded by verified experience or catalog earnings remain clean Earned Robux, eligible for Developer Exchange (DevEx) at $0.0038 USD per Robux once a developer reaches the 30,000 Robux minimum. Keep in mind that newly added group members must wait 14 days before they are eligible to receive payouts.'
       ],
       keyPoints: [
         'Dual Pool Modes: Split a direct Group Funds balance or aggregate Gamepasses, Dev Products, Commissions, and Premium Payouts.',
-        '0% Additional Payout Fee: Group payouts avoid double taxation and preserve DevEx eligibility ($0.0035/R$).',
+        '0% Additional Payout Fee: Group payouts avoid double taxation and preserve DevEx eligibility ($0.0038/R$).',
         '14-Day Eligibility & Studio Reserve: New group members wait 14 days for payouts; reserving 10%–20% covers ads and upkeep.'
       ]
     };
@@ -1670,12 +2212,12 @@ export function getToolDeepDive(tool: ToolItem): ToolDeepDive {
       summary: 'Creator Hub splits across Marketplace (30% base), third-party experiences (30% + 40%), and own experiences (70%), plus 30-day escrow.',
       paragraphs: [
         'Under Roblox Creator Hub Marketplace fee rules, selling a UGC item directly in the Avatar Shop Marketplace awards the item creator a base rate of 30% at the price floor (note that above the price floor, the Marketplace share rises progressively up to 70% at 6× the floor). When a UGC item sells inside another developer\'s experience, the item creator earns 30%, the experience owner earns 40%, and Roblox keeps 30%.',
-        'If you sell your own UGC item inside your own experience, you collect both the 30% creator royalty and the 40% experience owner commission for a combined 70% share. Commissions are held for a 30-day escrow period, and any USD figure displayed at $0.0035 per Robux is an estimate requiring DevEx eligibility and a 30,000 Robux minimum.'
+        'If you sell your own UGC item inside your own experience, you collect both the 30% creator royalty and the 40% experience owner commission for a combined 70% share. Commissions are held for a 30-day escrow period, and any USD figure displayed at $0.0038 per Robux is an estimate requiring DevEx eligibility and a 30,000 Robux minimum.'
       ],
       keyPoints: [
         'Marketplace vs Own Experience: 30% base royalty in Marketplace vs 70% combined (30% + 40%) inside your own experience.',
         'Progressive Floor Note: Above the Marketplace price floor, the Marketplace share rises up to 70% at 6× the floor.',
-        '30-Day Escrow & DevEx Estimate: 30-day escrow hold on commissions; USD estimate at $0.0035/Robux requires DevEx eligibility and 30,000 Robux minimum.'
+        '30-Day Escrow & DevEx Estimate: 30-day escrow hold on commissions; USD estimate at $0.0038/Robux requires DevEx eligibility and 30,000 Robux minimum.'
       ]
     };
   }
@@ -1686,12 +2228,12 @@ export function getToolDeepDive(tool: ToolItem): ToolDeepDive {
       summary: 'Projecting estimated daily/30-day gross Robux, 70% creator share, and DevEx USD equivalents (30% marketplace fee).',
       paragraphs: [
         'When players purchase gamepasses or developer products inside your Roblox experience, Creator Hub rules award the creator 70% of the Robux spent while 30% goes to Roblox\'s marketplace fee. By combining daily visits, buyer conversion percentage, and average Robux per buyer, developers can model rough order-of-magnitude earnings.',
-        'Every metric calculated is strictly an estimate — real earnings vary based on game genre, retention, updates, and regional pricing. USD projections use the DevEx rate of $0.0035 per Robux, which applies only once an account meets full DevEx eligibility and holds at least 30,000 Robux.'
+        'Every metric calculated is strictly an estimate — real earnings vary based on game genre, retention, updates, and regional pricing. USD projections use the DevEx rate of $0.0038 per Robux, which applies only once an account meets full DevEx eligibility and holds at least 30,000 Robux.'
       ],
       keyPoints: [
         'Verified 70% / 30% Split: Creators receive 70% on gamepasses and developer products sold in their experience; 30% is the marketplace fee.',
         'All Outputs Are Estimates: Models daily gross, 70% daily share, 30-day share, and DevEx USD estimate — real earnings vary.',
-        'DevEx Conditions: $0.0035/Robux rate requires DevEx eligibility and a 30,000 Robux minimum.'
+        'DevEx Conditions: $0.0038/Robux rate requires DevEx eligibility and a 30,000 Robux minimum.'
       ]
     };
   }
@@ -1907,6 +2449,86 @@ export function getToolDeepDive(tool: ToolItem): ToolDeepDive {
     };
   }
 
+  if (tool.id === 'gta-online-bunker-profit-calculator') {
+    return {
+      title: 'GTA Online Bunker Base Rates & Delivery Vehicle Rules (Title Update 1.73)',
+      summary: 'Comparing unupgraded vs Equipment + Staff Bunker stock value, supply bar output, hourly net profit, and 25-unit single-vehicle threshold.',
+      paragraphs: [
+        'A GTA Online Bunker holds up to 100 stock units. Without upgrades, each unit is worth $5,000 locally and takes 10 minutes to produce. Adding both Equipment ($1,155,000) and Staff ($598,500) upgrades raises local unit value to $7,000 and cuts production time to 7 minutes per unit, while Los Santos sales multiply gross value by 1.5×.',
+        'One full supply bar costs $75,000 and creates 20 units of stock ($3,750/unit when bought; $0 when stolen). Selling 25 units or fewer always assigns 1 delivery vehicle, whereas larger sales require ceil(units ÷ 50) to min(4, ceil(units ÷ 25)) vehicles depending on the mission drawn (2–4 at 100 units). High Demand and weekly bonuses are not included in these Title Update 1.73 base figures.'
+      ],
+      keyPoints: [
+        'Full Supply Bar Math: $75,000 bought supply bar makes 20 units of stock ($3,750 per unit).',
+        'Single Vehicle Cap: Selling 25 units or fewer guarantees 1 delivery vehicle.',
+        'Base Values Only: Excludes High Demand, GTA+, and weekly event multipliers.'
+      ]
+    };
+  }
+
+  if (tool.id === 'gta-online-mc-business-profit-calculator') {
+    return {
+      title: 'GTA Online MC Businesses Comparison & Supply Rules (Title Update 1.73)',
+      summary: 'Comparing Cocaine Lockup, Methamphetamine Lab, Counterfeit Cash Factory, Weed Farm, and Document Forgery Office base profits.',
+      paragraphs: [
+        'All five GTA Online MC Businesses buy supplies in bars of $75,000 and gain a +50% (×1.5) payout multiplier when sold to Far buyers instead of Local buyers. Because full-stock supply consumption improves sharply after installing Equipment + Staff Upgrades, unupgraded businesses often struggle with bought supplies—Counterfeit Cash even yields −$16,500 net when buying supplies without upgrades.',
+        'Selling at about a quarter (25%) of capacity or less keeps the sell mission to a single delivery vehicle. All calculations use current post–Title Update 1.73 base numbers and exclude Money Fronts boosts, High Demand, and weekly event bonuses.'
+      ],
+      keyPoints: [
+        '5 MC Presets Compared: Cocaine, Meth, Counterfeit Cash, Weed, and Document Forgery side by side.',
+        'Supplies & Far Multiplier: $75,000 per supply bar; Far buyers pay 50% more than Local buyers.',
+        'Quarter-Capacity Rule: Selling ≤ 25% capacity keeps the sale to 1 delivery vehicle; base TU 1.73 values only.'
+      ]
+    };
+  }
+
+  if (tool.id === 'gta-online-special-cargo-crate-value-calculator') {
+    return {
+      title: 'GTA Online CEO Special Cargo Scaling & Sourcing Rules (Title Update 1.73)',
+      summary: 'Full 1–111 crate payout table across Small (16), Medium (42), and Large (111) warehouses with 1/2/3-crate mission sourcing costs.',
+      paragraphs: [
+        'In GTA Online, Special Cargo per-crate sale value scales with the total number of crates sold in ONE sale—starting at $10,000 per crate for a 1-crate sale and doubling to $20,000 per crate for a full 111-crate Large warehouse ($2,220,000 gross).',
+        'Sourcing missions cost $2,000 for 1 crate, $8,000 for 2 crates, and $18,000 for 3 crates (with any final partial run priced at 1- or 2-crate cost). Land sell missions spawn 1 delivery truck up to 9 crates, 2 trucks for 10–29 crates, and 3 trucks for 30 or more crates. Rare special items, High Demand, and weekly bonuses are not included in these base figures.'
+      ],
+      keyPoints: [
+        'Full 111-Crate Lookup: Every sale count from 1 ($10,000/crate) to 111 ($20,000/crate) uses exact base values.',
+        'Land Truck Thresholds: 1 truck (1–9 crates), 2 trucks (10–29), 3 trucks (30+).',
+        'Base Values Only: Rare special items, High Demand, and weekly bonuses are excluded.'
+      ]
+    };
+  }
+
+  if (tool.id === 'gta-online-hangar-cargo-calculator') {
+    return {
+      title: 'GTA Online Hangar Air Freight Tier Bonuses & Triple Base Rate (Title Update 1.73)',
+      summary: 'Permanent $30,000/crate Air Freight base across Tier 1, Tier 2, and Tier 3 cargo up to 50 crates total with Ron\'s 5% cut.',
+      paragraphs: [
+        'Rockstar permanently tripled Hangar Air Freight payouts to $30,000 base per crate across all 8 cargo types (making older $10,000-per-crate tables obsolete), and all Hangar crates are stolen in source missions for $0 sourcing cost.',
+        'Because stockpile bonuses only count crates of the SAME type, filling all 50 crates with one Tier 1 type (Narcotics, Chemicals, or Medical Supplies) grants a +70% bonus for $2,550,000 gross ($2,422,500 net after Ron\'s 5% cut). Tier 2 (Animal Materials, Art & Antiques, Jewelry & Gemstones) pays +12% per 10 crates, and Tier 3 (Tobacco & Alcohol, Counterfeit Goods) pays +5% per 5 crates. High Demand, GTA+ and weekly bonuses are not included.'
+      ],
+      keyPoints: [
+        'Permanent $30,000 Base: Reflects Rockstar\'s permanent payout tripling across all 8 cargo types ($0 sourcing cost).',
+        'Same-Type Stockpile Bonus: +35% per 25 (Tier 1), +12% per 10 (Tier 2), +5% per 5 (Tier 3).',
+        'Ron\'s 5% Cut: Deducted from total gross across up to 50 crates; excludes High Demand, GTA+, and weekly bonuses.'
+      ]
+    };
+  }
+
+  if (tool.id === 'gta-online-vehicle-cargo-calculator') {
+    return {
+      title: 'GTA Online Vehicle Cargo (Import/Export) Buyers & Collections (Title Update 1.73)',
+      summary: 'Comparing Private, Showroom, Specialist Dealer, and 10 Collection sales across Standard, Mid, and Top Range vehicles up to 40 cars.',
+      paragraphs: [
+        'A GTA Online Vehicle Warehouse holds up to 40 stolen vehicles across Standard, Mid, and Top Range tiers, with $0 sourcing cost for undamaged cars. Selling to a Private Buyer pays $15,000 / $25,000 / $40,000 with $0 modification cost; Showroom buyers pay $26,250 / $43,750 / $70,000 gross minus $3,750 / $6,250 / $10,000 modification costs; and Specialist Dealers pay $37,500 / $62,500 / $100,000 gross minus $7,500 / $12,500 / $20,000 modification costs for $30,000 / $50,000 / $80,000 net.',
+        'Selling one of the 10 named Import/Export collections (2 cars +$20,000: Fading Power, End of Empires; 3 cars +$35,000: Uninsurable, No Direct Sunlight, Stay Declasse, Pastel Perfection; 4 cars +$50,000: Birds of Paradise, Molten Metal, Hip to be Square, Shades of Blue) pays Specialist net value per car with $0 modification cost plus the collection bonus. All figures assume undamaged deliveries (repair costs excluded) and do not include High Demand or weekly bonuses.'
+      ],
+      keyPoints: [
+        '40-Car Warehouse & $0 Sourcing: Up to 40 cars total; all source missions cost $0 if undamaged.',
+        'Collection Bonus Rules: Specialist net value per car + $0 modification cost + $20k / $35k / $50k bonus.',
+        'Base Values Only: Assumes undamaged delivery (repair fees excluded) and excludes High Demand or weekly multipliers.'
+      ]
+    };
+  }
+
   if (tool.id === 'gta-6-cheat-code-finder') {
     return {
       title: 'Grand Theft Auto VI (GTA 6) Cheat System & Unlock Rules',
@@ -1919,6 +2541,86 @@ export function getToolDeepDive(tool: ToolItem): ToolDeepDive {
         'Post-Story Unlock Gate: All 61 cheats remain locked until the main story is finished.',
         'Cross-Console Parity: D-pad cheat sequences are identical on PS5 and Xbox Series X|S.',
         'Session Penalties: Trophies/achievements are disabled for the rest of the session and saving is blocked while a cheat is active.'
+      ]
+    };
+  }
+
+  if (tool.id === 'mouse-polling-rate-test') {
+    return {
+      title: 'Browser Mouse Polling Rate Telemetry & Report Intervals',
+      summary: 'How pointerrawupdate, getCoalescedEvents(), and rolling 500 ms windows measure real mouse Hz in the browser.',
+      paragraphs: [
+        'This tool selects the highest-precision pointer stream available in your browser: (a) pointerrawupdate first, else (b) pointermove expanded via getCoalescedEvents(), else (c) plain pointermove (which may cap readings at your monitor\'s refresh rate). Only events with pointerType === "mouse" are counted using each event\'s own timeStamp over a rolling 500 ms window, computing Current Hz = (N − 1) / (t_last − t_first) × 1000 once at least 20 reports arrive.',
+        'Standard polling rates correspond to report intervals of 125 Hz (8 ms), 250 Hz (4 ms), 500 Hz (2 ms), 1000 Hz (1 ms), 2000 Hz (0.5 ms), 4000 Hz (0.25 ms), and 8000 Hz (0.125 ms). Remember that browsers measure reports reaching the page rather than raw USB packets, slow or tiny movements emit fewer reports, and higher polling cuts movement report delay—polling rate is NOT display input lag.'
+      ],
+      keyPoints: [
+        'Priority Stream Selection: pointerrawupdate → coalesced pointermove → plain pointermove.',
+        '500 ms Window & 60 ms Stop Rule: Resets window after > 60 ms idle and waits for ≥ 20 reports.',
+        '100% Client-Side: Zero server calls, with a live 10-second (100 ms/sample) canvas line graph.'
+      ]
+    };
+  }
+
+  if (tool.id === 'true-dpi-analyzer') {
+    return {
+      title: 'Physical True-DPI Measurement vs Sensitivity Conversion',
+      summary: 'Measuring real hardware sensor counts (|movementX|) over a ruler distance with Pointer Lock unadjustedMovement.',
+      paragraphs: [
+        'Unlike converters such as dpi-cm-360-calculator that simply convert sensitivity numbers you already know, True-DPI Analyser physically measures your mouse sensor by summing |movementX| counts while you sweep across an exact ruler-measured distance in cm or inches (inches = cm ÷ 2.54; Real DPI = total counts ÷ inches; Deviation % = (Real DPI − Set DPI) ÷ Set DPI × 100).',
+        'Where supported, the test requests Pointer Lock with unadjustedMovement: true so OS cursor acceleration cannot distort raw counts. When using plain movementX or when unadjustedMovement is unavailable, disable Windows "Enhance pointer precision" and any OS pointer acceleration, otherwise the measured DPI is approximate.'
+      ],
+      keyPoints: [
+        'True Measurement: Physically counts |movementX| over your mousepad rather than converting assumed numbers.',
+        'Raw Input Priority: Requests Pointer Lock with unadjustedMovement: true when supported.',
+        'Exact Calibration Output: Reports Real DPI, Set DPI, Deviation %, and Expected Counts.'
+      ]
+    };
+  }
+
+  if (tool.id === 'ads-sensitivity-calculator') {
+    return {
+      title: 'Monitor-Distance Scoped Scaling: 0%, 75% & 100% Explained',
+      summary: 'How focal-length (0%), 4:3-edge (75%), and screen-edge (100%) matching work across Custom FOVs, Valorant, and CS2.',
+      paragraphs: [
+        'Monitor-distance matching uses m(c) = atan(c × tan(S/2)) ÷ atan(c × tan(H/2)) for hipfire horizontal FOV H and scoped horizontal FOV S in the same aspect basis. At 0% (focal-length limit tan(S/2) ÷ tan(H/2)), mouse movement matches feel right at the crosshair, making it ideal for flick aim. At 100% (S ÷ H), mouse travel matches screen-edge distance and suits tracking, while 75% gives the middle ground Counter-Strike players know from the classic 4:3 screen edge.',
+        'Because Valorant and CS2 already pre-scale scoped aim by m(1), their in-game multipliers equal m(c) ÷ m(1) (meaning 1.0 is a 100% match). Valorant has a single slider covering six zoom tiers (1.15×, 1.25×, 1.5×, 2.5×, 3.5×, 5×), so set it for the weapon you use most; CS2 calculates zoom_sensitivity_ratio_mouse on the 4:3 90° FOV basis using community-measured scoped FOVs (40° AWP/SSG z1, 45° AUG/SG 553, 15° SSG z2, 10° AWP z2), as Valve does not publish them.'
+      ],
+      keyPoints: [
+        'Exact Trigonometry: 0% focal limit tan(S/2)/tan(H/2), 75% atan match, 100% S/H ratio.',
+        'Valorant Pre-Scale: m(c) ÷ m(1) across all 6 zoom tiers (103° hipfire, 0.07 yaw).',
+        'CS2 4:3 Basis: m43(c) ÷ m43(1) for zoom_sensitivity_ratio_mouse across all 4 scopes (0.022 yaw).'
+      ]
+    };
+  }
+
+  if (tool.id === 'genshin-primogem-wish-income-planner') {
+    return {
+      title: 'Genshin Impact Character Banner Economics & Soft Pity Math',
+      summary: 'Daily income formulas (60 Commissions + 90 Welkin), 180 vs 90 pull worst-case hard guarantees, and the 93.45 pull statistical average.',
+      paragraphs: [
+        'Genshin Impact character event banners operate on a dual-system pity architecture. While the base 5★ drop rate is 0.6%, soft pity initiates at pull 74, linearly increasing the single-pull drop probability by +6.0% per pull until guaranteeing a 5★ at hard pity 90. If your previous 5★ was a standard character (a 50/50 loss), your next 5★ is 100% guaranteed to be the featured promotional character. The worst-case cost to guarantee a featured 5★ from zero pity is 180 pulls (28,800 Primogems) without a guarantee, or 90 pulls (14,400 Primogems) with an active guarantee.',
+        'Because most 5★ drops cluster between pulls 75 and 81, the statistical expected pulls per 5★ is 62.30 pulls, resulting in an expected cost of 93.45 pulls (≈14,951 Primogems) for a featured character on a 50/50 banner. Daily income from Commissions provides a fixed 60 Primogems/day, while Blessing of the Welkin Moon adds 90 Primogems/day (the one-time 300 Genesis Crystals are not counted as daily drip). Note that this planner models Character Event wishes only — the weapon banner\'s Epitomized Path system is not modelled.'
+      ],
+      keyPoints: [
+        'Fixed Daily Income: 60/day Commissions alone (480 days to guarantee 28,800 primos) or 150/day with Welkin Moon (192 days).',
+        'Worst-Case vs Average: 180 pulls (28,800 primos) worst case vs 93.5 pulls (≈14,951 primos) statistical average.',
+        'Pity & Guarantee Carry-Over: Pity count and 50/50 guarantee carry over seamlessly between Character Event banners of the same type.'
+      ]
+    };
+  }
+
+  if (tool.id === 'genshin-wish-simulator') {
+    return {
+      title: 'Monte Carlo Wish Simulation & Soft Pity Mechanics',
+      summary: 'Empirical verification of Genshin Impact\'s 0.6% base rate, 74-89 linear soft pity ramp, 50/50 guarantee rules, and 93.5-pull featured average.',
+      paragraphs: [
+        'Genshin Impact character event banners operate under a piecewise linear probability distribution. For pulls 1 through 73 since the previous 5★ character, the drop probability is fixed at the base 0.6% (0.006). Beginning at pull 74, soft pity increases the single-pull drop probability linearly by +6.0% each pull: 6.6% on pull 74, 12.6% on pull 75, 42.6% on pull 80, 96.6% on pull 89, reaching 100.0% hard pity on pull 90. When a 5★ drop occurs, players face a 50/50 roll between the featured promotional character and a standard 5★ pool character, with a loss guaranteeing the next 5★ to be the featured character.',
+        'Because probability shifts drastically during the soft pity window (pulls 74–89), analytical formulas can be counter-intuitive. Monte Carlo simulation generates tens of thousands of independent banner sessions to measure empirical distributions. The resulting expected pulls to a first 5★ converges to 62.3 pulls, while the expected cost to obtain the featured promotional character on a fresh 50/50 banner converges to 93.5 pulls (≈14,951 Primogems). Note: Capturing Radiance is not modelled; in-game, it slightly improves featured odds beyond the 50/50 shown here. Character Event banner only — the weapon banner\'s Epitomized Path is not modelled.'
+      ],
+      keyPoints: [
+        'Exact Soft Pity Ramp: Fixed 0.6% on pulls 1–73, increasing by +6.0% per pull across pulls 74–89, guaranteed 100% on pull 90.',
+        '50/50 Guarantee System: A standard 5★ drop triggers a 100% guarantee for the subsequent 5★ pull.',
+        'Statistical Convergence: 62.3 average pulls to any 5★, 93.5 average pulls to featured character from 0 pity on a 50/50 banner.'
       ]
     };
   }
@@ -1986,6 +2688,12 @@ export function getEnhancedToolFaqs(tool: ToolItem): EnhancedToolFaq[] {
     tool.id === 'minecraft-stronghold-finder' ||
     tool.id === 'minecraft-pixel-art-converter' ||
     tool.id === 'minecraft-brewing-calculator' ||
+    tool.id === 'minecraft-rgb-gradient-text-generator' ||
+    tool.id === 'minecraft-motd-generator' ||
+    tool.id === 'minecraft-armor-trim-previewer' ||
+    tool.id === 'minecraft-shield-designer' ||
+    tool.id === 'minecraft-potion-duration-converter' ||
+    tool.id === 'minecraft-block-gradient-generator' ||
     tool.id === 'blox-fruits-mastery-calculator' ||
     tool.id === 'blox-fruits-awakening-calculator' ||
     tool.id === 'blox-fruits-race-v4-calculator' ||
@@ -2010,7 +2718,17 @@ export function getEnhancedToolFaqs(tool: ToolItem): EnhancedToolFaq[] {
     tool.id === 'gta-online-heist-split-calculator' ||
     tool.id === 'gta-online-business-roi-calculator' ||
     tool.id === 'gta-online-cooldown-planner' ||
+    tool.id === 'gta-online-bunker-profit-calculator' ||
+    tool.id === 'gta-online-mc-business-profit-calculator' ||
+    tool.id === 'gta-online-special-cargo-crate-value-calculator' ||
+    tool.id === 'gta-online-hangar-cargo-calculator' ||
+    tool.id === 'gta-online-vehicle-cargo-calculator' ||
     tool.id === 'gta-6-cheat-code-finder' ||
+    tool.id === 'mouse-polling-rate-test' ||
+    tool.id === 'true-dpi-analyzer' ||
+    tool.id === 'ads-sensitivity-calculator' ||
+    tool.id === 'genshin-primogem-wish-income-planner' ||
+    tool.id === 'genshin-wish-simulator' ||
     tool.id === 'palworld-passive-inheritance-calculator' ||
     tool.id === 'palworld-egg-incubation-calculator'
   ) {

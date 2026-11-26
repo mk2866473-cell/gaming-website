@@ -221,7 +221,7 @@ export default function RobloxDeveloperEarningsCalculator() {
             ${earnings.totalGroupUsd} <span className="text-xs font-normal text-zinc-400">USD</span>
           </span>
           <span className="text-[11px] text-zinc-500 font-mono">
-            @ $0.0035 / Robux DevEx rate
+            @ $0.0038 / Robux DevEx rate
           </span>
         </div>
       </div>

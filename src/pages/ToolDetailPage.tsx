@@ -43,6 +43,12 @@ const MinecraftBannerDesigner = React.lazy(() => import('../components/tools/Min
 const MinecraftStrongholdFinder = React.lazy(() => import('../components/tools/MinecraftStrongholdFinder'));
 const MinecraftPixelArtConverter = React.lazy(() => import('../components/tools/MinecraftPixelArtConverter'));
 const MinecraftBrewingCalculator = React.lazy(() => import('../components/tools/MinecraftBrewingCalculator'));
+const MinecraftRgbGradientTextGenerator = React.lazy(() => import('../components/tools/MinecraftRgbGradientTextGenerator'));
+const MinecraftMotdGenerator = React.lazy(() => import('../components/tools/MinecraftMotdGenerator'));
+const MinecraftArmorTrimPreviewer = React.lazy(() => import('../components/tools/MinecraftArmorTrimPreviewer'));
+const MinecraftShieldDesigner = React.lazy(() => import('../components/tools/MinecraftShieldDesigner'));
+const MinecraftPotionDurationConverter = React.lazy(() => import('../components/tools/MinecraftPotionDurationConverter'));
+const MinecraftBlockGradientGenerator = React.lazy(() => import('../components/tools/MinecraftBlockGradientGenerator'));
 // Roblox tools
 const RobuxTaxCalculator = React.lazy(() => import('../components/tools/RobuxTaxCalculator'));
 const RobuxCalculator = React.lazy(() => import('../components/tools/RobuxCalculator'));
@@ -109,6 +115,11 @@ const PalworldPassiveInheritanceCalculator = React.lazy(() => import('../compone
 const PalworldEggIncubationCalculator = React.lazy(() => import('../components/tools/PalworldEggIncubationCalculator'));
 const TeamGenerator = React.lazy(() => import('../components/tools/TeamGenerator'));
 const GamingDecisionWheel = React.lazy(() => import('../components/tools/GamingDecisionWheel'));
+const MousePollingRateTest = React.lazy(() => import('../components/tools/MousePollingRateTest'));
+const TrueDpiAnalyzer = React.lazy(() => import('../components/tools/TrueDpiAnalyzer'));
+const AdsSensitivityCalculator = React.lazy(() => import('../components/tools/AdsSensitivityCalculator'));
+const GenshinPrimogemWishIncomePlanner = React.lazy(() => import('../components/tools/GenshinPrimogemWishIncomePlanner'));
+const GenshinWishSimulator = React.lazy(() => import('../components/tools/GenshinWishSimulator'));
 const HelldiversBreakpointCalculator = React.lazy(() => import('../components/tools/HelldiversBreakpointCalculator'));
 const HelldiversArmorCalculator = React.lazy(() => import('../components/tools/HelldiversArmorCalculator'));
 const HelldiversStratagemSyncCalculator = React.lazy(() => import('../components/tools/HelldiversStratagemSyncCalculator'));
@@ -241,6 +252,11 @@ const GtaOnlineCayoPericoPayoutCalculator = React.lazy(() => import('../componen
 const GtaOnlineHeistSplitCalculator = React.lazy(() => import('../components/tools/GtaOnlineHeistSplitCalculator'));
 const GtaOnlineBusinessRoiCalculator = React.lazy(() => import('../components/tools/GtaOnlineBusinessRoiCalculator'));
 const GtaOnlineCooldownPlanner = React.lazy(() => import('../components/tools/GtaOnlineCooldownPlanner'));
+const GtaOnlineBunkerProfitCalculator = React.lazy(() => import('../components/tools/GtaOnlineBunkerProfitCalculator'));
+const GtaOnlineVehicleCargoCalculator = React.lazy(() => import('../components/tools/GtaOnlineVehicleCargoCalculator'));
+const GtaOnlineMcBusinessProfitCalculator = React.lazy(() => import('../components/tools/GtaOnlineMcBusinessProfitCalculator'));
+const GtaOnlineSpecialCargoCrateValueCalculator = React.lazy(() => import('../components/tools/GtaOnlineSpecialCargoCrateValueCalculator'));
+const GtaOnlineHangarCargoCalculator = React.lazy(() => import('../components/tools/GtaOnlineHangarCargoCalculator'));
 const Gta6CheatCodeFinder = React.lazy(() => import('../components/tools/Gta6CheatCodeFinder'));
 const ModularGamingTool = React.lazy(() => import('../components/tools/ModularGamingTool'));
 
@@ -299,6 +315,18 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <MinecraftPixelArtConverter />;
       case 'minecraft-brewing-calculator':
         return <MinecraftBrewingCalculator />;
+      case 'minecraft-rgb-gradient-text-generator':
+        return <MinecraftRgbGradientTextGenerator />;
+      case 'minecraft-motd-generator':
+        return <MinecraftMotdGenerator />;
+      case 'minecraft-armor-trim-previewer':
+        return <MinecraftArmorTrimPreviewer />;
+      case 'minecraft-shield-designer':
+        return <MinecraftShieldDesigner />;
+      case 'minecraft-potion-duration-converter':
+        return <MinecraftPotionDurationConverter />;
+      case 'minecraft-block-gradient-generator':
+        return <MinecraftBlockGradientGenerator />;
       case 'robux-tax-calculator':
         return <RobuxTaxCalculator />;
       case 'robux-to-usd-calculator':
@@ -423,6 +451,16 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <TeamGenerator />;
       case 'gaming-decision-wheel':
         return <GamingDecisionWheel />;
+      case 'mouse-polling-rate-test':
+        return <MousePollingRateTest />;
+      case 'true-dpi-analyzer':
+        return <TrueDpiAnalyzer />;
+      case 'ads-sensitivity-calculator':
+        return <AdsSensitivityCalculator />;
+      case 'genshin-primogem-wish-income-planner':
+        return <GenshinPrimogemWishIncomePlanner />;
+      case 'genshin-wish-simulator':
+        return <GenshinWishSimulator />;
       case 'helldivers-2-damage-calculator':
         return <HelldiversBreakpointCalculator />;
       case 'helldivers-2-armor-calculator':
@@ -747,6 +785,16 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         return <GtaOnlineBusinessRoiCalculator />;
       case 'gta-online-cooldown-planner':
         return <GtaOnlineCooldownPlanner />;
+      case 'gta-online-bunker-profit-calculator':
+        return <GtaOnlineBunkerProfitCalculator />;
+      case 'gta-online-mc-business-profit-calculator':
+        return <GtaOnlineMcBusinessProfitCalculator />;
+      case 'gta-online-special-cargo-crate-value-calculator':
+        return <GtaOnlineSpecialCargoCrateValueCalculator />;
+      case 'gta-online-hangar-cargo-calculator':
+        return <GtaOnlineHangarCargoCalculator />;
+      case 'gta-online-vehicle-cargo-calculator':
+        return <GtaOnlineVehicleCargoCalculator />;
       case 'gta-6-cheat-code-finder':
         return <Gta6CheatCodeFinder />;
       default:

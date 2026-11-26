@@ -149,7 +149,7 @@ export default function RobuxCalculator() {
                 ${results.devexCashoutUsd} <span className="text-xs font-normal text-zinc-400">USD</span>
               </span>
               <span className="text-[11px] text-zinc-400 font-mono block">
-                Official DevEx rate: ${ROBLOX_RATES.DEVEX_RATE_PER_ROBUX}/R$ ($350 per 100k R$)
+                Official DevEx rate: ${ROBLOX_RATES.DEVEX_RATE_PER_ROBUX}/R$ ($380 per 100k R$)
               </span>
               <span className="text-[10px] text-cyan-300/90 font-mono block mt-1">
                 Minimum cashout: {ROBLOX_RATES.MIN_DEVEX_ROBUX.toLocaleString()} Earned Robux (${devExMinUsd} USD)
@@ -199,7 +199,7 @@ export default function RobuxCalculator() {
               Meets {ROBLOX_RATES.MIN_DEVEX_ROBUX.toLocaleString()} Robux DevEx Cashout Minimum
             </span>
             <span className="text-zinc-300">
-              {results.robuxAmount.toLocaleString()} Earned Robux converts to ${results.devexCashoutUsd} USD at the official $0.0035/R$ Developer Exchange rate.
+              {results.robuxAmount.toLocaleString()} Earned Robux converts to ${results.devexCashoutUsd} USD at the official $0.0038/R$ Developer Exchange rate.
             </span>
           </div>
         </div>

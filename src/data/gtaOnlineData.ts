@@ -1225,3 +1225,717 @@ export function calculateCooldownReadyTime(
   };
 }
 
+/**
+ * BUNKER — Verified Title Update 1.73 base constants
+ */
+export const BUNKER_CONFIG = {
+  capacityUnits: 100,
+  valuePerUnitLocal: {
+    noUpgrades: 5000,
+    upgraded: 7000
+  },
+  losSantosSaleMultiplier: 1.5,
+  minutesPerUnit: {
+    noUpgrades: 10,
+    upgraded: 7
+  },
+  supplyCostPerUnitBought: 3750,
+  supplyBarCost: 75000,
+  unitsPerSupplyBar: 20,
+  singleVehicleMaxUnits: 25,
+  upgradeCosts: {
+    equipment: 1155000,
+    staff: 598500
+  }
+} as const;
+
+export type BunkerSaleDestination = 'local' | 'los-santos';
+
+export interface BunkerCalculationInput {
+  units: number;
+  upgraded: boolean;
+  destination: BunkerSaleDestination;
+  suppliesBought: boolean;
+}
+
+export interface BunkerCalculationResult {
+  units: number;
+  upgraded: boolean;
+  destination: BunkerSaleDestination;
+  suppliesBought: boolean;
+  unitValue: number;
+  gross: number;
+  supplyCost: number;
+  net: number;
+  productionMinutes: number;
+  netPerHour: number;
+  deliveryVehiclesLabel: string;
+  deliveryVehiclesNote: string;
+}
+
+export function calculateBunkerProfit(input: BunkerCalculationInput): BunkerCalculationResult {
+  const units = Math.min(
+    BUNKER_CONFIG.capacityUnits,
+    Math.max(0, Math.round(Number.isFinite(input.units) ? input.units : 0))
+  );
+  const baseUnitValue = input.upgraded
+    ? BUNKER_CONFIG.valuePerUnitLocal.upgraded
+    : BUNKER_CONFIG.valuePerUnitLocal.noUpgrades;
+  const unitValue =
+    baseUnitValue * (input.destination === 'los-santos' ? BUNKER_CONFIG.losSantosSaleMultiplier : 1);
+
+  const gross = units * unitValue;
+  const supplyCost = input.suppliesBought ? units * BUNKER_CONFIG.supplyCostPerUnitBought : 0;
+  const net = gross - supplyCost;
+  const minsPerUnit = input.upgraded
+    ? BUNKER_CONFIG.minutesPerUnit.upgraded
+    : BUNKER_CONFIG.minutesPerUnit.noUpgrades;
+  const productionMinutes = units * minsPerUnit;
+  const netPerHour = units === 0 ? 0 : Math.round(net / (productionMinutes / 60));
+
+  let deliveryVehiclesLabel = '1 (guaranteed)';
+  let deliveryVehiclesNote = 'Selling 25 units or fewer always uses a single delivery vehicle.';
+  if (units === 0) {
+    deliveryVehiclesLabel = '0 (no stock)';
+    deliveryVehiclesNote = 'Add stock units to estimate delivery vehicle count.';
+  } else if (units > BUNKER_CONFIG.singleVehicleMaxUnits) {
+    const fewest = Math.ceil(units / 50);
+    const most = Math.min(4, Math.ceil(units / 25));
+    deliveryVehiclesLabel = fewest === most ? `${fewest}` : `${fewest}–${most}`;
+    deliveryVehiclesNote = 'Depends on the delivery-vehicle type drawn.';
+  }
+
+  return {
+    units,
+    upgraded: input.upgraded,
+    destination: input.destination,
+    suppliesBought: input.suppliesBought,
+    unitValue,
+    gross,
+    supplyCost,
+    net,
+    productionMinutes,
+    netPerHour,
+    deliveryVehiclesLabel,
+    deliveryVehiclesNote
+  };
+}
+
+/**
+ * MC BUSINESSES — Verified Title Update 1.73 base constants
+ */
+export type McBusinessId = 'cocaine' | 'meth' | 'cash' | 'weed' | 'forgery';
+
+export interface McBusinessPreset {
+  id: McBusinessId;
+  name: string;
+  capacityUnits: number;
+  valuePerUnitLocalBase: number;
+  valuePerUnitLocalUpgraded: number;
+  minutesPerUnitBase: number;
+  minutesPerUnitUpgraded: number;
+  fullStockSupplyCostBase: number;
+  fullStockSupplyCostUpgraded: number;
+}
+
+export const MC_FAR_SALE_MULTIPLIER = 1.5;
+export const MC_SUPPLY_BAR_COST = 75000;
+
+export const MC_BUSINESSES: McBusinessPreset[] = [
+  {
+    id: 'cocaine',
+    name: 'Cocaine Lockup',
+    capacityUnits: 10,
+    valuePerUnitLocalBase: 27000,
+    valuePerUnitLocalUpgraded: 35000,
+    minutesPerUnitBase: 50,
+    minutesPerUnitUpgraded: 30,
+    fullStockSupplyCostBase: 375000,
+    fullStockSupplyCostUpgraded: 187500
+  },
+  {
+    id: 'meth',
+    name: 'Methamphetamine Lab',
+    capacityUnits: 20,
+    valuePerUnitLocalBase: 11475,
+    valuePerUnitLocalUpgraded: 14875,
+    minutesPerUnitBase: 30,
+    minutesPerUnitUpgraded: 18,
+    fullStockSupplyCostBase: 375000,
+    fullStockSupplyCostUpgraded: 187500
+  },
+  {
+    id: 'cash',
+    name: 'Counterfeit Cash Factory',
+    capacityUnits: 40,
+    valuePerUnitLocalBase: 4725,
+    valuePerUnitLocalUpgraded: 6125,
+    minutesPerUnitBase: 12,
+    minutesPerUnitUpgraded: 8,
+    fullStockSupplyCostBase: 300000,
+    fullStockSupplyCostUpgraded: 150000
+  },
+  {
+    id: 'weed',
+    name: 'Weed Farm',
+    capacityUnits: 80,
+    valuePerUnitLocalBase: 2025,
+    valuePerUnitLocalUpgraded: 2625,
+    minutesPerUnitBase: 6,
+    minutesPerUnitUpgraded: 4,
+    fullStockSupplyCostBase: 240000,
+    fullStockSupplyCostUpgraded: 120000
+  },
+  {
+    id: 'forgery',
+    name: 'Document Forgery Office',
+    capacityUnits: 60,
+    valuePerUnitLocalBase: 1350,
+    valuePerUnitLocalUpgraded: 1750,
+    minutesPerUnitBase: 5,
+    minutesPerUnitUpgraded: 3,
+    fullStockSupplyCostBase: 180000,
+    fullStockSupplyCostUpgraded: 90000
+  }
+];
+
+export type McSaleDestination = 'local' | 'far';
+
+export interface McBusinessCalculationInput {
+  businessId: McBusinessId;
+  stockPercent: number;
+  upgraded: boolean;
+  destination: McSaleDestination;
+  suppliesBought: boolean;
+}
+
+export interface McBusinessCalculationResult {
+  business: McBusinessPreset;
+  stockPercent: number;
+  units: number;
+  unitValue: number;
+  gross: number;
+  supplyCost: number;
+  net: number;
+  productionMinutes: number;
+  netPerHour: number;
+}
+
+export function calculateMcBusinessProfit(
+  input: McBusinessCalculationInput
+): McBusinessCalculationResult {
+  const business = MC_BUSINESSES.find((b) => b.id === input.businessId) ?? MC_BUSINESSES[0];
+  const stockPercent = Math.min(
+    100,
+    Math.max(0, Number.isFinite(input.stockPercent) ? input.stockPercent : 0)
+  );
+  const units = Math.floor((business.capacityUnits * stockPercent) / 100);
+  const localVal = input.upgraded
+    ? business.valuePerUnitLocalUpgraded
+    : business.valuePerUnitLocalBase;
+  const unitValue = localVal * (input.destination === 'far' ? MC_FAR_SALE_MULTIPLIER : 1);
+  const gross = units * unitValue;
+
+  const fullSupplyCost = input.upgraded
+    ? business.fullStockSupplyCostUpgraded
+    : business.fullStockSupplyCostBase;
+  const supplyCost = input.suppliesBought
+    ? Math.round((fullSupplyCost * units) / business.capacityUnits)
+    : 0;
+  const net = gross - supplyCost;
+
+  const minsPerUnit = input.upgraded
+    ? business.minutesPerUnitUpgraded
+    : business.minutesPerUnitBase;
+  const productionMinutes = units * minsPerUnit;
+  const netPerHour = units === 0 ? 0 : Math.round(net / (productionMinutes / 60));
+
+  return {
+    business,
+    stockPercent,
+    units,
+    unitValue,
+    gross,
+    supplyCost,
+    net,
+    productionMinutes,
+    netPerHour
+  };
+}
+
+/**
+ * SPECIAL CARGO — Verified Title Update 1.73 base constants
+ */
+export type SpecialCargoWarehouseSize = 'small' | 'medium' | 'large';
+export type SpecialCargoSourcingMethod = 1 | 2 | 3;
+
+export const SPECIAL_CARGO_WAREHOUSE_CAPACITIES: Record<SpecialCargoWarehouseSize, number> = {
+  small: 16,
+  medium: 42,
+  large: 111
+};
+
+export const SPECIAL_CARGO_SOURCE_MISSION_COSTS: Record<SpecialCargoSourcingMethod, number> = {
+  1: 2000,
+  2: 8000,
+  3: 18000
+};
+
+// Full 111-entry lookup table mapping crates sold in ONE sale (1–111) -> per-crate sale value ($)
+export const SPECIAL_CARGO_CRATE_VALUE_BY_COUNT: Record<number, number> = {
+  1: 10000,
+  2: 11000,
+  3: 12000,
+  4: 13000,
+  5: 13000,
+  6: 13500,
+  7: 13500,
+  8: 14000,
+  9: 14000,
+  10: 14500,
+  11: 14500,
+  12: 14500,
+  13: 14500,
+  14: 14500,
+  15: 15000,
+  16: 15000,
+  17: 15000,
+  18: 15000,
+  19: 15000,
+  20: 15500,
+  21: 15500,
+  22: 15500,
+  23: 15500,
+  24: 15500,
+  25: 16000,
+  26: 16000,
+  27: 16000,
+  28: 16000,
+  29: 16000,
+  30: 16500,
+  31: 16500,
+  32: 16500,
+  33: 16500,
+  34: 16500,
+  35: 17000,
+  36: 17000,
+  37: 17000,
+  38: 17000,
+  39: 17000,
+  40: 17500,
+  41: 17500,
+  42: 17500,
+  43: 17500,
+  44: 17500,
+  45: 17750,
+  46: 17750,
+  47: 17750,
+  48: 17750,
+  49: 17750,
+  50: 18000,
+  51: 18000,
+  52: 18000,
+  53: 18000,
+  54: 18000,
+  55: 18000,
+  56: 18000,
+  57: 18000,
+  58: 18000,
+  59: 18000,
+  60: 18250,
+  61: 18250,
+  62: 18250,
+  63: 18250,
+  64: 18250,
+  65: 18250,
+  66: 18250,
+  67: 18250,
+  68: 18250,
+  69: 18250,
+  70: 18500,
+  71: 18500,
+  72: 18500,
+  73: 18500,
+  74: 18500,
+  75: 18500,
+  76: 18500,
+  77: 18500,
+  78: 18500,
+  79: 18500,
+  80: 18750,
+  81: 18750,
+  82: 18750,
+  83: 18750,
+  84: 18750,
+  85: 18750,
+  86: 18750,
+  87: 18750,
+  88: 18750,
+  89: 18750,
+  90: 19000,
+  91: 19000,
+  92: 19000,
+  93: 19000,
+  94: 19000,
+  95: 19000,
+  96: 19000,
+  97: 19000,
+  98: 19000,
+  99: 19000,
+  100: 19500,
+  101: 19500,
+  102: 19500,
+  103: 19500,
+  104: 19500,
+  105: 19500,
+  106: 19500,
+  107: 19500,
+  108: 19500,
+  109: 19500,
+  110: 19500,
+  111: 20000
+};
+
+export interface SpecialCargoCalculationInput {
+  warehouseSize: SpecialCargoWarehouseSize;
+  crates: number;
+  sourcingMethod: SpecialCargoSourcingMethod;
+}
+
+export interface SpecialCargoCalculationResult {
+  warehouseSize: SpecialCargoWarehouseSize;
+  warehouseCapacity: number;
+  crates: number;
+  sourcingMethod: SpecialCargoSourcingMethod;
+  perCrateValue: number;
+  gross: number;
+  sourcingCost: number;
+  net: number;
+  deliveryTrucks: number;
+}
+
+export function calculateSpecialCargoProfit(
+  input: SpecialCargoCalculationInput
+): SpecialCargoCalculationResult {
+  const warehouseCapacity = SPECIAL_CARGO_WAREHOUSE_CAPACITIES[input.warehouseSize] ?? 111;
+  const crates = Math.min(
+    warehouseCapacity,
+    Math.max(1, Math.round(Number.isFinite(input.crates) ? input.crates : 1))
+  );
+  const perCrateValue = SPECIAL_CARGO_CRATE_VALUE_BY_COUNT[crates] ?? 10000;
+  const gross = crates * perCrateValue;
+
+  let sourcingCost = 0;
+  if (input.sourcingMethod === 3) {
+    const rem = crates % 3;
+    const remCost = rem === 1 ? 2000 : rem === 2 ? 8000 : 0;
+    sourcingCost = Math.floor(crates / 3) * 18000 + remCost;
+  } else if (input.sourcingMethod === 2) {
+    sourcingCost = Math.floor(crates / 2) * 8000 + (crates % 2 === 1 ? 2000 : 0);
+  } else {
+    sourcingCost = crates * 2000;
+  }
+
+  const net = gross - sourcingCost;
+  const deliveryTrucks = crates <= 9 ? 1 : crates <= 29 ? 2 : 3;
+
+  return {
+    warehouseSize: input.warehouseSize,
+    warehouseCapacity,
+    crates,
+    sourcingMethod: input.sourcingMethod,
+    perCrateValue,
+    gross,
+    sourcingCost,
+    net,
+    deliveryTrucks
+  };
+}
+
+/**
+ * HANGAR AIR FREIGHT — Verified Title Update 1.73 base constants
+ */
+export const HANGAR_CONFIG = {
+  capacityCrates: 50,
+  baseValuePerCrate: 30000,
+  ronsCutPercent: 5
+} as const;
+
+export type HangarTierId = 'tier1' | 'tier2' | 'tier3';
+
+export interface HangarTierDef {
+  id: HangarTierId;
+  label: string;
+  types: string[];
+  bonusRate: number;
+  bonusStep: number;
+}
+
+export const HANGAR_CARGO_TIERS: HangarTierDef[] = [
+  {
+    id: 'tier1',
+    label: 'Tier 1 (+35% per 25 crates)',
+    types: ['Narcotics', 'Chemicals', 'Medical Supplies'],
+    bonusRate: 35,
+    bonusStep: 25
+  },
+  {
+    id: 'tier2',
+    label: 'Tier 2 (+12% per 10 crates)',
+    types: ['Animal Materials', 'Art & Antiques', 'Jewelry & Gemstones'],
+    bonusRate: 12,
+    bonusStep: 10
+  },
+  {
+    id: 'tier3',
+    label: 'Tier 3 (+5% per 5 crates)',
+    types: ['Tobacco & Alcohol', 'Counterfeit Goods'],
+    bonusRate: 5,
+    bonusStep: 5
+  }
+];
+
+export interface HangarTierResult {
+  tier: HangarTierDef;
+  crates: number;
+  bonusPct: number;
+  tierGross: number;
+}
+
+export interface HangarCalculationInput {
+  tier1Crates: number;
+  tier2Crates: number;
+  tier3Crates: number;
+}
+
+export interface HangarCalculationResult {
+  tiers: HangarTierResult[];
+  totalCrates: number;
+  totalGross: number;
+  ronsCut: number;
+  sourcingCost: number;
+  net: number;
+}
+
+export function calculateHangarCargoProfit(
+  input: HangarCalculationInput
+): HangarCalculationResult {
+  const t1 = Math.min(HANGAR_CONFIG.capacityCrates, Math.max(0, Math.round(input.tier1Crates || 0)));
+  const t2 = Math.min(
+    HANGAR_CONFIG.capacityCrates - t1,
+    Math.max(0, Math.round(input.tier2Crates || 0))
+  );
+  const t3 = Math.min(
+    HANGAR_CONFIG.capacityCrates - t1 - t2,
+    Math.max(0, Math.round(input.tier3Crates || 0))
+  );
+
+  const counts: Record<HangarTierId, number> = { tier1: t1, tier2: t2, tier3: t3 };
+
+  const tiers: HangarTierResult[] = HANGAR_CARGO_TIERS.map((tier) => {
+    const crates = counts[tier.id];
+    const bonusPct = tier.bonusRate * Math.floor(crates / tier.bonusStep);
+    const tierGross = Math.round((crates * HANGAR_CONFIG.baseValuePerCrate * (100 + bonusPct)) / 100);
+    return {
+      tier,
+      crates,
+      bonusPct,
+      tierGross
+    };
+  });
+
+  const totalCrates = t1 + t2 + t3;
+  const totalGross = tiers.reduce((sum, r) => sum + r.tierGross, 0);
+  const ronsCut = Math.round((totalGross * HANGAR_CONFIG.ronsCutPercent) / 100);
+  const sourcingCost = 0;
+  const net = totalGross - ronsCut;
+
+  return {
+    tiers,
+    totalCrates,
+    totalGross,
+    ronsCut,
+    sourcingCost,
+    net
+  };
+}
+
+/**
+ * VEHICLE CARGO (IMPORT/EXPORT) — Verified Title Update 1.73 base constants
+ */
+export const VEHICLE_CARGO_CONFIG = {
+  warehouseCapacityCars: 40,
+  sourcingCost: 0
+} as const;
+
+export type VehicleCargoRangeId = 'standard' | 'mid' | 'top';
+export type VehicleCargoSaleMode = 'private' | 'showroom' | 'specialist' | 'collection';
+export type VehicleCargoCollectionSize = 2 | 3 | 4;
+
+export interface VehicleCargoRangeDef {
+  id: VehicleCargoRangeId;
+  label: string;
+  privateNet: number;
+  showroomGross: number;
+  showroomModCost: number;
+  specialistGross: number;
+  specialistModCost: number;
+}
+
+export const VEHICLE_CARGO_RANGES: VehicleCargoRangeDef[] = [
+  {
+    id: 'standard',
+    label: 'Standard Range',
+    privateNet: 15000,
+    showroomGross: 26250,
+    showroomModCost: 3750,
+    specialistGross: 37500,
+    specialistModCost: 7500
+  },
+  {
+    id: 'mid',
+    label: 'Mid Range',
+    privateNet: 25000,
+    showroomGross: 43750,
+    showroomModCost: 6250,
+    specialistGross: 62500,
+    specialistModCost: 12500
+  },
+  {
+    id: 'top',
+    label: 'Top Range',
+    privateNet: 40000,
+    showroomGross: 70000,
+    showroomModCost: 10000,
+    specialistGross: 100000,
+    specialistModCost: 20000
+  }
+];
+
+export const VEHICLE_CARGO_COLLECTION_BONUSES: Record<VehicleCargoCollectionSize, number> = {
+  2: 20000,
+  3: 35000,
+  4: 50000
+};
+
+export interface VehicleCargoCollectionDef {
+  name: string;
+  cars: VehicleCargoCollectionSize;
+  bonus: number;
+}
+
+export const VEHICLE_CARGO_COLLECTIONS: VehicleCargoCollectionDef[] = [
+  { name: 'Uninsurable', cars: 3, bonus: 35000 },
+  { name: 'Birds of Paradise', cars: 4, bonus: 50000 },
+  { name: 'Fading Power', cars: 2, bonus: 20000 },
+  { name: 'No Direct Sunlight', cars: 3, bonus: 35000 },
+  { name: 'Stay Declasse', cars: 3, bonus: 35000 },
+  { name: 'Molten Metal', cars: 4, bonus: 50000 },
+  { name: 'Pastel Perfection', cars: 3, bonus: 35000 },
+  { name: 'Hip to be Square', cars: 4, bonus: 50000 },
+  { name: 'Shades of Blue', cars: 4, bonus: 50000 },
+  { name: 'End of Empires', cars: 2, bonus: 20000 }
+];
+
+export interface VehicleCargoRangeResult {
+  range: VehicleCargoRangeDef;
+  count: number;
+  perCarGross: number;
+  perCarModCost: number;
+  gross: number;
+  modCost: number;
+  net: number;
+}
+
+export interface VehicleCargoCalculationInput {
+  standardCount: number;
+  midCount: number;
+  topCount: number;
+  saleMode: VehicleCargoSaleMode;
+  collectionSize?: VehicleCargoCollectionSize;
+}
+
+export interface VehicleCargoCalculationResult {
+  ranges: VehicleCargoRangeResult[];
+  totalCars: number;
+  saleMode: VehicleCargoSaleMode;
+  collectionSize: VehicleCargoCollectionSize;
+  sourcingCost: number;
+  totalGross: number;
+  totalModCosts: number;
+  collectionBonus: number;
+  totalNet: number;
+}
+
+export function calculateVehicleCargoProfit(
+  input: VehicleCargoCalculationInput
+): VehicleCargoCalculationResult {
+  const cap = VEHICLE_CARGO_CONFIG.warehouseCapacityCars;
+  const standard = Math.min(cap, Math.max(0, Math.round(input.standardCount || 0)));
+  const mid = Math.min(cap - standard, Math.max(0, Math.round(input.midCount || 0)));
+  const top = Math.min(cap - standard - mid, Math.max(0, Math.round(input.topCount || 0)));
+
+  const counts: Record<VehicleCargoRangeId, number> = {
+    standard,
+    mid,
+    top
+  };
+
+  const collectionSize: VehicleCargoCollectionSize = input.collectionSize ?? 4;
+  const isCollection = input.saleMode === 'collection';
+
+  const ranges: VehicleCargoRangeResult[] = VEHICLE_CARGO_RANGES.map((range) => {
+    const count = counts[range.id];
+    let perCarGross = 0;
+    let perCarModCost = 0;
+
+    if (input.saleMode === 'private') {
+      perCarGross = range.privateNet;
+      perCarModCost = 0;
+    } else if (input.saleMode === 'showroom') {
+      perCarGross = range.showroomGross;
+      perCarModCost = range.showroomModCost;
+    } else if (input.saleMode === 'specialist') {
+      perCarGross = range.specialistGross;
+      perCarModCost = range.specialistModCost;
+    } else {
+      // Collection sale pays Specialist NET value with $0 modification cost
+      perCarGross = range.specialistGross - range.specialistModCost;
+      perCarModCost = 0;
+    }
+
+    const gross = count * perCarGross;
+    const modCost = count * perCarModCost;
+    const net = gross - modCost;
+
+    return {
+      range,
+      count,
+      perCarGross,
+      perCarModCost,
+      gross,
+      modCost,
+      net
+    };
+  });
+
+  const totalCars = standard + mid + top;
+  const totalGross = ranges.reduce((sum, r) => sum + r.gross, 0);
+  const totalModCosts = ranges.reduce((sum, r) => sum + r.modCost, 0);
+  const collectionBonus =
+    isCollection && totalCars > 0 ? VEHICLE_CARGO_COLLECTION_BONUSES[collectionSize] : 0;
+  const totalNet = totalGross - totalModCosts + collectionBonus;
+
+  return {
+    ranges,
+    totalCars,
+    saleMode: input.saleMode,
+    collectionSize,
+    sourcingCost: VEHICLE_CARGO_CONFIG.sourcingCost,
+    totalGross,
+    totalModCosts,
+    collectionBonus,
+    totalNet
+  };
+}
+

@@ -324,16 +324,16 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
     gameId: 'roblox',
     categoryId: 'converters',
     icon: 'DollarSign',
-    shortDescription: 'Two-way Robux ↔ USD converter with retail purchase tiers ($0.0125/R$), +10% Premium bonuses, and DevEx cashout rates ($0.0035/R$, 30,000 R$ minimum).',
-    description: 'Real-time two-way Robux to USD and USD to Robux converter. Compare official store purchase packages ($4.99 for 400 R$ to $199.99 for 22,500 R$, plus +10% Roblox Premium bonus tiers) alongside real-world developer cashout payouts at the official $0.0035/R$ DevEx rate (30,000 Robux minimum).',
+    shortDescription: 'Two-way Robux ↔ USD converter with retail purchase tiers ($0.0125/R$), +10% Premium bonuses, and DevEx cashout rates ($0.0038/R$, 30,000 R$ minimum).',
+    description: 'Real-time two-way Robux to USD and USD to Robux converter. Compare official store purchase packages ($4.99 for 400 R$ to $199.99 for 22,500 R$, plus +10% Roblox Premium bonus tiers) alongside real-world developer cashout payouts at the official $0.0038/R$ DevEx rate (30,000 Robux minimum).',
     badge: 'USD & DevEx',
     rating: 4.98,
     reviewsCount: 4240,
     userCount: '169k+ users',
     featured: true,
     tags: ['roblox', 'robux to usd', 'usd converter', 'real money', 'store tiers', 'premium bonus', 'devex', 'cashout'],
-    seoTitle: 'Robux to USD Calculator – Store Rates & DevEx ($0.0035/R$) Cashout',
-    metaDescription: 'Convert Robux to USD and USD to Robux instantly. Compare store purchase costs ($0.0125/R$ + 10% Premium bonus) and official DevEx cashout payouts ($0.0035/R$, 30,000 Robux minimum).',
+    seoTitle: 'Robux to USD Calculator – Store Rates & DevEx ($0.0038/R$) Cashout',
+    metaDescription: 'Convert Robux to USD and USD to Robux instantly. Compare store purchase costs ($0.0125/R$ + 10% Premium bonus) and official DevEx cashout payouts ($0.0038/R$, 30,000 Robux minimum).',
     h1: 'Robux to USD Converter & Official DevEx Cashout Calculator',
     canonicalPath: '/tools/robux-to-usd-calculator',
     howToGuide: {
@@ -342,18 +342,18 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
         { title: 'Choose Conversion Direction', description: 'Switch between "Robux (R$) → Real USD ($)" and "Real USD ($) → Robux (R$)".' },
         { title: 'Enter Amount or Pick a Store Tier', description: 'Type any Robux balance or dollar budget, or click an official Roblox store package ($4.99 to $199.99).' },
         { title: 'Toggle Roblox Premium (+10%)', description: 'Enable the +10% Roblox Premium bonus (~88 R$/$ vs standard ~80 R$/$) to compare store package yields.' },
-        { title: 'Check DevEx Rate & 30,000 R$ Minimum', description: 'View official $0.0035/R$ DevEx cashout value and verify eligibility against the 30,000 Earned Robux ($105.00 USD) minimum.' }
+        { title: 'Check DevEx Rate & 30,000 R$ Minimum', description: 'View official $0.0038/R$ DevEx cashout value and verify eligibility against the 30,000 Earned Robux ($114.00 USD) minimum.' }
       ]
     },
     formulaExplained: {
       title: 'Robux Store Purchase Rate vs. Official DevEx Cashout Formula',
-      details: '• Retail Store Purchase Rate: ~$0.0125 USD per Robux (~80 Robux per $1.00 USD)\n• Premium Subscriber Store Rate (+10%): ~88 Robux per $1.00 USD\n• Official Developer Exchange (DevEx) Rate: $0.0035 USD per 1 Earned Robux ($350 per 100,000 Robux)\n• DevEx Minimum Requirement: 30,000 Earned Robux ($105.00 USD)',
-      mathSnippet: 'Store_USD = Robux * $0.0125 | DevEx_USD = Robux * $0.0035 (Min 30,000 R$)'
+      details: '• Retail Store Purchase Rate: ~$0.0125 USD per Robux (~80 Robux per $1.00 USD)\n• Premium Subscriber Store Rate (+10%): ~88 Robux per $1.00 USD\n• Official Developer Exchange (DevEx) Rate: $0.0038 USD per 1 Earned Robux ($380 per 100,000 Robux)\n• DevEx Minimum Requirement: 30,000 Earned Robux ($114.00 USD)',
+      mathSnippet: 'Store_USD = Robux * $0.0125 | DevEx_USD = Robux * $0.0038 (Min 30,000 R$)'
     },
     faqs: [
-      { question: 'How much is 10,000 Robux in real money?', answer: 'At the baseline retail store rate ($0.0125 per Robux), 10,000 Robux equals $125.00 USD (or $99.99 USD via the 10,000 R$ bundle). Through the Developer Exchange (DevEx) program at $0.0035 per Robux, 10,000 Earned Robux equals $35.00 USD.' },
-      { question: 'Is Robux worth the same when buying as when cashing out?', answer: 'No. Roblox sells Robux at ~$0.0125 each (~80 Robux per dollar), whereas the Developer Exchange (DevEx) pays creators $0.0035 per Earned Robux.' },
-      { question: 'What is the minimum Robux required to DevEx?', answer: 'The minimum threshold to submit a DevEx cashout request is 30,000 Earned Robux ($105.00 USD at $0.0035/R$). Only earned Robux from game passes, developer products, and catalog sales qualify; purchased Robux is ineligible.' }
+      { question: 'How much is 10,000 Robux in real money?', answer: 'At the baseline retail store rate ($0.0125 per Robux), 10,000 Robux equals $125.00 USD (or $99.99 USD via the 10,000 R$ bundle). Through the Developer Exchange (DevEx) program at $0.0038 per Robux, 10,000 Earned Robux equals $38.00 USD.' },
+      { question: 'Is Robux worth the same when buying as when cashing out?', answer: 'No. Roblox sells Robux at ~$0.0125 each (~80 Robux per dollar), whereas the Developer Exchange (DevEx) pays creators $0.0038 per Earned Robux.' },
+      { question: 'What is the minimum Robux required to DevEx?', answer: 'The minimum threshold to submit a DevEx cashout request is 30,000 Earned Robux ($114.00 USD at $0.0038/R$). Only earned Robux from game passes, developer products, and catalog sales qualify; purchased Robux is ineligible.' }
     ],
     proTips: [
       'Subscribing to Roblox Premium gives you 10% more Robux on every official store purchase tier.',
@@ -413,7 +413,7 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
     categoryId: 'calculators',
     icon: 'Users',
     shortDescription: 'Split Roblox group funds & multi-stream studio team earnings (Gamepasses, Dev Products, Commissions, Premium Payouts) into exact Robux & DevEx USD shares.',
-    description: 'Complete Roblox Group Payout & Studio Team Earnings Splitter. Switch between Direct Group Funds Balance splitting or Multi-Stream Team Revenue Aggregation (Gamepasses, Developer Products, Avatar Commissions, and Premium Playtime Payouts), allocate custom percentage splits to scripters, builders, designers, and studio reserves, and preview DevEx USD payouts ($0.0035/R$) with 0% additional payout tax.',
+    description: 'Complete Roblox Group Payout & Studio Team Earnings Splitter. Switch between Direct Group Funds Balance splitting or Multi-Stream Team Revenue Aggregation (Gamepasses, Developer Products, Avatar Commissions, and Premium Playtime Payouts), allocate custom percentage splits to scripters, builders, designers, and studio reserves, and preview DevEx USD payouts ($0.0038/R$) with 0% additional payout tax.',
     badge: 'Group & Team Splits',
     rating: 4.94,
     reviewsCount: 1800,
@@ -429,18 +429,18 @@ export const EXTRA_TOOLS_PART_2: ToolItem[] = [
       steps: [
         { title: 'Choose Pool Mode', description: 'Select "Team Earnings Streams (Multi-Source)" to sum Gamepasses (70% Net), Dev Products, Avatar Commissions, and Premium Payouts, or "Group Funds Balance (Direct Split)" for a single pool.' },
         { title: 'Configure Team Member Splits', description: 'Edit member names/roles, add or remove contributors, and adjust percentage sliders for scripters, builders, designers, and studio reserve funds.' },
-        { title: 'Review Individual Robux & DevEx USD Shares', description: 'See floored Robux payouts, DevEx USD equivalents (@ $0.0035/R$), and any rounding remainder left in group funds.' }
+        { title: 'Review Individual Robux & DevEx USD Shares', description: 'See floored Robux payouts, DevEx USD equivalents (@ $0.0038/R$), and any rounding remainder left in group funds.' }
       ]
     },
     formulaExplained: {
       title: 'Group Payout & Studio Team Earnings Split Formulas',
-      details: '• Multi-Stream Group Total = Gamepasses (70% Net) + Dev Products + Avatar Commissions + Premium Payouts\n• Member Robux Payout = floor(Total Group Robux × (Member_Percent / 100))\n• Member DevEx USD Value = Member Robux × $0.0035\n• Group Payout Fee: 0% (Roblox already deducted its 30% marketplace fee when the Robux were originally earned)',
-      mathSnippet: 'Member_Share = floor(Total_Group_Robux × Split%) | DevEx_USD = Member_Share × $0.0035'
+      details: '• Multi-Stream Group Total = Gamepasses (70% Net) + Dev Products + Avatar Commissions + Premium Payouts\n• Member Robux Payout = floor(Total Group Robux × (Member_Percent / 100))\n• Member DevEx USD Value = Member Robux × $0.0038\n• Group Payout Fee: 0% (Roblox already deducted its 30% marketplace fee when the Robux were originally earned)',
+      mathSnippet: 'Member_Share = floor(Total_Group_Robux × Split%) | DevEx_USD = Member_Share × $0.0038'
     },
     faqs: [
       { question: 'Does Roblox take a tax when sending group payouts?', answer: 'No. Group payouts have a 0% fee because the 30% Roblox marketplace tax was already deducted when the revenue was originally earned.' },
       { question: 'How do Roblox Group Recurring Payouts work?', answer: 'Roblox group owners can configure recurring percentage splits that automatically distribute incoming group revenue across designated team members.' },
-      { question: 'Can team members DevEx Robux received from group payouts?', answer: 'Yes. Group payouts funded by verified game monetization or catalog earnings count as clean Earned Robux and qualify for DevEx at $0.0035 USD per Robux (minimum 30,000 Robux).' }
+      { question: 'Can team members DevEx Robux received from group payouts?', answer: 'Yes. Group payouts funded by verified game monetization or catalog earnings count as clean Earned Robux and qualify for DevEx at $0.0038 USD per Robux (minimum 30,000 Robux).' }
     ],
     proTips: [
       'New group members must wait 14 days before becoming eligible to receive group payouts due to Roblox security restrictions.',

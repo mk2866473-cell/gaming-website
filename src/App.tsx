@@ -210,6 +210,11 @@ export default function App() {
       return <GamesPage selectedGameSlug="genshin" onNavigate={navigate} />;
     }
 
+    // 7.0 Dedicated FPS & Aim Esports Hub
+    if (cleanRoute === '/fps' || cleanRoute === '/games/fps') {
+      return <GamesPage selectedGameSlug="fps" onNavigate={navigate} />;
+    }
+
     // 7.1 Dedicated Helldivers 2 Hub / Filter
     if (cleanRoute === '/helldivers-2' || cleanRoute === '/games/helldivers-2' || cleanRoute === '/helldivers2') {
       return <HelldiversHubPage onNavigate={navigate} />;

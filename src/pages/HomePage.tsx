@@ -61,7 +61,7 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
         id: 'roblox',
         name: 'Roblox',
         subtitle: 'DevEx & Trading',
-        description: 'Robux to USD DevEx converter ($0.0035 rate), official 30% tax models, and Blox Fruits trading value evaluators.',
+        description: 'Robux to USD DevEx converter ($0.0038 rate), official 30% tax models, and Blox Fruits trading value evaluators.',
         count: TOOLS.filter(t => t.gameId === 'roblox').length,
         path: getGamePath('roblox'),
         icon: getGameIcon('roblox', 'w-5 h-5'),
@@ -308,7 +308,7 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
     },
     {
       q: 'Are the formulas verified against current official game patches?',
-      a: 'Yes. All utilities reflect verified theorycrafting formulas: Minecraft 1.21.x Tricky Trials, Palworld v0.3.5 / Sakurajima update, Pokémon GO Level 50 CPM tables, Genshin Impact 5.x banner soft pity curves, Fortnite Chapter 5 weapon dynamics, and official Roblox DevEx $0.0035 rates.'
+      a: 'Yes. All utilities reflect verified theorycrafting formulas: Minecraft 1.21.x Tricky Trials, Palworld v0.3.5 / Sakurajima update, Pokémon GO Level 50 CPM tables, Genshin Impact 5.x banner soft pity curves, Fortnite Chapter 5 weapon dynamics, and official Roblox DevEx $0.0038 rates.'
     },
     {
       q: 'Are any downloads, plugins, or extensions required?',

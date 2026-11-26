@@ -160,6 +160,24 @@ function getTechnicalMetadata(tool: ToolItem): string {
     if (tool.id.includes('brewing')) {
       return '19 Java Potions';
     }
+    if (tool.id.includes('rgb-gradient')) {
+      return '2–5 Stop Hex · MiniMessage';
+    }
+    if (tool.id.includes('motd')) {
+      return '16 Colours · server.properties';
+    }
+    if (tool.id.includes('armor-trim')) {
+      return '18 Patterns · 11 Materials';
+    }
+    if (tool.id.includes('shield-designer')) {
+      return '16 Dyes · 6 Layers';
+    }
+    if (tool.id.includes('potion-duration')) {
+      return 'Java 19 Potions · Ticks';
+    }
+    if (tool.id.includes('block-gradient')) {
+      return '45 Common Blocks';
+    }
     if (
       tool.id.includes('circle') || 
       tool.id.includes('portal') || 
@@ -193,6 +211,7 @@ function getTechnicalMetadata(tool: ToolItem): string {
   }
 
   if (tool.gameId === 'genshin') {
+    if (tool.id.includes('income')) return 'Daily Income & Guarantee';
     if (tool.id.includes('pity') || tool.id.includes('wish')) return 'Soft Pity & 50/50';
     if (tool.id.includes('resin')) return '200 Resin Cap';
     if (tool.id.includes('cv') || tool.id.includes('artifact')) return 'Crit Value Formula';
@@ -201,6 +220,9 @@ function getTechnicalMetadata(tool: ToolItem): string {
   }
 
   if (tool.gameId === 'fps') {
+    if (tool.id.includes('polling-rate')) return '125–8000 Hz · Live Graph';
+    if (tool.id.includes('true-dpi')) return 'Physical Ruler · Deviation %';
+    if (tool.id.includes('ads-sensitivity')) return '0% / 75% / 100% Monitor Dist';
     if (tool.id.includes('sensitivity') || tool.id.includes('converter')) return '1:1 Yaw Precision';
     if (tool.id.includes('edpi')) return 'DPI × In-Game Sens';
     if (tool.id.includes('ttk')) return 'Hitbox Multipliers';
@@ -215,10 +237,19 @@ function getTechnicalMetadata(tool: ToolItem): string {
   }
 
   if (tool.gameId === 'roblox') {
-    if (tool.id.includes('robux') || tool.id.includes('devex')) return 'DevEx $0.0035 Rate';
+    if (tool.id.includes('robux') || tool.id.includes('devex')) return 'DevEx $0.0038 Rate';
     if (tool.id.includes('tax')) return '30% Marketplace Net';
     if (tool.id.includes('blox-fruits')) return 'Trade Value Matrix';
     return 'Platform Math';
+  }
+
+  if (tool.gameId === 'gtaonline') {
+    if (tool.id.includes('bunker')) return '100 Units · TU 1.73 Base';
+    if (tool.id.includes('mc-business')) return '5 MC Businesses · TU 1.73';
+    if (tool.id.includes('special-cargo')) return '1–111 Crates · TU 1.73';
+    if (tool.id.includes('hangar-cargo')) return '50 Crates · 3 Tiers';
+    if (tool.id.includes('vehicle-cargo')) return '40 Cars · 10 Collections';
+    return 'Title Update 1.73';
   }
 
   if (tool.gameId === 'general') {

@@ -60,8 +60,8 @@ export default function GtaOnlineHubPage({ onNavigate }: GtaOnlineHubPageProps) 
   return (
     <div className="space-y-8 font-sans text-slate-100">
       <SEOHead
-        title="GTA Online Calculators & Tools – Nightclub, Acid Lab, Cayo Perico & Heists"
-        description="Verified Title Update 1.73 GTA Online calculators and utilities: Nightclub Warehouse, Acid Lab profit, Cayo Perico payouts, Heist Splits, Business ROI / Payback, and Cooldown Planner."
+        title="GTA Online Calculators & Tools – Nightclub, Acid Lab, Bunker, MC, Cargo & Heists"
+        description="Verified Title Update 1.73 GTA Online calculators and utilities: Nightclub Warehouse, Acid Lab, Cayo Perico, Heist Splits, Business ROI, Cooldown Planner, Bunker, MC Businesses, Special Cargo, Hangar Air Freight, and Vehicle Cargo."
         canonicalPath="/games/gta-online"
       />
 
@@ -89,13 +89,13 @@ export default function GtaOnlineHubPage({ onNavigate }: GtaOnlineHubPageProps) 
                 <span className="text-zinc-600">·</span>
                 <span className="text-[10px] font-mono text-zinc-400">Title Update 1.73</span>
                 <span className="text-zinc-600">·</span>
-                <span className="text-[10px] font-mono text-emerald-400">6 Verified Tools</span>
+                <span className="text-[10px] font-mono text-emerald-400">{gtaTools.length} Verified Tools</span>
               </div>
               <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
                 GTA Online <span className="text-emerald-400">Calculators &amp; Tools</span>
               </h1>
               <p className="text-xs sm:text-sm text-zinc-300 max-w-2xl mt-1 leading-relaxed">
-                Calculate Nightclub Warehouse production, Acid Lab profits, Cayo Perico &amp; multi-player Heist splits, business ROI payback timelines, and activity cooldowns using standard Title Update 1.73 repeat-run values.
+                Calculate Nightclub Warehouse, Acid Lab, Cayo Perico, Heist splits, Business ROI, Cooldowns, Bunker, MC Businesses, Special Cargo, Hangar Air Freight, and Vehicle Cargo payouts using standard Title Update 1.73 base values.
               </p>
             </div>
           </div>
@@ -108,7 +108,7 @@ export default function GtaOnlineHubPage({ onNavigate }: GtaOnlineHubPageProps) 
           <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Search GTA Online tools (Nightclub, Acid Lab, Cayo Perico, Heist Split, ROI, Cooldown...)"
+            placeholder="Search GTA Online tools (Nightclub, Bunker, MC, Special Cargo, Hangar, Vehicle Cargo, Cayo Perico...)"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl pl-10 pr-4 py-3 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-colors"

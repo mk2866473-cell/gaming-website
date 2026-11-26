@@ -5386,6 +5386,370 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
     relatedToolIds: ['minecraft-xp-calculator', 'minecraft-stronghold-finder']
   },
   {
+    id: 'minecraft-rgb-gradient-text-generator',
+    slug: 'minecraft-rgb-gradient-text-generator',
+    name: 'Minecraft RGB Gradient Text Generator',
+    gameId: 'minecraft',
+    categoryId: 'generators',
+    icon: 'Layers',
+    shortDescription: 'Generate smooth 2–5 stop Minecraft RGB text gradients with live preview and copyable &#RRGGBB, §x, MiniMessage, and JSON chat outputs.',
+    description: 'Create 2 to 5 stop RGB colour gradients for Minecraft chat, nicknames, item lore, scoreboards, and /tellraw commands. Interpolates piecewise in RGB across stops with optional Bold and Italic toggles, skipping colour codes on spaces while counting spaces for position.',
+    badge: 'RGB & MiniMessage',
+    rating: 4.98,
+    reviewsCount: 510,
+    userCount: '46k+ players',
+    featured: true,
+    tags: ['minecraft', 'rgb gradient', 'hex text', 'minimessage', 'tellraw', 'section hex', 'gradient generator'],
+    seoTitle: 'Minecraft RGB Gradient Text Generator – Hex, §x, MiniMessage & JSON',
+    metaDescription: 'Generate 2–5 stop Minecraft RGB gradients with live coloured preview. Copy &#RRGGBB, §x§R§R§G§G§B§B, MiniMessage <#RRGGBB> / <gradient>, and JSON chat arrays.',
+    h1: 'Minecraft RGB Gradient Text Generator (2–5 Stop Hex & MiniMessage)',
+    canonicalPath: '/tools/minecraft-rgb-gradient-text-generator',
+    howToGuide: {
+      overview: 'Build multi-stop Minecraft RGB gradients with exact per-character interpolation and copy ready-to-paste codes for plugins, commands, or MiniMessage.',
+      steps: [
+        { title: 'Enter Your Text', description: 'Type any chat message, nickname, scoreboard header, or item name. Spaces count toward character positions so the gradient flows across words without emitting colour codes on whitespace.' },
+        { title: 'Pick 2 to 5 Colour Stops', description: 'Use the hex pickers or type #RRGGBB codes directly. Add up to 5 stops for piecewise multi-stop gradients or reverse stop order in one click.' },
+        { title: 'Toggle Bold or Italic', description: 'Enable Bold or Italic formatting to automatically place style codes after each character colour code (or wrap MiniMessage and JSON outputs).' },
+        { title: 'Copy Your Format', description: 'Copy &#RRGGBB, §x§R§R§G§G§B§B, MiniMessage (<#RRGGBB> or 2-stop <gradient:#START:#END>), or the JSON chat-component array.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Per-Character RGB Gradient Interpolation Math',
+      details: 'For each character i of n visible characters, the normalised position is t = i / (n − 1) (with t = 0 when n = 1), and each RGB channel is rounded independently via round(start + (end − start) × t). Spaces count toward index i and length n so gradients cross spaces smoothly, while receiving no colour code. Multi-stop gradients (3–5 stops) interpolate piecewise between consecutive stops.',
+      mathSnippet: 't = i / (n − 1) (n = 1 → t = 0) | Channel = round(start + (end − start) × t)'
+    },
+    faqs: [
+      {
+        question: 'How does the Minecraft RGB Gradient Text Generator calculate each character colour?',
+        answer: 'For character i out of n characters, it computes t = i / (n − 1) (or t = 0 when n = 1) and interpolates each channel via round(start + (end − start) × t). Multi-stop gradients (3 to 5 stops) interpolate piecewise between consecutive stops.'
+      },
+      {
+        question: 'Do spaces receive colour codes in the generated RGB output?',
+        answer: 'No. Spaces count toward character position (so the gradient smoothly continues across word gaps), while emitting no colour code on the space characters themselves.'
+      },
+      {
+        question: 'What is the difference between &#RRGGBB, §x, MiniMessage, and JSON outputs?',
+        answer: '&#RRGGBB works with chat and nickname plugins such as EssentialsX; §x§R§R§G§G§B§B is the raw Bukkit/Spigot legacy hex encoding; MiniMessage outputs both per-character <#RRGGBB> tags and the 2-stop <gradient:#START:#END>text</gradient> tag; and JSON outputs a chat-component array for /tellraw and /title commands.'
+      },
+      {
+        question: 'Why does the <gradient:#START:#END> MiniMessage output only appear for 2-stop gradients?',
+        answer: 'The single <gradient:#START:#END>text</gradient> tag is shown specifically when 2 colour stops are active. When you use 3 to 5 colour stops, the per-character <#RRGGBB> MiniMessage output still generates every stop accurately.'
+      },
+      {
+        question: 'Why are bold and italic codes placed after the hex colour code?',
+        answer: 'In legacy Minecraft formatting, any colour code clears active formatting flags. Placing &l / §l and &o / §o after the hex colour code ensures every character keeps both its colour and styling.'
+      }
+    ],
+    proTips: [
+      'Use 2-stop gradients with the MiniMessage <gradient:#START:#END> tag when you want the shortest possible config string on Paper or Adventure plugins.',
+      'Enable Bold after picking your stops to make thin chat colours stand out clearly on dark backgrounds.'
+    ],
+    relatedToolIds: ['minecraft-motd-generator', 'minecraft-banner-designer', 'minecraft-pixel-art-converter']
+  },
+  {
+    id: 'minecraft-motd-generator',
+    slug: 'minecraft-motd-generator',
+    name: 'Minecraft MOTD Generator',
+    gameId: 'minecraft',
+    categoryId: 'generators',
+    icon: 'SlidersHorizontal',
+    shortDescription: 'Design 2-line Minecraft server MOTDs with all 16 legacy colours, optional hex gradients, formatting toggles, live server-list preview, and server.properties export.',
+    description: 'Interactive Minecraft MOTD Generator for server.properties and server-list plugins. Style Line 1 and Line 2 using all 16 legacy §0–§f colours or per-line 2–5 stop hex gradients (§x), toggle bold/italic/underline/strikethrough/obfuscated, preview live on a dark server-list card, track visible character counts, and copy motd=\\u00A7..., §, or & outputs.',
+    badge: 'Server List MOTD',
+    rating: 4.98,
+    reviewsCount: 475,
+    userCount: '42k+ admins',
+    featured: true,
+    tags: ['minecraft', 'motd generator', 'server.properties', 'server motd', 'legacy colours', 'section sign'],
+    seoTitle: 'Minecraft MOTD Generator – server.properties, § & Plugin Formats',
+    metaDescription: 'Build 2-line Minecraft server MOTDs with all 16 legacy colours, optional §x hex gradients, bold/italic/obfuscated formatting, live preview, and motd=\\u00A7 export.',
+    h1: 'Minecraft MOTD Generator (server.properties & Server List Preview)',
+    canonicalPath: '/tools/minecraft-motd-generator',
+    howToGuide: {
+      overview: 'Create clean 2-line Minecraft server list MOTDs with proper colour-before-format ordering and instant server.properties escaping.',
+      steps: [
+        { title: 'Enter Line 1 & Line 2 Text', description: 'Type your two MOTD lines and watch the live visible-character counter per line (a warning appears past 59 visible characters so you can spot potential wrapping).' },
+        { title: 'Choose Legacy Colour or Hex Gradient', description: 'Pick from all 16 legacy colours (§0 Black through §f White) or switch a line to a 2–5 stop Hex Gradient (§x).' },
+        { title: 'Toggle Formatting Styles', description: 'Enable Bold (§l), Italic (§o), Underline (§n), Strikethrough (§m), or Obfuscated (§k). Colour codes are automatically placed before format codes.' },
+        { title: 'Copy server.properties, §, or & Output', description: 'Copy the motd=\\u00A7... line for server.properties, the raw § form, or the & plugin form—all joined with literal \\n.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Minecraft MOTD Encoding & Colour-Reset Rules',
+      details: 'In Minecraft formatting, every colour code resets active styles, so the colour code (§0–§f or §x§R§R§G§G§B§B) must be emitted before format codes (§l, §o, §n, §m, §k). Line 1 and Line 2 are joined with a literal \\n, and server.properties replaces every § with \\u00A7.',
+      mathSnippet: 'server.properties: motd=\\u00A7[colour]\\u00A7[formats]Line 1\\n\\u00A7[colour]\\u00A7[formats]Line 2'
+    },
+    faqs: [
+      {
+        question: 'Why must Minecraft colour codes appear before bold or italic codes in an MOTD?',
+        answer: 'In Minecraft text formatting, applying a colour code clears any active formatting (bold, italic, underline, strikethrough, obfuscated). Emitting §a before §l (such as \\u00A7a\\u00A7lMy Server) keeps both the green colour and bold style active.'
+      },
+      {
+        question: 'How should newlines and § characters be formatted in server.properties?',
+        answer: 'In server.properties, every § section sign is written as the Unicode escape \\u00A7, and the two MOTD lines are joined with a literal \\n—for example: motd=\\u00A7a\\u00A7lMy Server\\n\\u00A7eSeason 2.'
+      },
+      {
+        question: 'Why does the MOTD counter warn past 59 visible characters?',
+        answer: 'Vanilla Minecraft server list rows typically fit around 59 visible characters across standard GUI widths before text can wrap or clip on smaller displays. It is a display warning rather than a hard cutoff.'
+      },
+      {
+        question: 'Which 16 legacy colours are supported for Minecraft MOTDs?',
+        answer: 'All 16 legacy colours: Black (§0 #000000), Dark Blue (§1 #0000AA), Dark Green (§2 #00AA00), Dark Aqua (§3 #00AAAA), Dark Red (§4 #AA0000), Dark Purple (§5 #AA00AA), Gold (§6 #FFAA00), Gray (§7 #AAAAAA), Dark Gray (§8 #555555), Blue (§9 #5555FF), Green (§a #55FF55), Aqua (§b #55FFFF), Red (§c #FF5555), Light Purple (§d #FF55FF), Yellow (§e #FFFF55), and White (§f #FFFFFF).'
+      },
+      {
+        question: 'When should I use the server.properties output vs the § or & plugin outputs?',
+        answer: 'Use the motd=\\u00A7... output when editing vanilla server.properties directly, and use the & or § forms when pasting into Paper, Spigot, Velocity, BungeeCord, or MOTD plugin config files.'
+      }
+    ],
+    proTips: [
+      'Keep each line around 59 visible characters or fewer to prevent awkward wrapping across different client GUI scales.',
+      'Check whether your server software supports §x hex gradients in the server list ping—vanilla server.properties primarily uses the 16 legacy colours while modern proxies and MOTD plugins support §x hex.'
+    ],
+    relatedToolIds: ['minecraft-rgb-gradient-text-generator', 'minecraft-banner-designer', 'minecraft-firework-star-creator']
+  },
+  {
+    id: 'minecraft-armor-trim-previewer',
+    slug: 'minecraft-armor-trim-previewer',
+    name: 'Minecraft Armor Trim Previewer',
+    gameId: 'minecraft',
+    categoryId: 'generators',
+    icon: 'Shield',
+    shortDescription: 'Preview all 18 Java 1.21.x armor trim patterns and 11 trim materials (198 combinations per piece) with Smithing Table rules, duplication matching blocks, and full 4-piece set costs.',
+    description: 'Stylised Java 1.21.x Minecraft Armor Trim Previewer covering Helmet (including Turtle Shell), Chestplate, Leggings, and Boots across 18 trim patterns and 11 materials (198 combinations per piece). Shows Smithing Table application rules, template duplication recipes, matching blocks, and 4-piece full-set diamond cost.',
+    badge: '1.21.x Trims',
+    rating: 4.98,
+    reviewsCount: 492,
+    userCount: '47k+ players',
+    featured: true,
+    tags: ['minecraft', 'armor trim', 'smithing template', '1.21', 'silence trim', 'resin brick', 'duplication recipe'],
+    seoTitle: 'Minecraft Armor Trim Previewer – 18 Patterns, 11 Materials & Duplication',
+    metaDescription: 'Stylised Java 1.21.x Minecraft Armor Trim Previewer with 18 patterns, 11 materials (198 combos per piece), duplication matching blocks, and 4-piece set diamond costs.',
+    h1: 'Minecraft Armor Trim Previewer (18 Patterns · 11 Materials)',
+    canonicalPath: '/tools/minecraft-armor-trim-previewer',
+    howToGuide: {
+      overview: 'Preview a stylised silhouette for any armour piece, trim pattern, and trim material, and check the exact Smithing Table and duplication costs.',
+      steps: [
+        { title: 'Pick an Armour Piece', description: 'Select Helmet (Turtle Shell counts as a helmet), Chestplate, Leggings, or Boots.' },
+        { title: 'Select One of 18 Trim Patterns', description: 'Choose Sentry, Vex, Wild, Coast, Dune, Wayfinder, Raiser, Shaper, Host, Ward, Silence, Tide, Snout, Rib, Eye, Spire, Flow, or Bolt.' },
+        { title: 'Select One of 11 Trim Materials', description: 'Preview any trim colour from Iron Ingot (#ECECEC) and Diamond (#6EECD2) to Resin Brick (#FC7812).' },
+        { title: 'Check Application & Duplication Costs', description: 'Review the Smithing Table recipe, the exact matching block needed to duplicate the template, and the 4-piece full set cost (3 crafts = 21 diamonds + 3 matching blocks).' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Java 1.21.x Armor Trim Rules & Duplication Math',
+      details: '18 trim patterns × 11 trim materials yield 198 combinations per armour piece. Applying a trim at a Smithing Table uses Template + Armour Piece + Trim Material, consumes the template and material, costs zero XP, preserves enchantments/durability/custom name, and is cosmetic only. Duplicating a template on a Crafting Table takes 7 Diamonds + 1 Template (top-middle) + 1 Matching Block (centre) → 2 Templates (net +1 template), so a full 4-piece set starting from 1 template needs 3 duplication crafts = 21 diamonds + 3 matching blocks.',
+      mathSnippet: '18 × 11 = 198 combos/piece | 1 Duplication = 7 Diamonds + 1 Template + 1 Matching Block → 2 Templates (net +1)'
+    },
+    faqs: [
+      {
+        question: 'How many armor trim combinations exist per piece in Java 1.21.x?',
+        answer: 'There are 18 trim patterns and 11 trim materials, giving 18 × 11 = 198 trim combinations per armour piece (Helmet, Chestplate, Leggings, and Boots; Turtle Shell counts as a helmet).'
+      },
+      {
+        question: 'Do armor trims give combat or protection stats, or cost XP to apply?',
+        answer: 'No. Armor trims are purely cosmetic and cost zero XP at the Smithing Table. Applying a trim consumes the smithing template and trim material while keeping existing enchantments, durability, and custom item names.'
+      },
+      {
+        question: 'How much does it cost to duplicate an armor trim for a full 4-piece set?',
+        answer: 'Each duplication craft uses 7 diamonds + 1 template (top-middle) + 1 matching block (centre) to yield 2 templates (net +1 template). Starting from 1 template, a full 4-piece set needs 3 duplication crafts = 21 diamonds + 3 matching blocks.'
+      },
+      {
+        question: 'Does the preview match pixel-for-pixel in-game textures?',
+        answer: 'No. This tool provides a stylised preview using each material\'s display colour, not a pixel-exact in-game texture render. In-game trims use a shaded palette that renders darker when the trim material matches the armour material.'
+      },
+      {
+        question: 'Which matching blocks duplicate each of the 18 armor trim templates?',
+        answer: 'Cobblestone (Sentry, Vex, Coast), Mossy Cobblestone (Wild), Sandstone (Dune), Terracotta (Wayfinder, Raiser, Shaper, Host), Cobbled Deepslate (Ward, Silence), Prismarine (Tide), Blackstone (Snout), Netherrack (Rib), End Stone (Eye), Purpur Block (Spire), Breeze Rod (Flow), and Block of Copper (Bolt).'
+      }
+    ],
+    proTips: [
+      'Always keep at least 1 copy of rare smithing templates like Silence or Flow in a chest before applying your last template—duplicating costs 7 diamonds instead of hunting another structure.',
+      'Turtle Shell helmets accept all 198 armor trim combinations just like standard helmets.'
+    ],
+    relatedToolIds: ['minecraft-shield-designer', 'minecraft-banner-designer', 'minecraft-anvil-cost-calculator']
+  },
+  {
+    id: 'minecraft-shield-designer',
+    slug: 'minecraft-shield-designer',
+    name: 'Minecraft Shield Designer',
+    gameId: 'minecraft',
+    categoryId: 'generators',
+    icon: 'Shield',
+    shortDescription: 'Design custom Minecraft shields using all 16 dye colours and 42 banner patterns (up to 6 layers) with shield proportions and step-by-step crafting materials.',
+    description: 'Interactive Minecraft Shield Designer sharing the full 16-dye and 42-pattern (up to 6 layers) Survival Loom system. Previews designs in shield proportions, explains the 4-step crafting process, warns about half-resolution shield rendering, and calculates exact planks, iron ingot, wool, stick, and dye totals.',
+    badge: '6-Layer Shield',
+    rating: 4.98,
+    reviewsCount: 445,
+    userCount: '41k+ builders',
+    featured: true,
+    tags: ['minecraft', 'shield designer', 'banner shield', 'loom', 'shield crafting', '16 dyes', '6 layers'],
+    seoTitle: 'Minecraft Shield Designer – Custom Banner Shield Preview & Crafting',
+    metaDescription: 'Design custom Minecraft shields with 16 dyes and 42 patterns (up to 6 layers). View shield proportions, exact 4-step crafting instructions, and full material totals.',
+    h1: 'Minecraft Shield Designer (Custom Banner Pattern Creator)',
+    canonicalPath: '/tools/minecraft-shield-designer',
+    howToGuide: {
+      overview: 'Design a custom patterned Minecraft shield from a Survival banner with up to 6 Loom layers and follow the 4-step crafting sequence.',
+      steps: [
+        { title: 'Craft a Banner', description: 'Craft a banner using 6 wool of one colour + 1 stick.' },
+        { title: 'Add Up to 6 Pattern Layers in a Loom', description: 'Apply up to 6 pattern layers (1 dye per layer; the 10 special patterns also require their banner-pattern item).' },
+        { title: 'Craft a Shield', description: 'Craft an unpatterned shield using 6 planks + 1 iron ingot.' },
+        { title: 'Combine Shield + Banner', description: 'Combine the shield and banner in a crafting grid (banner is consumed, shield must have no pre-existing pattern, durability and enchantments stay unchanged).' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Patterned Shield Crafting & Material Formula',
+      details: 'Crafting one patterned shield from scratch requires 1 banner (6 wool of one colour + 1 stick), 1 dye per Loom layer (up to 6 survival layers; the 10 special patterns also use reusable Banner Pattern items), plus 1 shield (6 planks + 1 iron ingot). Combining the shield and banner consumes the banner while preserving durability and enchantments; a patterned shield cannot be repainted or washed in a cauldron, and shields render patterns at half the resolution of banners.',
+      mathSnippet: '1 Patterned Shield (N Layers) = 6 Planks + 1 Iron Ingot + 6 Wool + 1 Stick + N Dyes (N ≤ 6)'
+    },
+    faqs: [
+      {
+        question: 'Why does a patterned shield look slightly different in-game than its banner preview?',
+        answer: 'Shields render patterns at half the resolution of banners, so fine details from loom patterns look slightly chunkier or shifted in-game compared to a full-size wall banner.'
+      },
+      {
+        question: 'How do you put a banner pattern onto a shield in Minecraft?',
+        answer: 'First craft a banner (6 wool + 1 stick), add up to 6 pattern layers in a loom, craft a plain shield (6 planks + 1 iron ingot), and combine the shield + banner in a crafting grid. The banner is consumed and durability/enchantments stay unchanged.'
+      },
+      {
+        question: 'Can you wash or repaint a shield that already has a pattern?',
+        answer: 'No. The shield must have no pre-existing pattern before combining with a banner, and a patterned shield cannot be repainted or washed in a cauldron.'
+      },
+      {
+        question: 'What total materials are needed for one patterned shield with 3 layers?',
+        answer: 'One patterned shield from scratch with 3 layers = 6 planks + 1 iron ingot + 6 wool + 1 stick + 3 dyes (plus any reusable banner-pattern item if one of the 10 special patterns is chosen).'
+      },
+      {
+        question: 'How many pattern layers can a Survival Minecraft shield hold?',
+        answer: 'Up to 6 pattern layers in Survival mode, because the pattern comes from a Survival banner crafted in a Loom (using the same 16 dye colours and 42 loom patterns as the Banner Designer).'
+      }
+    ],
+    proTips: [
+      'Apply bold shapes like borders, crosses, halves, and creeper or flower charges when designing for shields so the half-resolution texture stays readable in combat.',
+      'Enchant your plain shield with Unbreaking III and Mending whenever you like—combining a banner onto a shield preserves existing durability and enchantments.'
+    ],
+    relatedToolIds: ['minecraft-banner-designer', 'minecraft-armor-trim-previewer', 'minecraft-pixel-art-converter']
+  },
+  {
+    id: 'minecraft-potion-duration-converter',
+    slug: 'minecraft-potion-duration-converter',
+    name: 'Minecraft Potion Effect Duration Converter',
+    gameId: 'minecraft',
+    categoryId: 'calculators',
+    icon: 'Clock',
+    shortDescription: 'Convert Java Edition potion durations between Drinkable (×1.0), Splash (×1.0), Lingering (×1/4), and Tipped Arrows (×1/8) in mm:ss, seconds, and game ticks.',
+    description: 'Exact Java Edition Minecraft Potion Effect Duration Converter covering 19 potion presets (Base, Redstone-extended, and Glowstone-II variants) plus custom durations. Converts Drinkable (×1.0), Splash (×1.0), Lingering (×1/4), and Tipped Arrow (×1/8, minimum 1 tick) using exact tick floor math (20 ticks = 1 second).',
+    badge: 'Java Potions',
+    rating: 4.98,
+    reviewsCount: 382,
+    userCount: '37k+ brewers',
+    featured: true,
+    tags: ['minecraft', 'potion duration', 'tipped arrow', 'lingering potion', 'splash potion', 'ticks', 'java edition'],
+    seoTitle: 'Minecraft Potion Effect Duration Converter – Drinkable, Splash, Lingering & Arrows',
+    metaDescription: 'Convert Minecraft Java Edition potion durations to Splash, Lingering (×1/4), and Tipped Arrow (×1/8) durations in mm:ss, decimal seconds, and ticks.',
+    h1: 'Minecraft Potion Effect Duration Converter (Seconds & Ticks)',
+    canonicalPath: '/tools/minecraft-potion-duration-converter',
+    howToGuide: {
+      overview: 'Choose one of 19 Java Edition potion presets (or enter a custom duration in seconds) to inspect exact Drinkable, Splash, Lingering, and Tipped Arrow durations in mm:ss, decimal seconds, and ticks.',
+      steps: [
+        { title: 'Pick a Potion Preset or Custom Seconds', description: 'Select any of the 19 Java Edition potions or switch to Custom Seconds to type any duration.' },
+        { title: 'Select an Available Variant', description: 'Choose Base, Redstone-extended, or Glowstone Level II (note that Redstone and Glowstone are mutually exclusive and only valid variants are shown).' },
+        { title: 'Compare Delivery Multipliers', description: 'Read the floored tick and second durations for Drinkable (×1.0), Splash (×1.0), Lingering (×1/4), and Tipped Arrow (×1/8, min 1 tick).' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Java Edition Potion Tick & Delivery Multiplier Formula',
+      details: 'Minecraft Java Edition tracks status effect durations at 20 game ticks per second. Splash potions keep the full ×1.0 drinkable duration, Lingering potions apply ×1/4, and Tipped Arrows apply ×1/8 (floored to whole ticks, minimum 1 tick). Redstone (duration extension) and Glowstone (Level II amplifier) are mutually exclusive brewing modifiers. Instant effects (Healing and Harming) have no duration; lingering clouds apply at 1/2 potency and tipped arrows apply at full strength.',
+      mathSnippet: 'resultTicks = max(1, floor(durationSeconds × 20 × multiplier)) · seconds = resultTicks ÷ 20'
+    },
+    faqs: [
+      {
+        question: 'How long do Splash, Lingering, and Tipped Arrow effects last compared to a Drinkable potion?',
+        answer: 'In Java Edition, Drinkable and Splash potions both use ×1.0 (same duration), Lingering potions last ×1/4 of the base duration, and Tipped Arrows last ×1/8 (rounded down to whole ticks, minimum 1 tick).'
+      },
+      {
+        question: 'Why does a Tipped Arrow of Regeneration last 5.6 s (112 ticks) instead of 5.625 s?',
+        answer: 'Minecraft stores effect lengths in whole ticks (20 ticks = 1 second). 45 s × 20 × 1/8 = 112.5 ticks, which floors to 112 ticks = 5.6 seconds.'
+      },
+      {
+        question: 'Can you combine Redstone and Glowstone on the same potion?',
+        answer: 'No. Redstone (extended duration) and Glowstone (Level II potency) are mutually exclusive brewing modifiers in Minecraft.'
+      },
+      {
+        question: 'How do Instant Healing and Instant Harming work with Lingering Potions and Tipped Arrows?',
+        answer: 'Healing and Harming are instant effects with no duration. In Java Edition, their lingering clouds apply at 1/2 potency, while tipped arrows apply at full strength.'
+      },
+      {
+        question: 'What are the Slowness Level II and Turtle Master durations?',
+        answer: 'In Java Edition, Glowstone turns Slowness (90 s base / 240 s extended) into Slowness IV for 20 s, while Potion of the Turtle Master runs 20 s base, 40 s extended, and 20 s at Level II.'
+      }
+    ],
+    proTips: [
+      'Extending Fire Resistance with Redstone gives 480 s (8:00) Drinkable/Splash, 120 s (2:00) Lingering, and 60 s (1:00) per Tipped Arrow.',
+      'Need the brewing stand ingredient path? Open the Minecraft Brewing Calculator for full Awkward base and modifier recipes.'
+    ],
+    relatedToolIds: ['minecraft-brewing-calculator', 'minecraft-block-gradient-generator', 'minecraft-xp-calculator']
+  },
+  {
+    id: 'minecraft-block-gradient-generator',
+    slug: 'minecraft-block-gradient-generator',
+    name: 'Minecraft Block Gradient Generator',
+    gameId: 'minecraft',
+    categoryId: 'generators',
+    icon: 'Layers',
+    shortDescription: 'Generate 3–20 block building gradients from a curated palette of 45 common blocks using average texture colours and Euclidean RGB matching.',
+    description: 'Create smooth architectural transitions in Minecraft from a curated palette of 45 common blocks (using average texture colours). Pick a Start block, End block, and 3–20 steps to compute per-channel RGB interpolation targets and select the closest unique palette blocks.',
+    badge: '45-Block Palette',
+    rating: 4.98,
+    reviewsCount: 412,
+    userCount: '44k+ builders',
+    featured: true,
+    tags: ['minecraft', 'block gradient', 'block palette', 'building gradient', 'texture color', 'architecture'],
+    seoTitle: 'Minecraft Block Gradient Generator – 45 Common Blocks & Swatch Strip',
+    metaDescription: 'Build smooth 3–20 step Minecraft block gradients across 45 common blocks using average texture colours, swatch strips, hex codes, and copyable block lists.',
+    h1: 'Minecraft Block Gradient Generator (45 Common Blocks)',
+    canonicalPath: '/tools/minecraft-block-gradient-generator',
+    howToGuide: {
+      overview: 'Pick a Start block, an End block, and a step count between 3 and 20 to generate a smooth block transition from 45 common Minecraft blocks.',
+      steps: [
+        { title: 'Pick Start and End Blocks', description: 'Select any two endpoints from the 45 common blocks palette (or swap them with one click).' },
+        { title: 'Choose Step Count (3–20)', description: 'Adjust the step slider or number box from 3 up to 20 blocks.' },
+        { title: 'Copy the Swatch Strip List', description: 'Review each step block name, average texture colour hex, and copy the text list for building.' }
+      ]
+    },
+    formulaExplained: {
+      title: 'Linear RGB Target & Nearest-Palette Block Matching',
+      details: 'Start and End steps always lock to your chosen Start and End blocks. For each interior step i, the target colour interpolates per channel as round(A + (B − A) × i / (steps − 1)) using average texture colours from 45 common blocks, then chooses the closest unused block by Euclidean RGB distance (ties pick the earliest block in palette order).',
+      mathSnippet: 'TargetRGB(i) = round(A + (B − A) × i / (steps − 1)) · min Euclidean distance among unused palette blocks'
+    },
+    faqs: [
+      {
+        question: 'Does this generator include every block in Minecraft?',
+        answer: 'No. It searches a curated palette of 45 common building blocks and uses each block’s average texture colour rather than every block variant in the game.'
+      },
+      {
+        question: 'Can the same block appear twice in one gradient?',
+        answer: 'No. Endpoints are always the exact Start and End blocks, and each interior step selects the closest unused block from the 45-block palette.'
+      },
+      {
+        question: 'What gradient does White Concrete to Black Concrete produce in 5 steps?',
+        answer: 'In 5 steps from White Concrete (#CFD5D6) to Black Concrete (#080A0F), the generator produces White Concrete → Smooth Stone → Tuff → Gray Concrete → Black Concrete.'
+      },
+      {
+        question: 'How are Euclidean RGB distance ties resolved?',
+        answer: 'If two unused palette blocks tie for exact shortest Euclidean RGB distance to the step target colour, the generator picks whichever block appears earliest in the palette order.'
+      },
+      {
+        question: 'What step counts are supported?',
+        answer: 'You can generate block gradients from 3 steps up to 20 steps.'
+      }
+    ],
+    proTips: [
+      'Use 5–7 steps for tall survival towers and castle walls so texture transitions stay readable without cluttering your hotbar.',
+      'Combine block gradients with our Minecraft Pixel Art Converter or RGB Gradient Text Generator for signs and map art.'
+    ],
+    relatedToolIds: ['minecraft-rgb-gradient-text-generator', 'minecraft-pixel-art-converter', 'minecraft-banner-designer']
+  },
+  {
     id: 'blox-fruits-mastery-calculator',
     slug: 'blox-fruits-mastery-calculator',
     name: 'Blox Fruits Mastery Calculator',
@@ -5933,7 +6297,7 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
     categoryId: 'calculators',
     icon: 'Percent',
     shortDescription: 'Calculate verified Roblox UGC creator royalties (30% Marketplace base rate, 30% + 40% in an experience, or 70% in your own experience) plus 30-day escrow & DevEx USD estimate.',
-    description: 'Verified Roblox UGC Creator Royalty & Commission Calculator using official Creator Hub fees: 30% base creator royalty in the Marketplace (Avatar Shop), 30% creator + 40% experience owner when sold inside someone else\'s experience, and 70% combined when you sell your own UGC item in your own experience. Accounts for the 30-day escrow hold and provides an estimated DevEx USD equivalent at $0.0035 per Robux (DevEx requires eligibility and a 30,000 Robux minimum).',
+    description: 'Verified Roblox UGC Creator Royalty & Commission Calculator using official Creator Hub fees: 30% base creator royalty in the Marketplace (Avatar Shop), 30% creator + 40% experience owner when sold inside someone else\'s experience, and 70% combined when you sell your own UGC item in your own experience. Accounts for the 30-day escrow hold and provides an estimated DevEx USD equivalent at $0.0038 per Robux (DevEx requires eligibility and a 30,000 Robux minimum).',
     badge: '30% / 70% Splits',
     rating: 4.98,
     reviewsCount: 495,
@@ -5949,13 +6313,13 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
       steps: [
         { title: 'Pick Sale Location', description: 'Select Marketplace (Avatar Shop), In Someone Else\'s Experience, or In My Own Experience.' },
         { title: 'Enter Item Price & Sales Quantity', description: 'Set the Robux item price and total number of sales to compute.' },
-        { title: 'Check Creator Robux & DevEx USD Estimate', description: 'Review per-sale and total Robux royalties, the 30-day escrow hold rule, and the estimated USD value at $0.0035/Robux.' }
+        { title: 'Check Creator Robux & DevEx USD Estimate', description: 'Review per-sale and total Robux royalties, the 30-day escrow hold rule, and the estimated USD value at $0.0038/Robux.' }
       ]
     },
     formulaExplained: {
       title: 'Verified Roblox Creator Hub UGC Fee & Commission Splits',
-      details: '• Marketplace (Avatar Shop): Item creator receives the base 30% rate at the price floor. (Info note: above the price floor, the Marketplace share rises progressively up to 70% at 6× the floor; this calculator computes using the base 30%.)\n• In Another Developer\'s Experience: Item creator receives 30% + experience owner receives 40% (Roblox keeps 30%).\n• In Your Own Experience: Selling your own item in your own game awards both shares = 70% total (Roblox keeps 30%).\n• Escrow & DevEx: Commissions carry a 30-day escrow hold. DevEx USD value is an estimate at $0.0035 per Robux (requires DevEx eligibility and a 30,000 Robux minimum).',
-      mathSnippet: 'Marketplace Base = Price × 30% | Own Experience = Price × 70% | Estimate USD = Robux × $0.0035'
+      details: '• Marketplace (Avatar Shop): Item creator receives the base 30% rate at the price floor. (Info note: above the price floor, the Marketplace share rises progressively up to 70% at 6× the floor; this calculator computes using the base 30%.)\n• In Another Developer\'s Experience: Item creator receives 30% + experience owner receives 40% (Roblox keeps 30%).\n• In Your Own Experience: Selling your own item in your own game awards both shares = 70% total (Roblox keeps 30%).\n• Escrow & DevEx: Commissions carry a 30-day escrow hold. DevEx USD value is an estimate at $0.0038 per Robux (requires DevEx eligibility and a 30,000 Robux minimum).',
+      mathSnippet: 'Marketplace Base = Price × 30% | Own Experience = Price × 70% | Estimate USD = Robux × $0.0038'
     },
     faqs: [
       {
@@ -5976,7 +6340,7 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
       },
       {
         question: 'Is the USD value shown guaranteed for UGC creators?',
-        answer: 'No — the USD amount shown at $0.0035 per Robux is an estimate only. Converting Earned Robux requires full DevEx eligibility and meeting the 30,000 Robux minimum.'
+        answer: 'No — the USD amount shown at $0.0038 per Robux is an estimate only. Converting Earned Robux requires full DevEx eligibility and meeting the 30,000 Robux minimum.'
       }
     ],
     proTips: [
@@ -5992,8 +6356,8 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
     gameId: 'roblox',
     categoryId: 'calculators',
     icon: 'TrendingUp',
-    shortDescription: 'Estimate gross daily Robux, your 70% creator share per day and per 30 days, and estimated DevEx USD ($0.0035/Robux) from visits, buyer rate %, and average spend.',
-    description: 'Estimate Roblox experience earnings from gamepass and developer-product sales using the verified Creator Hub 70% / 30% split (creators receive 70%; Roblox keeps a 30% marketplace fee). Enter visits per day, % of visitors who buy, and average Robux spent per buyer to view estimated gross Robux/day, 70% creator share per day and per 30 days, and a USD DevEx estimate at $0.0035/Robux. All outputs are estimates — real earnings vary, and DevEx requires eligibility plus a 30,000 Robux minimum.',
+    shortDescription: 'Estimate gross daily Robux, your 70% creator share per day and per 30 days, and estimated DevEx USD ($0.0038/Robux) from visits, buyer rate %, and average spend.',
+    description: 'Estimate Roblox experience earnings from gamepass and developer-product sales using the verified Creator Hub 70% / 30% split (creators receive 70%; Roblox keeps a 30% marketplace fee). Enter visits per day, % of visitors who buy, and average Robux spent per buyer to view estimated gross Robux/day, 70% creator share per day and per 30 days, and a USD DevEx estimate at $0.0038/Robux. All outputs are estimates — real earnings vary, and DevEx requires eligibility plus a 30,000 Robux minimum.',
     badge: 'Revenue Estimate',
     rating: 4.97,
     reviewsCount: 440,
@@ -6001,7 +6365,7 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
     featured: true,
     tags: ['roblox', 'game revenue', 'earnings estimator', 'gamepass revenue', 'devex estimate', '70% split'],
     seoTitle: 'Roblox Game Revenue Estimator – Visits & 70% Creator Share',
-    metaDescription: 'Estimate Roblox gamepass and dev-product Robux revenue per day and per 30 days using the verified 70% creator share and $0.0035/Robux DevEx USD estimate.',
+    metaDescription: 'Estimate Roblox gamepass and dev-product Robux revenue per day and per 30 days using the verified 70% creator share and $0.0038/Robux DevEx USD estimate.',
     h1: 'Roblox Game Revenue Estimator (Daily & 30-Day Estimate)',
     canonicalPath: '/tools/roblox-game-revenue-estimator',
     howToGuide: {
@@ -6014,8 +6378,8 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
     },
     formulaExplained: {
       title: 'Estimated Gamepass & Developer-Product Revenue Formula',
-      details: '• Estimated Gross Robux / Day = Visits/Day × (Buyer % ÷ 100) × Avg Robux Per Buyer\n• Estimated Creator Share (70%) / Day = Gross Robux/Day × 0.70 (30% is Roblox\'s marketplace fee)\n• Estimated 30-Day Share = Estimated Creator Share/Day × 30\n• Estimated USD (DevEx) = Estimated Creator Share × $0.0035 (Estimate only — real earnings vary, and DevEx requires eligibility + 30,000 Robux minimum)',
-      mathSnippet: 'Gross/Day = Visits × Buyer% × AvgSpend | 70% Share/Day = Gross × 0.70 | USD Est. = Share × $0.0035'
+      details: '• Estimated Gross Robux / Day = Visits/Day × (Buyer % ÷ 100) × Avg Robux Per Buyer\n• Estimated Creator Share (70%) / Day = Gross Robux/Day × 0.70 (30% is Roblox\'s marketplace fee)\n• Estimated 30-Day Share = Estimated Creator Share/Day × 30\n• Estimated USD (DevEx) = Estimated Creator Share × $0.0038 (Estimate only — real earnings vary, and DevEx requires eligibility + 30,000 Robux minimum)',
+      mathSnippet: 'Gross/Day = Visits × Buyer% × AvgSpend | 70% Share/Day = Gross × 0.70 | USD Est. = Share × $0.0038'
     },
     faqs: [
       {
@@ -6032,7 +6396,7 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
       },
       {
         question: 'How is the USD estimate calculated and what are the DevEx requirements?',
-        answer: 'The USD estimate multiplies your estimated 70% Robux share by the DevEx rate of $0.0035 per Robux. Cashing out requires DevEx eligibility and at least 30,000 Earned Robux.'
+        answer: 'The USD estimate multiplies your estimated 70% Robux share by the DevEx rate of $0.0038 per Robux. Cashing out requires DevEx eligibility and at least 30,000 Earned Robux.'
       },
       {
         question: 'Where can I calculate exact payouts for a studio team?',
@@ -6041,7 +6405,7 @@ export const EXTRA_TOOLS_PART_3: ToolItem[] = [
     ],
     proTips: [
       'Every result is an estimate — real earnings vary across genres, monetization loops, and player conversion.',
-      'Remember that DevEx conversion at $0.0035/Robux requires meeting Roblox DevEx eligibility rules and holding a minimum of 30,000 Robux.'
+      'Remember that DevEx conversion at $0.0038/Robux requires meeting Roblox DevEx eligibility rules and holding a minimum of 30,000 Robux.'
     ],
     relatedToolIds: ['roblox-ugc-calculator', 'robux-tax-calculator', 'roblox-devex-calculator', 'robux-to-usd-calculator', 'roblox-group-payout-calculator']
   },

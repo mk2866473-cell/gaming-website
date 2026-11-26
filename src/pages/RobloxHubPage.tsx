@@ -68,7 +68,7 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
     <>
       <SEOHead
         title="Roblox Calculators & Blox Fruits Tools – GamingToolsHub"
-        description="Comprehensive suite of 10+ Roblox calculators: Robux Tax (30%), DevEx USD Cashout ($0.0035/R$), Blox Fruits Trading Values & 40% Beli rule, XP Leveling to 2600, Stat builder, Gamepass Revenue & Team Splits."
+        description="Comprehensive suite of 10+ Roblox calculators: Robux Tax (30%), DevEx USD Cashout ($0.0038/R$), Blox Fruits Trading Values & 40% Beli rule, XP Leveling to 2600, Stat builder, Gamepass Revenue & Team Splits."
         canonicalPath="/games/roblox"
         breadcrumbs={breadcrumbs}
       />
@@ -183,7 +183,7 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
                 • <strong>Marketplace Fee:</strong> Roblox deducts 30% from all avatar item, gamepass, and developer product sales. Creators keep exactly 70%.
               </p>
               <p className="text-zinc-400">
-                • <strong>DevEx Exchange Rate:</strong> Official rate is $0.0035 USD per 1 Earned Robux ($350 per 100,000 R$).
+                • <strong>DevEx Exchange Rate:</strong> Official rate is $0.0038 USD per 1 Earned Robux ($380 per 100,000 R$).
               </p>
               <p className="text-zinc-400">
                 • <strong>Pending Escrow:</strong> In-game revenue is held for 3–7 business days before clearing into group or personal accounts.

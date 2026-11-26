@@ -9,18 +9,18 @@
 export const ROBLOX_RATES = {
   TAX_RATE: 0.30, // 30% Roblox Marketplace Cut
   CREATOR_CUT: 0.70, // 70% Creator Net Revenue
-  DEVEX_RATE_PER_ROBUX: 0.0035, // $0.0035 USD per 1 Robux ($350 per 100,000 Robux)
+  DEVEX_RATE_PER_ROBUX: 0.0038, // $0.0038 USD per 1 Robux ($380 per 100,000 Robux)
   MIN_DEVEX_ROBUX: 30000, // Current minimum threshold for DevEx eligibility
   STANDARD_DEVEX_TIERS: [
-    { robux: 30000, usd: 105 },
-    { robux: 50000, usd: 175 },
-    { robux: 100000, usd: 350 },
-    { robux: 250000, usd: 875 },
-    { robux: 500000, usd: 1750 },
-    { robux: 1000000, usd: 3500 },
-    { robux: 5000000, usd: 17500 },
-    { robux: 10000000, usd: 35000 },
-    { robux: 50000000, usd: 175000 }
+    { robux: 30000, usd: 114 },
+    { robux: 50000, usd: 190 },
+    { robux: 100000, usd: 380 },
+    { robux: 250000, usd: 950 },
+    { robux: 500000, usd: 1900 },
+    { robux: 1000000, usd: 3800 },
+    { robux: 5000000, usd: 19000 },
+    { robux: 10000000, usd: 38000 },
+    { robux: 50000000, usd: 190000 }
   ]
 };
 

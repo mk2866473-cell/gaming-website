@@ -20,13 +20,13 @@ export const QA_ENTRIES: QaEntry[] = [
     gameName: 'Roblox',
     question: 'How much is 1,000 Robux in USD?',
     slug: 'how-much-is-1000-robux-in-usd',
-    shortAnswer: '1,000 Robux costs $12.50 USD at standard store rates, or cash out for $3.50 USD via DevEx.',
+    shortAnswer: '1,000 Robux costs $12.50 USD at standard store rates, or cash out for $3.80 USD via DevEx.',
     explanation: `At the standard official Roblox store price of $0.0125 per Robux, 1,000 Robux costs $12.50 USD. The exact dollar price can vary slightly depending on your platform, country tax rate, or whether you purchase a Roblox Premium subscription, which grants a 10% bonus on Robux bundles.
 
-For Roblox developers and creators using the Developer Exchange (DevEx) program, the conversion rate is different. Roblox pays $0.0035 USD per earned Robux, meaning 1,000 Robux translates to $3.50 USD when cashed out to real money.
+For Roblox developers and creators using the Developer Exchange (DevEx) program, the conversion rate is different. Roblox pays $0.0038 USD per earned Robux, meaning 1,000 Robux translates to $3.80 USD when cashed out to real money.
 
-To calculate custom Robux amounts, standard store purchases cost $1.25 per 100 Robux, while DevEx payouts deliver $0.35 per 100 Robux for eligible creators.`,
-    workedExample: 'Store purchase: 1,000 × $0.0125 = $12.50 USD. DevEx cash-out: 1,000 × $0.0035 = $3.50 USD.',
+To calculate custom Robux amounts, standard store purchases cost $1.25 per 100 Robux, while DevEx payouts deliver $0.38 per 100 Robux for eligible creators.`,
+    workedExample: 'Store purchase: 1,000 × $0.0125 = $12.50 USD. DevEx cash-out: 1,000 × $0.0038 = $3.80 USD.',
     relatedToolId: 'robux-to-usd-calculator'
   },
   {
@@ -34,13 +34,13 @@ To calculate custom Robux amounts, standard store purchases cost $1.25 per 100 R
     gameName: 'Roblox',
     question: 'How much is 5,000 Robux in USD?',
     slug: 'how-much-is-5000-robux-in-usd',
-    shortAnswer: '5,000 Robux costs $62.50 USD at standard store rates, or cash out for $17.50 USD via DevEx.',
+    shortAnswer: '5,000 Robux costs $62.50 USD at standard store rates, or cash out for $19.00 USD via DevEx.',
     explanation: `Purchasing 5,000 Robux directly from the Roblox avatar shop or website costs $62.50 USD based on the standard $0.0125 per Robux baseline rate. Bulk gift cards or Premium bonus offers can lower the effective cost per Robux slightly.
 
-If you are a Roblox game creator or UGC designer cashing out earned Robux through DevEx, 5,000 Robux equals $17.50 USD at the $0.0035 rate.
+If you are a Roblox game creator or UGC designer cashing out earned Robux through DevEx, 5,000 Robux equals $19.00 USD at the $0.0038 rate.
 
 Note that to request a DevEx payout, creators must hold at least 30,000 earned Robux and have an active Roblox Premium membership.`,
-    workedExample: 'Store purchase: 5,000 × $0.0125 = $62.50 USD. DevEx cash-out: 5,000 × $0.0035 = $17.50 USD.',
+    workedExample: 'Store purchase: 5,000 × $0.0125 = $62.50 USD. DevEx cash-out: 5,000 × $0.0038 = $19.00 USD.',
     relatedToolId: 'robux-to-usd-calculator'
   },
   {
@@ -48,13 +48,13 @@ Note that to request a DevEx payout, creators must hold at least 30,000 earned R
     gameName: 'Roblox',
     question: 'How much is 10,000 Robux in USD?',
     slug: 'how-much-is-10000-robux-in-usd',
-    shortAnswer: '10,000 Robux costs $125.00 USD at standard store rates, or cash out for $35.00 USD via DevEx.',
+    shortAnswer: '10,000 Robux costs $125.00 USD at standard store rates, or cash out for $38.00 USD via DevEx.',
     explanation: `At standard retail pricing ($0.0125 per Robux), buying 10,000 Robux directly from Roblox requires $125.00 USD. Buying larger packages or holding an active Premium plan grants bonus Robux that lowers the cost per Robux.
 
-For developers exchanging Robux back to real currency via Developer Exchange (DevEx), 10,000 Robux equals $35.00 USD based on the $0.0035 per Robux cash-out multiplier.
+For developers exchanging Robux back to real currency via Developer Exchange (DevEx), 10,000 Robux equals $38.00 USD based on the $0.0038 per Robux cash-out multiplier.
 
 The difference between the purchase cost and cash-out payout reflects platform maintenance fees, server costs, and Roblox's revenue split with creators.`,
-    workedExample: 'Store purchase: 10,000 × $0.0125 = $125.00 USD. DevEx cash-out: 10,000 × $0.0035 = $35.00 USD.',
+    workedExample: 'Store purchase: 10,000 × $0.0125 = $125.00 USD. DevEx cash-out: 10,000 × $0.0038 = $38.00 USD.',
     relatedToolId: 'robux-to-usd-calculator'
   },
   {
@@ -62,13 +62,13 @@ The difference between the purchase cost and cash-out payout reflects platform m
     gameName: 'Roblox',
     question: 'How much is 31,000 Robux in USD?',
     slug: 'how-much-is-31000-robux-in-usd',
-    shortAnswer: '31,000 Robux costs $387.50 USD at standard store rates, or cash out for $108.50 USD via DevEx.',
+    shortAnswer: '31,000 Robux costs $387.50 USD at standard store rates, or cash out for $117.80 USD via DevEx.',
     explanation: `Purchasing 31,000 Robux at the standard baseline rate of $0.0125 per Robux costs $387.50 USD. Players who buy bulk packages or hold Premium subscriptions get extra bonus Robux with their purchase.
 
-Because 31,000 Robux exceeds the 30,000 Robux Developer Exchange threshold, eligible creators can cash this out via DevEx for $108.50 USD at the $0.0035 cash-out rate.
+Because 31,000 Robux exceeds the 30,000 Robux Developer Exchange threshold, eligible creators can cash this out via DevEx for $117.80 USD at the $0.0038 cash-out rate.
 
 Developers must ensure all 31,000 Robux were earned legitimately through game passes, developer products, or UGC item sales to qualify for DevEx payout.`,
-    workedExample: 'Store purchase: 31,000 × $0.0125 = $387.50 USD. DevEx cash-out: 31,000 × $0.0035 = $108.50 USD.',
+    workedExample: 'Store purchase: 31,000 × $0.0125 = $387.50 USD. DevEx cash-out: 31,000 × $0.0038 = $117.80 USD.',
     relatedToolId: 'robux-to-usd-calculator'
   },
   {
@@ -76,13 +76,13 @@ Developers must ensure all 31,000 Robux were earned legitimately through game pa
     gameName: 'Roblox',
     question: 'How much is 50,000 Robux in USD?',
     slug: 'how-much-is-50000-robux-in-usd',
-    shortAnswer: '50,000 Robux costs $625.00 USD at standard store rates, or cash out for $175.00 USD via DevEx.',
+    shortAnswer: '50,000 Robux costs $625.00 USD at standard store rates, or cash out for $190.00 USD via DevEx.',
     explanation: `At standard Roblox store rates ($0.0125 per Robux), 50,000 Robux has a retail store value of $625.00 USD. Buying large packs or official Roblox gift cards often grants bonus Robux.
 
-For Roblox developers using DevEx to withdraw their hard-earned game revenue, 50,000 Robux converts to $175.00 USD using the official $0.0035 per Robux conversion rate.
+For Roblox developers using DevEx to withdraw their hard-earned game revenue, 50,000 Robux converts to $190.00 USD using the official $0.0038 per Robux conversion rate.
 
 DevEx payments are processed monthly via Tipalti to verified developer bank accounts or PayPal.`,
-    workedExample: 'Store purchase: 50,000 × $0.0125 = $625.00 USD. DevEx cash-out: 50,000 × $0.0035 = $175.00 USD.',
+    workedExample: 'Store purchase: 50,000 × $0.0125 = $625.00 USD. DevEx cash-out: 50,000 × $0.0038 = $190.00 USD.',
     relatedToolId: 'robux-to-usd-calculator'
   },
   {
@@ -90,13 +90,13 @@ DevEx payments are processed monthly via Tipalti to verified developer bank acco
     gameName: 'Roblox',
     question: 'How much is 76,000 Robux in USD?',
     slug: 'how-much-is-76000-robux-in-usd',
-    shortAnswer: '76,000 Robux costs $950.00 USD at standard store rates, or cash out for $266.00 USD via DevEx.',
+    shortAnswer: '76,000 Robux costs $950.00 USD at standard store rates, or cash out for $288.80 USD via DevEx.',
     explanation: `Buying 76,000 Robux at the standard baseline store rate of $0.0125 per Robux equals $950.00 USD. Official store packages or Premium subscription tier bonuses lower the price per unit.
 
-Creators cashing out 76,000 Robux through the Developer Exchange (DevEx) receive $266.00 USD at the $0.0035 per Robux rate.
+Creators cashing out 76,000 Robux through the Developer Exchange (DevEx) receive $288.80 USD at the $0.0038 per Robux rate.
 
 Creators must satisfy account verification and tax reporting guidelines when submitting cash-out requests of this size.`,
-    workedExample: 'Store purchase: 76,000 × $0.0125 = $950.00 USD. DevEx cash-out: 76,000 × $0.0035 = $266.00 USD.',
+    workedExample: 'Store purchase: 76,000 × $0.0125 = $950.00 USD. DevEx cash-out: 76,000 × $0.0038 = $288.80 USD.',
     relatedToolId: 'robux-to-usd-calculator'
   },
   {
@@ -104,13 +104,13 @@ Creators must satisfy account verification and tax reporting guidelines when sub
     gameName: 'Roblox',
     question: 'How much is 100,000 Robux in USD?',
     slug: 'how-much-is-100000-robux-in-usd',
-    shortAnswer: '100,000 Robux costs $1,250.00 USD at standard store rates, or cash out for $350.00 USD via DevEx.',
+    shortAnswer: '100,000 Robux costs $1,250.00 USD at standard store rates, or cash out for $380.00 USD via DevEx.',
     explanation: `At standard store rates of $0.0125 per Robux, buying 100,000 Robux directly costs $1,250.00 USD. Heavy Robux buyers usually purchase $99.99 store tiers (10,000 Robux + 1,000 bonus) to maximize value.
 
-For successful Roblox developers and studio owners, cashing out 100,000 Robux via DevEx pays out $350.00 USD at the official $0.0035 cash-out rate.
+For successful Roblox developers and studio owners, cashing out 100,000 Robux via DevEx pays out $380.00 USD at the official $0.0038 cash-out rate.
 
 100,000 Robux is a common monthly benchmark for popular game developers and UGC creators.`,
-    workedExample: 'Store purchase: 100,000 × $0.0125 = $1,250.00 USD. DevEx cash-out: 100,000 × $0.0035 = $350.00 USD.',
+    workedExample: 'Store purchase: 100,000 × $0.0125 = $1,250.00 USD. DevEx cash-out: 100,000 × $0.0038 = $380.00 USD.',
     relatedToolId: 'robux-to-usd-calculator'
   },
   {
@@ -118,13 +118,13 @@ For successful Roblox developers and studio owners, cashing out 100,000 Robux vi
     gameName: 'Roblox',
     question: 'What is DevEx and how much Robux do you need to cash out?',
     slug: 'what-is-devex-and-how-much-robux-to-cash-out',
-    shortAnswer: 'DevEx (Developer Exchange) lets eligible Roblox creators convert earned Robux to real money. You need at least 30,000 Robux ($105.00 USD) to request a cash-out.',
+    shortAnswer: 'DevEx (Developer Exchange) lets eligible Roblox creators convert earned Robux to real money. You need at least 30,000 Robux ($114.00 USD) to request a cash-out.',
     explanation: `The Developer Exchange (DevEx) program is Roblox's official portal allowing game developers, UGC item creators, and shirt/pants designers to exchange earned Robux for real-world currency.
 
 To be eligible for DevEx, creators must meet key requirements: be at least 13 years old, possess an active Roblox Premium membership, maintain a verified email address, submit a government-issued ID, and have an account in good standing.
 
-The minimum threshold for cash-out is 30,000 earned Robux, which yields $105.00 USD at the standard DevEx exchange rate of $0.0035 USD per Robux. Robux acquired through trading, group payout transfers from non-earned sources, or gift cards do not qualify.`,
-    workedExample: 'At 30,000 Robux: 30,000 × $0.0035 = $105.00 USD minimum cash-out.',
+The minimum threshold for cash-out is 30,000 earned Robux, which yields $114.00 USD at the standard DevEx exchange rate of $0.0038 USD per Robux. Robux acquired through trading, group payout transfers from non-earned sources, or gift cards do not qualify.`,
+    workedExample: 'At 30,000 Robux: 30,000 × $0.0038 = $114.00 USD minimum cash-out.',
     relatedToolId: 'robux-to-usd-calculator'
   },
   {
@@ -346,11 +346,11 @@ Respawned dragons (summoned with four end crystals) are worth far less: 500 XP e
     gameName: 'Pokémon GO',
     question: 'How much XP do you need to reach level 40 in Pokémon GO?',
     slug: 'how-much-xp-to-reach-level-40-in-pokemon-go',
-    shortAnswer: 'Reaching level 40 takes 20,000,000 XP in total. The final step from level 39 to 40 alone is 5,000,000 XP.',
-    explanation: `Trainer levels are based on your lifetime XP total, so every catch, spin and friendship bonus counts toward the same 20 million. The curve is steep at the end: the last five levels (35–40) together cost more than everything before them.
+    shortAnswer: 'Reaching level 40 takes 3,953,000 XP in total under the rebalanced curve that went live on 15 October 2025 (before the rebalance it took 20,000,000 XP).',
+    explanation: `Trainer levels are based on your lifetime XP total, so every catch, spin and friendship bonus counts toward the same total.
 
-Level 40 used to be the game's maximum level; it is now the halfway point of the level 50 climb.`,
-    workedExample: 'Cumulative XP at level 39 = 15,000,000. 15,000,000 + 5,000,000 = 20,000,000 XP at level 40.',
+Niantic rebalanced the whole leveling curve on 15 October 2025 and raised the level cap from 50 to 80. Level 40 — once the game's maximum level — is now an early milestone: it needs less than a fifth of the XP it used to.`,
+    workedExample: 'Cumulative XP at level 30 = 1,083,000. 3,953,000 (level 40 total) − 1,083,000 (level 30 total) = 2,870,000 XP earned between levels 30 and 40.',
     relatedToolId: 'pokemon-go-level-calculator'
   },
   {
@@ -358,11 +358,11 @@ Level 40 used to be the game's maximum level; it is now the halfway point of the
     gameName: 'Pokémon GO',
     question: 'How much XP do you need to reach level 50 in Pokémon GO?',
     slug: 'how-much-xp-to-reach-level-50-in-pokemon-go',
-    shortAnswer: 'Level 50 takes 176,000,000 lifetime XP — and from level 41 upward you must also finish special research tasks at each level, XP alone is not enough.',
-    explanation: `Most of the climb is in the final ten levels: going from level 40 to level 50 needs 156 million XP, nearly eight times the entire road to level 40.
+    shortAnswer: 'Level 50 takes 12,753,000 lifetime XP under the rebalanced curve (before 15 October 2025 it took 176,000,000 XP). No research tasks gate levels 41–50 anymore — XP alone is enough.',
+    explanation: `Going from level 40 to level 50 needs 8,800,000 XP — a little over twice the entire road to level 40, instead of the nearly eight times it cost before the rebalance.
 
-From level 41, each level also gates on Level-Up Research — tasks like catching a set number of Pokémon or earning medals — so a huge XP bank does not level you up until the tasks are done too.`,
-    workedExample: '176,000,000 (level 50 total) − 20,000,000 (level 40 total) = 156,000,000 XP earned between levels 40 and 50.',
+The old Level-Up Research tasks for levels 41–50 were removed in the 15 October 2025 update; new Level-Up Research tasks now only gate levels 71–80, on the way to the new level 80 cap.`,
+    workedExample: '12,753,000 (level 50 total) − 3,953,000 (level 40 total) = 8,800,000 XP earned between levels 40 and 50.',
     relatedToolId: 'pokemon-go-level-calculator'
   },
   {

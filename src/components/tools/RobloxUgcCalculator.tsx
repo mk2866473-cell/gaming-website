@@ -8,7 +8,7 @@ import { Percent, DollarSign, Clock, Store, Info } from 'lucide-react';
 
 export type UgcSaleLocation = 'marketplace' | 'other-experience' | 'own-experience';
 
-export const UGC_DEVEX_RATE_USD = 0.0035;
+export const UGC_DEVEX_RATE_USD = 0.0038;
 export const UGC_DEVEX_MIN_ROBUX = 30000;
 export const UGC_ESCROW_DAYS = 30;
 
@@ -186,7 +186,7 @@ export default function RobloxUgcCalculator() {
 
           <div className="bg-zinc-950 border border-amber-500/40 rounded-xl p-4 text-center">
             <span className="text-[10px] uppercase font-bold text-amber-400 block">
-              DevEx USD Estimate ($0.0035 / R$)
+              DevEx USD Estimate ($0.0038 / R$)
             </span>
             <span className="text-2xl sm:text-3xl font-extrabold font-mono tabular-nums text-amber-400 my-1 block">
               ~${result.devexUsdEstimate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -214,7 +214,7 @@ export default function RobloxUgcCalculator() {
             <div className="space-y-1">
               <span className="font-bold text-white block">30-Day Escrow Hold &amp; DevEx Eligibility</span>
               <p className="text-zinc-400 text-[11px] leading-relaxed">
-                UGC commissions carry a <strong>30-day escrow hold</strong> before payout. USD values shown above are <strong>estimates</strong> at $0.0035/Robux — cashing out requires DevEx eligibility and at least <strong>30,000 Robux</strong>.
+                UGC commissions carry a <strong>30-day escrow hold</strong> before payout. USD values shown above are <strong>estimates</strong> at $0.0038/Robux — cashing out requires DevEx eligibility and at least <strong>30,000 Robux</strong>.
               </p>
             </div>
           </div>

@@ -43,7 +43,7 @@ export default function ModularGamingTool({ tool }: ModularGamingToolProps) {
     if (tool.id.includes('edpi')) return 0.32;
     if (tool.id.includes('ttk') || tool.id.includes('dps')) return 650;
     if (tool.id.includes('trade')) return 1;
-    if (tool.id.includes('robux')) return 0.0035;
+    if (tool.id.includes('robux')) return 0.0038;
     if (tool.id.includes('ping')) return 144;
     return 10;
   });

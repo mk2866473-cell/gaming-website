@@ -114,7 +114,7 @@ export default function RobloxGamepassRevenueCalculator() {
             ${stats.grossDevExUsd} <span className="text-xs font-normal text-zinc-400">USD</span>
           </span>
           <span className="text-[11px] text-zinc-500 font-mono">
-            @ $0.0035 / R$ DevEx rate
+            @ $0.0038 / R$ DevEx rate
           </span>
         </div>
 

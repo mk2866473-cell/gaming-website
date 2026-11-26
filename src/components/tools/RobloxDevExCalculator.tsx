@@ -18,7 +18,7 @@ export default function RobloxDevExCalculator() {
     const robux = Math.max(0, earnedRobux);
     const isEligible = robux >= ROBLOX_RATES.MIN_DEVEX_ROBUX;
     
-    // DevEx rate: $0.0035 per 1 Earned Robux
+    // DevEx rate: $0.0038 per 1 Earned Robux
     const grossUsd = robux * ROBLOX_RATES.DEVEX_RATE_PER_ROBUX;
     const taxWithheld = grossUsd * (usStateTaxPercent / 100);
     const netPayoutUsd = Math.max(0, grossUsd - taxWithheld - tipaltiFee);
@@ -59,7 +59,7 @@ export default function RobloxDevExCalculator() {
                 Eligible for Developer Exchange (DevEx)
               </span>
               <p className="text-xs text-zinc-400 mt-0.5">
-                Official Current Rate: $0.0035 USD per Earned Robux ($350 per 100k R$)
+                Official Current Rate: $0.0038 USD per Earned Robux ($380 per 100k R$)
               </p>
             </div>
           </div>
@@ -143,7 +143,7 @@ export default function RobloxDevExCalculator() {
             ${calculation.grossUsd}
           </span>
           <span className="text-[11px] text-zinc-500 font-mono">
-            @ $0.0035 / Robux
+            @ $0.0038 / Robux
           </span>
         </div>
 
