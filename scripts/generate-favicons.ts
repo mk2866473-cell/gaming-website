@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
 
-const SVG_PATH = path.resolve('public/favicon.svg');
+const SVG_PATH = path.resolve('public/logo.svg');
 const PUBLIC_DIR = path.resolve('public');
 
 async function generateFavicons() {
@@ -25,6 +25,9 @@ async function generateFavicons() {
       fs.writeFileSync(path.join(PUBLIC_DIR, `favicon-${size}x${size}.png`), pngBuf);
     }
   }
+
+  // Export 512x512 master logo.png for Organization JSON-LD and external consumers
+  fs.writeFileSync(path.join(PUBLIC_DIR, 'logo.png'), pngBuffers[512]);
 
   // Also create standard root favicon.png (48x48 for Google Search)
   fs.writeFileSync(path.join(PUBLIC_DIR, 'favicon.png'), pngBuffers[48]);

@@ -14,6 +14,7 @@ import ToolCard from '../components/ToolCard';
 import SEOHead from '../components/SEOHead';
 import { getGameIcon } from '../components/GameIcons';
 import AdLayout from '../components/ads/AdLayout';
+import BrandLogo from '../components/BrandLogo';
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -333,27 +334,21 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
         {/* 1 & 2. HERO SECTION                                      */}
         {/* ========================================================= */}
         <section className="relative pt-4 sm:pt-10 pb-2 text-center">
-          {/* Trust/Status Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 mb-4 rounded-full bg-[#0c122e] border border-indigo-900/60 text-[11px] text-slate-300">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_rgba(6,182,212,0.8)]" />
-            <span className="font-medium text-slate-300">Free • Browser-Based • Gaming Tools</span>
+          {/* Brand Lockup */}
+          <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-5 text-center sm:text-left">
+            <BrandLogo size="lg" className="!w-14 !h-14 sm:!w-16 sm:!h-16 !rounded-2xl shrink-0" />
+            <div>
+              <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[var(--text)] leading-none">
+                GamingTools<span className="text-[var(--primary-light)]">Hub</span>
+              </h1>
+              <p className="text-sm sm:text-lg font-medium text-[var(--text-soft)] mt-1.5">
+                Free Gaming Calculators &amp; Tools
+              </p>
+            </div>
           </div>
 
-          {/* Primary Headline */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-3xl mx-auto leading-tight sm:leading-tight mb-2.5">
-            Gaming Calculators{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-300 to-cyan-400">
-              & Tools
-            </span>
-          </h1>
-
-          {/* Supporting Headline */}
-          <p className="text-base sm:text-lg lg:text-xl font-semibold text-slate-200 tracking-tight mb-3">
-            Calculate. Optimize. Play Better.
-          </p>
-
           {/* Description */}
-          <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto mb-6 leading-relaxed">
+          <p className="text-xs sm:text-sm text-[var(--muted)] max-w-2xl mx-auto mb-6 leading-relaxed">
             Free browser-based calculators, generators, planners and gaming utilities for Minecraft, Pokémon GO, Palworld, Fortnite, Roblox and more.
           </p>
 

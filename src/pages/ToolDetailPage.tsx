@@ -853,11 +853,14 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
       />
 
       <div className="space-y-10">
-        {/* Placement: Tool Top Banner Ad */}
-        <AdLayout.ToolTop />
+        <div className="flex flex-col gap-6 md:grid md:grid-cols-12 md:gap-x-6 lg:gap-x-8 md:gap-y-10 items-start relative">
+        {/* Placement: Tool Top Banner Ad (below tool card on mobile, top of page on desktop) */}
+        <div className="w-full md:col-span-12 order-2 md:order-1">
+          <AdLayout.ToolTop />
+        </div>
 
         {/* Breadcrumb & Quick Back Navigation */}
-        <div className="space-y-3">
+        <div className="w-full md:col-span-12 order-1 md:order-2 space-y-3">
           <div className="flex items-center justify-between gap-3">
             <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
             <button
@@ -941,12 +944,10 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
           </div>
         </div>
 
-        {/* Main Content Grid with Desktop Sidebar */}
-        <div className="grid grid-cols-1 md:grid-cols-12 lg:grid-cols-12 gap-6 lg:gap-8 items-start relative">
-          {/* Main Column: Calculator + Explanations + FAQs (7-8 cols on desktop/tablet) */}
-          <div className="md:col-span-7 lg:col-span-8 space-y-8 min-w-0">
-            {/* The Interactive Tool Container */}
-            <div>
+        {/* Main Column: Calculator + Explanations + FAQs (7-8 cols on desktop/tablet) */}
+        <div className="contents md:block md:col-span-7 lg:col-span-8 md:space-y-8 min-w-0 md:order-3">
+          {/* The Interactive Tool Container */}
+          <div className="order-1 md:order-2">
               <React.Suspense fallback={
                 <div className="bg-[#0c122e] border border-indigo-900/60 rounded-2xl p-6 sm:p-8 space-y-4 animate-pulse">
                   <div className="flex items-center justify-between border-b border-indigo-900/40 pb-4">
@@ -970,8 +971,9 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
 
               {/* Placement 2: Tool After Result Banner */}
               <AdLayout.ToolAfterResult />
-            </div>
+          </div>
 
+          <div className="order-3 space-y-8">
             {/* Step-by-Step How To Guide */}
             <section className="bg-[#0e1422] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
               <div className="flex items-center gap-2.5 pb-3 border-b border-slate-800">
@@ -1268,13 +1270,14 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
               </section>
             )}
           </div>
+        </div>
 
-          {/* Desktop Sidebar Column (5 cols on md, 4 cols on lg/xl) */}
-          {/* Sits alongside on desktop/laptop/tablet, stays firmly stuck as user scrolls */}
-          <aside
-            className="md:col-span-5 lg:col-span-4 self-start sticky top-[72px] z-20 space-y-4 sticky-sidebar-fit w-full"
-            style={{ position: 'sticky', top: '72px', alignSelf: 'flex-start' }}
-          >
+        {/* Desktop Sidebar Column (5 cols on md, 4 cols on lg/xl) */}
+        {/* Sits alongside on desktop/laptop/tablet, stays firmly stuck as user scrolls */}
+        <aside
+          className="order-4 md:order-4 md:col-span-5 lg:col-span-4 self-start sticky top-[72px] z-20 space-y-4 sticky-sidebar-fit w-full"
+          style={{ position: 'sticky', top: '72px', alignSelf: 'flex-start' }}
+        >
             {/* Slot 1: tool-sidebar-1 ABOVE the first sidebar text block */}
             <AdLayout.ToolSidebar1 />
 

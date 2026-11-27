@@ -89,7 +89,7 @@ function renderNavHeader(activePath: string = ''): string {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 gap-4">
           <a href="/" class="flex items-center gap-2.5 group">
-            <span class="w-9 h-9 rounded-xl bg-[#0c122e] border border-indigo-900/60 flex items-center justify-center font-black text-violet-400 text-sm">🎮</span>
+            <img src="/logo.svg" alt="GamingToolsHub" class="w-9 h-9 rounded-xl" />
             <span class="font-extrabold text-base tracking-tight text-white">GamingTools<span class="text-violet-400">Hub</span></span>
           </a>
           <nav class="hidden md:flex items-center gap-6 text-xs text-slate-300">
@@ -114,10 +114,24 @@ function renderFooter(): string {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
         <div>
           <div class="flex items-center gap-2 mb-3">
-            <span class="w-7 h-7 rounded-lg bg-violet-500/10 border border-violet-500/30 flex items-center justify-center font-black text-violet-400 text-xs">G</span>
-            <span class="font-bold text-white text-sm">GamingToolsHub</span>
+            <img src="/logo.svg" alt="GamingToolsHub" class="w-7 h-7 rounded-lg" />
+            <span class="font-bold text-white text-sm">GamingTools<span class="text-[var(--primary-light)]">Hub</span></span>
           </div>
           <p class="text-slate-500 leading-relaxed text-xs">High-performance gaming calculators, circle generators, nether portal math, and conversion engines built for precision gameplay with zero server lag.</p>
+          <div class="flex items-center gap-3 mt-3">
+            <a href="https://www.pinterest.com/mehrankhan1213" target="_blank" rel="noopener noreferrer" aria-label="GamingToolsHub on Pinterest" class="text-[var(--muted)] hover:text-[var(--primary-light)] transition-colors inline-flex items-center justify-center p-1">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.237 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.6-.299-1.486c0-1.39.806-2.428 1.81-2.428.852 0 1.264.64 1.264 1.408 0 .858-.546 2.14-.828 3.33-.236.995.5 1.807 1.48 1.807 1.778 0 3.144-1.874 3.144-4.58 0-2.393-1.72-4.068-4.176-4.068-2.845 0-4.516 2.135-4.516 4.34 0 .859.331 1.781.745 2.281a.3.3 0 0 1 .069.288l-.278 1.133c-.044.183-.145.223-.335.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.965-.525-2.291-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/mehrankhan121314" target="_blank" rel="noopener noreferrer" aria-label="GamingToolsHub on Instagram" class="text-[var(--muted)] hover:text-[var(--primary-light)] transition-colors inline-flex items-center justify-center p-1">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+            </a>
+          </div>
         </div>
         <div>
           <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px] mb-3">Game Hubs</h4>
@@ -306,7 +320,7 @@ TOOLS.forEach(tool => {
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 gap-4">
               <a href="/" class="flex items-center gap-2.5 group">
-                <span class="w-8 h-8 rounded-lg bg-violet-500/10 border border-violet-500/30 flex items-center justify-center font-black text-violet-400 text-sm">G</span>
+                <img src="/logo.svg" alt="GamingToolsHub" class="w-8 h-8 rounded-lg" />
                 <span class="font-extrabold text-base tracking-tight text-white">GamingTools<span class="text-violet-400">Hub</span></span>
               </a>
               <nav class="hidden md:flex items-center gap-6 text-xs text-slate-300">
@@ -465,9 +479,7 @@ TOOLS.forEach(tool => {
         </main>
 
         <!-- Static Footer -->
-        <footer class="border-t border-slate-800/80 bg-[#060910] py-8 text-center text-xs text-slate-500">
-          <p>© 2026 GamingToolsHub. Built for high-performance precision gaming calculations.</p>
-        </footer>
+        ${renderFooter()}
       </div>
     </div>
   `;
@@ -1439,9 +1451,14 @@ function generateHomePageHtml(): string {
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-12">
           <!-- Hero Section -->
           <div class="text-center max-w-3xl mx-auto pt-4 sm:pt-8 space-y-4">
-            <span class="inline-block text-xs font-mono font-bold text-violet-400 bg-violet-500/10 border border-violet-500/30 px-3 py-1 rounded-full uppercase tracking-wider">Zero Lag • 100% Free • Verified Math</span>
-            <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">Precision Gaming Calculators & Blueprint Generators</h1>
-            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+            <div class="inline-flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 text-center sm:text-left">
+              <img src="/logo.svg" alt="GamingToolsHub" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl shrink-0" />
+              <div>
+                <h1 class="text-3xl sm:text-5xl font-bold text-[var(--text)] tracking-tight leading-none">GamingTools<span class="text-[var(--primary-light)]">Hub</span></h1>
+                <p class="text-sm sm:text-lg font-medium text-[var(--text-soft)] mt-1.5">Free Gaming Calculators &amp; Tools</p>
+              </div>
+            </div>
+            <p class="text-sm sm:text-base text-[var(--muted)] leading-relaxed">
               Fast, browser-based gaming tools with instant client-side calculation. Pixel-perfect Minecraft circle builders, 8:1 nether portal linkers, 30% Robux tax models, Pokémon GO PvP rankings, and Palworld breeding calculators.
             </p>
             <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
@@ -2243,7 +2260,7 @@ const clean404Html = `<!doctype html>
   <body>
     <header>
       <a href="/" class="brand">
-        <span class="brand-badge">G</span>
+        <img src="/logo.svg" alt="GamingToolsHub" width="32" height="32" style="width:2rem;height:2rem;border-radius:0.5rem;display:block;" />
         <span>GamingTools<span class="brand-highlight">Hub</span></span>
       </a>
       <nav>

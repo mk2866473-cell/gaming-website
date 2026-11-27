@@ -1,10 +1,55 @@
 @import "tailwindcss";
 
+:root {
+  /* primitives */
+  --navy-950: #070b19;
+  --navy-900: #0c122e;
+  --navy-800: #111936;
+  --indigo-line: #232a52;
+  --violet-500: #8B5CF6;
+  --violet-400: #a78bfa;
+  --cyan-400: #22d3ee;
+  --slate-100: #f1f5f9;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  /* semantic */
+  --bg: var(--navy-950);
+  --surface: var(--navy-900);
+  --surface-raised: var(--navy-800);
+  --border: var(--indigo-line);
+  --primary: var(--violet-500);
+  --primary-light: var(--violet-400);
+  --accent: var(--cyan-400);
+  --text: var(--slate-100);
+  --text-soft: var(--slate-300);
+  --muted: var(--slate-400);
+  --radius: 16px;
+  /* typography */
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+@theme {
+  --color-bg: #070b19;
+  --color-surface: #0c122e;
+  --color-raised: #111936;
+  --color-line: #232a52;
+  --color-primary: #8B5CF6;
+  --color-primarylight: #a78bfa;
+  --color-accent: #22d3ee;
+  --color-ink: #f1f5f9;
+  --color-inksoft: #cbd5e1;
+  --color-muted: #94a3b8;
+}
+
 @layer base {
   body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #070b19;
-    color: #e2e8f0;
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
   }
   code, pre, .font-mono {
     font-family: 'JetBrains Mono', monospace;
