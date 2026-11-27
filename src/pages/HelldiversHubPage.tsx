@@ -111,65 +111,60 @@ export default function HelldiversHubPage({ onNavigate }: HelldiversHubPageProps
       <AdLayout.HubTop currentPath="/helldivers-2" />
 
       {/* Hero Header */}
-      <div className="bg-gradient-to-b from-[#090d1a] via-[#070a14] to-[#05070f] border-b border-zinc-800/80 pt-8 pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 space-y-6">
+        <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="space-y-3 max-w-3xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFE900]/10 border border-[#FFE900]/30 text-[#FFE900] text-xs font-mono font-bold uppercase tracking-widest">
-                <Crosshair className="w-3.5 h-3.5 animate-pulse" />
-                Super Earth Logistics Hub (2026 Verified)
+          <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-5">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="flex items-start gap-4 max-w-3xl">
+                <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                  {getGameIcon('helldivers-2', 'w-7 h-7')}
+                </div>
+                <div className="space-y-2 min-w-0">
+                  <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                    Helldivers 2 Utilities & Calculators
+                  </h1>
+                  <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed">
+                    All {helldiversTools.length} official Helldivers 2 tactical calculators: Recoil pattern visualizers, enemy weakness counter matrix, armor tier lists, super credits farm planners, and live galactic war map trackers.
+                  </p>
+                  <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                    {helldiversTools.length} tools
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Search & Tag Filter Bar */}
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <div className="relative flex-1 w-full">
+                <Search className="w-4 h-4 text-[var(--muted)] absolute left-3.5 top-3.5" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  aria-label="Search Helldivers 2 tools"
+                  onChange={e => setSearchQuery(e.target.value)}
+                  placeholder="Search Helldivers 2 tools (e.g. Recoil, Armor, Super Credits, Enemies)..."
+                  className="w-full bg-[var(--bg)] border border-[var(--border)] rounded-[12px] pl-10 pr-4 py-2.5 text-xs text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--primary)] transition"
+                />
               </div>
 
-              <h1 className="text-3xl sm:text-5xl font-black text-white tracking-wide uppercase flex items-center gap-3 sm:gap-4 flex-wrap">
-                <span className="p-2 sm:p-2.5 rounded-2xl bg-yellow-950/80 border border-yellow-500/40 shadow-lg inline-flex items-center justify-center shrink-0">
-                  {getGameIcon('helldivers-2', 'w-8 h-8 sm:w-11 sm:h-11')}
-                </span>
-                <span>Helldivers 2 <span className="text-[#FFE900]">Utilities & Calculators</span></span>
-              </h1>
-
-              <p className="text-sm sm:text-base text-zinc-300 leading-relaxed">
-                All 16 official Helldivers 2 tactical calculators: Recoil pattern visualizers, enemy weakness counter matrix, armor tier lists, super credits farm planners, and live galactic war map trackers.
-              </p>
-            </div>
-
-            {/* Quick Stat Card */}
-            <div className="bg-zinc-950/80 border-2 border-[#FFE900]/40 rounded-2xl p-5 shadow-2xl shrink-0 space-y-2 text-center min-w-[220px]">
-              <span className="text-[10px] font-mono uppercase text-zinc-400 block">AVAILABLE TOOLS</span>
-              <div className="text-3xl font-black text-[#FFE900] font-mono">16 Utilities</div>
-              <span className="text-[10px] font-mono text-emerald-400 font-bold block">✓ 100% Free & Updated 2026</span>
-            </div>
-          </div>
-
-          {/* Search & Tag Filter Bar */}
-          <div className="pt-4 flex flex-col sm:flex-row items-center gap-3">
-            <div className="relative flex-1 w-full">
-              <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-3.5" />
-              <input
-                type="text"
-                value={searchQuery}
-                aria-label="Search Helldivers 2 tools"
-                onChange={e => setSearchQuery(e.target.value)}
-                placeholder="Search 16 Helldivers 2 tools (e.g. Recoil, Armor, Super Credits, Enemies)..."
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFE900] transition"
-              />
-            </div>
-
-            <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
-              {tagsList.map(tag => (
-                <button
-                  key={tag.id}
-                  onClick={() => setSelectedTag(tag.id)}
-                  className={`px-3 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap cursor-pointer transition border ${
-                    selectedTag === tag.id
-                      ? 'bg-[#FFE900] text-black border-[#FFE900] shadow'
-                      : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-white'
-                  }`}
-                >
-                  {tag.label}
-                </button>
-              ))}
+              <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
+                {tagsList.map(tag => (
+                  <button
+                    key={tag.id}
+                    type="button"
+                    onClick={() => setSelectedTag(tag.id)}
+                    className={`px-3 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap cursor-pointer transition border ${
+                      selectedTag === tag.id
+                        ? 'bg-[#FFE900] text-black border-[#FFE900] shadow'
+                        : 'bg-[var(--bg)] border-[var(--border)] text-[var(--text-soft)] hover:text-[var(--text)]'
+                    }`}
+                  >
+                    {tag.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -202,7 +197,7 @@ export default function HelldiversHubPage({ onNavigate }: HelldiversHubPageProps
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {filteredTools.map((tool, idx) => (
                   <React.Fragment key={tool.id}>
                     {idx === 9 && <AdLayout.HubInFeed />}
@@ -308,7 +303,7 @@ export default function HelldiversHubPage({ onNavigate }: HelldiversHubPageProps
                         {isOpen ? (
                           <ChevronUp className="w-4 h-4 text-[#FFE900] flex-shrink-0" />
                         ) : (
-                          <ChevronDown className="w-4 h-4 text-zinc-500 flex-shrink-0" />
+                          <ChevronDown className="w-4 h-4 text-[var(--muted)] flex-shrink-0" />
                         )}
                       </button>
 
@@ -346,21 +341,21 @@ export default function HelldiversHubPage({ onNavigate }: HelldiversHubPageProps
 
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div className="bg-black p-2.5 rounded-xl border border-zinc-800">
-                    <span className="text-[10px] text-zinc-500 block">Game</span>
+                    <span className="text-[10px] text-[var(--muted)] block">Game</span>
                     <span className="font-bold text-[#FFE900]">Helldivers 2</span>
                   </div>
                   <div className="bg-black p-2.5 rounded-xl border border-zinc-800">
-                    <span className="text-[10px] text-zinc-500 block">Tools</span>
-                    <span className="font-bold text-white">16 Utilities</span>
+                    <span className="text-[10px] text-[var(--muted)] block">Tools</span>
+                    <span className="font-bold text-white">{helldiversTools.length} Utilities</span>
                   </div>
                   <div className="bg-black p-2.5 rounded-xl border border-zinc-800">
-                    <span className="text-[10px] text-zinc-500 block">Rating</span>
+                    <span className="text-[10px] text-[var(--muted)] block">Rating</span>
                     <span className="font-bold text-amber-400 flex items-center gap-1">
                       <Star className="w-3 h-3 fill-current" /> 4.98 / 5.0
                     </span>
                   </div>
                   <div className="bg-black p-2.5 rounded-xl border border-zinc-800">
-                    <span className="text-[10px] text-zinc-500 block">Active Divers</span>
+                    <span className="text-[10px] text-[var(--muted)] block">Active Divers</span>
                     <span className="font-mono font-bold text-emerald-400">180k+ Squads</span>
                   </div>
                 </div>

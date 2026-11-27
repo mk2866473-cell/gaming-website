@@ -41,33 +41,34 @@ export default function QaGameHubPage({ gameSlug, onNavigate }: QaGameHubPagePro
         {/* Top Ad Slot */}
         <AdLayout.HubTop currentPath={currentPath} />
 
-        {/* Hero Section */}
-        <div className="relative rounded-3xl bg-gradient-to-br from-violet-950/70 via-indigo-950/60 to-[#0c122e] border border-violet-500/40 p-6 sm:p-10 overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10 max-w-4xl space-y-5">
-            <button
-              type="button"
-              onClick={() => onNavigate('/qa')}
-              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-violet-300 hover:text-white bg-violet-950/60 border border-violet-500/40 px-3 py-1 rounded-full transition-colors cursor-pointer"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>All Game Q&A Hubs</span>
-            </button>
-
-            <div className="flex items-start gap-4 sm:gap-5">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#070b19]/90 border border-violet-500/40 p-3 flex items-center justify-center shadow-xl shrink-0">
-                {getGameIcon(gameSlug, 'w-full h-full')}
+        {/* Hub Header */}
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-4">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex items-start gap-4 min-w-0">
+              <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                {getGameIcon(gameSlug, 'w-7 h-7')}
               </div>
-              <div className="space-y-2">
-                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-                  {gameName} Questions & Answers
+              <div className="space-y-2 min-w-0">
+                <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                  {gameName} Questions &amp; Answers
                 </h1>
-                <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
+                <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
                   Quick, accurate answers to the most searched {gameName} questions, rates, and values.
+                </p>
+                <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                  {entries.length} questions
                 </p>
               </div>
             </div>
+
+            <button
+              type="button"
+              onClick={() => onNavigate('/qa')}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--primary-light)] hover:text-[var(--accent)] transition-colors cursor-pointer shrink-0"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>All Game Q&amp;A Hubs</span>
+            </button>
           </div>
         </div>
 

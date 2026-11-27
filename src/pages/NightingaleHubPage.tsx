@@ -98,39 +98,32 @@ export default function NightingaleHubPage({ onNavigate }: NightingaleHubPagePro
       {/* Hub Top Banner Ad Slot */}
       <AdLayout.HubTop />
 
-      {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-950 via-slate-900 to-zinc-950 border border-emerald-500/20 p-6 sm:p-8 lg:p-10 shadow-2xl">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="relative z-10 space-y-4">
-          <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
+      {/* Unified Hub Header */}
+      <div className="space-y-4">
+        <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start gap-4">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center p-3 shadow-xl shrink-0">
-                <NightingaleIcon className="w-full h-full" />
+              <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                <NightingaleIcon className="w-7 h-7" />
               </div>
-              <div>
-                <div className="flex flex-wrap items-center gap-2 mb-2 text-xs font-mono">
-                  <span className="font-bold uppercase tracking-wider text-emerald-400">
-                    Fae Realm Cartography
-                  </span>
-                  <span className="text-zinc-600">·</span>
-                  <span className="text-zinc-400">5 Gaslamp Engines</span>
-                  <span className="text-zinc-600">·</span>
-                  <span className="text-teal-400">Inflexion Games Engine</span>
-                </div>
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+              <div className="space-y-2 max-w-2xl">
+                <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
                   Nightingale Tools Hub
                 </h1>
-                <p className="text-slate-300 text-xs sm:text-sm max-w-2xl mt-1 leading-relaxed">
+                <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed">
                   Master the Fae Realms: Realm Card portal crafting matrix, Realmic Transmuter minor cards, equipped Gear Score gating, material heritage stats, and Essence Trader schematics.
                 </p>
+                <div className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                  {nightingaleTools.length} tools
+                </div>
               </div>
             </div>
 
             <button
               onClick={handleShare}
-              className="self-start sm:self-auto px-4 py-2.5 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 rounded-xl text-xs font-medium text-slate-200 transition-all flex items-center space-x-2 shadow-sm"
+              className="self-start sm:self-auto px-4 py-2.5 bg-[var(--surface-raised)] hover:bg-slate-800 border border-[var(--border)] rounded-xl text-xs font-medium text-[var(--text)] transition-all flex items-center space-x-2 shrink-0"
             >
               <Share2 className="w-4 h-4 text-emerald-400" />
               <span>{copiedLink ? 'Link Copied!' : 'Share Hub'}</span>
@@ -138,14 +131,15 @@ export default function NightingaleHubPage({ onNavigate }: NightingaleHubPagePro
           </div>
 
           {/* Search & Category Filter Pills */}
-          <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <div className="pt-4 border-t border-[var(--border)] flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             <div className="relative flex-1">
               <input
                 type="text"
+                aria-label="Search Nightingale tools"
                 placeholder="Search Nightingale tools (e.g., realm cards, gear score, sun giant ingot)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-950/80 border border-slate-800 rounded-xl py-3 pl-10 pr-4 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 transition-colors"
+                className="w-full bg-slate-950/80 border border-slate-800 rounded-xl py-3 pl-10 pr-4 text-sm text-white placeholder-[var(--muted)] focus:outline-none focus:border-emerald-500 transition-colors"
               />
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
             </div>
@@ -260,7 +254,7 @@ export default function NightingaleHubPage({ onNavigate }: NightingaleHubPagePro
                   {isOpen ? (
                     <ChevronUp className="w-4 h-4 text-emerald-400 shrink-0" />
                   ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />
+                    <ChevronDown className="w-4 h-4 text-[var(--muted)] shrink-0" />
                   )}
                 </button>
                 {isOpen && (

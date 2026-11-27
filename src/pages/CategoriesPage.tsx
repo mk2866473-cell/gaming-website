@@ -9,6 +9,7 @@ import { CATEGORIES, TOOLS } from '../data/gamesAndTools';
 import Breadcrumbs from '../components/Breadcrumbs';
 import SEOHead from '../components/SEOHead';
 import ToolCard from '../components/ToolCard';
+import BrandLogo from '../components/BrandLogo';
 
 interface CategoriesPageProps {
   selectedCategoryId?: string | null;
@@ -27,6 +28,7 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
 
 export default function CategoriesPage({ selectedCategoryId, onNavigate }: CategoriesPageProps) {
   const activeCat = CATEGORIES.find(c => c.id === selectedCategoryId || c.slug === selectedCategoryId);
+  const displayedTools = TOOLS.filter(t => !activeCat || t.categoryId === activeCat.id);
   const breadcrumbs = [
     { name: 'Categories', path: '/categories' },
     ...(activeCat ? [{ name: activeCat.name, path: `/categories?cat=${activeCat.id}` }] : [])
@@ -44,19 +46,26 @@ export default function CategoriesPage({ selectedCategoryId, onNavigate }: Categ
       <div className="space-y-8">
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-indigo-950/80">
-            <div>
-              <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-                {activeCat ? `${activeCat.name}` : 'Browse Tools by Category'}
-              </h1>
-              <p className="text-xs sm:text-sm text-slate-400 mt-1">
-                {activeCat ? activeCat.description : 'Find gaming tools structured by functional type.'}
-              </p>
+          <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+            <div className="flex items-start gap-4 min-w-0">
+              <BrandLogo size="lg" className="!rounded-[12px] shrink-0" />
+              <div className="space-y-2 min-w-0">
+                <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                  {activeCat ? `${activeCat.name}` : 'Browse Tools by Category'}
+                </h1>
+                <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
+                  {activeCat ? activeCat.description : 'Find gaming tools structured by functional type.'}
+                </p>
+                <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                  {displayedTools.length} tools
+                </p>
+              </div>
             </div>
             {activeCat && (
               <button
+                type="button"
                 onClick={() => onNavigate('/categories')}
-                className="text-xs font-semibold text-violet-400 hover:text-cyan-300 self-start sm:self-auto transition-colors"
+                className="text-xs font-semibold text-[var(--primary-light)] hover:text-[var(--accent)] self-start transition-colors shrink-0"
               >
                 ← View All Categories
               </button>

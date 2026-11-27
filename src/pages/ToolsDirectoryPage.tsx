@@ -7,6 +7,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Search, ArrowUpDown } from 'lucide-react';
 import { TOOLS, GAMES, CATEGORIES, ToolItem, getGameById } from '../data/gamesAndTools';
 import ToolCard from '../components/ToolCard';
+import BrandLogo from '../components/BrandLogo';
 import Breadcrumbs from '../components/Breadcrumbs';
 import SEOHead from '../components/SEOHead';
 
@@ -94,42 +95,47 @@ export default function ToolsDirectoryPage({ onNavigate }: ToolsDirectoryPagePro
       <div className="space-y-8">
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-indigo-950/80">
-            <div>
-              <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-                All Gaming Tools & Calculators
-              </h1>
-              <p className="text-xs sm:text-sm text-slate-400 mt-1">
-                Explore our full catalog of verified theorycrafting utilities across Minecraft, Palworld, Genshin Impact, FPS, Pokémon GO, Fortnite, and Roblox.
-              </p>
+          <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8">
+            <div className="flex items-start gap-4">
+              <BrandLogo size="lg" className="!rounded-[12px] shrink-0" />
+              <div className="space-y-2 min-w-0">
+                <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                  All Gaming Tools &amp; Calculators
+                </h1>
+                <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
+                  Explore our full catalog of verified theorycrafting utilities across Minecraft, Palworld, Genshin Impact, FPS, Pokémon GO, Fortnite, and Roblox.
+                </p>
+                <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                  {filteredTools.length} tools
+                </p>
+              </div>
             </div>
-            <span className="text-xs font-mono text-violet-300 bg-violet-950/60 px-3 py-1.5 rounded-lg border border-violet-800/40 self-start sm:self-auto">
-              {filteredTools.length} {filteredTools.length === 1 ? 'Tool' : 'Tools'} Available
-            </span>
           </div>
         </div>
 
         {/* Filter Controls Bar */}
-        <div className="bg-[#0c122e] border border-indigo-900/60 rounded-xl p-4 sm:p-5 space-y-4">
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-4 sm:p-5 space-y-4">
           {/* Search Row */}
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
-              <Search className="w-4 h-4 text-violet-400/80 absolute left-3 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-[var(--primary-light)] absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true" />
               <input
                 type="text"
+                aria-label="Filter tools by name, keyword, or mechanics tag"
                 placeholder="Filter tools by name, keyword, or mechanics tag..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#070b19] border border-indigo-900/60 rounded-lg pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500/30 transition-colors"
+                className="w-full bg-[var(--bg)] border border-[var(--border)] rounded-lg pl-9 pr-3 py-2 text-xs text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)]/30 transition-colors"
               />
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-xs text-slate-400 whitespace-nowrap">Sort:</span>
+              <span className="text-xs text-[var(--muted)] whitespace-nowrap">Sort:</span>
               <select
+                aria-label="Sort tools"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="bg-[#070b19] border border-indigo-900/60 rounded-lg px-2.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-violet-500 cursor-pointer"
+                className="bg-[var(--bg)] border border-[var(--border)] rounded-lg px-2.5 py-2 text-xs text-[var(--text)] focus:outline-none focus:border-[var(--primary)] cursor-pointer"
               >
                 <option value="popularity">Most Popular</option>
                 <option value="rating">Highest Rated</option>
@@ -197,7 +203,7 @@ export default function ToolsDirectoryPage({ onNavigate }: ToolsDirectoryPagePro
 
         {/* Tools Results Grid */}
         {filteredTools.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredTools.map((tool) => (
               <ToolCard
                 key={tool.id}
@@ -208,9 +214,9 @@ export default function ToolsDirectoryPage({ onNavigate }: ToolsDirectoryPagePro
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 bg-[#0c122e] border border-indigo-900/60 rounded-xl space-y-3">
-            <p className="text-base text-slate-300 font-medium">No tools found matching your active filters.</p>
-            <p className="text-xs text-slate-500">Try adjusting your search query, or reset game and category filters.</p>
+          <div className="text-center py-16 bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] space-y-3">
+            <p className="text-base text-[var(--text)] font-medium">No tools found matching your active filters.</p>
+            <p className="text-xs text-[var(--muted)]">Try adjusting your search query, or reset game and category filters.</p>
             <button
               onClick={() => {
                 setSearchQuery('');

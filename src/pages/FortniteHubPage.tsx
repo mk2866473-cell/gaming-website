@@ -77,43 +77,45 @@ export default function FortniteHubPage({ onNavigate }: FortniteHubPageProps) {
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-          <div className="relative rounded-3xl bg-gradient-to-br from-amber-950/60 via-zinc-900 to-zinc-950 border border-amber-500/30 p-6 sm:p-10 overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950/80 border border-amber-500/40 text-amber-300 text-xs font-mono font-bold">
-                <Crosshair className="w-3.5 h-3.5 text-amber-400" />
-                <span>Dedicated Fortnite Battle Royale & Creative Suite</span>
+          <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-5">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                {getGameIcon('fortnite', 'w-7 h-7')}
               </div>
+              <div className="space-y-2 min-w-0">
+                <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                  Fortnite Calculators & Aim Utilities
+                </h1>
+                <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
+                  Precision Battle Pass pacing calculators, 80k XP curve planners, cross-game mouse sensitivity converters, weapon TTK simulators, and tournament storm circle timers.
+                </p>
+                <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                  {fortniteTools.length} tools
+                </p>
+              </div>
+            </div>
 
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight flex items-center gap-3 sm:gap-4 flex-wrap">
-                <span className="p-2 sm:p-2.5 rounded-2xl bg-amber-950/80 border border-amber-500/40 shadow-lg inline-flex items-center justify-center shrink-0">
-                  {getGameIcon('fortnite', 'w-8 h-8 sm:w-11 sm:h-11')}
-                </span>
-                <span>Fortnite Calculators & Aim Utilities</span>
-              </h1>
-
-              <p className="text-sm sm:text-base text-zinc-300 leading-relaxed">
-                Precision Battle Pass pacing calculators, 80k XP curve planners, cross-game mouse sensitivity converters, weapon TTK simulators, and tournament storm circle timers.
-              </p>
-
-              {/* Quick Search */}
-              <div className="pt-2 max-w-lg">
-                <div className="flex items-center gap-2 px-3.5 py-2.5 bg-zinc-950/90 border border-zinc-700/80 rounded-xl shadow-lg">
-                  <Search className="w-4 h-4 text-amber-400 flex-shrink-0" />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search XP, battle pass, sensitivity, damage, storm..."
-                    className="w-full bg-transparent text-xs text-white placeholder-zinc-500 focus:outline-none"
-                  />
-                  {searchQuery && (
-                    <button onClick={() => setSearchQuery('')} className="text-xs text-zinc-400 hover:text-white">
-                      Clear
-                    </button>
-                  )}
-                </div>
+            {/* Quick Search */}
+            <div className="max-w-lg">
+              <div className="flex items-center gap-2 px-3.5 py-2.5 bg-[var(--bg)] border border-[var(--border)] rounded-[12px] focus-within:border-[var(--primary)] transition-colors">
+                <Search className="w-4 h-4 text-[var(--primary-light)] flex-shrink-0" />
+                <input
+                  type="text"
+                  aria-label="Search Fortnite tools"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search XP, battle pass, sensitivity, damage, storm..."
+                  className="w-full bg-transparent text-xs text-[var(--text)] placeholder-[var(--muted)] focus:outline-none"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    className="text-xs text-[var(--text-soft)] hover:text-[var(--text)]"
+                  >
+                    Clear
+                  </button>
+                )}
               </div>
             </div>
           </div>

@@ -151,7 +151,7 @@ export default function AdSlot({
           <button
             onClick={() => setIsDismissed(true)}
             aria-label="Close advertisement"
-            className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-1 text-slate-400 hover:text-white rounded bg-slate-800/80 transition-colors"
+            className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-1 text-[var(--muted)] hover:text-[var(--text)] rounded bg-[var(--surface-raised)] transition-colors"
           >
             <X className="w-3.5 h-3.5" />
           </button>
@@ -171,15 +171,14 @@ export default function AdSlot({
       className={`w-full select-none ${className}`}
     >
       {/* Standard IAB disclosure label */}
-      <div className="text-[9px] font-mono uppercase tracking-widest text-slate-500 mb-1 text-center flex items-center justify-center gap-1.5">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+      <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)] mb-1 text-center flex items-center justify-center">
         <span>{label || ADS_CONFIG.disclosureLabel}</span>
       </div>
 
       {/* Primary reserved ad wrapper with fixed height to eliminate CLS */}
       <div
         data-ad-wrapper={targetPlacement}
-        className={`rounded-xl bg-[#090d18] border border-slate-800/90 shadow-md flex justify-center items-center ${reservedSizeClass}`}
+        className={`rounded-[12px] bg-[var(--surface)] border border-dashed border-[var(--border)] flex justify-center items-center ${reservedSizeClass}`}
       >
         {children ? (
           <div className="w-full h-full flex justify-center items-center overflow-hidden">

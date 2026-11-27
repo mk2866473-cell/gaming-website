@@ -102,44 +102,40 @@ export default function OnceHumanHubPage({ onNavigate }: OnceHumanHubPageProps) 
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-          <div className="relative rounded-3xl bg-gradient-to-br from-purple-950/70 via-slate-900 to-amber-950/80 border border-purple-500/30 p-6 sm:p-10 overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/80 border border-purple-500/40 text-purple-300 text-xs font-mono font-bold">
-                <OnceHumanIcon className="w-4 h-4" />
-                <span>Once Human Engineering Suite • 2026 Season Meta</span>
+          <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-5">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                <OnceHumanIcon className="w-7 h-7 text-purple-400" />
               </div>
+              <div className="space-y-2 min-w-0">
+                <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                  Once Human Calculators & Survival Tools
+                </h1>
+                <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
+                  Complete verified suite of {onceHumanTools.length} professional Once Human tools: 1★ to 5★ Blueprint Star Upgrade & Fragment XP Calculator, Interactive Tactical Map & Mystical Crate Checklist, Base Power Grid & Automated Acid Farming Calculator, Weapon Calibration & Stat Modifier Tool, Season Cradle Override Build Planner, Deviance Mood & Energy Recovery Optimizer, Memetic Specialization & Re-roll Planner, and Monolith Boss & Prime War Loot Matrix.
+                </p>
+                <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                  {onceHumanTools.length} tools
+                </p>
+              </div>
+            </div>
 
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight flex items-center gap-3 sm:gap-4 flex-wrap">
-                <span className="p-2 sm:p-2.5 rounded-2xl bg-purple-950/80 border border-purple-500/40 shadow-lg inline-flex items-center justify-center shrink-0">
-                  <OnceHumanIcon className="w-8 h-8 sm:w-11 sm:h-11 text-purple-400" />
-                </span>
-                <span>Once Human Calculators & Survival Tools</span>
-              </h1>
-
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                Complete verified suite of 8 professional Once Human tools: 1★ to 5★ Blueprint Star Upgrade & Fragment XP Calculator, Interactive Tactical Map & Mystical Crate Checklist, Base Power Grid & Automated Acid Farming Calculator, Weapon Calibration & Stat Modifier Tool, Season Cradle Override Build Planner, Deviance Mood & Energy Recovery Optimizer, Memetic Specialization & Re-roll Planner, and Monolith Boss & Prime War Loot Matrix.
-              </p>
-
-              {/* Quick Metrics Bar */}
-              <div className="pt-2 flex flex-wrap gap-4 sm:gap-6 text-xs font-mono">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800">
-                  <span className="w-2 h-2 rounded-full bg-amber-400" />
-                  <span className="text-slate-400">Max Blueprint XP:</span>
-                  <span className="text-amber-300 font-bold">29,600 XP</span>
-                </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800">
-                  <span className="w-2 h-2 rounded-full bg-purple-400" />
-                  <span className="text-slate-400">Same-Name Bonus:</span>
-                  <span className="text-purple-300 font-bold">160 XP (2x)</span>
-                </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span className="text-slate-400">Active Cradle Nodes:</span>
-                  <span className="text-emerald-300 font-bold">8 Slots</span>
-                </div>
+            {/* Quick Metrics Bar */}
+            <div className="flex flex-wrap gap-3 text-xs font-mono">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--bg)] border border-[var(--border)]">
+                <span className="w-2 h-2 rounded-full bg-amber-400" />
+                <span className="text-[var(--text-soft)]">Max Blueprint XP:</span>
+                <span className="text-amber-300 font-bold">29,600 XP</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--bg)] border border-[var(--border)]">
+                <span className="w-2 h-2 rounded-full bg-purple-400" />
+                <span className="text-[var(--text-soft)]">Same-Name Bonus:</span>
+                <span className="text-purple-300 font-bold">160 XP (2x)</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--bg)] border border-[var(--border)]">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span className="text-[var(--text-soft)]">Active Cradle Nodes:</span>
+                <span className="text-emerald-300 font-bold">8 Slots</span>
               </div>
             </div>
           </div>
@@ -153,13 +149,14 @@ export default function OnceHumanHubPage({ onNavigate }: OnceHumanHubPageProps) 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
             {/* Search Input */}
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3.5 top-3.5 w-4 h-4 text-slate-400 pointer-events-none" />
+              <Search className="absolute left-3.5 top-3.5 w-4 h-4 text-[var(--muted)] pointer-events-none" />
               <input
                 type="text"
+                aria-label="Search Once Human tools"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search tools, mechanics, blueprints, or materials..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-purple-500 transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] text-[var(--text)] placeholder-[var(--muted)] text-sm focus:outline-none focus:border-[var(--primary)] transition-colors"
               />
             </div>
 

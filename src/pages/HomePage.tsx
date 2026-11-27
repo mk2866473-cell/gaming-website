@@ -4,12 +4,12 @@
  */
 
 import React, { useState, useMemo } from 'react';
-import { 
-  Zap, ArrowRight, Search, ChevronDown, ChevronUp,
-  Award, Shield, Swords, Layers, Box, Compass, Calculator,
-  Shapes, ArrowLeftRight, Clock, Dices, Crosshair, Gamepad2, Check
+import {
+  Zap, ArrowRight, ChevronDown, ChevronUp,
+  Shield, Compass, Calculator, Shapes,
+  ArrowLeftRight, Layers, Clock, Dices, Check
 } from 'lucide-react';
-import { TOOLS, GAMES, CATEGORIES, ToolItem, getGamePath, getGameById } from '../data/gamesAndTools';
+import { TOOLS, GAMES, ToolItem, getGamePath } from '../data/gamesAndTools';
 import ToolCard from '../components/ToolCard';
 import SEOHead from '../components/SEOHead';
 import { getGameIcon } from '../components/GameIcons';
@@ -18,180 +18,20 @@ import BrandLogo from '../components/BrandLogo';
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
-  onOpenSearch: () => void;
+  onOpenSearch?: () => void;
 }
 
-export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
+export default function HomePage({ onNavigate }: HomePageProps) {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-  const [heroSearch, setHeroSearch] = useState<string>('');
 
-  // 1. Popular Curated Games
-  const popularGames = useMemo(() => {
-    return [
-      {
-        id: 'ps99',
-        name: 'Pet Simulator 99',
-        subtitle: 'Values & Trading Suite',
-        description: 'WFL trade calculator, exclusive daycare diamond yields, enchant diminishing returns, and live RAP scam alerts.',
-        count: TOOLS.filter(t => t.gameId === 'ps99').length,
-        path: '/ps99',
-        icon: getGameIcon('ps99', 'w-5 h-5'),
-        accent: 'border-sky-500/30 group-hover:border-sky-500/60'
-      },
-      {
-        id: 'helldivers2',
-        name: 'Helldivers 2',
-        subtitle: 'Galactic War & Ballistics',
-        description: 'Recoil pattern visualizers, enemy weakness counter matrix, armor tier lists, super credit farm, and war map trackers.',
-        count: TOOLS.filter(t => t.gameId === 'helldivers2' || t.gameId === 'helldivers-2').length,
-        path: '/helldivers-2',
-        icon: getGameIcon('helldivers-2', 'w-5 h-5'),
-        accent: 'border-amber-500/30 group-hover:border-amber-500/60'
-      },
-      {
-        id: 'minecraft',
-        name: 'Minecraft',
-        subtitle: 'Java & Bedrock Parity',
-        description: 'Voxel circle generators, 3D Nether portal linkers, XP levels, redstone timings, and villager discounts.',
-        count: TOOLS.filter(t => t.gameId === 'minecraft').length,
-        path: getGamePath('minecraft'),
-        icon: getGameIcon('minecraft', 'w-5 h-5'),
-        accent: 'border-emerald-500/30 group-hover:border-emerald-500/60'
-      },
-      {
-        id: 'roblox',
-        name: 'Roblox',
-        subtitle: 'DevEx & Trading',
-        description: 'Robux to USD DevEx converter ($0.0038 rate), official 30% tax models, and Blox Fruits trading value evaluators.',
-        count: TOOLS.filter(t => t.gameId === 'roblox').length,
-        path: getGamePath('roblox'),
-        icon: getGameIcon('roblox', 'w-5 h-5'),
-        accent: 'border-rose-500/30 group-hover:border-rose-500/60'
-      },
-      {
-        id: 'growagarden',
-        name: 'Grow a Garden',
-        subtitle: 'Crop Values & Hatching Odds',
-        description: 'Calculate crop Sheckle sell values with weight scaling, variant multipliers, environmental mutation brackets, and pet egg odds.',
-        count: TOOLS.filter(t => t.gameId === 'growagarden' || t.gameId === 'grow-a-garden').length,
-        path: getGamePath('growagarden'),
-        icon: getGameIcon('growagarden', 'w-5 h-5'),
-        accent: 'border-emerald-500/30 group-hover:border-emerald-500/60'
-      },
-      {
-        id: 'fortnite',
-        name: 'Fortnite',
-        subtitle: 'Chapter 5 & Zero Build',
-        description: 'V-Bucks to real currency, weapon DPS & Zero Build TTK, Battle Pass XP curves, and storm phase survival timers.',
-        count: TOOLS.filter(t => t.gameId === 'fortnite').length,
-        path: getGamePath('fortnite'),
-        icon: getGameIcon('fortnite', 'w-5 h-5'),
-        accent: 'border-amber-500/30 group-hover:border-amber-500/60'
-      },
-      {
-        id: 'pokemongo',
-        name: 'Pokémon GO',
-        subtitle: 'Season of Max Out',
-        description: 'Official CPM Combat Power calculators, IV appraisal, PvP league rank builders, and Level 50 XL candy budgets.',
-        count: TOOLS.filter(t => t.gameId === 'pokemongo').length,
-        path: getGamePath('pokemongo'),
-        icon: getGameIcon('pokemongo', 'w-5 h-5'),
-        accent: 'border-rose-500/30 group-hover:border-rose-500/60'
-      },
-      {
-        id: 'palworld',
-        name: 'Palworld',
-        subtitle: 'v0.3.5 & Sakurajima',
-        description: 'Official CombiRank breeding calculators, reverse breeding, 0–30% IV talent appraisal, and base team optimizers.',
-        count: TOOLS.filter(t => t.gameId === 'palworld').length,
-        path: getGamePath('palworld'),
-        icon: getGameIcon('palworld', 'w-5 h-5'),
-        accent: 'border-cyan-500/30 group-hover:border-cyan-500/60'
-      },
-      {
-        id: 'tfd',
-        name: 'The First Descendant',
-        subtitle: 'Weapon DPS & Colossus Suite',
-        description: 'True raw burst DPS, 160% reactor mount calculator, 4-piece component optimizer, and void boss enrage timers.',
-        count: TOOLS.filter(t => t.gameId === 'tfd').length,
-        path: '/the-first-descendant',
-        icon: getGameIcon('tfd', 'w-5 h-5'),
-        accent: 'border-cyan-500/30 group-hover:border-cyan-500/60'
-      },
-      {
-        id: 'oncehuman',
-        name: 'Once Human',
-        subtitle: 'Post-Apocalyptic Survival & Meta',
-        description: 'Blueprint star upgrades (29,600 XP), automated Acid farming, Cradle planner, calibrations & tactical crate checklist.',
-        count: TOOLS.filter(t => t.gameId === 'oncehuman').length,
-        path: '/once-human',
-        icon: getGameIcon('oncehuman', 'w-5 h-5'),
-        accent: 'border-purple-500/30 group-hover:border-purple-500/60'
-      },
-      {
-        id: 'cm',
-        name: 'Coin Master',
-        subtitle: 'Village & Spin Strategy',
-        description: 'Village cost progression charts, free spin link directory, card set collection tracker, and pet food timers.',
-        count: TOOLS.filter(t => t.gameId === 'cm').length,
-        path: '/coin-master',
-        icon: getGameIcon('cm', 'w-5 h-5'),
-        accent: 'border-amber-500/30 group-hover:border-amber-500/60'
-      },
-      {
-        id: 'sk',
-        name: 'Seven Knights Re:BIRTH',
-        subtitle: '5v5 Tactical Suite',
-        description: 'Damage multipliers, 5v5 team synergy builder, gear sell/keep valuation, and gacha summon planners.',
-        count: TOOLS.filter(t => t.gameId === 'sk').length,
-        path: '/seven-knights-rebirth',
-        icon: getGameIcon('sk', 'w-5 h-5'),
-        accent: 'border-blue-500/30 group-hover:border-blue-500/60'
-      },
-      {
-        id: 'mogo',
-        name: 'Monopoly GO!',
-        subtitle: 'Stickers & Dice Tracker',
-        description: 'Album sticker tracker, duplicate star vault counter, verified daily free dice links, and shield finders.',
-        count: TOOLS.filter(t => t.gameId === 'mogo').length,
-        path: '/monopoly-go',
-        icon: getGameIcon('mogo', 'w-5 h-5'),
-        accent: 'border-red-500/30 group-hover:border-red-500/60'
-      },
-      {
-        id: 'bg3',
-        name: "Baldur's Gate 3",
-        subtitle: 'Tactical D&D 5e Theorycrafting',
-        description: 'Multiclass spell slot progressions, d20 advantage math, alchemy recipe extracts, and companion approval.',
-        count: TOOLS.filter(t => t.gameId === 'bg3').length,
-        path: '/baldurs-gate-3',
-        icon: getGameIcon('bg3', 'w-5 h-5'),
-        accent: 'border-amber-500/30 group-hover:border-amber-500/60'
-      },
-      {
-        id: 'gtaonline',
-        name: 'GTA Online',
-        subtitle: 'Businesses, Heists & Cooldowns',
-        description: 'Nightclub Warehouse, Acid Lab profit, Cayo Perico payouts, Heist Splits, Business ROI payback, and Cooldown Planner.',
-        count: TOOLS.filter(t => t.gameId === 'gtaonline').length,
-        path: '/games/gta-online',
-        icon: getGameIcon('gtaonline', 'w-5 h-5'),
-        accent: 'border-emerald-500/30 group-hover:border-emerald-500/60'
-      },
-      {
-        id: 'gta6',
-        name: 'Grand Theft Auto VI',
-        subtitle: 'All 61 Cheat Codes & D-Pad Inputs',
-        description: 'Search all 61 GTA 6 cheats for PS5 and Xbox Series X|S, filter by category, check unlock challenges, and copy D-pad inputs.',
-        count: TOOLS.filter(t => t.gameId === 'gta6').length,
-        path: '/games/gta-6',
-        icon: getGameIcon('gta6', 'w-5 h-5'),
-        accent: 'border-rose-500/30 group-hover:border-rose-500/60'
-      }
-    ];
-  }, []);
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+      e.preventDefault();
+      onNavigate(path);
+    }
+  };
 
-  // 2. Curated Featured Tools (Exact 8 Strong Tools)
+  // 1. Popular Tools (same curated featured selection logic)
   const popularTools = useMemo(() => {
     const featuredIds = [
       'ps99-trade-calculator',
@@ -209,7 +49,157 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
       .filter((t): t is ToolItem => Boolean(t));
   }, []);
 
-  // 3. Recommended 6 Categories
+  // 2. Curated Game Hubs with runtime-computed tool counts
+  const popularGames = useMemo(() => {
+    return [
+      {
+        id: 'ps99',
+        name: 'Pet Simulator 99',
+        subtitle: 'Values & Trading Suite',
+        description: 'WFL trade calculator, exclusive daycare diamond yields, enchant diminishing returns, and live RAP alerts.',
+        count: TOOLS.filter(t => t.gameId === 'ps99').length,
+        path: '/ps99',
+        icon: getGameIcon('ps99', 'w-5 h-5')
+      },
+      {
+        id: 'helldivers2',
+        name: 'Helldivers 2',
+        subtitle: 'Galactic War & Ballistics',
+        description: 'Recoil pattern visualizers, enemy weakness counter matrix, armor tier lists, super credit farm, and war trackers.',
+        count: TOOLS.filter(t => t.gameId === 'helldivers2' || t.gameId === 'helldivers-2').length,
+        path: '/helldivers-2',
+        icon: getGameIcon('helldivers-2', 'w-5 h-5')
+      },
+      {
+        id: 'minecraft',
+        name: 'Minecraft',
+        subtitle: 'Java & Bedrock Parity',
+        description: 'Voxel circle generators, 3D Nether portal linkers, XP levels, redstone timings, and villager discounts.',
+        count: TOOLS.filter(t => t.gameId === 'minecraft').length,
+        path: getGamePath('minecraft'),
+        icon: getGameIcon('minecraft', 'w-5 h-5')
+      },
+      {
+        id: 'roblox',
+        name: 'Roblox',
+        subtitle: 'DevEx & Trading',
+        description: 'Robux to USD DevEx converter ($0.0038 rate), official 30% tax models, and Blox Fruits trading value evaluators.',
+        count: TOOLS.filter(t => t.gameId === 'roblox').length,
+        path: getGamePath('roblox'),
+        icon: getGameIcon('roblox', 'w-5 h-5')
+      },
+      {
+        id: 'growagarden',
+        name: 'Grow a Garden',
+        subtitle: 'Crop Values & Hatching Odds',
+        description: 'Calculate crop Sheckle sell values with weight scaling, variant multipliers, mutation brackets, and pet egg odds.',
+        count: TOOLS.filter(t => t.gameId === 'growagarden' || t.gameId === 'grow-a-garden').length,
+        path: getGamePath('growagarden'),
+        icon: getGameIcon('growagarden', 'w-5 h-5')
+      },
+      {
+        id: 'fortnite',
+        name: 'Fortnite',
+        subtitle: 'Chapter 5 & Zero Build',
+        description: 'V-Bucks to real currency, weapon DPS & Zero Build TTK, Battle Pass XP curves, and storm phase timers.',
+        count: TOOLS.filter(t => t.gameId === 'fortnite').length,
+        path: getGamePath('fortnite'),
+        icon: getGameIcon('fortnite', 'w-5 h-5')
+      },
+      {
+        id: 'pokemongo',
+        name: 'Pokémon GO',
+        subtitle: 'Season of Max Out',
+        description: 'Official CPM Combat Power calculators, IV appraisal, PvP league rank builders, and Level 50 XL candy budgets.',
+        count: TOOLS.filter(t => t.gameId === 'pokemongo').length,
+        path: getGamePath('pokemongo'),
+        icon: getGameIcon('pokemongo', 'w-5 h-5')
+      },
+      {
+        id: 'palworld',
+        name: 'Palworld',
+        subtitle: 'v0.3.5 & Sakurajima',
+        description: 'Official CombiRank breeding calculators, reverse breeding, 0–30% IV talent appraisal, and base team optimizers.',
+        count: TOOLS.filter(t => t.gameId === 'palworld').length,
+        path: getGamePath('palworld'),
+        icon: getGameIcon('palworld', 'w-5 h-5')
+      },
+      {
+        id: 'tfd',
+        name: 'The First Descendant',
+        subtitle: 'Weapon DPS & Colossus Suite',
+        description: 'True raw burst DPS, 160% reactor mount calculator, 4-piece component optimizer, and void boss enrage timers.',
+        count: TOOLS.filter(t => t.gameId === 'tfd').length,
+        path: '/the-first-descendant',
+        icon: getGameIcon('tfd', 'w-5 h-5')
+      },
+      {
+        id: 'oncehuman',
+        name: 'Once Human',
+        subtitle: 'Post-Apocalyptic Survival & Meta',
+        description: 'Blueprint star upgrades, automated Acid farming, Cradle planner, calibrations, and tactical crate checklist.',
+        count: TOOLS.filter(t => t.gameId === 'oncehuman').length,
+        path: '/once-human',
+        icon: getGameIcon('oncehuman', 'w-5 h-5')
+      },
+      {
+        id: 'cm',
+        name: 'Coin Master',
+        subtitle: 'Village & Spin Strategy',
+        description: 'Village cost progression charts, free spin link directory, card set collection tracker, and pet food timers.',
+        count: TOOLS.filter(t => t.gameId === 'cm').length,
+        path: '/coin-master',
+        icon: getGameIcon('cm', 'w-5 h-5')
+      },
+      {
+        id: 'sk',
+        name: 'Seven Knights Re:BIRTH',
+        subtitle: '5v5 Tactical Suite',
+        description: 'Damage multipliers, 5v5 team synergy builder, gear sell/keep valuation, and gacha summon planners.',
+        count: TOOLS.filter(t => t.gameId === 'sk').length,
+        path: '/seven-knights-rebirth',
+        icon: getGameIcon('sk', 'w-5 h-5')
+      },
+      {
+        id: 'mogo',
+        name: 'Monopoly GO!',
+        subtitle: 'Stickers & Dice Tracker',
+        description: 'Album sticker tracker, duplicate star vault counter, verified daily free dice links, and shield finders.',
+        count: TOOLS.filter(t => t.gameId === 'mogo').length,
+        path: '/monopoly-go',
+        icon: getGameIcon('mogo', 'w-5 h-5')
+      },
+      {
+        id: 'bg3',
+        name: "Baldur's Gate 3",
+        subtitle: 'Tactical D&D 5e Theorycrafting',
+        description: 'Multiclass spell slot progressions, d20 advantage math, alchemy recipe extracts, and companion approval.',
+        count: TOOLS.filter(t => t.gameId === 'bg3').length,
+        path: '/baldurs-gate-3',
+        icon: getGameIcon('bg3', 'w-5 h-5')
+      },
+      {
+        id: 'gtaonline',
+        name: 'GTA Online',
+        subtitle: 'Businesses, Heists & Cooldowns',
+        description: 'Nightclub Warehouse, Acid Lab profit, Cayo Perico payouts, Heist Splits, Business ROI payback, and Cooldown Planner.',
+        count: TOOLS.filter(t => t.gameId === 'gtaonline').length,
+        path: '/games/gta-online',
+        icon: getGameIcon('gtaonline', 'w-5 h-5')
+      },
+      {
+        id: 'gta6',
+        name: 'Grand Theft Auto VI',
+        subtitle: 'Cheat Codes & D-Pad Inputs',
+        description: 'Search GTA 6 cheats for PS5 and Xbox Series X|S, filter by category, check unlock challenges, and copy D-pad inputs.',
+        count: TOOLS.filter(t => t.gameId === 'gta6').length,
+        path: '/games/gta-6',
+        icon: getGameIcon('gta6', 'w-5 h-5')
+      }
+    ];
+  }, []);
+
+  // 3. Categories with runtime-computed tool counts
   const categoryCards = useMemo(() => {
     return [
       {
@@ -217,90 +207,45 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
         name: 'Calculators',
         description: 'Game-specific calculations, stats, damage, XP, CP and more.',
         count: TOOLS.filter(t => t.categoryId === 'calculators').length,
-        icon: <Calculator className="w-5 h-5 text-violet-400" />
+        icon: <Calculator className="w-5 h-5 text-[var(--primary-light)]" />
       },
       {
         id: 'generators',
         name: 'Generators',
         description: 'Blueprints, circles, layouts, teams and other generators.',
         count: TOOLS.filter(t => t.categoryId === 'generators').length,
-        icon: <Shapes className="w-5 h-5 text-cyan-400" />
+        icon: <Shapes className="w-5 h-5 text-[var(--accent)]" />
       },
       {
         id: 'converters',
         name: 'Converters',
         description: 'Coordinates, sensitivity, DPI/eDPI and other conversions.',
         count: TOOLS.filter(t => t.categoryId === 'converters').length,
-        icon: <ArrowLeftRight className="w-5 h-5 text-purple-400" />
+        icon: <ArrowLeftRight className="w-5 h-5 text-[var(--primary-light)]" />
       },
       {
         id: 'planners',
         name: 'Planners',
         description: 'Breeding, builds, resources, progression and planning tools.',
         count: TOOLS.filter(t => t.categoryId === 'planners').length,
-        icon: <Layers className="w-5 h-5 text-cyan-400" />
+        icon: <Layers className="w-5 h-5 text-[var(--accent)]" />
       },
       {
         id: 'trackers',
         name: 'Trackers',
         description: 'Session, progression and game-related tracking utilities.',
         count: TOOLS.filter(t => t.categoryId === 'trackers').length,
-        icon: <Clock className="w-5 h-5 text-violet-400" />
+        icon: <Clock className="w-5 h-5 text-[var(--primary-light)]" />
       },
       {
         id: 'gaming-utilities',
         name: 'Gaming Utilities',
         description: "Useful tools that don't fit a single calculator category.",
         count: TOOLS.filter(t => t.categoryId === 'gaming-utilities').length,
-        icon: <Dices className="w-5 h-5 text-cyan-400" />
+        icon: <Dices className="w-5 h-5 text-[var(--accent)]" />
       }
     ];
   }, []);
-
-  // 4. Recently Added Tools
-  const recentlyAddedTools = useMemo(() => {
-    const recentIds = [
-      'palworld-passive-skills-stacker',
-      'minecraft-villager-trade-calculator',
-      'valorant-edpi-calculator',
-      'genshin-artifact-cv-calculator',
-      'pokemon-go-mega-energy-calculator',
-      'minecraft-elytra-rocket-calculator'
-    ];
-    return recentIds
-      .map(id => TOOLS.find(t => t.id === id || t.slug === id))
-      .filter((t): t is ToolItem => Boolean(t));
-  }, []);
-
-  // Search matches for hero: both Games and Tools
-  const { matchedGames, matchedTools } = useMemo(() => {
-    if (!heroSearch.trim()) return { matchedGames: [], matchedTools: [] };
-    const q = heroSearch.toLowerCase().trim();
-
-    const games = GAMES.filter(g => 
-      g.name.toLowerCase().includes(q) ||
-      (g.shortName && g.shortName.toLowerCase().includes(q)) ||
-      g.slug.toLowerCase().includes(q) ||
-      g.id.toLowerCase().includes(q) ||
-      (g.tagline && g.tagline.toLowerCase().includes(q))
-    ).slice(0, 3);
-
-    const tools = TOOLS.filter(tool => {
-      const g = getGameById(tool.gameId);
-      const gName = g ? g.name.toLowerCase() : '';
-      const gShort = g?.shortName ? g.shortName.toLowerCase() : '';
-      return (
-        tool.name.toLowerCase().includes(q) ||
-        tool.shortDescription.toLowerCase().includes(q) ||
-        tool.tags.some(t => t.toLowerCase().includes(q)) ||
-        tool.gameId.toLowerCase().includes(q) ||
-        gName.includes(q) ||
-        gShort.includes(q)
-      );
-    }).slice(0, 6);
-
-    return { matchedGames: games, matchedTools: tools };
-  }, [heroSearch]);
 
   const homeFaqs = [
     {
@@ -331,261 +276,71 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
 
       <div className="space-y-16 sm:space-y-24">
         {/* ========================================================= */}
-        {/* 1 & 2. HERO SECTION                                      */}
+        {/* 1. HERO (Brand Lockup + Violet Glow + Grid + CTAs + Stats) */}
         {/* ========================================================= */}
-        <section className="relative pt-4 sm:pt-10 pb-2 text-center">
-          {/* Brand Lockup */}
-          <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-5 text-center sm:text-left">
-            <BrandLogo size="lg" className="!w-14 !h-14 sm:!w-16 sm:!h-16 !rounded-2xl shrink-0" />
-            <div>
-              <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[var(--text)] leading-none">
-                GamingTools<span className="text-[var(--primary-light)]">Hub</span>
-              </h1>
-              <p className="text-sm sm:text-lg font-medium text-[var(--text-soft)] mt-1.5">
-                Free Gaming Calculators &amp; Tools
-              </p>
-            </div>
-          </div>
+        <section className="relative pt-8 sm:pt-14 pb-10 sm:pb-12 text-center overflow-hidden rounded-[var(--radius)]">
+          {/* Signature Pure-CSS Radial Violet Glow + Faint 40px Masked Grid */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10"
+            style={{
+              background: 'radial-gradient(ellipse 70% 60% at 50% 18%, rgba(139, 92, 246, 0.18) 0%, transparent 72%)'
+            }}
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10"
+            style={{
+              backgroundImage:
+                'linear-gradient(to right, rgba(35, 42, 82, 0.35) 1px, transparent 1px), linear-gradient(to bottom, rgba(35, 42, 82, 0.35) 1px, transparent 1px)',
+              backgroundSize: '40px 40px',
+              maskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 100%)'
+            }}
+          />
 
-          {/* Description */}
-          <p className="text-xs sm:text-sm text-[var(--muted)] max-w-2xl mx-auto mb-6 leading-relaxed">
-            Free browser-based calculators, generators, planners and gaming utilities for Minecraft, Pokémon GO, Palworld, Fortnite, Roblox and more.
-          </p>
-
-          {/* ========================================================= */}
-          {/* 3. MAIN SEARCH                                           */}
-          {/* ========================================================= */}
-          <div className="max-w-2xl mx-auto relative">
-            <div className="flex items-center gap-2 p-1.5 bg-[#0c122e] border border-indigo-900/70 rounded-xl shadow-2xl focus-within:border-violet-500/80 focus-within:ring-2 focus-within:ring-violet-500/20 transition-all">
-              <div className="flex items-center gap-2.5 flex-1 px-3 text-slate-400">
-                <Search className="w-4 h-4 text-violet-400 flex-shrink-0" />
-                <input
-                  type="text"
-                  value={heroSearch}
-                  onChange={e => setHeroSearch(e.target.value)}
-                  onKeyDown={e => {
-                    if (e.key === 'Enter') {
-                      if (matchedGames.length > 0) {
-                        onNavigate(getGamePath(matchedGames[0].id));
-                        setHeroSearch('');
-                      } else if (matchedTools.length > 0) {
-                        onNavigate(`/tools/${matchedTools[0].slug}`);
-                        setHeroSearch('');
-                      } else if (heroSearch.trim()) {
-                        onNavigate('/tools');
-                      }
-                    }
-                  }}
-                  placeholder="Search gaming tools, calculators and game suites (Coin Master, Seven Knights, Monopoly, etc.)..."
-                  className="w-full bg-transparent text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none"
-                />
+          <div className="max-w-3xl mx-auto px-4">
+            {/* Brand Lockup */}
+            <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-5 text-center sm:text-left">
+              <BrandLogo size="lg" className="!w-14 !h-14 sm:!w-16 sm:!h-16 !rounded-2xl shrink-0" />
+              <div>
+                <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[var(--text)] leading-none">
+                  GamingTools<span className="text-[var(--primary-light)]">Hub</span>
+                </h1>
+                <p className="text-sm sm:text-lg font-medium text-[var(--text-soft)] mt-1.5">
+                  Free Gaming Calculators &amp; Tools
+                </p>
               </div>
-
-              {heroSearch && (
-                <button
-                  onClick={() => setHeroSearch('')}
-                  className="text-xs text-slate-400 hover:text-slate-200 pr-1.5"
-                >
-                  Clear
-                </button>
-              )}
-
-              <button
-                onClick={onOpenSearch}
-                className="px-3 sm:px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 flex-shrink-0 shadow-sm shadow-violet-950/50"
-                title="Open search modal (Ctrl+K / ⌘K)"
-              >
-                <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-[#070b19] rounded border border-indigo-900/60 text-slate-300">
-                  ⌘K
-                </kbd>
-                <span>Search</span>
-              </button>
             </div>
 
-            {/* Live Search Instant Dropdown */}
-            {heroSearch && (
-              <div className="absolute left-0 right-0 top-full mt-2 bg-[#0c122e] border border-indigo-900/80 rounded-xl shadow-2xl overflow-hidden z-30 text-left">
-                {matchedGames.length > 0 || matchedTools.length > 0 ? (
-                  <div className="divide-y divide-indigo-950/80 max-h-96 overflow-y-auto">
-                    {/* Game Hub Matches */}
-                    {matchedGames.length > 0 && (
-                      <div className="bg-[#080d21] p-2 space-y-1">
-                        <div className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-violet-400 font-semibold">
-                          Game Hubs
-                        </div>
-                        {matchedGames.map(game => (
-                          <div
-                            key={game.id}
-                            onClick={() => {
-                              onNavigate(getGamePath(game.id));
-                              setHeroSearch('');
-                            }}
-                            className="p-2.5 rounded-lg hover:bg-[#121c45] cursor-pointer flex items-center justify-between transition-colors group border border-indigo-950 hover:border-violet-500/50"
-                          >
-                            <div className="flex items-center gap-2.5 min-w-0">
-                              <div className="w-7 h-7 rounded-lg bg-[#0c122e] border border-indigo-950 flex items-center justify-center flex-shrink-0">
-                                {getGameIcon(game.id, 'w-3.5 h-3.5')}
-                              </div>
-                              <div className="min-w-0">
-                                <div className="flex items-center gap-2">
-                                  <span className="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors">
-                                    {game.name}
-                                  </span>
-                                  <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-violet-950/60 text-violet-300 border border-violet-800/40">
-                                    {TOOLS.filter(t => t.gameId === game.id).length} Tools
-                                  </span>
-                                </div>
-                                <div className="text-[11px] text-slate-400 line-clamp-1">
-                                  {game.tagline || game.description}
-                                </div>
-                              </div>
-                            </div>
-                            <span className="text-xs font-semibold text-violet-400 group-hover:text-cyan-300 group-hover:translate-x-0.5 transition-transform flex items-center gap-1 flex-shrink-0 ml-2">
-                              <span>Open Hub</span>
-                              <ArrowRight className="w-3.5 h-3.5" />
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+            <p className="text-xs sm:text-sm text-[var(--muted)] max-w-2xl mx-auto mb-7 leading-relaxed">
+              Precision browser-based calculators, voxel generators, breeding planners, and conversion utilities engineered for instant execution while you play.
+            </p>
 
-                    {/* Tool Matches */}
-                    {matchedTools.map(tool => (
-                      <div
-                        key={tool.id}
-                        onClick={() => {
-                          onNavigate(`/tools/${tool.slug}`);
-                          setHeroSearch('');
-                        }}
-                        className="p-3 hover:bg-[#121c45] cursor-pointer flex items-center justify-between transition-colors group"
-                      >
-                        <div className="flex items-center gap-2.5 min-w-0">
-                          <div className="w-7 h-7 rounded-lg bg-[#070b19] border border-indigo-950 flex items-center justify-center flex-shrink-0">
-                            {getGameIcon(tool.gameId, 'w-3.5 h-3.5')}
-                          </div>
-                          <div className="min-w-0">
-                            <div className="text-xs font-semibold text-white group-hover:text-cyan-300 transition-colors">
-                              {tool.name}
-                            </div>
-                            <div className="text-[11px] text-slate-400 line-clamp-1 mt-0.5">
-                              {tool.shortDescription}
-                            </div>
-                          </div>
-                        </div>
-                        <ArrowRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-cyan-300 group-hover:translate-x-0.5 transition-transform flex-shrink-0 ml-3" />
-                      </div>
-                    ))}
-
-                    <div className="p-2.5 bg-[#080d21] text-center">
-                      <button
-                        onClick={() => {
-                          onNavigate('/tools');
-                          setHeroSearch('');
-                        }}
-                        className="text-xs font-medium text-cyan-400 hover:text-violet-300"
-                      >
-                        Explore all tools in directory →
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="p-4 text-center text-xs text-slate-400">
-                    No calculators or games found matching "{heroSearch}".
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* Primary CTA & Popular Suggestions */}
-            <div className="flex flex-wrap items-center justify-center gap-2.5 mt-4">
-              <button
-                onClick={() => onNavigate('/tools')}
-                className="px-4 py-1.5 bg-violet-600 hover:bg-violet-500 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 shadow-sm shadow-violet-950/50"
+            {/* Primary CTA + Quiet Secondary Link */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5">
+              <a
+                href="/tools"
+                onClick={(e) => handleLinkClick(e, '/tools')}
+                className="btn-primary px-6 py-2.5 inline-flex items-center justify-center gap-2 text-sm font-semibold no-underline"
               >
-                <span>Explore Tools</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+                <span>Browse All Tools</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
 
-              <div className="hidden sm:inline-block w-px h-4 bg-indigo-950 mx-1" />
-
-              <span className="text-slate-400 text-xs font-medium">Quick Access:</span>
-              {[
-                { label: 'Coin Master', path: '/coin-master' },
-                { label: 'Seven Knights', path: '/seven-knights-rebirth' },
-                { label: 'Monopoly GO!', path: '/monopoly-go' },
-                { label: 'Palworld Breeding', path: '/tools/palworld-breeding-calculator' },
-                { label: 'Circle Generator', path: '/tools/minecraft-circle-generator' },
-                { label: 'Sensitivity 1:1', path: '/tools/universal-mouse-sensitivity-converter' },
-                { label: 'DevEx Robux', path: '/tools/robux-to-usd-calculator' }
-              ].map(item => (
-                <button
-                  key={item.label}
-                  onClick={() => onNavigate(item.path)}
-                  className="px-2 py-0.5 rounded bg-[#0c122e] border border-indigo-900/60 text-slate-300 hover:text-cyan-300 hover:border-violet-500/50 transition-colors text-xs"
-                >
-                  {item.label}
-                </button>
-              ))}
+              <a
+                href="/codes"
+                onClick={(e) => handleLinkClick(e, '/codes')}
+                className="text-sm font-medium text-[var(--text-soft)] hover:text-[var(--primary-light)] transition-colors inline-flex items-center gap-1.5 py-2 px-3 no-underline"
+              >
+                <span>Today&apos;s Game Codes →</span>
+              </a>
             </div>
 
-            {/* Homepage Featured Cards: Free Codes & Game Q&A */}
-            <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3.5 max-w-2xl mx-auto">
-              <button
-                onClick={() => onNavigate('/codes')}
-                className="w-full text-left p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-cyan-500/10 border border-amber-500/30 hover:border-amber-400/60 transition-all shadow-lg hover:shadow-amber-500/10 group flex items-center justify-between gap-3"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-lg flex-shrink-0 group-hover:scale-105 transition-transform">
-                    🎁
-                  </div>
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-bold text-white group-hover:text-amber-300 transition-colors">
-                        Free Game Codes
-                      </span>
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 font-semibold">
-                        Daily Updates
-                      </span>
-                    </div>
-                    <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
-                      Free Game Codes — active redeem codes and daily free links, checked daily.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1 text-xs font-semibold text-amber-400 group-hover:text-amber-300 group-hover:translate-x-0.5 transition-all flex-shrink-0">
-                  <span>Browse</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </div>
-              </button>
-
-              <button
-                onClick={() => onNavigate('/qa')}
-                className="w-full text-left p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-violet-500/10 via-indigo-500/5 to-cyan-500/10 border border-violet-500/30 hover:border-violet-400/60 transition-all shadow-lg hover:shadow-violet-500/10 group flex items-center justify-between gap-3"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-10 h-10 rounded-xl bg-violet-500/20 border border-violet-500/40 flex items-center justify-center text-lg flex-shrink-0 group-hover:scale-105 transition-transform text-violet-300">
-                    ❓
-                  </div>
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-bold text-white group-hover:text-violet-300 transition-colors">
-                        Game Q&A
-                      </span>
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-violet-500/20 text-violet-300 border border-violet-500/40 font-semibold">
-                        Instant Answers
-                      </span>
-                    </div>
-                    <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
-                      Game Q&A — quick answers to the gaming questions everyone searches.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1 text-xs font-semibold text-violet-400 group-hover:text-cyan-300 group-hover:translate-x-0.5 transition-all flex-shrink-0">
-                  <span>Explore</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </div>
-              </button>
-            </div>
+            {/* Runtime-Computed Stats Line */}
+            <p className="mt-6 text-xs sm:text-sm text-[var(--muted)] tabular-nums">
+              {TOOLS.length} free tools · {GAMES.length} games · No sign-up
+            </p>
           </div>
         </section>
 
@@ -593,89 +348,29 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
         <AdLayout.HomeTop />
 
         {/* ========================================================= */}
-        {/* 3. POPULAR GAMES                                         */}
+        {/* 2. POPULAR TOOLS                                          */}
         {/* ========================================================= */}
         <section className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-indigo-950/80 pb-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-[var(--border)] pb-4">
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                Popular Games
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-                Curated theorycrafting hubs and calculator suites for top competitive titles
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--primary-light)] mb-1">
+                MOST USED
               </p>
-            </div>
-            <button
-              onClick={() => onNavigate('/tools')}
-              className="text-xs font-semibold text-violet-400 hover:text-cyan-300 flex items-center gap-1 self-start sm:self-auto group transition-colors"
-            >
-              <span>View All Tools →</span>
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {popularGames.map(game => (
-              <div
-                key={game.id}
-                onClick={() => onNavigate(game.path)}
-                className={`group bg-[#0c122e] hover:bg-[#121c45] border border-indigo-900/60 hover:border-violet-500/60 rounded-xl p-5 cursor-pointer transition-all duration-200 flex flex-col justify-between shadow-sm hover:shadow-xl hover:shadow-violet-950/20`}
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="w-9 h-9 rounded-lg bg-[#070b19] border border-indigo-950 flex items-center justify-center">
-                      {game.icon}
-                    </div>
-                    <span className="text-[11px] font-mono text-slate-300 bg-[#070b19] border border-indigo-950 px-2 py-0.5 rounded">
-                      {game.count} Tools
-                    </span>
-                  </div>
-
-                  <h3 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors">
-                    {game.name}
-                  </h3>
-                  <div className="text-[11px] text-violet-400 font-mono mb-2">
-                    {game.subtitle}
-                  </div>
-                  <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                    {game.description}
-                  </p>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-indigo-950/80 flex items-center justify-between text-xs font-semibold text-slate-300 group-hover:text-violet-400 transition-colors">
-                  <span>Open Hub</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ========================================================= */}
-        {/* 4. FEATURED TOOLS                                        */}
-        {/* ========================================================= */}
-        <section className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-indigo-950/80 pb-4">
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="w-2 h-2 rounded-full bg-violet-400" />
-                <span className="text-xs font-mono uppercase tracking-wider text-violet-400 font-semibold">
-                  Curated Selection
-                </span>
-              </div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                Featured Tools
+              <h2 className="text-xl sm:text-2xl font-bold text-[var(--text)] tracking-tight">
+                Popular Tools
               </h2>
-              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-                Handpicked, high-accuracy calculators and generators for key competitive games
+              <p className="text-xs sm:text-sm text-[var(--text-soft)] mt-1">
+                High-accuracy calculators and generators for key competitive titles
               </p>
             </div>
 
-            <button
-              onClick={() => onNavigate('/tools')}
-              className="text-xs font-semibold text-violet-400 hover:text-cyan-300 flex items-center gap-1 self-start sm:self-auto group transition-colors"
+            <a
+              href="/tools"
+              onClick={(e) => handleLinkClick(e, '/tools')}
+              className="text-xs font-semibold text-[var(--primary-light)] hover:text-[var(--accent)] flex items-center gap-1 self-start sm:self-auto transition-colors no-underline"
             >
               <span>View All Tools →</span>
-            </button>
+            </a>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -688,189 +383,232 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
               />
             ))}
           </div>
+        </section>
 
-          <div className="text-center pt-2">
-            <button
-              onClick={() => onNavigate('/tools')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0c122e] hover:bg-[#121c45] border border-indigo-900/60 hover:border-violet-500/50 text-xs sm:text-sm font-semibold text-slate-200 hover:text-white transition-all group"
+        {/* ========================================================= */}
+        {/* 3. BROWSE BY GAME                                         */}
+        {/* ========================================================= */}
+        <section className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-[var(--border)] pb-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--primary-light)] mb-1">
+                ALL GAMES
+              </p>
+              <h2 className="text-xl sm:text-2xl font-bold text-[var(--text)] tracking-tight">
+                Browse by Game
+              </h2>
+              <p className="text-xs sm:text-sm text-[var(--text-soft)] mt-1">
+                Curated theorycrafting hubs and calculator suites with live tool counts
+              </p>
+            </div>
+            <a
+              href="/games"
+              onClick={(e) => handleLinkClick(e, '/games')}
+              className="text-xs font-semibold text-[var(--primary-light)] hover:text-[var(--accent)] flex items-center gap-1 self-start sm:self-auto transition-colors no-underline"
             >
-              <span>View All Tools →</span>
-            </button>
+              <span>View All {GAMES.length} Games →</span>
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {popularGames.map(game => (
+              <a
+                key={game.id}
+                href={game.path}
+                onClick={(e) => handleLinkClick(e, game.path)}
+                className="group bg-[var(--surface)] hover:bg-[var(--surface-raised)] border border-[var(--border)] hover:border-[var(--primary)] rounded-[var(--radius)] p-5 cursor-pointer transition-all duration-200 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)] text-left no-underline"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="w-9 h-9 rounded-lg bg-[var(--surface-raised)] border border-[var(--border)] group-hover:border-[var(--primary)] group-hover:shadow-[0_0_20px_rgba(139,92,246,0.35)] flex items-center justify-center transition-all duration-200">
+                      {game.icon}
+                    </div>
+                    <span className="text-[11px] font-mono text-[var(--primary-light)] bg-[rgba(139,92,246,0.15)] px-2.5 py-0.5 rounded-full tabular-nums">
+                      {game.count} Tools
+                    </span>
+                  </div>
+
+                  <h3 className="text-base font-bold text-[var(--text)] group-hover:text-[var(--primary-light)] transition-colors">
+                    {game.name}
+                  </h3>
+                  <div className="text-[11px] text-[var(--muted)] font-mono mt-0.5 mb-2">
+                    {game.subtitle}
+                  </div>
+                  <p className="text-xs text-[var(--text-soft)] line-clamp-2 leading-relaxed">
+                    {game.description}
+                  </p>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-[var(--border)] flex items-center justify-between text-xs font-semibold text-[var(--primary-light)] group-hover:text-[var(--accent)] transition-colors">
+                  <span>Open Hub</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </a>
+            ))}
           </div>
         </section>
 
         {/* ========================================================= */}
-        {/* 5. BROWSE BY CATEGORY                                    */}
+        {/* 4. CODES STRIP                                            */}
         {/* ========================================================= */}
-        <section className="space-y-5">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-indigo-950/80 pb-4">
+        <section className="bg-[var(--surface)] border border-[var(--border)] border-t-2 border-t-[var(--primary)] rounded-[var(--radius)] p-6 sm:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--primary-light)] mb-1">
+                FRESH CODES
+              </p>
+              <h2 className="text-lg sm:text-xl font-bold text-[var(--text)] tracking-tight">
+                Working game codes, checked and dated
+              </h2>
+              <p className="text-xs sm:text-sm text-[var(--text-soft)] mt-1">
+                Verified active redeem codes, free rewards, and expiration notes updated regularly.
+              </p>
+            </div>
+
+            <a
+              href="/codes"
+              onClick={(e) => handleLinkClick(e, '/codes')}
+              className="btn-primary px-5 py-2.5 inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold no-underline shrink-0"
+            >
+              <span>See Codes</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </section>
+
+        {/* ========================================================= */}
+        {/* 5. BROWSE BY CATEGORY                                     */}
+        {/* ========================================================= */}
+        <section className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-[var(--border)] pb-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--primary-light)] mb-1">
+                BY DISCIPLINE
+              </p>
+              <h2 className="text-xl sm:text-2xl font-bold text-[var(--text)] tracking-tight">
                 Browse by Category
               </h2>
-              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+              <p className="text-xs sm:text-sm text-[var(--text-soft)] mt-1">
                 Explore utilities organized by functional purpose and theorycrafting discipline
               </p>
             </div>
-            <button
-              onClick={() => onNavigate('/tools')}
-              className="text-xs font-semibold text-violet-400 hover:text-cyan-300 flex items-center gap-1 self-start sm:self-auto group transition-colors"
+            <a
+              href="/categories"
+              onClick={(e) => handleLinkClick(e, '/categories')}
+              className="text-xs font-semibold text-[var(--primary-light)] hover:text-[var(--accent)] flex items-center gap-1 self-start sm:self-auto transition-colors no-underline"
             >
-              <span>View All Tools →</span>
-            </button>
+              <span>All Categories →</span>
+            </a>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {categoryCards.map(category => (
-              <div
+              <a
                 key={category.id}
-                onClick={() => onNavigate(`/tools?category=${category.id}`)}
-                className="group bg-[#0c122e] hover:bg-[#121c45] border border-indigo-900/60 hover:border-violet-500/60 rounded-xl p-5 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-950/20 flex flex-col justify-between"
+                href={`/tools?category=${category.id}`}
+                onClick={(e) => handleLinkClick(e, `/tools?category=${category.id}`)}
+                className="group bg-[var(--surface)] hover:bg-[var(--surface-raised)] border border-[var(--border)] hover:border-[var(--primary)] rounded-[var(--radius)] p-5 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)] flex flex-col justify-between text-left no-underline"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <div className="w-9 h-9 rounded-lg bg-[#070b19] border border-indigo-950 flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-lg bg-[var(--surface-raised)] border border-[var(--border)] group-hover:border-[var(--primary)] group-hover:shadow-[0_0_20px_rgba(139,92,246,0.35)] flex items-center justify-center transition-all duration-200">
                       {category.icon}
                     </div>
-                    <span className="text-xs font-mono font-medium text-slate-300 bg-[#070b19] px-2 py-0.5 rounded border border-indigo-950">
+                    <span className="text-[11px] font-mono text-[var(--primary-light)] bg-[rgba(139,92,246,0.15)] px-2.5 py-0.5 rounded-full tabular-nums">
                       {category.count} Tools
                     </span>
                   </div>
 
-                  <h3 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors mb-1.5">
+                  <h3 className="text-base font-bold text-[var(--text)] group-hover:text-[var(--primary-light)] transition-colors mb-1.5">
                     {category.name}
                   </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <p className="text-xs text-[var(--text-soft)] leading-relaxed">
                     {category.description}
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-indigo-950/80 flex items-center justify-between text-xs font-semibold text-violet-400 group-hover:text-cyan-300">
-                  <span className="inline-flex items-center gap-1.5 group-hover:underline">
-                    View Tools
-                    <span className="group-hover:translate-x-0.5 transition-transform">→</span>
-                  </span>
+                <div className="mt-4 pt-3 border-t border-[var(--border)] flex items-center justify-between text-xs font-semibold text-[var(--primary-light)] group-hover:text-[var(--accent)] transition-colors">
+                  <span>View Tools</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </section>
 
         {/* ========================================================= */}
-        {/* 6. RECENTLY ADDED                                        */}
+        {/* 6. PROOF STRIP — WHY GAMINGTOOLS HUB                      */}
         {/* ========================================================= */}
-        <section className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-indigo-950/80 pb-4">
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-semibold">
-                  Fresh Mechanics Updates
-                </span>
-              </div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                Recently Added
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-                New calculators calibrated for recent game balance expansions and patches
-              </p>
-            </div>
-
-            <button
-              onClick={() => onNavigate('/tools')}
-              className="text-xs font-semibold text-violet-400 hover:text-cyan-300 flex items-center gap-1 self-start sm:self-auto group"
-            >
-              <span>View All Tools →</span>
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {recentlyAddedTools.map(tool => (
-              <ToolCard
-                key={tool.id}
-                tool={tool}
-                onSelectTool={(slug) => onNavigate(`/tools/${slug}`)}
-                onNavigateToGame={(gameSlug) => onNavigate(`/games?game=${gameSlug}`)}
-              />
-            ))}
-          </div>
-
-          <div className="text-center pt-2">
-            <button
-              onClick={() => onNavigate('/tools')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0c122e] hover:bg-[#121c45] border border-indigo-900/60 hover:border-violet-500/50 text-xs sm:text-sm font-semibold text-slate-200 hover:text-white transition-all group"
-            >
-              <span>View All Tools →</span>
-            </button>
-          </div>
-        </section>
-
-        {/* ========================================================= */}
-        {/* 8. SHORT "WHY GAMINGTOOLS HUB?" SECTION                  */}
-        {/* ========================================================= */}
-        <section className="bg-[#0c122e] border border-indigo-900/70 rounded-2xl p-6 sm:p-10 relative overflow-hidden">
+        <section className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-10">
           <div className="max-w-3xl mb-8">
-            <span className="text-xs font-mono text-violet-400 font-semibold uppercase tracking-wider">
-              Product Principles
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1.5 mb-3 tracking-tight">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--primary-light)] mb-1">
+              BUILT FOR SPEED
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text)] mb-3 tracking-tight">
               Why Gamers Choose GamingTools Hub
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-              Maintained by competitive players and software engineers. Unlike cluttered gaming wikis with disruptive popups and heavy ad scripts, GamingTools Hub is engineered like a fast SaaS application for instant reference while you play.
+            <p className="text-xs sm:text-sm text-[var(--text-soft)] leading-relaxed">
+              Engineered for instant reference while you play—every calculator runs directly in your browser with verified patch math and zero sign-up barriers.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6 border-t border-indigo-950/80">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6 border-t border-[var(--border)]">
             <div className="space-y-2">
-              <div className="w-8 h-8 rounded-lg bg-[#070b19] border border-indigo-950 flex items-center justify-center text-violet-400">
+              <div className="w-8 h-8 rounded-lg bg-[var(--surface-raised)] border border-[var(--border)] flex items-center justify-center text-[var(--primary-light)]">
                 <Zap className="w-4 h-4" />
               </div>
-              <h3 className="text-sm font-bold text-white">0ms Server Latency</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <h3 className="text-sm font-bold text-[var(--text)]">0ms Server Latency</h3>
+              <p className="text-xs text-[var(--muted)] leading-relaxed">
                 All math, voxel canvas generators, and simulation engines run client-side on your device without server delay.
               </p>
             </div>
 
             <div className="space-y-2">
-              <div className="w-8 h-8 rounded-lg bg-[#070b19] border border-indigo-950 flex items-center justify-center text-cyan-400">
+              <div className="w-8 h-8 rounded-lg bg-[var(--surface-raised)] border border-[var(--border)] flex items-center justify-center text-[var(--accent)]">
                 <Shield className="w-4 h-4" />
               </div>
-              <h3 className="text-sm font-bold text-white">Verified Theorycrafting</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Formulas are grounded in official game decompilations, verified patch notes, and empirical testing.
+              <h3 className="text-sm font-bold text-[var(--text)]">Verified Theorycrafting</h3>
+              <p className="text-xs text-[var(--muted)] leading-relaxed">
+                Formulas are grounded in official game mechanics, verified patch notes, and empirical testing.
               </p>
             </div>
 
             <div className="space-y-2">
-              <div className="w-8 h-8 rounded-lg bg-[#070b19] border border-indigo-950 flex items-center justify-center text-violet-400">
+              <div className="w-8 h-8 rounded-lg bg-[var(--surface-raised)] border border-[var(--border)] flex items-center justify-center text-[var(--primary-light)]">
                 <Check className="w-4 h-4" />
               </div>
-              <h3 className="text-sm font-bold text-white">100% Free Access</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Every calculator, planner, and blueprint generator is completely free to use with zero subscriptions, paywalls, or mandatory login walls.
+              <h3 className="text-sm font-bold text-[var(--text)]">100% Free Access</h3>
+              <p className="text-xs text-[var(--muted)] leading-relaxed">
+                Every calculator, planner, and blueprint generator is completely free to use with zero subscriptions or login walls.
               </p>
             </div>
 
             <div className="space-y-2">
-              <div className="w-8 h-8 rounded-lg bg-[#070b19] border border-indigo-950 flex items-center justify-center text-cyan-400">
+              <div className="w-8 h-8 rounded-lg bg-[var(--surface-raised)] border border-[var(--border)] flex items-center justify-center text-[var(--accent)]">
                 <Compass className="w-4 h-4" />
               </div>
-              <h3 className="text-sm font-bold text-white">Desktop & Mobile Interface</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Responsive layouts optimized for widescreen desktop monitors, dual battlestation setups, tablets, and mobile smartphones.
+              <h3 className="text-sm font-bold text-[var(--text)]">Desktop &amp; Mobile Ready</h3>
+              <p className="text-xs text-[var(--muted)] leading-relaxed">
+                Responsive layouts built for dual-monitor gaming setups, tablets, and mobile phones.
               </p>
             </div>
           </div>
         </section>
 
         {/* ========================================================= */}
-        {/* 9. FAQ                                                   */}
+        {/* 7. FAQ                                                    */}
         {/* ========================================================= */}
         <section className="space-y-4 max-w-4xl mx-auto">
-          <div className="border-b border-indigo-950/80 pb-3 text-center sm:text-left">
-            <h2 className="text-xl font-bold text-white tracking-tight">Frequently Asked Questions</h2>
-            <p className="text-xs text-slate-400">Everything you need to know about formulas and calculation mechanics</p>
+          <div className="border-b border-[var(--border)] pb-3 text-center sm:text-left">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--primary-light)] mb-1">
+              QUESTIONS
+            </p>
+            <h2 className="text-xl font-bold text-[var(--text)] tracking-tight">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-xs text-[var(--muted)] mt-0.5">
+              Everything you need to know about formulas and calculation mechanics
+            </p>
           </div>
 
           <div className="space-y-2">
@@ -879,17 +617,23 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
               return (
                 <div
                   key={index}
-                  className="border border-indigo-900/60 rounded-xl overflow-hidden bg-[#0c122e]"
+                  className="border border-[var(--border)] rounded-[var(--radius)] overflow-hidden bg-[var(--surface)]"
                 >
                   <button
+                    type="button"
+                    aria-expanded={isOpen}
                     onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                    className="w-full flex items-center justify-between p-4 text-left text-xs sm:text-sm font-medium text-slate-200 hover:text-white transition-colors"
+                    className="w-full flex items-center justify-between p-4 text-left text-xs sm:text-sm font-medium text-[var(--text)] hover:text-[var(--primary-light)] transition-colors"
                   >
                     <span>{faq.q}</span>
-                    {isOpen ? <ChevronUp className="w-4 h-4 text-violet-400 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />}
+                    {isOpen ? (
+                      <ChevronUp className="w-4 h-4 text-[var(--primary-light)] flex-shrink-0" />
+                    ) : (
+                      <ChevronDown className="w-4 h-4 text-[var(--muted)] flex-shrink-0" />
+                    )}
                   </button>
                   {isOpen && (
-                    <div className="px-4 pb-4 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-indigo-950/70 pt-3">
+                    <div className="px-4 pb-4 text-xs sm:text-sm text-[var(--text-soft)] leading-relaxed border-t border-[var(--border)] pt-3">
                       {faq.a}
                     </div>
                   )}
@@ -899,7 +643,29 @@ export default function HomePage({ onNavigate, onOpenSearch }: HomePageProps) {
           </div>
         </section>
 
-        {/* 10. HOMEPAGE BOTTOM BANNER AD */}
+        {/* ========================================================= */}
+        {/* 8. CLOSING CTA BAND                                       */}
+        {/* ========================================================= */}
+        <section className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-8 sm:p-12 text-center space-y-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--primary-light)]">
+            START CALCULATING
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text)] tracking-tight">
+            Your next session, calculated.
+          </h2>
+          <div>
+            <a
+              href="/tools"
+              onClick={(e) => handleLinkClick(e, '/tools')}
+              className="btn-primary px-6 py-2.5 inline-flex items-center justify-center gap-2 text-sm font-semibold no-underline"
+            >
+              <span>Browse All Tools</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </section>
+
+        {/* 9. HOMEPAGE BOTTOM BANNER AD */}
         <section aria-label="Advertisement" className="max-w-4xl mx-auto pt-2 pb-6">
           <AdLayout.HomeAboveFooter />
         </section>

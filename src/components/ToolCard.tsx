@@ -126,17 +126,12 @@ function getStatusBadge(tool: ToolItem): StatusBadgeType | null {
 function getBadgeStyles(badge: StatusBadgeType): string {
   switch (badge) {
     case 'Popular':
-      return 'bg-violet-950/60 text-violet-300 border-violet-700/50 shadow-sm shadow-violet-950/50';
     case 'New':
-      return 'bg-cyan-950/60 text-cyan-300 border-cyan-700/50 shadow-sm shadow-cyan-950/50';
     case 'Updated':
-      return 'bg-purple-950/60 text-purple-300 border-purple-700/50';
     case 'Java + Bedrock':
-      return 'bg-violet-950/60 text-violet-300 border-violet-700/50';
     case 'Featured':
-      return 'bg-indigo-950/60 text-cyan-300 border-indigo-700/50';
     default:
-      return 'bg-[#070b19] text-slate-300 border-indigo-900/60';
+      return 'bg-[rgba(139,92,246,0.15)] text-[var(--primary-light)] border-[var(--border)]';
   }
 }
 
@@ -284,49 +279,49 @@ export default function ToolCard({ tool, onSelectTool }: ToolCardProps) {
           onSelectTool(tool.slug);
         }
       }}
-      className="group relative bg-[#0c122e] hover:bg-[#121c45] border border-indigo-900/60 hover:border-violet-500/60 rounded-xl p-5 transition-all duration-200 cursor-pointer flex flex-col justify-between h-full min-h-[210px] hover:-translate-y-0.5 shadow-sm hover:shadow-xl hover:shadow-violet-950/30 block text-left no-underline"
+      className="group relative bg-[var(--surface)] hover:bg-[var(--surface-raised)] border border-[var(--border)] hover:border-[var(--primary)] rounded-[var(--radius)] p-5 transition-all duration-200 cursor-pointer flex flex-col justify-between h-full min-h-[210px] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)] block text-left no-underline"
     >
       <div>
         {/* 1. Small Game / Category Label & 2. Optional Status Badge */}
         <div className="flex items-center justify-between gap-2 mb-3">
-          <div className="flex items-center gap-2 text-xs text-slate-400 truncate">
-            <div className="w-6 h-6 rounded-lg bg-[#070b19] border border-indigo-950 flex items-center justify-center flex-shrink-0 group-hover:border-violet-500/50 transition-colors">
+          <div className="flex items-center gap-2 text-xs text-[var(--muted)] min-w-0">
+            <div className="w-7 h-7 rounded-lg bg-[var(--surface-raised)] border border-[var(--border)] flex items-center justify-center flex-shrink-0 group-hover:border-[var(--primary)] group-hover:shadow-[0_0_20px_rgba(139,92,246,0.35)] transition-all duration-200">
               {renderIcon()}
             </div>
-            <span className="font-semibold text-slate-300 text-xs truncate">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-[rgba(139,92,246,0.15)] text-[var(--primary-light)] font-semibold text-[11px] truncate">
               {game?.shortName || game?.name || 'Gaming'}
             </span>
-            <span className="text-slate-600">·</span>
-            <span className="text-slate-400 text-[11px] truncate">
+            <span className="text-[var(--muted)]">·</span>
+            <span className="text-[var(--muted)] text-[11px] truncate">
               {category?.name || 'Utility'}
             </span>
           </div>
 
           {statusBadge && (
-            <span className={`text-[10px] font-semibold tracking-wider font-mono px-2 py-0.5 rounded border flex-shrink-0 ${getBadgeStyles(statusBadge)}`}>
+            <span className={`text-[10px] font-semibold tracking-wider font-mono px-2 py-0.5 rounded-full border flex-shrink-0 ${getBadgeStyles(statusBadge)}`}>
               {statusBadge}
             </span>
           )}
         </div>
 
         {/* 3. Tool Name */}
-        <h3 className="text-[15px] font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-1 mb-2 tracking-tight">
+        <h3 className="text-[15px] font-bold text-[var(--text)] group-hover:text-[var(--primary-light)] transition-colors line-clamp-1 mb-2 tracking-tight">
           {tool.name}
         </h3>
 
         {/* 4. Short 1-2 Line Description */}
-        <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed mb-4">
+        <p className="text-xs text-[var(--text-soft)] line-clamp-2 leading-relaxed mb-4">
           {tool.shortDescription}
         </p>
       </div>
 
       {/* 5. Small Technical Metadata & 6. Clear Open Tool CTA */}
-      <div className="pt-3 border-t border-indigo-950/80 flex items-center justify-between text-xs mt-auto">
-        <span className="text-slate-400 text-[11px] font-mono flex items-center gap-1 truncate max-w-[55%]">
+      <div className="pt-3 border-t border-[var(--border)] flex items-center justify-between text-xs mt-auto">
+        <span className="text-[var(--muted)] text-[11px] font-mono flex items-center gap-1 truncate max-w-[55%]">
           {technicalMetadata}
         </span>
 
-        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-400 group-hover:text-cyan-300 transition-colors flex-shrink-0">
+        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--primary-light)] group-hover:text-[var(--accent)] transition-colors flex-shrink-0">
           <span>Open Tool</span>
           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
         </span>

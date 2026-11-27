@@ -106,43 +106,45 @@ export default function Ps99HubPage({ onNavigate }: Ps99HubPageProps) {
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-          <div className="relative rounded-3xl bg-gradient-to-br from-sky-950/70 via-slate-900 to-indigo-950/80 border border-sky-500/30 p-6 sm:p-10 overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-950/80 border border-sky-500/40 text-sky-300 text-xs font-mono font-bold">
-                {getGameIcon('ps99', 'w-4 h-4')}
-                <span>Dedicated Pet Simulator 99 Engineering Suite • 2026 Meta</span>
+          <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-5">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                {getGameIcon('ps99', 'w-7 h-7')}
               </div>
+              <div className="space-y-2 min-w-0">
+                <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                  Pet Simulator 99 Calculators & Utilities
+                </h1>
+                <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
+                  Complete suite of 8 professional Pet Simulator 99 tools: WFL trade evaluator, exclusive daycare passive diamonds, enchant diminishing returns, egg hatching odds, mastery progression, live RAP scam radar, clan battle point goals, and diamond farming optimizer.
+                </p>
+                <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                  {ps99Tools.length} tools
+                </p>
+              </div>
+            </div>
 
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight flex items-center gap-3 sm:gap-4 flex-wrap">
-                <span className="p-2 sm:p-2.5 rounded-2xl bg-sky-950/80 border border-sky-500/40 shadow-lg inline-flex items-center justify-center shrink-0">
-                  {getGameIcon('ps99', 'w-8 h-8 sm:w-11 sm:h-11')}
-                </span>
-                <span>Pet Simulator 99 Calculators & Utilities</span>
-              </h1>
-
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                Complete suite of 8 professional Pet Simulator 99 tools: WFL trade evaluator, exclusive daycare passive diamonds, enchant diminishing returns, egg hatching odds, mastery progression, live RAP scam radar, clan battle point goals, and diamond farming optimizer.
-              </p>
-
-              {/* Quick Search */}
-              <div className="pt-2 max-w-lg">
-                <div className="flex items-center gap-2 px-3.5 py-2.5 bg-slate-950/90 border border-slate-700/80 rounded-xl shadow-lg">
-                  <Search className="w-4 h-4 text-sky-400 flex-shrink-0" />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search WFL, daycare, enchants, egg odds, mastery, RAP, clan..."
-                    className="w-full bg-transparent text-xs text-white placeholder-slate-500 focus:outline-none"
-                  />
-                  {searchQuery && (
-                    <button onClick={() => setSearchQuery('')} className="text-xs text-slate-400 hover:text-white">
-                      Clear
-                    </button>
-                  )}
-                </div>
+            {/* Quick Search */}
+            <div className="max-w-lg">
+              <div className="flex items-center gap-2 px-3.5 py-2.5 bg-[var(--bg)] border border-[var(--border)] rounded-[12px] focus-within:border-[var(--primary)] transition-colors">
+                <Search className="w-4 h-4 text-[var(--primary-light)] flex-shrink-0" />
+                <input
+                  type="text"
+                  aria-label="Search Pet Simulator 99 tools"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search WFL, daycare, enchants, egg odds, mastery, RAP, clan..."
+                  className="w-full bg-transparent text-xs text-[var(--text)] placeholder-[var(--muted)] focus:outline-none"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    className="text-xs text-[var(--text-soft)] hover:text-[var(--text)]"
+                  >
+                    Clear
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -261,7 +263,7 @@ export default function Ps99HubPage({ onNavigate }: Ps99HubPageProps) {
                     className="w-full p-4 text-left flex items-center justify-between text-xs sm:text-sm font-semibold text-slate-200 hover:text-white"
                   >
                     <span>{faq.question}</span>
-                    {isOpen ? <ChevronUp className="w-4 h-4 text-sky-400" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+                    {isOpen ? <ChevronUp className="w-4 h-4 text-sky-400" /> : <ChevronDown className="w-4 h-4 text-[var(--muted)]" />}
                   </button>
                   {isOpen && (
                     <div className="px-4 pb-4 pt-1 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-slate-800/80">

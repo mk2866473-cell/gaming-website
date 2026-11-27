@@ -8,6 +8,7 @@ import { QA_ENTRIES, getQaGames, QaEntry } from '../data/qaData';
 import SEOHead from '../components/SEOHead';
 import AdLayout from '../components/ads/AdLayout';
 import { getGameIcon } from '../components/GameIcons';
+import BrandLogo from '../components/BrandLogo';
 import { HelpCircle, ArrowRight, Search, Sparkles, MessageSquare } from 'lucide-react';
 
 interface QaIndexPageProps {
@@ -48,35 +49,34 @@ export default function QaIndexPage({ onNavigate }: QaIndexPageProps) {
         {/* Top Ad Slot */}
         <AdLayout.HubTop />
 
-        {/* Hero Section */}
-        <div className="relative rounded-3xl bg-gradient-to-br from-violet-950/70 via-indigo-950/60 to-[#0c122e] border border-violet-500/40 p-6 sm:p-10 overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10 max-w-4xl space-y-5">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-950/80 border border-violet-500/40 text-violet-300 text-xs font-mono font-bold">
-              <HelpCircle className="w-3.5 h-3.5 text-violet-400" />
-              <span>Verified Knowledge Base</span>
+        {/* Hub Header */}
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-5">
+          <div className="flex items-start gap-4">
+            <BrandLogo size="lg" className="!rounded-[12px] shrink-0" />
+            <div className="space-y-2 min-w-0">
+              <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                Game Q&amp;A — Quick Answers to Gaming Questions
+              </h1>
+              <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
+                Clear, calculated answers to common gaming questions, exchange rates, currency values, and game mechanics. Select a game hub or search below.
+              </p>
+              <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                {QA_ENTRIES.length} questions across {games.length} games
+              </p>
             </div>
+          </div>
 
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-              Game Q&A — Quick Answers to Gaming Questions
-            </h1>
-
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-3xl">
-              Clear, calculated answers to common gaming questions, exchange rates, currency values, and game mechanics. Select a game hub or search below.
-            </p>
-
-            {/* Search Bar */}
-            <div className="relative max-w-xl">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <input
-                type="text"
-                placeholder="Search questions (e.g., 1000 Robux, DevEx)..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#070b19] border border-indigo-900/80 focus:border-violet-500 rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-violet-500 transition-all"
-              />
-            </div>
+          {/* Search Bar */}
+          <div className="relative max-w-xl">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted)]" aria-hidden="true" />
+            <input
+              type="text"
+              aria-label="Search gaming Q&A questions"
+              placeholder="Search questions (e.g., 1000 Robux, DevEx)..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-[var(--bg)] border border-[var(--border)] focus:border-[var(--primary)] rounded-xl pl-11 pr-4 py-3 text-sm text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)] transition-all"
+            />
           </div>
         </div>
 

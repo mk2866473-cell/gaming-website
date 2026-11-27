@@ -70,31 +70,24 @@ export default function GrowAGardenHubPage({ onNavigate }: GrowAGardenHubPagePro
       {/* Dynamic Game Codes Banner */}
       <HubCodesBanner hubPath="/games/grow-a-garden" onNavigate={onNavigate} />
 
-      {/* Hero Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-950/80 via-zinc-900 to-black border border-emerald-500/40 p-6 sm:p-8 lg:p-10 shadow-2xl">
-        <div className="relative z-10 space-y-4">
-          <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
-          
-          <div className="flex flex-col sm:flex-row sm:items-center gap-5 pt-2">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center p-3 shadow-xl shrink-0">
-              <Sprout className="w-full h-full text-emerald-400" />
-            </div>
+      {/* Breadcrumb & Hero Header */}
+      <div>
+        <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-400">
-                  Roblox Grow a Garden Hub
-                </span>
-                <span className="text-zinc-600">·</span>
-                <span className="text-[10px] font-mono text-zinc-400">Verified Wiki Math</span>
-                <span className="text-zinc-600">·</span>
-                <span className="text-[10px] font-mono text-emerald-400">Client-Side Engine</span>
-              </div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                Grow a Garden <span className="text-emerald-400">Calculators & Tools</span>
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-4">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+              <Sprout className="w-7 h-7 text-emerald-400" />
+            </div>
+            <div className="space-y-2 min-w-0">
+              <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                Grow a Garden Calculators & Tools
               </h1>
-              <p className="text-xs sm:text-sm text-zinc-300 max-w-2xl mt-1 leading-relaxed">
+              <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
                 Calculate crop values in Sheckles, weight scaling ratios, variant multipliers, environmental mutation stacking brackets, and friend boost bonuses.
+              </p>
+              <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                {growTools.length} tools
               </p>
             </div>
           </div>
@@ -104,13 +97,14 @@ export default function GrowAGardenHubPage({ onNavigate }: GrowAGardenHubPagePro
       {/* Search & Tool Directory */}
       <div className="space-y-4">
         <div className="relative">
-          <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-[var(--muted)] absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
+            aria-label="Search Grow a Garden tools"
             placeholder="Search Grow a Garden crop value calculator, mutation stacking..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl pl-10 pr-4 py-3 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-colors"
+            className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-[12px] pl-10 pr-4 py-3 text-xs text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--primary)] transition-colors"
           />
         </div>
 
@@ -148,7 +142,7 @@ export default function GrowAGardenHubPage({ onNavigate }: GrowAGardenHubPagePro
                 className="w-full p-4 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-zinc-200 hover:text-white cursor-pointer"
               >
                 <span>{faq.q}</span>
-                {openFaqIndex === idx ? <ChevronUp className="w-4 h-4 text-emerald-400" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+                {openFaqIndex === idx ? <ChevronUp className="w-4 h-4 text-emerald-400" /> : <ChevronDown className="w-4 h-4 text-[var(--muted)]" />}
               </button>
               {openFaqIndex === idx && (
                 <div className="px-4 pb-4 text-xs text-zinc-400 leading-relaxed border-t border-zinc-800/60 pt-3">

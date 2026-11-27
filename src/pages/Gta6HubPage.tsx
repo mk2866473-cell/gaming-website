@@ -89,31 +89,24 @@ export default function Gta6HubPage({ onNavigate }: Gta6HubPageProps) {
       {/* Dynamic Game Codes Banner */}
       <HubCodesBanner hubPath="/games/gta-6" onNavigate={onNavigate} />
 
-      {/* Hero Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-rose-950/70 via-zinc-900 to-black border border-rose-500/40 p-6 sm:p-8 lg:p-10 shadow-2xl">
-        <div className="relative z-10 space-y-4">
-          <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
+      {/* Breadcrumb & Hero Header */}
+      <div>
+        <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-5 pt-2">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center p-3 shadow-xl shrink-0">
-              {getGameIcon('gta6', 'w-full h-full')}
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-4">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+              {getGameIcon('gta6', 'w-7 h-7')}
             </div>
-
-            <div>
-              <div className="flex flex-wrap items-center gap-2 mb-1 text-[11px] font-mono text-zinc-400">
-                <span className="font-bold text-rose-400">Grand Theft Auto VI Hub</span>
-                <span aria-hidden="true">·</span>
-                <span>PS5 &amp; Xbox Series X|S</span>
-                <span aria-hidden="true">·</span>
-                <span>{cheatSummary.total} Cheats ({cheatSummary.verified} Verified)</span>
-                <span aria-hidden="true">·</span>
-                <span>Last checked: {GTA6_CHEATS_LAST_CHECKED}</span>
-              </div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                Grand Theft Auto VI <span className="text-rose-400">Tools &amp; Cheats</span>
+            <div className="space-y-2 min-w-0">
+              <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                Grand Theft Auto VI Tools &amp; Cheats
               </h1>
-              <p className="text-xs sm:text-sm text-zinc-300 max-w-2xl mt-1 leading-relaxed">
+              <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
                 Search all {cheatSummary.total} GTA 6 cheat codes, track unlock conditions, and copy verified D-pad sequences for PS5 and Xbox Series X|S.
+              </p>
+              <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                {gta6Tools.length} {gta6Tools.length === 1 ? 'tool' : 'tools'} · {cheatSummary.total} cheats ({cheatSummary.verified} verified) · Last checked {GTA6_CHEATS_LAST_CHECKED}
               </p>
             </div>
           </div>
@@ -123,13 +116,14 @@ export default function Gta6HubPage({ onNavigate }: Gta6HubPageProps) {
       {/* Search & Tool Directory */}
       <div className="space-y-4">
         <div className="relative">
-          <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-[var(--muted)] absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
+            aria-label="Search GTA 6 tools"
             placeholder="Search GTA 6 tools (Cheat Code Finder, D-pad codes...)"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl pl-10 pr-4 py-3 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-rose-500 transition-colors"
+            className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-[12px] pl-10 pr-4 py-3 text-xs text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--primary)] transition-colors"
           />
         </div>
 
@@ -174,7 +168,7 @@ export default function Gta6HubPage({ onNavigate }: Gta6HubPageProps) {
                 {openFaqIndex === idx ? (
                   <ChevronUp className="w-4 h-4 text-rose-400" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 text-zinc-500" />
+                  <ChevronDown className="w-4 h-4 text-[var(--muted)]" />
                 )}
               </button>
               {openFaqIndex === idx && (

@@ -84,43 +84,45 @@ export default function RobloxHubPage({ onNavigate }: RobloxHubPageProps) {
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-          <div className="relative rounded-3xl bg-gradient-to-br from-rose-950/60 via-zinc-900 to-zinc-950 border border-rose-500/30 p-6 sm:p-10 overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300 text-xs font-mono font-bold">
-                <Gamepad2 className="w-3.5 h-3.5 text-rose-400" />
-                <span>Dedicated Roblox & Blox Fruits Engineering Suite</span>
+          <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-5">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                {getGameIcon('roblox', 'w-7 h-7')}
               </div>
+              <div className="space-y-2 min-w-0">
+                <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                  Roblox & Pet Simulator 99 Calculators
+                </h1>
+                <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
+                  Pet Simulator 99 Trade Value & WFL calculator, official 30% Robux tax calculations, Developer Exchange (DevEx) conversions, and verified Blox Fruits trade fairness & stat planners.
+                </p>
+                <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                  {robloxTools.length} tools
+                </p>
+              </div>
+            </div>
 
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight flex items-center gap-3 sm:gap-4 flex-wrap">
-                <span className="p-2 sm:p-2.5 rounded-2xl bg-rose-950/80 border border-rose-500/40 shadow-lg inline-flex items-center justify-center shrink-0">
-                  {getGameIcon('roblox', 'w-8 h-8 sm:w-11 sm:h-11')}
-                </span>
-                <span>Roblox & Pet Simulator 99 Calculators</span>
-              </h1>
-
-              <p className="text-sm sm:text-base text-zinc-300 leading-relaxed">
-                Pet Simulator 99 Trade Value & WFL calculator, official 30% Robux tax calculations, Developer Exchange (DevEx) conversions, and verified Blox Fruits trade fairness & stat planners.
-              </p>
-
-              {/* Quick Search */}
-              <div className="pt-2 max-w-lg">
-                <div className="flex items-center gap-2 px-3.5 py-2.5 bg-zinc-950/90 border border-zinc-700/80 rounded-xl shadow-lg">
-                  <Search className="w-4 h-4 text-rose-400 flex-shrink-0" />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search PS99 trade, huge cat, Robux tax, devex, blox fruits..."
-                    className="w-full bg-transparent text-xs text-white placeholder-zinc-500 focus:outline-none"
-                  />
-                  {searchQuery && (
-                    <button onClick={() => setSearchQuery('')} className="text-xs text-zinc-400 hover:text-white">
-                      Clear
-                    </button>
-                  )}
-                </div>
+            {/* Quick Search */}
+            <div className="max-w-lg">
+              <div className="flex items-center gap-2 px-3.5 py-2.5 bg-[var(--bg)] border border-[var(--border)] rounded-[12px] focus-within:border-[var(--primary)] transition-colors">
+                <Search className="w-4 h-4 text-[var(--primary-light)] flex-shrink-0" />
+                <input
+                  type="text"
+                  aria-label="Search Roblox tools"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search PS99 trade, huge cat, Robux tax, devex, blox fruits..."
+                  className="w-full bg-transparent text-xs text-[var(--text)] placeholder-[var(--muted)] focus:outline-none"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    className="text-xs text-[var(--text-soft)] hover:text-[var(--text)]"
+                  >
+                    Clear
+                  </button>
+                )}
               </div>
             </div>
           </div>

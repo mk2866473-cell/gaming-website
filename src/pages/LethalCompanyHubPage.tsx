@@ -105,51 +105,37 @@ export default function LethalCompanyHubPage({ onNavigate }: LethalCompanyHubPag
       {/* Hub Top Banner Ad Slot */}
       <AdLayout.HubTop />
 
-      {/* Industrial Dark Hero Header */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-amber-950/80 via-slate-900 to-slate-950 border border-amber-500/20 rounded-2xl p-6 sm:p-8 space-y-6">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Breadcrumb & Hero Header */}
+      <div>
+        <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-        <div className="space-y-6 relative z-10">
-          <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
-
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-5 font-sans">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-            <div className="flex items-start gap-4">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center p-3 shadow-xl shrink-0">
-                <LethalCompanyIcon className="w-full h-full" />
+            <div className="flex items-start gap-4 max-w-3xl">
+              <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                <LethalCompanyIcon className="w-7 h-7" />
               </div>
-              <div className="space-y-2 max-w-3xl">
-                <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-                  <span className="font-bold uppercase tracking-wider text-amber-400">
-                    Industrial Survival Matrix
-                  </span>
-                  <span className="text-zinc-600">·</span>
-                  <span className="text-zinc-400">5 Tactical Engines</span>
-                  <span className="text-zinc-600">·</span>
-                  <span className="text-emerald-400">The Company Verified</span>
-                </div>
-
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
-                  Lethal Company & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500">Content Warning Hub</span>
+              <div className="space-y-2 min-w-0">
+                <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                  Lethal Company &amp; Content Warning Hub
                 </h1>
-
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-sans">
+                <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed">
                   Optimize company deadline sales, evaluate monster spawn weights across Titan and Artifice, plan terminal store purchases with daily discounts, calculate ship upgrade ROI, and boost SpookTube viral video views.
+                </p>
+                <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                  {lethalTools.length} tools
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-3 bg-slate-900/90 border border-amber-500/30 rounded-2xl p-4 sm:p-5 shadow-2xl">
-              <div className="text-center px-4 py-2 border-r border-slate-800">
-                <div className="text-2xl font-black text-amber-400">100%</div>
-                <div className="text-[11px] text-slate-400 font-semibold uppercase">Deadline Rate</div>
+            <div className="flex flex-wrap gap-3 bg-[var(--bg)] border border-[var(--border)] rounded-xl p-3 shrink-0 font-mono">
+              <div className="text-center px-3 py-1 border-r border-[var(--border)]">
+                <div className="text-lg font-bold text-amber-400">100%</div>
+                <div className="text-[11px] text-[var(--muted)] uppercase">Deadline Rate</div>
               </div>
-              <div className="text-center px-4 py-2 border-r border-slate-800">
-                <div className="text-2xl font-black text-emerald-400">5 Tools</div>
-                <div className="text-[11px] text-slate-400 font-semibold uppercase">Calculators</div>
-              </div>
-              <div className="text-center px-4 py-2">
-                <div className="text-2xl font-black text-purple-400">SpookTube</div>
-                <div className="text-[11px] text-slate-400 font-semibold uppercase">Content Warning</div>
+              <div className="text-center px-3 py-1">
+                <div className="text-lg font-bold text-purple-400">SpookTube</div>
+                <div className="text-[11px] text-[var(--muted)] uppercase">Content Warning</div>
               </div>
             </div>
           </div>
@@ -157,16 +143,17 @@ export default function LethalCompanyHubPage({ onNavigate }: LethalCompanyHubPag
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-4 space-y-4">
+      <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-4 space-y-4">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="relative w-full sm:w-96">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[var(--muted)] absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
+              aria-label="Search Lethal Company tools"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search tools (e.g., quota, monster, store, teleporter, spooktube)..."
-              className="w-full pl-9 pr-4 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 font-sans"
+              className="w-full pl-9 pr-4 py-2 bg-[var(--bg)] border border-[var(--border)] rounded-[12px] text-xs text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--primary)] font-sans"
             />
           </div>
 
@@ -275,7 +262,7 @@ export default function LethalCompanyHubPage({ onNavigate }: LethalCompanyHubPag
                   {isOpen ? (
                     <ChevronUp className="w-4 h-4 text-amber-400 flex-shrink-0" />
                   ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />
+                    <ChevronDown className="w-4 h-4 text-[var(--muted)] flex-shrink-0" />
                   )}
                 </button>
 

@@ -71,31 +71,24 @@ export default function GtaOnlineHubPage({ onNavigate }: GtaOnlineHubPageProps) 
       {/* Dynamic Game Codes Banner */}
       <HubCodesBanner hubPath="/games/gta-online" onNavigate={onNavigate} />
 
-      {/* Hero Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-950/80 via-zinc-900 to-black border border-emerald-500/40 p-6 sm:p-8 lg:p-10 shadow-2xl">
-        <div className="relative z-10 space-y-4">
-          <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
+      {/* Breadcrumb & Hero Header */}
+      <div>
+        <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-5 pt-2">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center p-3 shadow-xl shrink-0">
-              {getGameIcon('gtaonline', 'w-full h-full')}
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-4">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+              {getGameIcon('gtaonline', 'w-7 h-7')}
             </div>
-
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-400">
-                  GTA Online Business &amp; Heist Hub
-                </span>
-                <span className="text-zinc-600">·</span>
-                <span className="text-[10px] font-mono text-zinc-400">Title Update 1.73</span>
-                <span className="text-zinc-600">·</span>
-                <span className="text-[10px] font-mono text-emerald-400">{gtaTools.length} Verified Tools</span>
-              </div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                GTA Online <span className="text-emerald-400">Calculators &amp; Tools</span>
+            <div className="space-y-2 min-w-0">
+              <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                GTA Online Calculators &amp; Tools
               </h1>
-              <p className="text-xs sm:text-sm text-zinc-300 max-w-2xl mt-1 leading-relaxed">
+              <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
                 Calculate Nightclub Warehouse, Acid Lab, Cayo Perico, Heist splits, Business ROI, Cooldowns, Bunker, MC Businesses, Special Cargo, Hangar Air Freight, and Vehicle Cargo payouts using standard Title Update 1.73 base values.
+              </p>
+              <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                {gtaTools.length} tools · Title Update 1.73
               </p>
             </div>
           </div>
@@ -105,13 +98,14 @@ export default function GtaOnlineHubPage({ onNavigate }: GtaOnlineHubPageProps) 
       {/* Search & Tool Directory */}
       <div className="space-y-4">
         <div className="relative">
-          <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-[var(--muted)] absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
+            aria-label="Search GTA Online tools"
             placeholder="Search GTA Online tools (Nightclub, Bunker, MC, Special Cargo, Hangar, Vehicle Cargo, Cayo Perico...)"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl pl-10 pr-4 py-3 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-colors"
+            className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-[12px] pl-10 pr-4 py-3 text-xs text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--primary)] transition-colors"
           />
         </div>
 
@@ -156,7 +150,7 @@ export default function GtaOnlineHubPage({ onNavigate }: GtaOnlineHubPageProps) 
                 {openFaqIndex === idx ? (
                   <ChevronUp className="w-4 h-4 text-emerald-400" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 text-zinc-500" />
+                  <ChevronDown className="w-4 h-4 text-[var(--muted)]" />
                 )}
               </button>
               {openFaqIndex === idx && (

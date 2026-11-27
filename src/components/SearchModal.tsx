@@ -123,17 +123,23 @@ export default function SearchModal({ isOpen, onClose, onSelectTool, onNavigate 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-12 sm:pt-20 px-3 sm:px-4 bg-black/80 backdrop-blur-md animate-fadeIn">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search gaming tools and games"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-12 sm:pt-20 px-3 sm:px-4 bg-black/80 backdrop-blur-md animate-fadeIn"
+    >
       <div 
-        className="relative w-full max-w-2xl bg-[#0c122e] border border-indigo-900/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh]"
+        className="relative w-full max-w-2xl bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] shadow-2xl overflow-hidden flex flex-col max-h-[85vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
-        <div className="flex items-center px-4 py-3.5 border-b border-indigo-950 bg-[#080d21] flex-shrink-0">
-          <Search className="w-5 h-5 text-violet-400 mr-3 flex-shrink-0" />
+        <div className="flex items-center px-4 py-3.5 border-b border-[var(--border)] bg-[var(--bg)] flex-shrink-0">
+          <Search className="w-5 h-5 text-[var(--primary-light)] mr-3 flex-shrink-0" aria-hidden="true" />
           <input
             ref={inputRef}
             type="text"
+            aria-label="Search gaming tools and games"
             placeholder="Search all games & tools (Coin Master, Seven Knights, Monopoly, Minecraft, etc.)..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -146,18 +152,28 @@ export default function SearchModal({ isOpen, onClose, onSelectTool, onNavigate 
                 }
               }
             }}
-            className="w-full bg-transparent text-white text-xs sm:text-sm placeholder-slate-500 focus:outline-none"
+            className="w-full bg-transparent text-[var(--text)] text-xs sm:text-sm placeholder-[var(--muted)] focus:outline-none"
           />
           {query && (
             <button
+              type="button"
               onClick={() => setQuery('')}
-              className="p-1 text-slate-400 hover:text-slate-200 mr-2"
+              aria-label="Clear search query"
+              className="p-1.5 text-[var(--muted)] hover:text-[var(--text)] mr-1.5 rounded-lg"
               title="Clear search"
             >
               <X className="w-4 h-4" />
             </button>
           )}
-          <kbd className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono text-slate-300 bg-[#070b19] border border-indigo-900/60 rounded">
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close search modal"
+            className="p-1.5 text-[var(--muted)] hover:text-[var(--text)] mr-2 rounded-lg sm:hidden"
+          >
+            <X className="w-4 h-4" />
+          </button>
+          <kbd className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono text-[var(--text-soft)] bg-[var(--surface-raised)] border border-[var(--border)] rounded">
             ESC
           </kbd>
         </div>
@@ -244,9 +260,9 @@ export default function SearchModal({ isOpen, onClose, onSelectTool, onNavigate 
             </div>
 
             {matchedTools.length === 0 && matchedGames.length === 0 ? (
-              <div className="text-center py-12 text-slate-400 text-xs space-y-2">
+              <div className="text-center py-12 text-[var(--text-soft)] text-xs space-y-2">
                 <p>No gaming tools or hubs found for "{query}".</p>
-                <p className="text-slate-500 text-[11px]">
+                <p className="text-[var(--muted)] text-[11px]">
                   Try searching "Coin Master", "Seven Knights", "Monopoly", "Palworld", or "Minecraft".
                 </p>
               </div>
@@ -283,7 +299,7 @@ export default function SearchModal({ isOpen, onClose, onSelectTool, onNavigate 
                       </div>
                     </div>
 
-                    <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-300 group-hover:translate-x-1 transition-all flex-shrink-0 ml-3" />
+                    <ArrowRight className="w-4 h-4 text-[var(--muted)] group-hover:text-[var(--primary-light)] group-hover:translate-x-1 transition-all flex-shrink-0 ml-3" />
                   </div>
                 );
               })
@@ -292,8 +308,8 @@ export default function SearchModal({ isOpen, onClose, onSelectTool, onNavigate 
         </div>
 
         {/* Modal Footer */}
-        <div className="px-4 py-2.5 bg-[#080d21] border-t border-indigo-950 flex justify-between items-center text-[11px] text-slate-400 flex-shrink-0">
-          <span>GamingToolsHub • All 23 Supported Games Searchable</span>
+        <div className="px-4 py-2.5 bg-[var(--bg)] border-t border-[var(--border)] flex justify-between items-center text-[11px] text-[var(--muted)] flex-shrink-0">
+          <span>GamingToolsHub • Search All Supported Games &amp; Tools</span>
           <span>Press ESC to close</span>
         </div>
       </div>

@@ -107,40 +107,32 @@ export default function AfkjHubPage({ onNavigate }: AfkjHubPageProps) {
       {/* Dynamic Game Codes Banner */}
       <HubCodesBanner hubPath="/games/afk-journey" onNavigate={onNavigate} />
 
-      {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-950 via-slate-900 to-zinc-950 border border-purple-500/20 p-6 sm:p-8 lg:p-10 shadow-2xl">
-        <div className="absolute top-0 right-0 -mt-12 -mr-12 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Unified Hub Header */}
+      <div className="space-y-4">
+        <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-        <div className="relative z-10 space-y-4">
-          <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
-
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pt-2">
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="flex items-start gap-4">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center p-3 shadow-xl shrink-0">
-                <AfkjIcon className="w-full h-full" />
+              <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                <AfkjIcon className="w-7 h-7" />
               </div>
-              <div>
-                <div className="flex flex-wrap items-center gap-2 mb-2 text-xs font-mono">
-                  <span className="font-bold uppercase tracking-wider text-purple-400">
-                    AFK Journey Tactical Hub
-                  </span>
-                  <span className="text-zinc-600">·</span>
-                  <span className="text-zinc-400">6 Specialized Tools</span>
-                  <span className="text-zinc-600">·</span>
-                  <span className="text-emerald-400">Dream Realm Verified</span>
-                </div>
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                  AFK Journey <span className="text-purple-400">Toolkit & Tactical Hub</span>
+              <div className="space-y-2 max-w-2xl">
+                <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                  AFK Journey Toolkit & Tactical Hub
                 </h1>
-                <p className="mt-1 text-xs sm:text-sm text-zinc-300 max-w-2xl leading-relaxed">
+                <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed">
                   Optimize Dream Realm daily boss scores, calculate hero duplicate sigils and faction acorns, project Hero Essence dust walls, and build 5v5 tactical grid comps.
                 </p>
+                <div className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                  {afkjTools.length} tools
+                </div>
               </div>
             </div>
 
             <button
               onClick={handleShare}
-              className="inline-flex items-center gap-2 self-start md:self-center px-4 py-2.5 rounded-xl bg-zinc-800/80 hover:bg-zinc-700 text-white font-medium text-xs transition-colors border border-zinc-700 shadow-md"
+              className="inline-flex items-center gap-2 self-start md:self-center px-4 py-2.5 rounded-xl bg-[var(--surface-raised)] hover:bg-zinc-700 text-[var(--text)] font-medium text-xs transition-colors border border-[var(--border)] shrink-0"
             >
               {copiedLink ? <Check className="w-4 h-4 text-emerald-400" /> : <Share2 className="w-4 h-4" />}
               <span>{copiedLink ? 'Link Copied!' : 'Share Hub'}</span>
@@ -148,21 +140,21 @@ export default function AfkjHubPage({ onNavigate }: AfkjHubPageProps) {
           </div>
 
           {/* Quick Stats Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-zinc-800/80">
-            <div className="bg-zinc-950/60 p-3 rounded-xl border border-zinc-800/80">
-              <div className="text-xs text-zinc-400">Supported Heroes</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-[var(--border)]">
+            <div className="bg-[var(--surface-raised)] p-3 rounded-xl border border-[var(--border)]">
+              <div className="text-xs text-[var(--muted)]">Supported Heroes</div>
               <div className="text-lg font-bold text-purple-400">60+ Heroes</div>
             </div>
-            <div className="bg-zinc-950/60 p-3 rounded-xl border border-zinc-800/80">
-              <div className="text-xs text-zinc-400">Max Ascension</div>
+            <div className="bg-[var(--surface-raised)] p-3 rounded-xl border border-[var(--border)]">
+              <div className="text-xs text-[var(--muted)]">Max Ascension</div>
               <div className="text-lg font-bold text-purple-400">Supreme+ / Paragon</div>
             </div>
-            <div className="bg-zinc-950/60 p-3 rounded-xl border border-zinc-800/80">
-              <div className="text-xs text-zinc-400">Gacha Hard Pity</div>
+            <div className="bg-[var(--surface-raised)] p-3 rounded-xl border border-[var(--border)]">
+              <div className="text-xs text-[var(--muted)]">Gacha Hard Pity</div>
               <div className="text-lg font-bold text-emerald-400">40 Pulls</div>
             </div>
-            <div className="bg-zinc-950/60 p-3 rounded-xl border border-zinc-800/80">
-              <div className="text-xs text-zinc-400">Active Season</div>
+            <div className="bg-[var(--surface-raised)] p-3 rounded-xl border border-[var(--border)]">
+              <div className="text-xs text-[var(--muted)]">Active Season</div>
               <div className="text-lg font-bold text-amber-300">Song of Strife</div>
             </div>
           </div>
@@ -176,10 +168,11 @@ export default function AfkjHubPage({ onNavigate }: AfkjHubPageProps) {
             <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
+              aria-label="Search AFK Journey tools"
               placeholder="Search AFK Journey tools (e.g. Dream Realm, Ascension, Dust, Wishlist, Grid)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 transition-colors"
+              className="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-[var(--muted)] focus:outline-none focus:border-purple-500 transition-colors"
             />
           </div>
 
@@ -251,7 +244,7 @@ export default function AfkjHubPage({ onNavigate }: AfkjHubPageProps) {
           </div>
         ) : (
           <div className="text-center py-12 bg-zinc-900/40 border border-zinc-800 rounded-2xl">
-            <Info className="w-8 h-8 text-zinc-500 mx-auto mb-3" />
+            <Info className="w-8 h-8 text-[var(--muted)] mx-auto mb-3" />
             <p className="text-zinc-400 text-sm">No AFK Journey tools match your search filter.</p>
           </div>
         )}
@@ -328,7 +321,7 @@ export default function AfkjHubPage({ onNavigate }: AfkjHubPageProps) {
                 {openFaqIndex === idx ? (
                   <ChevronUp className="w-4 h-4 text-purple-400 shrink-0" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 text-zinc-500 shrink-0" />
+                  <ChevronDown className="w-4 h-4 text-[var(--muted)] shrink-0" />
                 )}
               </button>
               {openFaqIndex === idx && (

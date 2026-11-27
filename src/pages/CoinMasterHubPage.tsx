@@ -65,32 +65,23 @@ export default function CoinMasterHubPage({ onNavigate }: CoinMasterHubPageProps
       {/* Dynamic Game Codes Banner */}
       <HubCodesBanner hubPath="/games/coin-master" onNavigate={onNavigate} />
 
-      {/* Hero Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-950/70 via-zinc-900 to-black border border-amber-500/30 p-6 sm:p-8 lg:p-10 shadow-2xl">
-        <div className="relative z-10 space-y-4">
-          <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
-          
-          <div className="flex flex-col sm:flex-row sm:items-center gap-5 pt-2">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center p-3 shadow-xl shrink-0">
-              <CmIcon className="w-full h-full" />
-            </div>
+      {/* Unified Hub Header */}
+      <div className="space-y-4">
+        <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-400">
-                  Viking Raid Suite
-                </span>
-                <span className="text-zinc-600">·</span>
-                <span className="text-[10px] font-mono text-zinc-400">5 Tactical Engines</span>
-                <span className="text-zinc-600">·</span>
-                <span className="text-[10px] font-mono text-emerald-400">100% Free & Verified</span>
-              </div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                Coin Master <span className="text-amber-400">Toolkit & Strategy Hub</span>
-              </h1>
-              <p className="text-xs sm:text-sm text-zinc-300 max-w-2xl mt-1 leading-relaxed">
-                Maximize village construction efficiency, claim daily verified spin links, complete high-yield card sets, and optimize pet timers for legendary raids.
-              </p>
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 flex items-start gap-4">
+          <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+            <CmIcon className="w-7 h-7" />
+          </div>
+          <div className="space-y-2 max-w-2xl">
+            <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+              Coin Master Toolkit & Strategy Hub
+            </h1>
+            <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed">
+              Maximize village construction efficiency, claim daily verified spin links, complete high-yield card sets, and optimize pet timers for legendary raids.
+            </p>
+            <div className="text-xs font-mono text-[var(--muted)] tabular-nums">
+              {COIN_MASTER_TOOLS.length} tools
             </div>
           </div>
         </div>
@@ -102,10 +93,11 @@ export default function CoinMasterHubPage({ onNavigate }: CoinMasterHubPageProps
           <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
+            aria-label="Search Coin Master tools"
             placeholder="Search Coin Master village costs, card tracker, pet timer, spin links..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl pl-10 pr-4 py-3 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500 transition-colors"
+            className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl pl-10 pr-4 py-3 text-xs text-white placeholder-[var(--muted)] focus:outline-none focus:border-amber-500 transition-colors"
           />
         </div>
 
@@ -137,7 +129,7 @@ export default function CoinMasterHubPage({ onNavigate }: CoinMasterHubPageProps
                 className="w-full p-4 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-zinc-200 hover:text-white cursor-pointer"
               >
                 <span>{faq.q}</span>
-                {openFaqIndex === idx ? <ChevronUp className="w-4 h-4 text-amber-400" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+                {openFaqIndex === idx ? <ChevronUp className="w-4 h-4 text-amber-400" /> : <ChevronDown className="w-4 h-4 text-[var(--muted)]" />}
               </button>
               {openFaqIndex === idx && (
                 <div className="px-4 pb-4 text-xs text-zinc-400 leading-relaxed border-t border-zinc-800/60 pt-3">

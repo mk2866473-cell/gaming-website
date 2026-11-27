@@ -106,63 +106,41 @@ export default function Bg3HubPage({ onNavigate }: Bg3HubPageProps) {
       {/* Hub Top Banner Ad Slot */}
       <AdLayout.HubTop />
 
-      {/* Medieval Fantasy Hero Header */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-amber-950/70 via-slate-900 to-slate-950 border border-amber-500/20 rounded-2xl p-6 sm:p-8 space-y-6">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Breadcrumb & Hero Header */}
+      <div>
+        <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-        <div className="space-y-6 relative z-10">
-          <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
-
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-5">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-            <div className="flex items-start gap-4">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center p-3 shadow-xl shrink-0">
-                <Bg3Icon className="w-full h-full" />
+            <div className="flex items-start gap-4 max-w-3xl">
+              <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                <Bg3Icon className="w-7 h-7" />
               </div>
-              <div className="space-y-2 max-w-3xl">
-                <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-                  <span className="font-bold uppercase tracking-wider text-amber-400">
-                    Baldur's Gate 3 Tactical Hub
-                  </span>
-                  <span className="text-zinc-600">·</span>
-                  <span className="text-emerald-400">Larian Studios 5e Engine</span>
-                  <span className="text-zinc-600">·</span>
-                  <span className="text-purple-400">Patch 7 Verified</span>
-                </div>
-
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight font-serif">
-                  Baldur's Gate 3 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-emerald-400">Tools & Calculators</span>
+              <div className="space-y-2 min-w-0">
+                <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                  Baldur's Gate 3 Tools & Calculators
                 </h1>
-
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-2xl">
+                <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-2xl">
                   Official theorycrafting suite for Faerûn adventurers. Calculate multiclass spell slot tiers (ECL), d20 Advantage success odds, 3:1 Alchemy recipe extraction yields, companion romance progression, 26+ AC tank defenses, Great Weapon Master turn DPR, and exclusive Origin character passives.
                 </p>
-              </div>
-            </div>
-
-            {/* Quick Metrics Badge */}
-            <div className="flex sm:flex-col gap-3 shrink-0">
-              <div className="bg-slate-950/80 border border-amber-500/30 rounded-xl p-4 text-center min-w-[140px]">
-                <div className="text-2xl font-black text-amber-400">7 Tools</div>
-                <div className="text-xs text-slate-400 uppercase font-medium mt-0.5">Dedicated Suite</div>
-              </div>
-              <div className="bg-slate-950/80 border border-emerald-500/30 rounded-xl p-4 text-center min-w-[140px]">
-                <div className="text-2xl font-black text-emerald-400">Honour Mode</div>
-                <div className="text-xs text-slate-400 uppercase font-medium mt-0.5">Larian Verified</div>
+                <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                  {bg3Tools.length} tools · Honour Mode & Patch 7
+                </p>
               </div>
             </div>
           </div>
 
           {/* Quick Jump Bar */}
-          <div className="pt-2 border-t border-slate-800/80 flex flex-wrap items-center gap-2 text-xs">
-            <span className="text-slate-400 font-medium flex items-center gap-1">
+          <div className="pt-4 border-t border-[var(--border)] flex flex-wrap items-center gap-2 text-xs">
+            <span className="text-[var(--text-soft)] font-medium flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" /> Featured Tools:
             </span>
             {bg3Tools.map(t => (
               <button
                 key={t.id}
+                type="button"
                 onClick={() => onNavigate(`/tools/${t.slug}`)}
-                className="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white rounded-lg border border-slate-800 transition-colors"
+                className="px-2.5 py-1 bg-[var(--bg)] hover:border-[var(--primary)] text-[var(--text-soft)] hover:text-[var(--text)] rounded-lg border border-[var(--border)] transition-colors"
               >
                 {t.name}
               </button>
@@ -175,13 +153,14 @@ export default function Bg3HubPage({ onNavigate }: Bg3HubPageProps) {
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[var(--muted)] absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
+              aria-label="Search Baldur's Gate 3 tools"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search BG3 tools (Multiclass, Dice, Alchemy, Romance, AC, Smite, Origin)..."
-              className="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-500/50 transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 bg-[var(--surface)] border border-[var(--border)] rounded-[12px] text-sm text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--primary)] transition-colors"
             />
           </div>
 
@@ -189,6 +168,7 @@ export default function Bg3HubPage({ onNavigate }: Bg3HubPageProps) {
             {categories.map(cat => (
               <button
                 key={cat.id}
+                type="button"
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-3 py-2 text-xs font-semibold rounded-xl transition-all ${
                   selectedCategory === cat.id
@@ -203,7 +183,7 @@ export default function Bg3HubPage({ onNavigate }: Bg3HubPageProps) {
         </div>
 
         {/* Tools Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTools.map((tool, idx) => (
             <React.Fragment key={tool.id}>
               {idx === 4 && <div className="col-span-full"><AdLayout.HubInFeed /></div>}
@@ -335,7 +315,7 @@ export default function Bg3HubPage({ onNavigate }: Bg3HubPageProps) {
                 {openFaqIndex === index ? (
                   <ChevronUp className="w-5 h-5 text-amber-400 shrink-0" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-slate-500 shrink-0" />
+                  <ChevronDown className="w-5 h-5 text-[var(--muted)] shrink-0" />
                 )}
               </button>
 

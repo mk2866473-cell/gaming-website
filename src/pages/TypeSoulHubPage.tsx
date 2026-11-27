@@ -100,61 +100,40 @@ export default function TypeSoulHubPage({ onNavigate }: TypeSoulHubPageProps) {
         {/* Dynamic Game Codes Banner */}
         <HubCodesBanner hubPath="/games/type-soul" onNavigate={onNavigate} />
 
-        {/* Hero Banner */}
-        <div className="relative overflow-hidden bg-gradient-to-b from-red-950/70 via-slate-900 to-slate-950 border border-red-500/20 rounded-3xl p-6 sm:p-10 shadow-2xl">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Breadcrumb & Hero Header */}
+        <div>
+          <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-          <div className="relative z-10 space-y-6">
-            <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
-
+          <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-5">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-              <div className="flex items-start gap-4">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center p-3 shadow-xl shrink-0">
-                  <TypeSoulIcon className="w-full h-full" />
+              <div className="flex items-start gap-4 max-w-3xl">
+                <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                  <TypeSoulIcon className="w-7 h-7" />
                 </div>
-                <div className="space-y-2 max-w-3xl">
-                  <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-                    <span className="font-bold uppercase tracking-wider text-red-400">
-                      Roblox Type Soul Suite
-                    </span>
-                    <span className="text-zinc-600">·</span>
-                    <span className="text-amber-400">Verified 2026 Game Mechanics</span>
-                    <span className="text-zinc-600">·</span>
-                    <span className="text-purple-400">6 Strategy Engines</span>
-                  </div>
-
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-                    Roblox Type Soul <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-amber-300 to-purple-400">Calculators & Build Tools</span>
+                <div className="space-y-2 min-w-0">
+                  <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                    Roblox Type Soul Calculators & Build Tools
                   </h1>
-
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl">
+                  <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-2xl">
                     Dominate Hueco Mundo, Soul Society, and Karakura Town. Allocate 60-point Elite Grade stats, calculate promotion requirements, track Bankai/Resurrección stages, simulate 0.5% Mythical clans, check True Hogyoku raid drops, and test True Combo guard breaks.
+                  </p>
+                  <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                    {typeSoulTools.length} tools
                   </p>
                 </div>
               </div>
 
               {/* Quick Metrics Card */}
-              <div className="grid grid-cols-2 gap-3 w-full lg:w-auto shrink-0 bg-slate-950/80 border border-red-500/30 rounded-2xl p-4 shadow-xl">
-                <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-center">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Calculators</span>
-                  <span className="text-2xl font-black text-red-400">6 Tools</span>
-                  <span className="text-[10px] text-slate-500 block mt-0.5">Updated 2026</span>
+              <div className="grid grid-cols-2 gap-3 w-full lg:w-auto shrink-0">
+                <div className="bg-[var(--bg)] p-3 rounded-xl border border-[var(--border)] text-center">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-soft)] block">Elite Grade</span>
+                  <span className="text-xl font-bold text-amber-400 font-mono">60 PTS</span>
+                  <span className="text-[10px] text-[var(--muted)] block mt-0.5">Max Stat Cap</span>
                 </div>
-                <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-center">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Elite Grade</span>
-                  <span className="text-2xl font-black text-amber-400">60 PTS</span>
-                  <span className="text-[10px] text-slate-500 block mt-0.5">Max Stat Cap</span>
-                </div>
-                <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-center">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Mythical Clans</span>
-                  <span className="text-2xl font-black text-purple-400">0.5% Rate</span>
-                  <span className="text-[10px] text-slate-500 block mt-0.5">Kurosaki, Zaraki</span>
-                </div>
-                <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-center">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">True Hogyoku</span>
-                  <span className="text-2xl font-black text-emerald-400">0.1% Drop</span>
-                  <span className="text-[10px] text-slate-500 block mt-0.5">KT & Faction Raids</span>
+                <div className="bg-[var(--bg)] p-3 rounded-xl border border-[var(--border)] text-center">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-soft)] block">Mythical Clans</span>
+                  <span className="text-xl font-bold text-purple-400 font-mono">0.5% Rate</span>
+                  <span className="text-[10px] text-[var(--muted)] block mt-0.5">Kurosaki, Zaraki</span>
                 </div>
               </div>
             </div>
@@ -169,13 +148,14 @@ export default function TypeSoulHubPage({ onNavigate }: TypeSoulHubPageProps) {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
             {/* Search Input */}
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted)]" />
               <input
                 type="text"
+                aria-label="Search Type Soul tools"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search Type Soul tools (e.g. stat tree, bankai, grade, clan, raid, combo)..."
-                className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all"
+                className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-[12px] pl-10 pr-4 py-2.5 text-sm text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--primary)] transition-all"
               />
             </div>
 
@@ -343,7 +323,7 @@ export default function TypeSoulHubPage({ onNavigate }: TypeSoulHubPageProps) {
                     {isOpen ? (
                       <ChevronUp className="w-4 h-4 text-red-400 shrink-0 ml-2" />
                     ) : (
-                      <ChevronDown className="w-4 h-4 text-slate-500 shrink-0 ml-2" />
+                      <ChevronDown className="w-4 h-4 text-[var(--muted)] shrink-0 ml-2" />
                     )}
                   </button>
                   {isOpen && (
@@ -370,7 +350,7 @@ export default function TypeSoulHubPage({ onNavigate }: TypeSoulHubPageProps) {
             >
               <div className="flex items-center justify-between">
                 <span className="font-bold text-white text-sm group-hover:text-purple-300 transition-colors">Zenless Zone Zero Hub</span>
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-purple-400 transition-colors" />
+                <ArrowRight className="w-4 h-4 text-[var(--muted)] group-hover:text-purple-400 transition-colors" />
               </div>
               <p className="text-xs text-slate-400 mt-1">Drive Disc Optimizer, 90 Pity, Daze Multipliers & Bangboos.</p>
             </div>
@@ -381,7 +361,7 @@ export default function TypeSoulHubPage({ onNavigate }: TypeSoulHubPageProps) {
             >
               <div className="flex items-center justify-between">
                 <span className="font-bold text-white text-sm group-hover:text-cyan-300 transition-colors">Wuthering Waves Hub</span>
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-colors" />
+                <ArrowRight className="w-4 h-4 text-[var(--muted)] group-hover:text-cyan-400 transition-colors" />
               </div>
               <p className="text-xs text-slate-400 mt-1">Echo Tuning Evaluator, 80 Pity, S0-S6 Dupes & Sonata Builder.</p>
             </div>
@@ -392,7 +372,7 @@ export default function TypeSoulHubPage({ onNavigate }: TypeSoulHubPageProps) {
             >
               <div className="flex items-center justify-between">
                 <span className="font-bold text-white text-sm group-hover:text-cyan-300 transition-colors">The First Descendant Hub</span>
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-colors" />
+                <ArrowRight className="w-4 h-4 text-[var(--muted)] group-hover:text-cyan-400 transition-colors" />
               </div>
               <p className="text-xs text-slate-400 mt-1">Weapon Module DPS, Reactor Rolls, Void Shards & Boss loot.</p>
             </div>

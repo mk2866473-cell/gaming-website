@@ -10,6 +10,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import SEOHead from '../components/SEOHead';
 import ToolCard from '../components/ToolCard';
 import { getGameIcon } from '../components/GameIcons';
+import BrandLogo from '../components/BrandLogo';
 import AdLayout from '../components/ads/AdLayout';
 import HubCodesBanner from '../components/HubCodesBanner';
 
@@ -20,6 +21,7 @@ interface GamesPageProps {
 
 export default function GamesPage({ selectedGameSlug, onNavigate }: GamesPageProps) {
   const activeGame = GAMES.find(g => g.slug === selectedGameSlug || g.id === selectedGameSlug);
+  const displayedTools = TOOLS.filter(t => !activeGame || t.gameId === activeGame.id);
   const breadcrumbs = [
     { name: 'Games', path: '/games' },
     ...(activeGame ? [{ name: activeGame.name, path: getGamePath(activeGame.id) }] : [])
@@ -45,24 +47,32 @@ export default function GamesPage({ selectedGameSlug, onNavigate }: GamesPagePro
 
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-indigo-950/80">
-            <div>
-              <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight flex items-center gap-3 sm:gap-3.5 flex-wrap">
-                {activeGame && (
-                  <span className="p-2 sm:p-2.5 rounded-xl bg-[#0c122e] border border-indigo-800/80 shadow-md inline-flex items-center justify-center shrink-0">
-                    {getGameIcon(activeGame.id, 'w-7 h-7 sm:w-8 sm:h-8')}
-                  </span>
-                )}
-                <span>{activeGame ? `${activeGame.name} Calculators & Tools` : 'Browse Calculators by Game'}</span>
-              </h1>
-              <p className="text-xs sm:text-sm text-slate-400 mt-1">
-                {activeGame ? activeGame.description : 'Select your favorite game to find tailored calculators and utilities.'}
-              </p>
+          <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+            <div className="flex items-start gap-4 min-w-0">
+              {activeGame ? (
+                <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                  {getGameIcon(activeGame.id, 'w-7 h-7')}
+                </div>
+              ) : (
+                <BrandLogo size="lg" className="!rounded-[12px] shrink-0" />
+              )}
+              <div className="space-y-2 min-w-0">
+                <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                  {activeGame ? `${activeGame.name} Calculators & Tools` : 'Browse Calculators by Game'}
+                </h1>
+                <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
+                  {activeGame ? activeGame.description : 'Select your favorite game to find tailored calculators and utilities.'}
+                </p>
+                <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                  {activeGame ? `${displayedTools.length} tools` : `${displayedTools.length} tools across ${GAMES.length} games`}
+                </p>
+              </div>
             </div>
             {activeGame && (
               <button
+                type="button"
                 onClick={() => onNavigate('/games')}
-                className="text-xs font-semibold text-violet-400 hover:text-cyan-300 self-start sm:self-auto transition-colors"
+                className="text-xs font-semibold text-[var(--primary-light)] hover:text-[var(--accent)] self-start transition-colors shrink-0"
               >
                 ← View All Games
               </button>

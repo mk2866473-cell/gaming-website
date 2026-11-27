@@ -8,7 +8,8 @@ import { CODES_PAGES, CodesPageData } from '../data/codesData';
 import SEOHead from '../components/SEOHead';
 import AdLayout from '../components/ads/AdLayout';
 import { getGameIcon } from '../components/GameIcons';
-import { Gift, ArrowRight, ShieldCheck, Clock, Sparkles } from 'lucide-react';
+import BrandLogo from '../components/BrandLogo';
+import { Gift, ArrowRight, ShieldCheck, Clock } from 'lucide-react';
 
 interface CodesIndexPageProps {
   onNavigate: (path: string) => void;
@@ -29,6 +30,11 @@ export default function CodesIndexPage({ onNavigate }: CodesIndexPageProps) {
     });
   }, []);
 
+  const totalActiveCodes = useMemo(
+    () => sortedPages.reduce((sum, p) => sum + p.codes.length, 0),
+    [sortedPages]
+  );
+
   const breadcrumbs = [
     { name: 'Home', path: '/' },
     { name: 'Codes', path: '/codes' }
@@ -47,34 +53,32 @@ export default function CodesIndexPage({ onNavigate }: CodesIndexPageProps) {
         {/* Top Banner Ad */}
         <AdLayout.ToolTop />
 
-        {/* Hero Section */}
-        <div className="relative rounded-3xl bg-gradient-to-br from-violet-950/70 via-indigo-950/60 to-[#0c122e] border border-violet-500/40 p-6 sm:p-10 overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-950/80 border border-violet-500/40 text-violet-300 text-xs font-mono font-bold">
-              <Sparkles className="w-3.5 h-3.5 text-violet-400" />
-              <span>Verified Developer Rewards • Updated Daily</span>
+        {/* Hub Header */}
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-5">
+          <div className="flex items-start gap-4">
+            <BrandLogo size="lg" className="!rounded-[12px] shrink-0" />
+            <div className="space-y-2 min-w-0">
+              <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                Game Codes — Free Redeem Codes &amp; Daily Links
+              </h1>
+              <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
+                Claim working developer coupon codes, free 2x EXP boosts, stat resets, spins, dice, and exclusive bundles. All codes are manually tested and verified daily with zero paywalls.
+              </p>
+              <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                {sortedPages.length} game guides · {totalActiveCodes} active codes
+              </p>
             </div>
+          </div>
 
-            <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-              Game Codes — Free Redeem Codes & Daily Links
-            </h1>
-
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              Claim working developer coupon codes, free 2x EXP boosts, stat resets, spins, dice, and exclusive bundles. All codes are manually tested and verified daily with zero paywalls.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3 pt-2 text-xs font-mono text-slate-400">
-              <span className="flex items-center gap-1.5 bg-[#070b19] px-2.5 py-1 rounded-lg border border-indigo-900/60">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                100% Free Developer Codes
-              </span>
-              <span className="flex items-center gap-1.5 bg-[#070b19] px-2.5 py-1 rounded-lg border border-indigo-900/60">
-                <Clock className="w-3.5 h-3.5 text-cyan-400" />
-                Checked Daily
-              </span>
-            </div>
+          <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-[var(--muted)]">
+            <span className="flex items-center gap-1.5 bg-[var(--bg)] px-2.5 py-1 rounded-lg border border-[var(--border)]">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              100% Free Developer Codes
+            </span>
+            <span className="flex items-center gap-1.5 bg-[var(--bg)] px-2.5 py-1 rounded-lg border border-[var(--border)]">
+              <Clock className="w-3.5 h-3.5 text-[var(--accent)]" />
+              Checked Daily
+            </span>
           </div>
         </div>
 
@@ -115,8 +119,8 @@ export default function CodesIndexPage({ onNavigate }: CodesIndexPageProps) {
                       <span className={`text-xs font-mono font-semibold px-2.5 py-1 rounded-lg border ${badgeColor}`}>
                         {badgeText}
                       </span>
-                      <span className="text-[11px] font-mono text-slate-400 flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-slate-500" />
+                      <span className="text-[11px] font-mono text-[var(--muted)] flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-[var(--muted)]" />
                         {page.lastChecked}
                       </span>
                     </div>

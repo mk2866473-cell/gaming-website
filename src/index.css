@@ -56,6 +56,59 @@
   }
 }
 
+@layer components {
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: #ffffff;
+    border-radius: 12px;
+    min-height: 44px;
+  }
+
+  .btn-primary:hover {
+    background: var(--primary-light);
+    box-shadow: 0 4px 24px rgba(139, 92, 246, 0.35);
+  }
+
+  .field {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    min-height: 44px;
+  }
+
+  .field:focus {
+    border-color: var(--primary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
 /* Custom Sleek Deep Navy Gaming Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;

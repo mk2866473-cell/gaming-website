@@ -904,8 +904,8 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
                     </span>
                   </>
                 )}
-                <span className="text-slate-600">·</span>
-                <span className="text-[11px] text-slate-500 font-mono">Verified Engine</span>
+                <span className="text-[var(--muted)]">·</span>
+                <span className="text-[11px] text-[var(--muted)] font-mono">Verified Engine</span>
               </div>
 
               {/* One Clear H1 for SEO with Game Logo */}
@@ -948,29 +948,31 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         <div className="contents md:block md:col-span-7 lg:col-span-8 md:space-y-8 min-w-0 md:order-3">
           {/* The Interactive Tool Container */}
           <div className="order-1 md:order-2">
+            <div className="bg-[var(--surface)] border border-[var(--border)] border-t-[3px] border-t-[var(--primary)] rounded-[var(--radius)] p-6">
               <React.Suspense fallback={
-                <div className="bg-[#0c122e] border border-indigo-900/60 rounded-2xl p-6 sm:p-8 space-y-4 animate-pulse">
-                  <div className="flex items-center justify-between border-b border-indigo-900/40 pb-4">
+                <div className="bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl p-6 sm:p-8 space-y-4 animate-pulse">
+                  <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-violet-500/20 border border-violet-500/30 flex items-center justify-center text-violet-400 font-bold">⚡</div>
+                      <div className="w-10 h-10 rounded-xl bg-[rgba(139,92,246,0.2)] border border-[var(--primary)]/30 flex items-center justify-center text-[var(--primary-light)] font-bold">⚡</div>
                       <div className="space-y-1.5">
-                        <div className="h-4 bg-indigo-900/50 rounded w-44"></div>
-                        <div className="h-3 bg-indigo-950/60 rounded w-32"></div>
+                        <div className="h-4 bg-[var(--border)] rounded w-44"></div>
+                        <div className="h-3 bg-[var(--border)] rounded w-32"></div>
                       </div>
                     </div>
-                    <span className="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded border border-cyan-500/20">Loading Engine</span>
+                    <span className="text-xs font-mono text-[var(--accent)] bg-cyan-500/10 px-2.5 py-1 rounded border border-cyan-500/20">Loading Engine</span>
                   </div>
                   <div className="space-y-3 pt-2">
-                    <div className="h-11 bg-indigo-950/50 rounded-xl border border-indigo-900/40"></div>
-                    <div className="h-11 bg-indigo-950/50 rounded-xl border border-indigo-900/40"></div>
+                    <div className="h-11 bg-[var(--bg)] rounded-xl border border-[var(--border)]"></div>
+                    <div className="h-11 bg-[var(--bg)] rounded-xl border border-[var(--border)]"></div>
                   </div>
                 </div>
               }>
                 {renderToolComponent()}
               </React.Suspense>
+            </div>
 
-              {/* Placement 2: Tool After Result Banner */}
-              <AdLayout.ToolAfterResult />
+            {/* Placement 2: Tool After Result Banner */}
+            <AdLayout.ToolAfterResult />
           </div>
 
           <div className="order-3 space-y-8">
@@ -1275,43 +1277,43 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
         {/* Desktop Sidebar Column (5 cols on md, 4 cols on lg/xl) */}
         {/* Sits alongside on desktop/laptop/tablet, stays firmly stuck as user scrolls */}
         <aside
-          className="order-4 md:order-4 md:col-span-5 lg:col-span-4 self-start sticky top-[72px] z-20 space-y-4 sticky-sidebar-fit w-full"
+          className="order-4 md:order-4 md:col-span-5 lg:col-span-4 self-start sticky top-[72px] z-20 space-y-6 sticky-sidebar-fit w-full"
           style={{ position: 'sticky', top: '72px', alignSelf: 'flex-start' }}
         >
             {/* Slot 1: tool-sidebar-1 ABOVE the first sidebar text block */}
             <AdLayout.ToolSidebar1 />
 
             {/* Tool Overview (First sidebar text block) */}
-            <div className="bg-[#0c122e] border border-indigo-900/60 rounded-xl p-3">
-              <div className="flex items-center justify-between pb-2 border-b border-indigo-950/80 mb-2">
-                <span className="text-[11px] font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-4">
+              <div className="flex items-center justify-between pb-2.5 border-b border-[var(--border)] mb-3">
+                <h2 className="text-xs font-bold text-[var(--text)] uppercase tracking-wider [font-family:var(--font-display)]">
                   Tool Overview
-                </span>
+                </h2>
                 <button
                   onClick={handleShare}
-                  className="text-[11px] font-medium text-slate-300 hover:text-white px-2 py-0.5 rounded bg-[#070b19] hover:bg-[#121c45] border border-indigo-950 flex items-center gap-1 transition-colors"
+                  aria-label="Share this tool"
+                  className="text-[11px] font-medium text-[var(--text-soft)] hover:text-[var(--text)] px-2.5 py-1 rounded-lg bg-[var(--bg)] hover:bg-[var(--surface-raised)] border border-[var(--border)] flex items-center gap-1 transition-colors"
                   title="Share this tool"
                 >
-                  {copiedLink ? <Check className="w-3 h-3 text-cyan-400" /> : <Share2 className="w-3 h-3" />}
+                  {copiedLink ? <Check className="w-3 h-3 text-[var(--accent)]" /> : <Share2 className="w-3 h-3" />}
                   <span>{copiedLink ? 'Copied' : 'Share'}</span>
                 </button>
               </div>
 
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="bg-[#070b19] px-2.5 py-1 rounded-lg border border-indigo-950">
-                  <span className="text-[10px] text-slate-500 block">Game</span>
+              <div className="grid grid-cols-2 gap-2.5 text-xs">
+                <div className="bg-[var(--bg)] px-3 py-1.5 rounded-lg border border-[var(--border)]">
+                  <span className="text-[10px] text-[var(--muted)] block">Game</span>
                   <button
                     onClick={() => onNavigate(gamePath)}
-                    className="font-semibold text-violet-400 hover:text-cyan-300 hover:underline truncate block max-w-full text-left transition-colors"
+                    className="font-semibold text-[var(--primary-light)] hover:text-[var(--accent)] hover:underline truncate block max-w-full text-left transition-colors"
                   >
                     {game?.name || 'General'}
                   </button>
                 </div>
 
-                <div className="bg-[#070b19] px-2.5 py-1 rounded-lg border border-indigo-950">
-                  <span className="text-[10px] text-slate-500 block">Platform</span>
-                  <span className="font-mono text-slate-200 truncate block text-left">
+                <div className="bg-[var(--bg)] px-3 py-1.5 rounded-lg border border-[var(--border)]">
+                  <span className="text-[10px] text-[var(--muted)] block">Platform</span>
+                  <span className="font-mono text-[var(--text)] truncate block text-left">
                     {tool.badge || 'Universal'}
                   </span>
                 </div>
@@ -1325,11 +1327,16 @@ export default function ToolDetailPage({ tool, onNavigate }: ToolDetailPageProps
 
         {/* Related Tools */}
         {relatedTools.length > 0 && (
-          <section className="space-y-4 pt-4 border-t border-indigo-950/80">
-            <h2 className="text-lg sm:text-xl font-bold text-white">
-              Related {game?.name || 'Gaming'} Tools & Calculators
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <section className="space-y-5 pt-6 border-t border-[var(--border)]">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--primary-light)] mb-1">
+                KEEP GOING
+              </p>
+              <h2 className="text-lg sm:text-xl font-bold text-[var(--text)] tracking-tight">
+                Related {game?.name || 'Gaming'} Tools &amp; Calculators
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedTools.map((relTool) => (
                 <ToolCard
                   key={relTool.id}

@@ -218,7 +218,7 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
   const isCategoriesActive = currentPath.startsWith('/categories') || currentPath.includes('category=');
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-indigo-950/80 bg-[#070b19]/95 backdrop-blur-md shadow-lg shadow-black/40">
+    <header className="sticky top-0 z-50 w-full border-b border-[var(--border)] bg-[rgba(7,11,25,0.85)] backdrop-blur-[12px] shadow-lg shadow-black/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-4">
           
@@ -226,14 +226,15 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
           <div className="flex items-center gap-8 flex-shrink-0">
             <button
               onClick={() => handleLinkClick('/')}
-              className="flex items-center gap-3 group text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-violet-500 rounded-lg p-0.5"
+              aria-label="GamingToolsHub Home"
+              className="flex items-center gap-3 group text-left rounded-lg p-0.5"
             >
               <BrandLogo size="md" />
               <div>
-                <span className="text-base sm:text-lg font-black tracking-tight text-white flex items-center">
-                  GamingTools<span className="text-violet-400 font-mono ml-0.5">Hub</span>
+                <span className="text-base sm:text-lg font-black tracking-tight text-[var(--text)] flex items-center">
+                  GamingTools<span className="text-[var(--primary-light)] font-mono ml-0.5">Hub</span>
                 </span>
-                <span className="text-[10px] text-slate-400 font-mono block -mt-0.5 tracking-wide">
+                <span className="text-[10px] text-[var(--muted)] font-mono block -mt-0.5 tracking-wide">
                   Precision Gaming Utilities
                 </span>
               </div>
@@ -256,14 +257,14 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
                   }}
                   aria-expanded={gamesOpen}
                   aria-haspopup="true"
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-violet-500 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
                     gamesOpen || isGamesActive
-                      ? 'bg-[#121c45] text-white font-semibold border border-violet-500/40 shadow-sm'
-                      : 'text-slate-300 hover:text-white hover:bg-indigo-950/60'
+                      ? 'bg-[var(--surface-raised)] text-[var(--text)] font-semibold border border-[var(--primary)]/40 shadow-sm'
+                      : 'text-[var(--text-soft)] hover:text-[var(--primary-light)] hover:bg-[var(--surface-raised)]'
                   }`}
                 >
                   <span>Games</span>
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-150 ${gamesOpen ? 'rotate-180 text-violet-400' : 'text-slate-400'}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-150 ${gamesOpen ? 'rotate-180 text-[var(--primary-light)]' : 'text-[var(--muted)]'}`} />
                 </button>
 
                 {/* Games Menu - 2 Column Mega Grid to ensure all games fit beautifully & scroll cleanly */}
@@ -271,10 +272,10 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
                   <div 
                     className="absolute top-full left-0 pt-1.5 w-[580px] max-w-[92vw] z-50 animate-in fade-in zoom-in-95 duration-100"
                   >
-                    <div className="bg-[#0c122e] border border-indigo-900/80 rounded-xl shadow-2xl py-2 overflow-hidden flex flex-col max-h-[calc(100vh-80px)]">
-                      <div className="px-4 py-2 text-[10px] uppercase font-mono tracking-wider text-slate-400 font-semibold border-b border-indigo-950/80 flex items-center justify-between">
+                    <div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl shadow-2xl py-2 overflow-hidden flex flex-col max-h-[calc(100vh-80px)]">
+                      <div className="px-4 py-2 text-[10px] uppercase font-mono tracking-wider text-[var(--muted)] font-semibold border-b border-[var(--border)] flex items-center justify-between">
                         <span>All Game Suites ({gamesList.length} Games)</span>
-                        <span className="text-cyan-400 font-sans font-medium text-[11px]">Instant Calculator Suites</span>
+                        <span className="text-[var(--accent)] font-sans font-medium text-[11px]">Instant Calculator Suites</span>
                       </div>
 
                       <div className="p-2 grid grid-cols-1 sm:grid-cols-2 gap-1.5 overflow-y-auto max-h-[380px]">
@@ -282,27 +283,27 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
                           <button
                             key={game.name}
                             onClick={() => handleLinkClick(game.path)}
-                            className="w-full text-left px-2.5 py-2 rounded-lg hover:bg-[#121c45] flex items-center justify-between text-xs transition-colors group border border-transparent hover:border-violet-500/40"
+                            className="w-full text-left px-2.5 py-2 rounded-lg hover:bg-[var(--surface-raised)] flex items-center justify-between text-xs transition-colors group border border-transparent hover:border-[var(--primary)]/40"
                           >
                             <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                              <div className="w-6 h-6 rounded bg-[#070b19] border border-indigo-950 flex items-center justify-center flex-shrink-0 group-hover:border-violet-500/50">
+                              <div className="w-6 h-6 rounded bg-[var(--bg)] border border-[var(--border)] flex items-center justify-center flex-shrink-0 group-hover:border-[var(--primary)]/50">
                                 {game.icon}
                               </div>
-                              <span className="text-slate-200 group-hover:text-cyan-300 font-medium truncate">
+                              <span className="text-[var(--text-soft)] group-hover:text-[var(--primary-light)] font-medium truncate">
                                 {game.name}
                               </span>
                             </div>
-                            <span className="text-[10px] font-mono text-slate-400 group-hover:text-violet-300 flex-shrink-0 bg-[#070b19] px-1.5 py-0.5 rounded border border-indigo-950">
+                            <span className="text-[10px] font-mono text-[var(--muted)] group-hover:text-[var(--primary-light)] flex-shrink-0 bg-[var(--bg)] px-1.5 py-0.5 rounded border border-[var(--border)]">
                               {game.count}
                             </span>
                           </button>
                         ))}
                       </div>
 
-                      <div className="pt-2 px-3 border-t border-indigo-950/80 bg-[#080d21]">
+                      <div className="pt-2 px-3 border-t border-[var(--border)] bg-[var(--bg)]">
                         <button
                           onClick={() => handleLinkClick('/games')}
-                          className="w-full text-left px-3 py-1.5 rounded-lg text-xs font-semibold text-violet-400 hover:text-cyan-300 hover:bg-[#121c45]/60 flex items-center justify-between transition-colors"
+                          className="w-full text-left px-3 py-1.5 rounded-lg text-xs font-semibold text-[var(--primary-light)] hover:text-[var(--accent)] hover:bg-[var(--surface-raised)] flex items-center justify-between transition-colors"
                         >
                           <span>Explore All Game Directories & Hubs</span>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -328,14 +329,14 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
                   }}
                   aria-expanded={categoriesOpen}
                   aria-haspopup="true"
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-violet-500 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
                     categoriesOpen || isCategoriesActive
-                      ? 'bg-[#121c45] text-white font-semibold border border-violet-500/40 shadow-sm'
-                      : 'text-slate-300 hover:text-white hover:bg-indigo-950/60'
+                      ? 'bg-[var(--surface-raised)] text-[var(--text)] font-semibold border border-[var(--primary)]/40 shadow-sm'
+                      : 'text-[var(--text-soft)] hover:text-[var(--primary-light)] hover:bg-[var(--surface-raised)]'
                   }`}
                 >
                   <span>Categories</span>
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-150 ${categoriesOpen ? 'rotate-180 text-cyan-400' : 'text-slate-400'}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-150 ${categoriesOpen ? 'rotate-180 text-[var(--primary-light)]' : 'text-[var(--muted)]'}`} />
                 </button>
 
                 {/* Categories Menu */}
@@ -343,8 +344,8 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
                   <div 
                     className="absolute top-full left-0 pt-1.5 w-72 z-50 animate-in fade-in zoom-in-95 duration-100"
                   >
-                    <div className="bg-[#0c122e] border border-indigo-900/80 rounded-xl shadow-2xl py-1.5">
-                      <div className="px-3.5 py-1.5 text-[10px] uppercase font-mono tracking-wider text-slate-400 font-semibold border-b border-indigo-950/80">
+                    <div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl shadow-2xl py-1.5">
+                      <div className="px-3.5 py-1.5 text-[10px] uppercase font-mono tracking-wider text-[var(--muted)] font-semibold border-b border-[var(--border)]">
                         Functional Categories
                       </div>
 
@@ -353,32 +354,32 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
                           <button
                             key={cat.name}
                             onClick={() => handleLinkClick(cat.path)}
-                            className="w-full text-left px-3 py-2 rounded-lg hover:bg-[#121c45] flex items-center justify-between text-xs transition-colors group"
+                            className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--surface-raised)] flex items-center justify-between text-xs transition-colors group"
                           >
                             <div className="flex items-center gap-2.5">
-                              <div className="w-6 h-6 rounded bg-[#070b19] border border-indigo-950 flex items-center justify-center flex-shrink-0 group-hover:border-violet-500/50">
+                              <div className="w-6 h-6 rounded bg-[var(--bg)] border border-[var(--border)] flex items-center justify-center flex-shrink-0 group-hover:border-[var(--primary)]/50">
                                 {cat.icon}
                               </div>
                               <div>
-                                <div className="text-slate-200 group-hover:text-cyan-300 font-medium">
+                                <div className="text-[var(--text-soft)] group-hover:text-[var(--primary-light)] font-medium">
                                   {cat.name}
                                 </div>
-                                <div className="text-[10px] text-slate-400 line-clamp-1">
+                                <div className="text-[10px] text-[var(--muted)] line-clamp-1">
                                   {cat.description}
                                 </div>
                               </div>
                             </div>
-                            <span className="text-[10px] font-mono text-slate-400 group-hover:text-violet-300 ml-2">
+                            <span className="text-[10px] font-mono text-[var(--muted)] group-hover:text-[var(--primary-light)] ml-2">
                               {cat.count}
                             </span>
                           </button>
                         ))}
                       </div>
 
-                      <div className="pt-1 mt-1 border-t border-indigo-950/80 p-1.5">
+                      <div className="pt-1 mt-1 border-t border-[var(--border)] p-1.5">
                         <button
                           onClick={() => handleLinkClick('/categories')}
-                          className="w-full text-left px-3 py-1.5 rounded-lg text-xs font-semibold text-cyan-400 hover:text-cyan-300 hover:bg-[#121c45]/60 flex items-center justify-between transition-colors"
+                          className="w-full text-left px-3 py-1.5 rounded-lg text-xs font-semibold text-[var(--primary-light)] hover:text-[var(--accent)] hover:bg-[var(--surface-raised)] flex items-center justify-between transition-colors"
                         >
                           <span>All Categories Overview</span>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -392,10 +393,10 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
               {/* Codes Nav Link */}
               <button
                 onClick={() => handleLinkClick('/codes')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-violet-500 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
                   currentPath.startsWith('/codes')
                     ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold shadow-md shadow-amber-950/40'
-                    : 'text-amber-300/90 hover:text-amber-200 hover:bg-amber-500/10'
+                    : 'text-[var(--text-soft)] hover:text-[var(--primary-light)] hover:bg-[var(--surface-raised)]'
                 }`}
               >
                 <span>🎁</span>
@@ -405,23 +406,23 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
               {/* Q&A Nav Link */}
               <button
                 onClick={() => handleLinkClick('/qa')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-violet-500 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
                   currentPath.startsWith('/qa')
-                    ? 'bg-violet-600 text-white font-semibold shadow-md shadow-violet-950/50'
-                    : 'text-slate-300 hover:text-white hover:bg-indigo-950/60'
+                    ? 'bg-[var(--primary)] text-white font-semibold shadow-md shadow-violet-950/50'
+                    : 'text-[var(--text-soft)] hover:text-[var(--primary-light)] hover:bg-[var(--surface-raised)]'
                 }`}
               >
-                <HelpCircle className="w-3.5 h-3.5 text-violet-400" />
+                <HelpCircle className="w-3.5 h-3.5 text-[var(--primary-light)]" />
                 <span>Q&A</span>
               </button>
 
               {/* All Tools Link */}
               <button
                 onClick={() => handleLinkClick('/tools')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-violet-500 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   currentPath === '/tools'
-                    ? 'bg-violet-600 text-white font-semibold shadow-md shadow-violet-950/50'
-                    : 'text-slate-300 hover:text-white hover:bg-indigo-950/60'
+                    ? 'bg-[var(--primary)] text-white font-semibold shadow-md shadow-violet-950/50'
+                    : 'text-[var(--text-soft)] hover:text-[var(--primary-light)] hover:bg-[var(--surface-raised)]'
                 }`}
               >
                 All Tools
@@ -433,14 +434,15 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
           <div className="flex items-center gap-2.5 flex-1 max-w-xs sm:max-w-sm justify-end">
             <button
               onClick={onOpenSearch}
-              className="w-full max-w-[280px] sm:max-w-[320px] flex items-center justify-between px-3 py-2 rounded-xl bg-[#0c122e] hover:bg-[#121c45] border border-indigo-900/60 hover:border-violet-500/50 text-slate-400 hover:text-slate-200 text-xs transition-all shadow-inner focus:outline-none focus-visible:ring-1 focus-visible:ring-violet-500 group"
+              aria-label="Search gaming tools (Ctrl+K)"
+              className="field w-full max-w-[280px] sm:max-w-[320px] flex items-center justify-between px-3 py-2 hover:border-[var(--primary)] text-[var(--muted)] hover:text-[var(--text)] text-xs transition-all shadow-inner group"
               title="Search gaming tools (Ctrl+K / ⌘K)"
             >
               <div className="flex items-center gap-2 truncate">
-                <Search className="w-3.5 h-3.5 text-violet-400 flex-shrink-0 group-hover:scale-105 transition-transform" />
-                <span className="truncate text-slate-400 group-hover:text-slate-200">Search gaming tools...</span>
+                <Search className="w-3.5 h-3.5 text-[var(--primary-light)] flex-shrink-0 group-hover:scale-105 transition-transform" />
+                <span className="truncate text-[var(--muted)] group-hover:text-[var(--text)]">Search gaming tools...</span>
               </div>
-              <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono text-slate-300 bg-[#070b19] border border-indigo-900/60 rounded flex-shrink-0 ml-1.5">
+              <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono text-[var(--text-soft)] bg-[var(--bg)] border border-[var(--border)] rounded flex-shrink-0 ml-1.5">
                 ⌘K
               </kbd>
             </button>
@@ -448,7 +450,7 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
             {/* Mobile Menu Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-xl bg-[#0c122e] border border-indigo-900/60 text-slate-400 hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-violet-500 flex-shrink-0"
+              className="md:hidden p-2.5 rounded-xl bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--muted)] hover:text-[var(--primary-light)] hover:border-[var(--primary)] flex-shrink-0"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -460,20 +462,21 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
 
       {/* 4. Professional Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-indigo-950 bg-[#070b19] px-4 pt-3 pb-6 space-y-4 max-h-[85vh] overflow-y-auto">
+        <div className="md:hidden border-b border-[var(--border)] bg-[var(--bg)] px-4 pt-3 pb-6 space-y-4 max-h-[85vh] overflow-y-auto">
           {/* Mobile Search Button */}
           <button
             onClick={() => {
               setMobileMenuOpen(false);
               onOpenSearch();
             }}
-            className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#0c122e] border border-indigo-900/60 text-slate-300 text-xs"
+            aria-label="Search gaming tools"
+            className="field w-full flex items-center justify-between px-3.5 py-2.5 text-[var(--text-soft)] hover:border-[var(--primary)] text-xs"
           >
             <div className="flex items-center gap-2">
-              <Search className="w-4 h-4 text-violet-400" />
+              <Search className="w-4 h-4 text-[var(--primary-light)]" />
               <span>Search gaming tools...</span>
             </div>
-            <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-[#070b19] border border-indigo-900/60 rounded text-slate-400">
+            <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-[var(--bg)] border border-[var(--border)] rounded text-[var(--muted)]">
               ⌘K
             </kbd>
           </button>
@@ -530,33 +533,34 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
           </button>
 
           {/* Games Accordion */}
-          <div className="border border-indigo-900/60 rounded-xl overflow-hidden bg-[#0c122e]">
+          <div className="border border-[var(--border)] rounded-xl overflow-hidden bg-[var(--surface)]">
             <button
               onClick={() => setMobileGamesOpen(!mobileGamesOpen)}
-              className="w-full p-3 text-left flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-300"
+              aria-expanded={mobileGamesOpen}
+              className="w-full p-3 text-left flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[var(--text-soft)]"
             >
               <span>Games</span>
-              <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${mobileGamesOpen ? 'rotate-180 text-violet-400' : ''}`} />
+              <ChevronDown className={`w-4 h-4 text-[var(--muted)] transition-transform ${mobileGamesOpen ? 'rotate-180 text-[var(--primary-light)]' : ''}`} />
             </button>
 
             {mobileGamesOpen && (
-              <div className="px-2 pb-2 space-y-1 border-t border-indigo-950/80 pt-1.5">
+              <div className="px-2 pb-2 space-y-1 border-t border-[var(--border)] pt-1.5">
                 {gamesList.map(item => (
                   <button
                     key={item.name}
                     onClick={() => handleLinkClick(item.path)}
-                    className="w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-[#121c45] hover:text-white flex items-center justify-between"
+                    className="w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-[var(--text-soft)] hover:bg-[var(--surface-raised)] hover:text-[var(--primary-light)] flex items-center justify-between"
                   >
                     <div className="flex items-center gap-2.5">
                       {item.icon}
                       <span>{item.name}</span>
                     </div>
-                    <span className="text-[10px] font-mono text-slate-400">{item.count}</span>
+                    <span className="text-[10px] font-mono text-[var(--muted)]">{item.count}</span>
                   </button>
                 ))}
                 <button
                   onClick={() => handleLinkClick('/games')}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-violet-400 hover:text-cyan-300 flex items-center justify-between border-t border-indigo-950/60 mt-1 pt-1.5"
+                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[var(--primary-light)] hover:text-[var(--accent)] flex items-center justify-between border-t border-[var(--border)] mt-1 pt-1.5"
                 >
                   <span>More Games →</span>
                 </button>
@@ -565,13 +569,14 @@ export default function Navbar({ currentPath, onNavigate, onOpenSearch }: Navbar
           </div>
 
           {/* Categories Accordion */}
-          <div className="border border-indigo-900/60 rounded-xl overflow-hidden bg-[#0c122e]">
+          <div className="border border-[var(--border)] rounded-xl overflow-hidden bg-[var(--surface)]">
             <button
               onClick={() => setMobileCategoriesOpen(!mobileCategoriesOpen)}
-              className="w-full p-3 text-left flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-300"
+              aria-expanded={mobileCategoriesOpen}
+              className="w-full p-3 text-left flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[var(--text-soft)]"
             >
               <span>Categories</span>
-              <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${mobileCategoriesOpen ? 'rotate-180 text-cyan-400' : ''}`} />
+              <ChevronDown className={`w-4 h-4 text-[var(--muted)] transition-transform ${mobileCategoriesOpen ? 'rotate-180 text-[var(--primary-light)]' : ''}`} />
             </button>
 
             {mobileCategoriesOpen && (

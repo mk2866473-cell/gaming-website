@@ -100,61 +100,40 @@ export default function WutheringWavesHubPage({ onNavigate }: WutheringWavesHubP
         {/* Dynamic Game Codes Banner */}
         <HubCodesBanner hubPath="/games/wuthering-waves" onNavigate={onNavigate} />
 
-        {/* Hero Banner */}
-        <div className="relative overflow-hidden bg-gradient-to-b from-cyan-950/70 via-slate-900 to-slate-950 border border-cyan-500/20 rounded-3xl p-6 sm:p-10 shadow-2xl">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Breadcrumb & Hero Header */}
+        <div>
+          <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-          <div className="relative z-10 space-y-6">
-            <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
-
+          <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-5">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-              <div className="space-y-3 max-w-3xl">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-cyan-950 border border-cyan-500/40 text-cyan-300 flex items-center gap-1.5 shadow-sm">
-                    <Zap className="w-3.5 h-3.5 text-cyan-400" /> Wuthering Waves Official Tools Hub
-                  </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-950/80 border border-blue-500/30 text-blue-300 flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5 text-blue-400" /> KURO GAMES Verified Formulas
-                  </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300">
-                    6 Tools Available
-                  </span>
+              <div className="flex items-start gap-4 max-w-3xl">
+                <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                  <WuwaIcon className="w-7 h-7 text-teal-400" />
                 </div>
-
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight flex items-center gap-3 sm:gap-4 flex-wrap">
-                  <span className="p-2 sm:p-2.5 rounded-2xl bg-teal-950/80 border border-teal-500/40 shadow-lg inline-flex items-center justify-center shrink-0">
-                    <WuwaIcon className="w-8 h-8 sm:w-11 sm:h-11 text-teal-400" />
-                  </span>
-                  <span>Wuthering Waves <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400">Calculators & Build Tools</span></span>
-                </h1>
-
-                <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
-                  Master the SOL3 v2.0 meta. Evaluate 5-substat Echo rolls, plan Astrite for 100% guaranteed weapon pulls, calculate S0–S6 duplicate damage spikes, estimate Waveplate ascension timelines, and build optimal Concerto rotations.
-                </p>
+                <div className="space-y-2 min-w-0">
+                  <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                    Wuthering Waves Calculators & Build Tools
+                  </h1>
+                  <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-2xl">
+                    Master the SOL3 v2.0 meta. Evaluate 5-substat Echo rolls, plan Astrite for 100% guaranteed weapon pulls, calculate S0–S6 duplicate damage spikes, estimate Waveplate ascension timelines, and build optimal Concerto rotations.
+                  </p>
+                  <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                    {wuwaTools.length} tools
+                  </p>
+                </div>
               </div>
 
               {/* Quick Metrics Card */}
-              <div className="grid grid-cols-2 gap-3 w-full lg:w-auto shrink-0 bg-slate-950/80 border border-cyan-500/30 rounded-2xl p-4 shadow-xl">
-                <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-center">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Calculators</span>
-                  <span className="text-2xl font-black text-cyan-400">6 Tools</span>
-                  <span className="text-[10px] text-slate-500 block mt-0.5">Updated for v2.0</span>
+              <div className="grid grid-cols-2 gap-3 w-full lg:w-auto shrink-0">
+                <div className="bg-[var(--bg)] p-3 rounded-xl border border-[var(--border)] text-center">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-soft)] block">Weapon Banner</span>
+                  <span className="text-xl font-bold text-amber-400 font-mono">100% Pity</span>
+                  <span className="text-[10px] text-[var(--muted)] block mt-0.5">Zero 50/50 Loss</span>
                 </div>
-                <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-center">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Weapon Banner</span>
-                  <span className="text-2xl font-black text-amber-400">100% Pity</span>
-                  <span className="text-[10px] text-slate-500 block mt-0.5">Zero 50/50 Loss</span>
-                </div>
-                <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-center">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Echo Setup</span>
-                  <span className="text-2xl font-black text-emerald-400">4-3-3-1-1</span>
-                  <span className="text-[10px] text-slate-500 block mt-0.5">5-Pc Sonata</span>
-                </div>
-                <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-center">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Sequence Nodes</span>
-                  <span className="text-2xl font-black text-purple-400">S0 to S6</span>
-                  <span className="text-[10px] text-slate-500 block mt-0.5">Coral Shop Calc</span>
+                <div className="bg-[var(--bg)] p-3 rounded-xl border border-[var(--border)] text-center">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-soft)] block">Echo Setup</span>
+                  <span className="text-xl font-bold text-emerald-400 font-mono">4-3-3-1-1</span>
+                  <span className="text-[10px] text-[var(--muted)] block mt-0.5">5-Pc Sonata</span>
                 </div>
               </div>
             </div>
@@ -169,13 +148,14 @@ export default function WutheringWavesHubPage({ onNavigate }: WutheringWavesHubP
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
             {/* Search Input */}
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted)]" />
               <input
                 type="text"
+                aria-label="Search Wuthering Waves tools"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search Wuthering Waves tools (e.g. echo, pity, jinhsi, changli, credits)..."
-                className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
+                className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-[12px] pl-10 pr-4 py-2.5 text-sm text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--primary)] transition-all"
               />
             </div>
 
@@ -343,7 +323,7 @@ export default function WutheringWavesHubPage({ onNavigate }: WutheringWavesHubP
                     {isOpen ? (
                       <ChevronUp className="w-4 h-4 text-cyan-400 shrink-0 ml-2" />
                     ) : (
-                      <ChevronDown className="w-4 h-4 text-slate-500 shrink-0 ml-2" />
+                      <ChevronDown className="w-4 h-4 text-[var(--muted)] shrink-0 ml-2" />
                     )}
                   </button>
                   {isOpen && (
@@ -370,7 +350,7 @@ export default function WutheringWavesHubPage({ onNavigate }: WutheringWavesHubP
             >
               <div className="flex items-center justify-between">
                 <span className="font-bold text-white text-sm group-hover:text-cyan-300 transition-colors">The First Descendant Hub</span>
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-colors" />
+                <ArrowRight className="w-4 h-4 text-[var(--muted)] group-hover:text-cyan-400 transition-colors" />
               </div>
               <p className="text-xs text-slate-400 mt-1">Weapon Module DPS, Reactor Rolls, Void Shards & Boss loot.</p>
             </div>
@@ -381,7 +361,7 @@ export default function WutheringWavesHubPage({ onNavigate }: WutheringWavesHubP
             >
               <div className="flex items-center justify-between">
                 <span className="font-bold text-white text-sm group-hover:text-purple-300 transition-colors">Once Human Hub</span>
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-purple-400 transition-colors" />
+                <ArrowRight className="w-4 h-4 text-[var(--muted)] group-hover:text-purple-400 transition-colors" />
               </div>
               <p className="text-xs text-slate-400 mt-1">Blueprint Stars, Acid Farm, Cradle Planner & Tactical Map.</p>
             </div>
@@ -392,7 +372,7 @@ export default function WutheringWavesHubPage({ onNavigate }: WutheringWavesHubP
             >
               <div className="flex items-center justify-between">
                 <span className="font-bold text-white text-sm group-hover:text-blue-300 transition-colors">Genshin Impact Hub</span>
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                <ArrowRight className="w-4 h-4 text-[var(--muted)] group-hover:text-blue-400 transition-colors" />
               </div>
               <p className="text-xs text-slate-400 mt-1">Wish Pity, Resin Timers, Artifact CV & Ascension Planners.</p>
             </div>

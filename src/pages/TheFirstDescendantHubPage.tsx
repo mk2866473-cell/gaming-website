@@ -99,45 +99,41 @@ export default function TheFirstDescendantHubPage({ onNavigate }: TheFirstDescen
         <div>
           <Breadcrumbs items={breadcrumbs} onNavigate={onNavigate} />
 
-          <div className="relative rounded-3xl bg-gradient-to-br from-cyan-950/70 via-slate-900 to-violet-950/80 border border-cyan-500/30 p-6 sm:p-10 overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-violet-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-mono font-bold">
-                {getGameIcon('tfd', 'w-4 h-4')}
-                <span>The First Descendant Engineering Suite • 2026 Season Meta</span>
+          <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[var(--radius)] p-6 sm:p-8 space-y-5">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                {getGameIcon('tfd', 'w-7 h-7')}
               </div>
+              <div className="space-y-2 min-w-0">
+                <h1 className="text-2xl sm:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight">
+                  The First Descendant Calculators & Tools
+                </h1>
+                <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed max-w-3xl">
+                  Complete verified suite of {tfdTools.length} professional The First Descendant tools: True Raw & Sustained Weapon DPS, Descendant Skill Damage Simulator, Reactor Perfect-Roll God-Score Checker, Amorphous Drop & Void Shard Tracker, External Component Set Optimizer, Gold/Kuiper Leveling Calculator, Daily Invasion & Boss Mechanics Timer, and Colossus Weakness & Resistance Matrix.
+                </p>
+                <p className="text-xs font-mono text-[var(--muted)] tabular-nums">
+                  {tfdTools.length} tools
+                </p>
+              </div>
+            </div>
 
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight flex items-center gap-3 sm:gap-4 flex-wrap">
-                <span className="p-2 sm:p-2.5 rounded-2xl bg-cyan-950/80 border border-cyan-500/40 shadow-lg inline-flex items-center justify-center shrink-0">
-                  {getGameIcon('tfd', 'w-8 h-8 sm:w-11 sm:h-11')}
-                </span>
-                <span>The First Descendant Calculators & Tools</span>
-              </h1>
-
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                Complete verified suite of 8 professional The First Descendant tools: True Raw & Sustained Weapon DPS, Descendant Skill Damage Simulator, Reactor Perfect-Roll God-Score Checker, Amorphous Drop & Void Shard Tracker, External Component Set Optimizer, Gold/Kuiper Leveling Calculator, Daily Invasion & Boss Mechanics Timer, and Colossus Weakness & Resistance Matrix.
-              </p>
-
-              {/* Quick Metrics Bar */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                <div className="bg-slate-900/80 border border-cyan-500/20 rounded-xl p-3">
-                  <div className="text-xl font-bold text-cyan-400 font-mono">8 Tools</div>
-                  <div className="text-xs text-slate-400">Complete TFD Suite</div>
-                </div>
-                <div className="bg-slate-900/80 border border-cyan-500/20 rounded-xl p-3">
-                  <div className="text-xl font-bold text-violet-400 font-mono">160%</div>
-                  <div className="text-xs text-slate-400">Reactor Mounting Multiplier</div>
-                </div>
-                <div className="bg-slate-900/80 border border-cyan-500/20 rounded-xl p-3">
-                  <div className="text-xl font-bold text-amber-400 font-mono">70 Cap</div>
-                  <div className="text-xs text-slate-400">Energy Activator Max</div>
-                </div>
-                <div className="bg-slate-900/80 border border-cyan-500/20 rounded-xl p-3">
-                  <div className="text-xl font-bold text-emerald-400 font-mono">07:00 UTC</div>
-                  <div className="text-xs text-slate-400">Daily Invasion Reset</div>
-                </div>
+            {/* Quick Metrics Bar */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="bg-[var(--bg)] border border-[var(--border)] rounded-xl p-3">
+                <div className="text-xl font-bold text-cyan-400 font-mono">{tfdTools.length} Tools</div>
+                <div className="text-xs text-[var(--text-soft)]">Complete TFD Suite</div>
+              </div>
+              <div className="bg-[var(--bg)] border border-[var(--border)] rounded-xl p-3">
+                <div className="text-xl font-bold text-violet-400 font-mono">160%</div>
+                <div className="text-xs text-[var(--text-soft)]">Reactor Mounting Multiplier</div>
+              </div>
+              <div className="bg-[var(--bg)] border border-[var(--border)] rounded-xl p-3">
+                <div className="text-xl font-bold text-amber-400 font-mono">70 Cap</div>
+                <div className="text-xs text-[var(--text-soft)]">Energy Activator Max</div>
+              </div>
+              <div className="bg-[var(--bg)] border border-[var(--border)] rounded-xl p-3">
+                <div className="text-xl font-bold text-emerald-400 font-mono">07:00 UTC</div>
+                <div className="text-xs text-[var(--text-soft)]">Daily Invasion Reset</div>
               </div>
             </div>
           </div>
@@ -150,13 +146,14 @@ export default function TheFirstDescendantHubPage({ onNavigate }: TheFirstDescen
         <div className="space-y-4">
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted)]" />
               <input
                 type="text"
+                aria-label="Search The First Descendant tools"
                 placeholder="Search TFD tools (e.g., DPS, Lepic, Reactor, Amorphous, Kuiper, Gluttony, Slayer)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500 transition-colors shadow-inner"
+                className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-[12px] pl-10 pr-4 py-2.5 text-sm text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--primary)] transition-colors"
               />
             </div>
           </div>
@@ -193,7 +190,7 @@ export default function TheFirstDescendantHubPage({ onNavigate }: TheFirstDescen
             </div>
 
             {filteredTools.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {filteredTools.map((tool, idx) => (
                   <React.Fragment key={tool.id}>
                     {idx === 8 && <div className="col-span-full"><AdLayout.HubInFeed /></div>}
