@@ -26,15 +26,190 @@ export interface EnhancedToolFaq {
   answer: string;
 }
 
+function stripMathDelimiters(text: string): string {
+  return text
+    .replace(/\$([^$]+)\$/g, '$1')
+    .replace(/\\lfloor\s*/g, 'floor(')
+    .replace(/\s*\\rfloor/g, ')')
+    .replace(/\\lceil\s*/g, 'ceil(')
+    .replace(/\s*\\rceil/g, ')')
+    .replace(/\\times/g, '×')
+    .replace(/\\div/g, '÷')
+    .replace(/\\%/g, '%')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function ensurePeriod(text: string): string {
+  const t = text.trim();
+  if (!t) return '';
+  return /[.!?]$/.test(t) ? t : `${t}.`;
+}
+
+function stripTrailingPeriod(text: string): string {
+  return text.trim().replace(/[.]+$/, '');
+}
+
+function lowerFirst(text: string): string {
+  if (!text) return '';
+  if (/^[A-Z]{2}/.test(text)) return text;
+  return text.charAt(0).toLowerCase() + text.slice(1);
+}
+
+function normalizeFormulaDetails(details: string): string {
+  const idx = details.search(/(?:Worked Examples?:|Worked Example \d+:)/i);
+  const core = idx >= 0 ? details.slice(0, idx) : details;
+  const lines = core
+    .split(/\n+/)
+    .map(l => stripMathDelimiters(l.replace(/^[•▪◦*-]\s*/, '').trim()))
+    .filter(Boolean);
+  if (lines.length === 0) return '';
+  let out = '';
+  for (let i = 0; i < lines.length; i++) {
+    const cur = lines[i];
+    if (i === 0) {
+      out = cur;
+      continue;
+    }
+    const prev = lines[i - 1];
+    if (prev.endsWith(':')) {
+      out += ` ${cur}`;
+    } else if (/[.!?]$/.test(prev)) {
+      out += ` ${cur}`;
+    } else {
+      out += `; ${cur}`;
+    }
+  }
+  return ensurePeriod(out);
+}
+
+function isRealWorkedExample(ex: ToolWorkedExample | undefined): ex is ToolWorkedExample {
+  if (!ex) return false;
+  if (ex.title === 'Example 1: Standard Casual In-Game Setup') return false;
+  return Boolean(ex.scenario.trim() && ex.calculation.trim() && ex.result.trim());
+}
+
+function splitSentencesSafe(text: string): string[] {
+  return text
+    .split(/(?<=[.!?])\s+(?=[A-Z0-9])/)
+    .map(s => s.trim())
+    .filter(Boolean);
+}
+
+function parseEmbeddedWorkedExamples(tool: ToolItem): ToolWorkedExample[] | null {
+  const details = tool.formulaExplained?.details || '';
+  const matchIdx = details.search(/(?:Worked Examples?:|Worked Example \d+:)/i);
+  if (matchIdx < 0) return null;
+
+  const rawTail = stripMathDelimiters(details.slice(matchIdx));
+  let chunks: string[] = [];
+
+  if (/^Worked Example \d+:/i.test(rawTail)) {
+    chunks = rawTail
+      .split(/(?:^|\s+)(?:Worked\s+)?Example \d+:\s*/i)
+      .map(s => s.trim())
+      .filter(Boolean);
+  } else if (/^Worked Examples:\s*1\.\s+/i.test(rawTail)) {
+    let rest = rawTail.replace(/^Worked Examples:\s*1\.\s+/i, '').trim();
+    for (let k = 2; k <= 5; k++) {
+      const re = new RegExp(`(?:^|[.!?]\\s+|\\n)\\s*${k}\\.\\s+`);
+      const m = re.exec(rest);
+      if (!m) break;
+      const before = rest.slice(0, m.index + (rest[m.index] === '.' || rest[m.index] === '!' || rest[m.index] === '?' ? 1 : 0)).trim();
+      if (before) chunks.push(before);
+      rest = rest.slice(m.index + m[0].length).trim();
+    }
+    if (rest) chunks.push(rest);
+  } else {
+    const single = rawTail.replace(/^Worked Examples?:\s*/i, '').trim();
+    if (single) chunks = [single];
+  }
+
+  chunks = chunks.filter(c => c.length >= 12);
+  if (chunks.length === 0) return null;
+
+  const step0Title = tool.howToGuide?.steps?.[0]?.title || 'Primary Input';
+  const mathSnippet = tool.formulaExplained?.mathSnippet
+    ? stripMathDelimiters(tool.formulaExplained.mathSnippet)
+    : '';
+  const proTips = tool.proTips || [];
+
+  return chunks.slice(0, 4).map((chunk, idx) => {
+    const colonIdx = chunk.indexOf(':');
+    const hasShortLabel =
+      colonIdx > 2 &&
+      colonIdx <= 58 &&
+      !/[.!?]\s/.test(chunk.slice(0, colonIdx));
+
+    const label = hasShortLabel ? chunk.slice(0, colonIdx).trim() : '';
+    const body = (hasShortLabel ? chunk.slice(colonIdx + 1) : chunk).trim();
+    const sentences = splitSentencesSafe(body);
+
+    const shortTitle = label
+      ? label
+      : body.split(/[.!?]/)[0].trim().slice(0, 62).replace(/\s+\S*$/, '') || `${tool.name} Case`;
+
+    const scenario = label
+      ? sentences.length > 1
+        ? `${label} — ${sentences.slice(0, -1).join(' ')}`
+        : label
+      : ensurePeriod(sentences[0] || body);
+
+    const arrowIdx = body.lastIndexOf('->');
+    const eqIdx = body.lastIndexOf('=');
+    let result = '';
+    if (sentences.length > 1) {
+      result = sentences[sentences.length - 1];
+    } else if (arrowIdx >= 0) {
+      result = body.slice(arrowIdx + 2).trim();
+    } else if (eqIdx >= 0) {
+      result = body.slice(eqIdx + 1).trim();
+    } else {
+      const outcomeMatch = body.match(/\b(?:results in|gives|yields|requires|needs|takes|totals?|equals?|reduces .*? to)\s+(.+)$/i);
+      result = outcomeMatch ? outcomeMatch[1].trim() : body;
+    }
+    result = ensurePeriod(result);
+
+    const inputValues: Record<string, string> = {};
+    if (label) {
+      inputValues[step0Title] = label;
+    } else {
+      const firstClause = (sentences[0] || body).split(/[,=]|results in|gives|yields|reduces/i)[0].trim();
+      inputValues[step0Title] = firstClause.slice(0, 64);
+    }
+    if (mathSnippet) {
+      inputValues['Formula'] = mathSnippet.slice(0, 64);
+    }
+
+    const calculation = mathSnippet && !chunk.includes('=')
+      ? `${stripTrailingPeriod(chunk)} (Formula: ${mathSnippet})`
+      : ensurePeriod(chunk);
+
+    const takeaway =
+      proTips[idx] ||
+      proTips[0] ||
+      `Applies ${tool.formulaExplained.title} directly to ${label || tool.name} parameters.`;
+
+    return {
+      title: `Example ${idx + 1}: ${shortTitle}`,
+      scenario: ensurePeriod(scenario),
+      inputValues,
+      calculation,
+      result,
+      takeaway: ensurePeriod(takeaway)
+    };
+  });
+}
+
 /**
  * Returns 3 to 5 realistic, step-by-step worked examples tailored to the tool's mechanics.
  */
 export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
-  const name = tool.name.toLowerCase();
-  const id = tool.id;
+  const slug = tool.slug;
+  const id = tool.slug;
 
   // 1. Minecraft Nether Portal Calculator
-  if (id === 'minecraft-nether-portal-calculator' || name.includes('nether portal')) {
+  if (slug === 'minecraft-nether-portal-calculator') {
     return [
       {
         title: 'Example 1: Linking Primary Overworld Base to Nether Transport Hub',
@@ -71,12 +246,8 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
-  // 2. Minecraft Circle / Sphere / Dome Generator
-  // NOTE: restricted to Minecraft tools only. The old condition matched ANY
-  // name containing "sphere" or "oval" — so the Palworld Capture Chance &
-  // Sphere Calculator and the Companion Approval tracker ("apprOVAL") wrongly
-  // showed Minecraft circle examples.
-  if (name.includes('minecraft') && (name.includes('circle') || name.includes('sphere') || name.includes('dome') || name.includes('oval'))) {
+  // 2. Minecraft Circle Generator
+  if (slug === 'minecraft-circle-generator') {
     return [
       {
         title: 'Example 1: Medieval Lighthouse Tower Footprint (Odd Diameter)',
@@ -113,10 +284,8 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
-  // 2b. Blox Fruits XP / Level Grinding Calculator — MUST come before the
-  // generic Minecraft XP branch below: the tool name contains "XP", so the
-  // old order matched it to Minecraft enchanting/anvil examples.
-  if (id === 'blox-fruits-xp-calculator' || (name.includes('blox fruits') && name.includes('xp'))) {
+  // 2b. Blox Fruits XP / Level Grinding Calculator
+  if (slug === 'blox-fruits-xp-calculator') {
     return [
       {
         title: 'Example 1: Level 1 to Level 700 — Reaching the Second Sea',
@@ -145,11 +314,8 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
-  // 3. Minecraft XP / Enchantment / Anvil Cost Calculator
-  // NOTE: restricted to Minecraft tools only. The old condition matched ANY
-  // tool name containing "xp" — so Blox Fruits XP, Fortnite XP, Helldivers 2
-  // XP and every "Weapon EXP" tool wrongly showed Minecraft examples.
-  if (name.includes('minecraft') && (name.includes('xp') || name.includes('enchant') || name.includes('anvil'))) {
+  // 3. Minecraft XP Calculator
+  if (slug === 'minecraft-xp-calculator') {
     return [
       {
         title: 'Example 1: Level 0 to Level 30 for Max Enchanting Table',
@@ -1549,7 +1715,11 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
   }
 
   // 4. Roblox Robux Tax / DevEx / Developer Earnings Calculator
-  if (name.includes('robux') || name.includes('devex') || name.includes('gamepass') || name.includes('developer')) {
+  if (
+    slug === 'robux-tax-calculator' ||
+    slug === 'roblox-devex-calculator' ||
+    slug === 'roblox-gamepass-revenue-calculator'
+  ) {
     return [
       {
         title: 'Example 1: Setting Gamepass Price to Receive Exactly 100 Robux',
@@ -1578,8 +1748,13 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
-  // 5. Fortnite XP / Battle Pass / Sensitivity / eDPI Calculator
-  if (name.includes('fortnite') || name.includes('battle pass') || name.includes('edpi') || name.includes('sensitivity')) {
+  // 5. Fortnite XP / Battle Pass Level Progression Calculators
+  if (
+    slug === 'fortnite-xp-calculator' ||
+    slug === 'fortnite-battle-pass-calculator' ||
+    slug === 'fortnite-level-calculator' ||
+    slug === 'fortnite-xp-required-calculator'
+  ) {
     return [
       {
         title: 'Example 1: Level 1 to Level 100 Battle Pass Daily Target Pacing',
@@ -1598,22 +1773,51 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
         takeaway: 'Utilize LEGO Fortnite sandbox AFK XP and Fortnite Festival jam stages to earn up to 400,000 passive XP per day.'
       },
       {
-        title: 'Example 3: Matching Pro Player eDPI with Custom Mouse DPI',
+        title: 'Example 3: Planning the Final 10 Levels of the Season',
+        scenario: 'A player is at Level 90 and wants to reach Level 100 before the season ends.',
+        inputValues: { 'Current Level': '90', 'Target Level': '100', 'XP per Level': '80,000', 'Daily XP Earned': '50,000' },
+        calculation: 'Levels remaining = 100 − 90 = 10. Total XP needed = 10 × 80,000 = 800,000 XP. Days needed = 800,000 ÷ 50,000 = 16 days.',
+        result: '800,000 XP total — about 16 days at 50,000 XP per day',
+        takeaway: 'Work backwards from the season end date: if fewer than 16 days remain, add XP sources (Creative maps, LEGO/Festival passive XP) or the target level will be missed.'
+      }
+    ];
+  }
+
+  // 5b. Fortnite eDPI & Pro Sensitivity Calculator (exact slug only)
+  if (slug === 'fortnite-edpi-calculator') {
+    return [
+      {
+        title: 'Example 1: Matching Pro Player eDPI with Custom Mouse DPI',
         scenario: 'A player has an 800 DPI mouse and wants to match professional player Peterbot\'s 48 eDPI setting.',
         inputValues: { 'Mouse Hardware DPI': '800 DPI', 'Target eDPI': '48.0' },
         calculation: 'In-Game Sensitivity = Target eDPI ÷ Hardware DPI = 48.0 ÷ 800 = 0.060 (6.0% in Fortnite settings).',
         result: 'Fortnite In-Game Sensitivity: 6.0% (X and Y Axis)',
         takeaway: 'Standardizing your eDPI between 40 and 64 provides the ideal balance between shotgun flick speed and assault rifle tracking accuracy.'
+      },
+      {
+        title: 'Example 2: Checking Aggressive Box-Fight Sensitivity (Clix Benchmark)',
+        scenario: 'A player running 800 DPI with 8.5% in-game X/Y sensitivity compares their effective DPI against FNCS aggressive benchmark settings.',
+        inputValues: { 'Mouse Hardware DPI': '800 DPI', 'In-Game Sensitivity': '8.5%' },
+        calculation: 'eDPI = 800 × (8.5 ÷ 100) × 10 = 68.0 eDPI (matches Clix\'s 8.5% @ 800 DPI benchmark).',
+        result: 'Effective DPI: 68.0 eDPI (Upper-Meta Hybrid Aim)',
+        takeaway: 'Higher eDPI values between 60 and 75 accelerate fast 180-degree edit turns while staying within the 45–75 pro meta window.'
       }
     ];
   }
 
-  // 6. Pokémon GO CP / IV / Evolution / Stardust Calculator
-  // NOTE: bare "cp" / "iv" substrings removed — they matched any name
-  // containing them ("Helldivers" has "iv", "CPS Click Speed" has "cp",
-  // "Palworld IV" has "iv"), showing Pokémon examples on other games' tools.
-  // Every real Pokémon tool carries "Pokémon" or "Stardust" in its name.
-  if (name.includes('pokemon') || name.includes('pokémon') || name.includes('stardust')) {
+  // 6. Pokémon GO CP / IV / Evolution / Level / Stardust / Candy / Power-up / PvP Calculator
+  if (
+    slug === 'pokemon-go-cp-calculator' ||
+    slug === 'pokemon-go-iv-calculator' ||
+    slug === 'pokemon-go-evolution-cp-calculator' ||
+    slug === 'pokemon-go-level-calculator' ||
+    slug === 'pokemon-go-stardust-calculator' ||
+    slug === 'pokemon-go-candy-calculator' ||
+    slug === 'pokemon-go-power-up-cost-calculator' ||
+    slug === 'pokemon-go-pvp-calculator' ||
+    slug === 'pokemon-go-catch-cp-calculator' ||
+    slug === 'pokemon-go-level-50-max-cp-calculator'
+  ) {
     return [
       {
         title: 'Example 1: Appraising a 15/15/14 (98%) Legendary Raid Boss',
@@ -1642,8 +1846,13 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
-  // 7. Palworld Breeding / IV / Damage / Condensation Calculator
-  if (name.includes('palworld') || name.includes('breeding') || name.includes('pal')) {
+  // 7. Palworld Breeding / Reverse Breeding / Path Finder / Condensation Calculator
+  if (
+    slug === 'palworld-breeding-calculator' ||
+    slug === 'palworld-reverse-breeding-calculator' ||
+    slug === 'palworld-breeding-path-finder' ||
+    slug === 'palworld-condensation-calculator'
+  ) {
     return [
       {
         title: 'Example 1: Breeding Anubis Early Game via Cross-Species Pairing',
@@ -1672,111 +1881,115 @@ export function getToolWorkedExamples(tool: ToolItem): ToolWorkedExample[] {
     ];
   }
 
-  // Grow a Garden tools
-  if (id.startsWith('grow-a-garden') || name.includes('grow a garden')) {
-    if (id === 'grow-a-garden-crop-value-calculator') {
-      return [
-        {
-          title: 'Example 1: Gold Carrot with Shocked & Frozen Mutations',
-          scenario: 'A player harvests a 0.55 kg Gold Carrot with Shocked and Frozen environmental mutations and no friend boost.',
-          inputValues: { 'Crop': 'Carrot (20 Sheckles, 0.275kg)', 'Actual Weight': '0.55 kg', 'Variant': 'Gold (x20)', 'Mutations': 'Shocked (x100) + Frozen (x10)' },
-          calculation: 'Base (20) × WeightFactor ((0.55/0.275)^2 = 4.0) × Variant (20) × EnvBracket [1 + (Shocked: 99) + (Frozen: 9) = 109] × FriendBoost (1.0) × Qty (1) = 20 × 4 × 20 × 109 = 174,400 Sheckles.',
-          result: '174,400 Sheckles',
-          takeaway: 'Because weight scaling is quadratic, doubling the actual weight yields a 4x multiplier, which scales exponentially with high-tier mutation brackets.'
-        },
-        {
-          title: 'Example 2: Rainbow Carrot with Celestial Mutation',
-          scenario: 'A player harvests a 0.275 kg base-weight Rainbow Carrot with the Celestial environmental mutation.',
-          inputValues: { 'Crop': 'Carrot (20 Sheckles, 0.275kg)', 'Actual Weight': '0.275 kg', 'Variant': 'Rainbow (x50)', 'Mutations': 'Celestial (x120)' },
-          calculation: 'Base (20) × WeightFactor (1.0) × Variant (50) × EnvBracket [1 + (Celestial: 119) = 120] × Qty (1) = 20 × 1.0 × 50 × 120 = 120,000 Sheckles.',
-          result: '120,000 Sheckles',
-          takeaway: 'Rainbow variant (x50) multiplies the entire environmental bracket sum, producing 120,000 Sheckles on base weight alone.'
-        }
-      ];
-    }
-    if (id === 'grow-a-garden-mutation-calculator') {
-      return [
-        {
-          title: 'Example 1: Stacking Rainbow Variant with Shocked & Celestial Mutations',
-          scenario: 'Calculating total multiplier for Rainbow variant with Shocked and Celestial mutations.',
-          inputValues: { 'Variant': 'Rainbow (x50)', 'Mutations': 'Shocked (x100), Celestial (x120)' },
-          calculation: 'Variant (Rainbow x50) × Bracket [1 + (Shocked: 100−1 = 99) + (Celestial: 120−1 = 119)] = 50 × [1 + 99 + 119] = 50 × 219 = x10,950.',
-          result: 'Combined Multiplier = x10,950',
-          takeaway: 'Environmental mutations add inside the bracket (99 + 119 = 218), while Rainbow multiplies the total bracket sum by 50.'
-        },
-        {
-          title: 'Example 2: Stacking Gold Variant with Dawnbound (Sunflower Only)',
-          scenario: 'Calculating multiplier for Gold variant Sunflower with Dawnbound mutation.',
-          inputValues: { 'Variant': 'Gold (x20)', 'Mutation': 'Dawnbound (x150)' },
-          calculation: 'Variant (Gold x20) × Bracket [1 + (Dawnbound: 150−1 = 149)] = 20 × 150 = x3,000.',
-          result: 'Combined Multiplier = x3,000',
-          takeaway: 'Dawnbound provides a +149 bracket term, making it the highest single environmental mutation for Sunflowers.'
-        }
-      ];
-    }
-    if (id === 'grow-a-garden-egg-hatching-calculator') {
-      return [
-        {
-          title: 'Example 1: Bug Egg Hatching for Dragonfly (1.0% Rate)',
-          scenario: 'A player wants a Dragonfly from Bug Eggs (1.0% hatch rate) and needs 50% and 90% cumulative confidence thresholds.',
-          inputValues: { 'Egg': 'Bug Egg (50,000,000 Sheckles)', 'Pet': 'Dragonfly (1.0%)' },
-          calculation: '50% chance = Ceil(Ln(1−0.50) / Ln(1−0.01)) = 69 eggs. 90% chance = Ceil(Ln(1−0.90) / Ln(0.99)) = 230 eggs. Expected average (1/p) = 100 eggs.',
-          result: '69 eggs for 50%, 230 eggs for 90%, expected 100 eggs',
-          takeaway: 'To reach a 50% cumulative chance at a 1% Dragonfly, you need 69 Bug Eggs (3.45 Billion Sheckles).'
-        },
-        {
-          title: 'Example 2: Legendary Egg Hatching for Turtle (2.13% Rate)',
-          scenario: 'A player wants a Turtle from Legendary Eggs (2.13% hatch rate).',
-          inputValues: { 'Egg': 'Legendary Egg (3,000,000 Sheckles)', 'Pet': 'Turtle (2.13%)' },
-          calculation: '50% chance = Ceil(Ln(1−0.50) / Ln(1−0.0213)) = 33 eggs.',
-          result: '33 eggs for 50% chance (99,000,000 Sheckles)',
-          takeaway: 'Hatching 33 Legendary Eggs gives a >50% probability of obtaining at least one Turtle.'
-        }
-      ];
-    }
-    if (id === 'grow-a-garden-trade-calculator') {
-      return [
-        {
-          title: 'Example 1: Gold Carrot & Rare Pet for Legendary Cow',
-          scenario: 'Offering Gold Carrot (174,400 Sheckles) + Orange Tabby (600,000 Sheckles) = 774,400 Sheckles, receiving a Cow (800,000 Sheckles).',
-          inputValues: { 'Your Offer': '774,400 Sheckles', 'Their Offer': '800,000 Sheckles' },
-          calculation: 'Value Difference = 800,000 − 774,400 = +25,600 Sheckles (+3.3%). Their offer is higher than your offer.',
-          result: 'Win (Big W for You!)',
-          takeaway: 'Since 800,000 Sheckles is >1.05x of 774,400 Sheckles (or higher value), this trade is a net win for you.'
-        },
-        {
-          title: 'Example 2: Equal Sheckle Value Trade',
-          scenario: 'Offering items worth 50,000,000 Sheckles and receiving items worth 50,000,000 Sheckles.',
-          inputValues: { 'Your Offer': '50,000,000 Sheckles', 'Their Offer': '50,000,000 Sheckles' },
-          calculation: 'Value Difference = 0 Sheckles. Their total is within ±5% of your total.',
-          result: 'Fair Trade (Balanced)',
-          takeaway: 'Equal value trades are evaluated as Fair Trade.'
-        }
-      ];
-    }
-    if (id === 'grow-a-garden-stock-timer') {
-      return [
-        {
-          title: 'Example 1: Tracking Seed & Gear Shop Restock Boundaries',
-          scenario: 'Monitoring Seed Shop and Gear Shop restocks on the 5-minute clock boundary (:00, :05, :10, :15, etc.).',
-          inputValues: { 'Cycle': '5 minutes', 'Current Time': '8:02:15 AM' },
-          calculation: 'Remaining time = 300 seconds − (135 seconds) = 165 seconds (2m 45s). Next restock at 8:05:00 AM.',
-          result: 'Restock in 02m 45s',
-          takeaway: 'Seed and Gear shops refresh every 5 minutes on the dot.'
-        },
-        {
-          title: 'Example 2: Tracking Pet Egg Shop Restock Boundary',
-          scenario: 'Monitoring Pet Egg Shop restocks on the 30-minute clock boundary (:00, :30).',
-          inputValues: { 'Cycle': '30 minutes', 'Current Time': '8:12:00 AM' },
-          calculation: 'Remaining time = 1800 seconds − (720 seconds) = 1080 seconds (18m 00s). Next restock at 8:30:00 AM.',
-          result: 'Restock in 18m 00s',
-          takeaway: 'Head to the Pet Egg Shop 30 seconds before the 30-minute mark to claim fresh eggs.'
-        }
-      ];
-    }
+  // Grow a Garden tools (exact slugs)
+  if (slug === 'grow-a-garden-crop-value-calculator') {
+    return [
+      {
+        title: 'Example 1: Gold Carrot with Shocked & Frozen Mutations',
+        scenario: 'A player harvests a 0.55 kg Gold Carrot with Shocked and Frozen environmental mutations and no friend boost.',
+        inputValues: { 'Crop': 'Carrot (20 Sheckles, 0.275kg)', 'Actual Weight': '0.55 kg', 'Variant': 'Gold (x20)', 'Mutations': 'Shocked (x100) + Frozen (x10)' },
+        calculation: 'Base (20) × WeightFactor ((0.55/0.275)^2 = 4.0) × Variant (20) × EnvBracket [1 + (Shocked: 99) + (Frozen: 9) = 109] × FriendBoost (1.0) × Qty (1) = 20 × 4 × 20 × 109 = 174,400 Sheckles.',
+        result: '174,400 Sheckles',
+        takeaway: 'Because weight scaling is quadratic, doubling the actual weight yields a 4x multiplier, which scales exponentially with high-tier mutation brackets.'
+      },
+      {
+        title: 'Example 2: Rainbow Carrot with Celestial Mutation',
+        scenario: 'A player harvests a 0.275 kg base-weight Rainbow Carrot with the Celestial environmental mutation.',
+        inputValues: { 'Crop': 'Carrot (20 Sheckles, 0.275kg)', 'Actual Weight': '0.275 kg', 'Variant': 'Rainbow (x50)', 'Mutations': 'Celestial (x120)' },
+        calculation: 'Base (20) × WeightFactor (1.0) × Variant (50) × EnvBracket [1 + (Celestial: 119) = 120] × Qty (1) = 20 × 1.0 × 50 × 120 = 120,000 Sheckles.',
+        result: '120,000 Sheckles',
+        takeaway: 'Rainbow variant (x50) multiplies the entire environmental bracket sum, producing 120,000 Sheckles on base weight alone.'
+      }
+    ];
+  }
+  if (slug === 'grow-a-garden-mutation-calculator') {
+    return [
+      {
+        title: 'Example 1: Stacking Rainbow Variant with Shocked & Celestial Mutations',
+        scenario: 'Calculating total multiplier for Rainbow variant with Shocked and Celestial mutations.',
+        inputValues: { 'Variant': 'Rainbow (x50)', 'Mutations': 'Shocked (x100), Celestial (x120)' },
+        calculation: 'Variant (Rainbow x50) × Bracket [1 + (Shocked: 100−1 = 99) + (Celestial: 120−1 = 119)] = 50 × [1 + 99 + 119] = 50 × 219 = x10,950.',
+        result: 'Combined Multiplier = x10,950',
+        takeaway: 'Environmental mutations add inside the bracket (99 + 119 = 218), while Rainbow multiplies the total bracket sum by 50.'
+      },
+      {
+        title: 'Example 2: Stacking Gold Variant with Dawnbound (Sunflower Only)',
+        scenario: 'Calculating multiplier for Gold variant Sunflower with Dawnbound mutation.',
+        inputValues: { 'Variant': 'Gold (x20)', 'Mutation': 'Dawnbound (x150)' },
+        calculation: 'Variant (Gold x20) × Bracket [1 + (Dawnbound: 150−1 = 149)] = 20 × 150 = x3,000.',
+        result: 'Combined Multiplier = x3,000',
+        takeaway: 'Dawnbound provides a +149 bracket term, making it the highest single environmental mutation for Sunflowers.'
+      }
+    ];
+  }
+  if (slug === 'grow-a-garden-egg-hatching-calculator') {
+    return [
+      {
+        title: 'Example 1: Bug Egg Hatching for Dragonfly (1.0% Rate)',
+        scenario: 'A player wants a Dragonfly from Bug Eggs (1.0% hatch rate) and needs 50% and 90% cumulative confidence thresholds.',
+        inputValues: { 'Egg': 'Bug Egg (50,000,000 Sheckles)', 'Pet': 'Dragonfly (1.0%)' },
+        calculation: '50% chance = Ceil(Ln(1−0.50) / Ln(1−0.01)) = 69 eggs. 90% chance = Ceil(Ln(1−0.90) / Ln(0.99)) = 230 eggs. Expected average (1/p) = 100 eggs.',
+        result: '69 eggs for 50%, 230 eggs for 90%, expected 100 eggs',
+        takeaway: 'To reach a 50% cumulative chance at a 1% Dragonfly, you need 69 Bug Eggs (3.45 Billion Sheckles).'
+      },
+      {
+        title: 'Example 2: Legendary Egg Hatching for Turtle (2.13% Rate)',
+        scenario: 'A player wants a Turtle from Legendary Eggs (2.13% hatch rate).',
+        inputValues: { 'Egg': 'Legendary Egg (3,000,000 Sheckles)', 'Pet': 'Turtle (2.13%)' },
+        calculation: '50% chance = Ceil(Ln(1−0.50) / Ln(1−0.0213)) = 33 eggs.',
+        result: '33 eggs for 50% chance (99,000,000 Sheckles)',
+        takeaway: 'Hatching 33 Legendary Eggs gives a >50% probability of obtaining at least one Turtle.'
+      }
+    ];
+  }
+  if (slug === 'grow-a-garden-trade-calculator') {
+    return [
+      {
+        title: 'Example 1: Gold Carrot & Rare Pet for Legendary Cow',
+        scenario: 'Offering Gold Carrot (174,400 Sheckles) + Orange Tabby (600,000 Sheckles) = 774,400 Sheckles, receiving a Cow (800,000 Sheckles).',
+        inputValues: { 'Your Offer': '774,400 Sheckles', 'Their Offer': '800,000 Sheckles' },
+        calculation: 'Value Difference = 800,000 − 774,400 = +25,600 Sheckles (+3.3%). Their offer is higher than your offer.',
+        result: 'Win (Big W for You!)',
+        takeaway: 'Since 800,000 Sheckles is >1.05x of 774,400 Sheckles (or higher value), this trade is a net win for you.'
+      },
+      {
+        title: 'Example 2: Equal Sheckle Value Trade',
+        scenario: 'Offering items worth 50,000,000 Sheckles and receiving items worth 50,000,000 Sheckles.',
+        inputValues: { 'Your Offer': '50,000,000 Sheckles', 'Their Offer': '50,000,000 Sheckles' },
+        calculation: 'Value Difference = 0 Sheckles. Their total is within ±5% of your total.',
+        result: 'Fair Trade (Balanced)',
+        takeaway: 'Equal value trades are evaluated as Fair Trade.'
+      }
+    ];
+  }
+  if (slug === 'grow-a-garden-stock-timer') {
+    return [
+      {
+        title: 'Example 1: Tracking Seed & Gear Shop Restock Boundaries',
+        scenario: 'Monitoring Seed Shop and Gear Shop restocks on the 5-minute clock boundary (:00, :05, :10, :15, etc.).',
+        inputValues: { 'Cycle': '5 minutes', 'Current Time': '8:02:15 AM' },
+        calculation: 'Remaining time = 300 seconds − (135 seconds) = 165 seconds (2m 45s). Next restock at 8:05:00 AM.',
+        result: 'Restock in 02m 45s',
+        takeaway: 'Seed and Gear shops refresh every 5 minutes on the dot.'
+      },
+      {
+        title: 'Example 2: Tracking Pet Egg Shop Restock Boundary',
+        scenario: 'Monitoring Pet Egg Shop restocks on the 30-minute clock boundary (:00, :30).',
+        inputValues: { 'Cycle': '30 minutes', 'Current Time': '8:12:00 AM' },
+        calculation: 'Remaining time = 1800 seconds − (720 seconds) = 1080 seconds (18m 00s). Next restock at 8:30:00 AM.',
+        result: 'Restock in 18m 00s',
+        takeaway: 'Head to the Pet Egg Shop 30 seconds before the 30-minute mark to claim fresh eggs.'
+      }
+    ];
   }
 
-  // 8. General / Fallback High-Quality Worked Examples
+  // 7b. Parse embedded worked examples directly from tool.formulaExplained.details when available
+  const embedded = parseEmbeddedWorkedExamples(tool);
+  if (embedded && embedded.length > 0) {
+    return embedded;
+  }
+
+  // 8. Last-resort fallback (never emitted if embedded examples exist)
   return [
     {
       title: `Example 1: Standard Casual In-Game Setup`,
@@ -2658,110 +2871,290 @@ export function getToolDeepDive(tool: ToolItem): ToolDeepDive {
   }
 
   const game = getGameById(tool.gameId);
-  const gameName = game?.name || 'Gaming';
+  const gameName = game?.name || tool.gameId;
   const name = tool.name;
+  const formulaTitle = tool.formulaExplained.title;
+  const mathSnippet = tool.formulaExplained.mathSnippet
+    ? stripMathDelimiters(tool.formulaExplained.mathSnippet)
+    : '';
+  const coreFormulaDetails = normalizeFormulaDetails(tool.formulaExplained.details || '');
+  const steps = tool.howToGuide?.steps || [];
+  const stepTitles = steps.map(s => s.title.trim()).filter(Boolean);
+  const stepList =
+    stepTitles.length > 1
+      ? `${stepTitles.slice(0, -1).join(', ')}, and ${stepTitles[stepTitles.length - 1]}`
+      : stepTitles[0] || '';
+  const cleanDescription = stripMathDelimiters(tool.description || tool.metaDescription || tool.shortDescription);
+  const cleanShortDesc = stripMathDelimiters(tool.shortDescription || tool.metaDescription);
+
+  // Paragraph 1: what it calculates, actual inputs/output steps, and its formula
+  const p1Sentences: string[] = [ensurePeriod(cleanDescription)];
+  if (stepList) {
+    p1Sentences.push(
+      `The ${name} guides you through ${steps.length} ${gameName} workflow steps—${stepList}—to compute its output.`
+    );
+  }
+  const formulaClause = coreFormulaDetails
+    ? `${stripTrailingPeriod(coreFormulaDetails)}`
+    : cleanShortDesc;
+  p1Sentences.push(
+    `Under the hood, ${name} uses ${formulaTitle}${formulaClause ? `: ${ensurePeriod(formulaClause)}` : '.'}${mathSnippet ? ` Its core expression is ${mathSnippet}.` : ''}`
+  );
+  const paragraph1 = p1Sentences.join(' ');
+
+  // Paragraph 2: walkthrough of the tool's own worked example #1 (or real step/formula flow)
+  const examples = getToolWorkedExamples(tool);
+  const ex1 = examples[0];
+  let paragraph2 = '';
+  if (isRealWorkedExample(ex1)) {
+    const cleanTitle = ex1.title.replace(/^Example\s+\d+:\s*/i, '').trim();
+    const inputPairs = Object.entries(ex1.inputValues || {})
+      .map(([k, v]) => `${k}: ${v}`)
+      .join(', ');
+    const scenarioNorm = stripTrailingPeriod(ex1.scenario);
+    const calcNorm = stripTrailingPeriod(ex1.calculation).replace(/[.!?]+\s+/g, '; ');
+    const resultSentence = ensurePeriod(ex1.result);
+    const calcAlreadyIncludesScenario =
+      scenarioNorm.length >= 12 &&
+      calcNorm.toLowerCase().includes(scenarioNorm.slice(0, 24).toLowerCase());
+    if (calcAlreadyIncludesScenario) {
+      paragraph2 = `Walking through ${cleanTitle} in ${name}${inputPairs ? ` (${inputPairs})` : ''}: ${calcNorm}, producing ${resultSentence}`;
+    } else {
+      paragraph2 = `Walking through ${cleanTitle} in ${name}: ${ensurePeriod(ex1.scenario)} ${inputPairs ? `Using ${inputPairs}, ${name}` : name} evaluates ${calcNorm}, producing ${resultSentence}`;
+    }
+  } else {
+    const stepFlow = steps
+      .map(s => `${s.title} (${stripTrailingPeriod(stripMathDelimiters(s.description))})`)
+      .join('; ');
+    paragraph2 = `To see how ${name} turns ${gameName} inputs into results, trace each stage: ${stepFlow}. Applying ${formulaTitle}${mathSnippet ? ` (${mathSnippet})` : ''} inside ${name} outputs ${stripTrailingPeriod(cleanShortDesc)}.`;
+  }
+
+  // Paragraph 3 (conditional): only emit if tool-specific takeaway, proTip, or mechanic FAQ adds distinct info
+  const existingText = `${paragraph1} ${paragraph2}`.toLowerCase();
+  const p3Parts: string[] = [];
+
+  if (isRealWorkedExample(ex1) && ex1.takeaway) {
+    const takeawayNorm = ex1.takeaway.trim();
+    if (takeawayNorm.length > 15 && !existingText.includes(takeawayNorm.slice(0, 32).toLowerCase())) {
+      p3Parts.push(`In ${name}, ${lowerFirst(ensurePeriod(takeawayNorm))}`);
+    }
+  }
+
+  const uniqueTip = (tool.proTips || []).find(tip => {
+    const t = tip.trim();
+    return t.length > 15 && !existingText.includes(t.slice(0, 32).toLowerCase()) && !p3Parts.join(' ').toLowerCase().includes(t.slice(0, 32).toLowerCase());
+  });
+  if (uniqueTip) {
+    p3Parts.push(`A practical ${name} tip: ${lowerFirst(ensurePeriod(uniqueTip))}`);
+  }
+
+  const mechanicFaq = (tool.faqs || []).find(f => {
+    const a = stripMathDelimiters(f.answer);
+    return (
+      /round|floor|ceil|truncat|cap|limit|percent|tax|fee|multiplier|stack|tick|rate|level|pity|fov|dpi|stud|beli|XP|cooldown/i.test(
+        `${f.question} ${a}`
+      ) &&
+      !existingText.includes(a.slice(0, 32).toLowerCase()) &&
+      !p3Parts.join(' ').toLowerCase().includes(a.slice(0, 32).toLowerCase())
+    );
+  });
+  if (mechanicFaq && p3Parts.length < 2) {
+    p3Parts.push(`For ${gameName} parity in ${name}: ${lowerFirst(ensurePeriod(stripMathDelimiters(mechanicFaq.answer)))}`);
+  }
+
+  const paragraphs = p3Parts.length > 0 ? [paragraph1, paragraph2, p3Parts.join(' ')] : [paragraph1, paragraph2];
+
+  const title = formulaTitle.toLowerCase().includes(name.toLowerCase())
+    ? formulaTitle
+    : `${name}: ${formulaTitle}`;
+  const summary = `${ensurePeriod(cleanShortDesc)} Powered by ${formulaTitle}${mathSnippet ? ` (${mathSnippet})` : ''}${stepList ? ` across ${stepList}` : ''}.`;
+
+  const keyPoint1 = `${formulaTitle}: ${mathSnippet || ensurePeriod(coreFormulaDetails || cleanShortDesc)}`;
+  const keyPoint2 = isRealWorkedExample(ex1)
+    ? `${ex1.title.replace(/^Example\s+\d+:\s*/i, '')}: ${ensurePeriod(ex1.result)}`
+    : `${name} Steps (${steps.length}): ${stepTitles.join(' → ')}.`;
+  const keyPoint3 = uniqueTip
+    ? `${gameName} Rule: ${ensurePeriod(uniqueTip)}`
+    : isRealWorkedExample(ex1) && ex1.takeaway
+      ? `${gameName} Takeaway: ${ensurePeriod(ex1.takeaway)}`
+      : `${gameName} Application: ${ensurePeriod(cleanShortDesc)}`;
 
   return {
-    title: `In-Depth Mechanics: How ${name} Calculates Under the Hood`,
-    summary: `Understanding the internal engine rules, mathematical formulas, and game tick algorithms powering ${name}.`,
-    paragraphs: [
-      `In modern gaming engines like ${gameName}, client-side visuals often mask complex underlying mathematics. Calculations for coordinates, drop probabilities, leveling curves, and stat scaling do not operate on simple linear equations. Instead, they rely on discrete tick functions, quadratic experience curves, and floating-point boundary approximations that can drastically alter outcomes when rounded improperly.`,
-      `The ${name} runs all computations client-side using validated mathematical representations derived from official game decompilations and verified community research. By executing calculations instantly within your browser, you receive zero-latency outputs with complete precision—ensuring that your in-game resource investments, building dimensions, and strategic decisions match true server-side reality.`,
-      `Whether you are budgeting thousands of rare materials for a survival mega-structure, calculating precise tick-perfect redstone delays, or min-maxing competitive damage per second, small rounding discrepancies compound rapidly over large quantities. This calculator factors in official floor and ceiling integer truncation to prevent wasted items and guarantee 100% reliable results across all platforms.`
-    ],
-    keyPoints: [
-      `100% Client-Side Engine: Instant real-time calculations with zero server lag, zero telemetry, and complete data privacy.`,
-      `Verified Game Formula Parity: Faithful implementation of official game algorithms, including non-linear exponents and integer flooring.`,
-      `Cross-Platform Tested: Built and benchmarked for desktop browsers, mobile touch devices, and console companion setups.`
-    ]
+    title,
+    summary,
+    paragraphs,
+    keyPoints: [keyPoint1, keyPoint2, keyPoint3]
+  };
+}
+
+function buildWorkedExampleFaq(ex: ToolWorkedExample, tool: ToolItem): EnhancedToolFaq {
+  const raw = stripTrailingPeriod(ex.scenario);
+  let question = '';
+
+  const wantNeedMatch = raw.match(/^(.+?)\s+(?:wants|needs)\s+to\s+(.+)$/i);
+  if (wantNeedMatch) {
+    const subjectPrefix = wantNeedMatch[1].trim();
+    const targetPhrase = wantNeedMatch[2].trim();
+    const hasNumbersOrSpecifics = /\d/.test(subjectPrefix);
+    const cleanedPrefix = subjectPrefix
+      .replace(/^A\s+(?:dedicated\s+|free-to-play\s+|new\s+|Level\s+\d+\s+)?(?:player|gamer|creator|developer|pirate|traveler|trader|user|builder)\s+(?:is\s+|has\s+|starts\s+|who\s+|builds\s+|maintains\s+)?/i, '')
+      .replace(/\s+and$/i, '')
+      .trim();
+
+    if (hasNumbersOrSpecifics && cleanedPrefix) {
+      const coordsMatch = cleanedPrefix.match(/at\s+(.+)$/i);
+      const conditionLabel = coordsMatch ? `from ${coordsMatch[1]}` : `with ${cleanedPrefix}`;
+      question = `How do I ${targetPhrase} (${conditionLabel})?`;
+    } else {
+      question = `How do I ${targetPhrase}?`;
+    }
+  } else {
+    const gerundMatch = raw.match(/^(Building|Calculating|Comparing|Converting|Crafting|Generating|Linking|Measuring|Monitoring|Offering|Planning|Projecting|Setting|Sweeping|Moving|Breeding|Catching|Evaluating|Appraising|Optimizing|Budgeting|Repairing|Checking|Applying|Combining|Estimating|Tracking|Claiming|Leveling|Buying|Smelting|Equipping)\s+(.+)$/);
+    const verbMap: Record<string, string> = {
+      Building: 'build',
+      Calculating: 'calculate',
+      Comparing: 'compare',
+      Converting: 'convert',
+      Crafting: 'craft',
+      Generating: 'generate',
+      Linking: 'link',
+      Measuring: 'measure',
+      Monitoring: 'monitor',
+      Offering: 'evaluate offering',
+      Planning: 'plan',
+      Projecting: 'project',
+      Setting: 'set',
+      Sweeping: 'measure polling rate when sweeping',
+      Moving: 'measure true DPI when moving',
+      Breeding: 'calculate breeding odds when breeding',
+      Catching: 'calculate max CP when catching',
+      Evaluating: 'evaluate',
+      Appraising: 'appraise',
+      Optimizing: 'optimize',
+      Budgeting: 'budget',
+      Repairing: 'repair',
+      Checking: 'check',
+      Applying: 'apply',
+      Combining: 'combine',
+      Estimating: 'estimate',
+      Tracking: 'track',
+      Claiming: 'calculate totals when claiming',
+      Leveling: 'calculate XP needed when leveling',
+      Buying: 'compare efficiency when buying',
+      Smelting: 'calculate fuel for smelting',
+      Equipping: 'calculate the bonus when equipping'
+    };
+
+    if (gerundMatch) {
+      const baseVerb = verbMap[gerundMatch[1]] || 'calculate';
+      const setupClause = gerundMatch[2]
+        .replace(/\s+requires\s+an?\s+.+$/i, '')
+        .replace(/\s+(?:gives you|requires approx|gives|results in|takes|yields|deals)\s+.+$/i, '')
+        .trim();
+      question = `How do I ${baseVerb} ${setupClause}?`;
+    } else if (/^If you\s+/i.test(raw)) {
+      const condClause = raw.split(/,\s*(?:it will|you need|total)/i)[0].trim();
+      question = `How do I calculate the outcome ${lowerFirst(condClause)}?`;
+    } else {
+      // Handle declarative sentences like "A team with ... results in ...", "30,000 Crystals provide ...", "Coord (100, 200)"
+      const setupOnly = raw
+        .split(/\s+(?:results in|gives|yields|deals|takes|requires|scores|receives|provides|provide|is more efficient|allocates|has a value index)\s+/i)[0]
+        .split(/\s*=\s*/)[0]
+        .trim();
+      const cleanedSetup = setupOnly
+        .replace(/^A\s+(?:max-level\s+)?(?:player|team|hero|pirate|piece of gear|pack)\s+/i, m => lowerFirst(m))
+        .trim();
+      if (cleanedSetup.length >= 6 && cleanedSetup.length <= 130) {
+        question = `How do I calculate the result for ${lowerFirst(cleanedSetup)} in ${tool.name}?`;
+      } else {
+        question = `How does ${tool.name} calculate ${ex.title.replace(/^Example\s+\d+:\s*/i, '')}?`;
+      }
+    }
+  }
+
+  return {
+    question,
+    answer: `${ensurePeriod(ex.calculation)} Result: ${ensurePeriod(ex.result)}`
   };
 }
 
 /**
- * Returns enhanced, high-intent Google search FAQs (5 to 6 comprehensive FAQs)
+ * Returns enhanced, high-intent Google search FAQs (up to 6 unique FAQs)
  */
 export function getEnhancedToolFaqs(tool: ToolItem): EnhancedToolFaq[] {
   const existing = (tool.faqs || []).map(f => ({ question: f.question, answer: f.answer }));
+  const slug = tool.slug;
   if (
-    tool.id === 'minecraft-slime-chunk-finder' ||
-    tool.id === 'minecraft-banner-designer' ||
-    tool.id === 'minecraft-stronghold-finder' ||
-    tool.id === 'minecraft-pixel-art-converter' ||
-    tool.id === 'minecraft-brewing-calculator' ||
-    tool.id === 'minecraft-rgb-gradient-text-generator' ||
-    tool.id === 'minecraft-motd-generator' ||
-    tool.id === 'minecraft-armor-trim-previewer' ||
-    tool.id === 'minecraft-shield-designer' ||
-    tool.id === 'minecraft-potion-duration-converter' ||
-    tool.id === 'minecraft-block-gradient-generator' ||
-    tool.id === 'blox-fruits-mastery-calculator' ||
-    tool.id === 'blox-fruits-awakening-calculator' ||
-    tool.id === 'blox-fruits-race-v4-calculator' ||
-    tool.id === 'blox-fruits-raid-calculator' ||
-    tool.id === 'blox-fruits-fighting-style-calculator' ||
-    tool.id === 'blox-fruits-gacha-calculator' ||
-    tool.id === 'blox-fruits-fruit-spawn-timer' ||
-    tool.id === 'roblox-username-generator' ||
-    tool.id === 'roblox-font-generator' ||
-    tool.id === 'roblox-ugc-calculator' ||
-    tool.id === 'roblox-game-revenue-estimator' ||
-    tool.id === 'roblox-shirt-template-maker' ||
-    tool.id === 'roblox-thumbnail-resizer' ||
-    tool.id === 'roblox-studs-converter' ||
-    tool.id === 'roblox-brickcolor-picker' ||
-    tool.id === 'ps99-mastery-calculator' ||
-    tool.id === 'ps99-golden-rainbow-calculator' ||
-    tool.id === 'blox-fruits-title-tracker' ||
-    tool.id === 'gta-online-nightclub-profit-calculator' ||
-    tool.id === 'gta-online-acid-lab-profit-calculator' ||
-    tool.id === 'gta-online-cayo-perico-payout-calculator' ||
-    tool.id === 'gta-online-heist-split-calculator' ||
-    tool.id === 'gta-online-business-roi-calculator' ||
-    tool.id === 'gta-online-cooldown-planner' ||
-    tool.id === 'gta-online-bunker-profit-calculator' ||
-    tool.id === 'gta-online-mc-business-profit-calculator' ||
-    tool.id === 'gta-online-special-cargo-crate-value-calculator' ||
-    tool.id === 'gta-online-hangar-cargo-calculator' ||
-    tool.id === 'gta-online-vehicle-cargo-calculator' ||
-    tool.id === 'gta-6-cheat-code-finder' ||
-    tool.id === 'mouse-polling-rate-test' ||
-    tool.id === 'true-dpi-analyzer' ||
-    tool.id === 'ads-sensitivity-calculator' ||
-    tool.id === 'genshin-primogem-wish-income-planner' ||
-    tool.id === 'genshin-wish-simulator' ||
-    tool.id === 'palworld-passive-inheritance-calculator' ||
-    tool.id === 'palworld-egg-incubation-calculator'
+    slug === 'minecraft-slime-chunk-finder' ||
+    slug === 'minecraft-banner-designer' ||
+    slug === 'minecraft-stronghold-finder' ||
+    slug === 'minecraft-pixel-art-converter' ||
+    slug === 'minecraft-brewing-calculator' ||
+    slug === 'minecraft-rgb-gradient-text-generator' ||
+    slug === 'minecraft-motd-generator' ||
+    slug === 'minecraft-armor-trim-previewer' ||
+    slug === 'minecraft-shield-designer' ||
+    slug === 'minecraft-potion-duration-converter' ||
+    slug === 'minecraft-block-gradient-generator' ||
+    slug === 'blox-fruits-mastery-calculator' ||
+    slug === 'blox-fruits-awakening-calculator' ||
+    slug === 'blox-fruits-race-v4-calculator' ||
+    slug === 'blox-fruits-raid-calculator' ||
+    slug === 'blox-fruits-fighting-style-calculator' ||
+    slug === 'blox-fruits-gacha-calculator' ||
+    slug === 'blox-fruits-fruit-spawn-timer' ||
+    slug === 'roblox-username-generator' ||
+    slug === 'roblox-font-generator' ||
+    slug === 'roblox-ugc-calculator' ||
+    slug === 'roblox-game-revenue-estimator' ||
+    slug === 'roblox-shirt-template-maker' ||
+    slug === 'roblox-thumbnail-resizer' ||
+    slug === 'roblox-studs-converter' ||
+    slug === 'roblox-brickcolor-picker' ||
+    slug === 'ps99-mastery-calculator' ||
+    slug === 'ps99-golden-rainbow-calculator' ||
+    slug === 'blox-fruits-title-tracker' ||
+    slug === 'gta-online-nightclub-profit-calculator' ||
+    slug === 'gta-online-acid-lab-profit-calculator' ||
+    slug === 'gta-online-cayo-perico-payout-calculator' ||
+    slug === 'gta-online-heist-split-calculator' ||
+    slug === 'gta-online-business-roi-calculator' ||
+    slug === 'gta-online-cooldown-planner' ||
+    slug === 'gta-online-bunker-profit-calculator' ||
+    slug === 'gta-online-mc-business-profit-calculator' ||
+    slug === 'gta-online-special-cargo-crate-value-calculator' ||
+    slug === 'gta-online-hangar-cargo-calculator' ||
+    slug === 'gta-online-vehicle-cargo-calculator' ||
+    slug === 'gta-6-cheat-code-finder' ||
+    slug === 'mouse-polling-rate-test' ||
+    slug === 'true-dpi-analyzer' ||
+    slug === 'ads-sensitivity-calculator' ||
+    slug === 'genshin-primogem-wish-income-planner' ||
+    slug === 'genshin-wish-simulator' ||
+    slug === 'palworld-passive-inheritance-calculator' ||
+    slug === 'palworld-egg-incubation-calculator'
   ) {
     return existing.slice(0, 5);
   }
-  const game = getGameById(tool.gameId);
-  const gameName = game?.name || 'this game';
 
-  // Common high-intent queries that players search on Google
-  const bonusFaqs: EnhancedToolFaq[] = [
-    {
-      question: `Is the ${tool.name} updated for the latest ${gameName} patch and updates?`,
-      answer: `Yes! All formulas, mechanics, and conversion tables in ${tool.name} are continuously audited and synchronized with the latest official ${gameName} patches and balance updates. Both modern versions and legacy quirks are fully supported.`
-    },
-    {
-      question: `Does this calculator work on both Mobile and Desktop?`,
-      answer: `Absolutely. The ${tool.name} is fully responsive with an adaptive interface engineered for smartphones, tablets, laptops, and ultra-wide desktop monitors. You can use it as a split-screen or second-monitor companion while playing.`
-    },
-    {
-      question: `Why do my manual in-game calculations sometimes differ by 1 or 2 units?`,
-      answer: `Most in-game discrepancies stem from integer truncation versus mathematical rounding. While standard math rounds 0.5 upwards, many game engines use floor division (always rounding down towards negative infinity). This calculator precisely mirrors the game's internal truncation logic to eliminate rounding errors.`
-    },
-    {
-      question: `Are my inputs, coordinates, or calculations saved or tracked?`,
-      answer: `No. All calculations run 100% locally inside your browser's JavaScript engine. No coordinates, player data, or calculation histories are ever sent to an external server or stored in a database. Your gameplay data remains completely private.`
-    }
-  ];
+  const examples = getToolWorkedExamples(tool);
+  const ex1 = examples[0];
+  const generatedFaqs: EnhancedToolFaq[] = [];
+  if (isRealWorkedExample(ex1)) {
+    generatedFaqs.push(buildWorkedExampleFaq(ex1, tool));
+  }
 
-  // Merge unique questions
+  const privacyFaq: EnhancedToolFaq = {
+    question: 'Are my inputs, coordinates, or calculations saved or tracked?',
+    answer:
+      'No. All calculations run 100% locally inside your browser\'s JavaScript engine. No coordinates, player data, or calculation histories are ever sent to an external server or stored in a database. Your gameplay data remains completely private.'
+  };
+
+  // Merge unique questions (tool.faqs first, then 1 real worked-example FAQ if present, then the 1 shared privacy FAQ)
   const seenQuestions = new Set<string>();
   const merged: EnhancedToolFaq[] = [];
 
-  for (const item of [...existing, ...bonusFaqs]) {
+  for (const item of [...existing, ...generatedFaqs, privacyFaq]) {
     const key = item.question.trim().toLowerCase();
     if (!seenQuestions.has(key)) {
       seenQuestions.add(key);

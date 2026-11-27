@@ -227,16 +227,27 @@ TOOLS.forEach(tool => {
   const deepDive = getToolDeepDive(tool);
   const enhancedFaqs = getEnhancedToolFaqs(tool);
 
+  const canonicalGamePath = `/games/${game?.slug || tool.gameId}`;
+
   // Construct JSON-LD Structured Data
   const jsonLdSchemas: any[] = [
     {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
+      '@id': `${canonicalUrl}#webapplication`,
       name: tool.name,
       url: canonicalUrl,
       applicationCategory: 'GameApplication',
       operatingSystem: 'All Modern Browsers',
+      browserRequirements: 'Requires JavaScript, HTML5',
+      inLanguage: 'en',
       description: tool.metaDescription,
+      isPartOf: {
+        '@id': `${DOMAIN}/#website`
+      },
+      author: {
+        '@id': `${DOMAIN}/#organization`
+      },
       offers: {
         '@type': 'Offer',
         price: '0',
@@ -257,7 +268,7 @@ TOOLS.forEach(tool => {
           '@type': 'ListItem',
           position: 2,
           name: gameName,
-          item: `${DOMAIN}${gamePath}`
+          item: `${DOMAIN}${canonicalGamePath}`
         },
         {
           '@type': 'ListItem',
@@ -346,13 +357,13 @@ TOOLS.forEach(tool => {
                   </div>
                   <div>
                     <h2 class="text-base sm:text-lg font-bold text-white">${escapeHtml(tool.name)} Engine</h2>
-                    <p class="text-xs text-slate-400">Precision Client-Side Calculator • Zero Server Lag</p>
+                    <p class="text-xs text-slate-400">${escapeHtml(gameName)} • ${escapeHtml(tool.formulaExplained.title)}</p>
                   </div>
                 </div>
                 <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded border border-cyan-500/20">Verified Math</span>
               </div>
               <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Precision client-side calculation engine. All formulas execute locally in your browser with instantaneous response times, zero server roundtrips, and complete data privacy.
+                ${escapeHtml(tool.shortDescription || tool.howToGuide.overview)}
               </p>
               <div class="pt-2">
                 <div class="w-full sm:w-auto inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-violet-600/20 border border-violet-500/40 text-violet-300 text-xs sm:text-sm font-semibold">
@@ -595,11 +606,33 @@ function generateToolsDirectoryHtml(): string {
   `;
 }
 
+const toolsInDisplayOrder = GAMES.flatMap(g => TOOLS.filter(t => t.gameId === g.id));
+const toolsDirectoryJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${DOMAIN}/tools`,
+  name: 'All Gaming Calculators, Generators & Precision Tools',
+  description: 'Browse 100+ precision gaming calculators, circle generators, XP estimators, and converters for Minecraft, Roblox, Fortnite, Pokémon GO, and Palworld.',
+  url: `${DOMAIN}/tools`,
+  isPartOf: { '@id': `${DOMAIN}/#website` },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: toolsInDisplayOrder.length,
+    itemListElement: toolsInDisplayOrder.map((tool, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: tool.name,
+      url: `${DOMAIN}/tools/${tool.slug}`
+    }))
+  }
+};
+
 renderPageTemplate(
   '/tools',
   'All Gaming Calculators, Generators & Precision Utilities | GamingToolsHub',
   'Browse 100+ precision gaming calculators, circle generators, XP estimators, and converters for Minecraft, Roblox, Fortnite, Pokémon GO, and Palworld.',
-  generateToolsDirectoryHtml()
+  generateToolsDirectoryHtml(),
+  toolsDirectoryJsonLd
 );
 
 // 2.2 Pre-render /games (Games Hubs Directory)
@@ -663,11 +696,32 @@ function generateGamesHubPageHtml(): string {
   `;
 }
 
+const gamesDirectoryJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${DOMAIN}/games`,
+  name: 'Gaming Hubs & Tool Suites by Game',
+  description: 'Explore comprehensive toolkits, math engines, and converters organized by game: Minecraft, Roblox, Fortnite, Pokémon GO, and Palworld.',
+  url: `${DOMAIN}/games`,
+  isPartOf: { '@id': `${DOMAIN}/#website` },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: GAMES.length,
+    itemListElement: GAMES.map((game, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: game.name,
+      url: `${DOMAIN}/games/${game.slug}`
+    }))
+  }
+};
+
 renderPageTemplate(
   '/games',
   'Gaming Hubs & Tools by Game | GamingToolsHub',
   'Explore comprehensive toolkits, math engines, and converters organized by game: Minecraft, Roblox, Fortnite, Pokémon GO, and Palworld.',
-  generateGamesHubPageHtml()
+  generateGamesHubPageHtml(),
+  gamesDirectoryJsonLd
 );
 
 // 2.3 Pre-render /categories (Tools by Category)
@@ -1061,14 +1115,35 @@ gameHubConfigs.forEach(cfg => {
   const description = cfg.description || game?.description || '';
   const canonicalPath = `/games/${cfg.slug}`;
   const html = generateSingleGameHubHtml(cfg.id);
+  const gameTools = TOOLS.filter(t => t.gameId === cfg.id);
+  const gameHubUrl = `${DOMAIN}${canonicalPath}`;
+  const gameHubJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': gameHubUrl,
+    name: `${game?.name || cfg.id} Calculators, Generators & Blueprint Tools`,
+    description,
+    url: gameHubUrl,
+    isPartOf: { '@id': `${DOMAIN}/#website` },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: gameTools.length,
+      itemListElement: gameTools.map((tool, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        name: tool.name,
+        url: `${DOMAIN}/tools/${tool.slug}`
+      }))
+    }
+  };
 
   // 1. Render primary game hub path at /games/<slug>
-  renderPageTemplate(`/games/${cfg.slug}`, title, description, html, undefined, canonicalPath);
+  renderPageTemplate(`/games/${cfg.slug}`, title, description, html, gameHubJsonLd, canonicalPath);
 
   // 2. Render all alias paths with canonicalPath forced to /games/<slug>
   cfg.aliases.forEach(alias => {
     if (alias !== `/games/${cfg.slug}`) {
-      renderPageTemplate(alias, title, description, html, undefined, canonicalPath);
+      renderPageTemplate(alias, title, description, html, gameHubJsonLd, canonicalPath);
     }
   });
 });
@@ -1421,18 +1496,72 @@ function generateHomePageHtml(): string {
   `;
 }
 
+const homeDescription = 'Fast gaming calculators and blueprint generators for Minecraft, Roblox, Fortnite, Pokémon GO, and Palworld. Instant math, zero server lag, and 100% free.';
+const homeJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${DOMAIN}/#website`,
+      url: `${DOMAIN}/`,
+      name: 'GamingToolsHub',
+      description: homeDescription,
+      inLanguage: 'en',
+      publisher: {
+        '@id': `${DOMAIN}/#organization`
+      }
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${DOMAIN}/#organization`,
+      name: 'GamingToolsHub',
+      url: `${DOMAIN}/`,
+      logo: `${DOMAIN}/logo.png`,
+      sameAs: [
+        'https://www.pinterest.com/mehrankhan1213',
+        'https://www.instagram.com/mehrankhan121314'
+      ]
+    }
+  ]
+};
+
 renderPageTemplate(
   '/',
   'GamingToolsHub - Precision Gaming Calculators, Generators & Utilities',
-  'Fast gaming calculators and blueprint generators for Minecraft, Roblox, Fortnite, Pokémon GO, and Palworld. Instant math, zero server lag, and 100% free.',
-  generateHomePageHtml()
+  homeDescription,
+  generateHomePageHtml(),
+  homeJsonLd
 );
 
 /**
  * 2.5 Pre-render Game Codes Directory (/codes) & Detail Pages (/codes/:slug)
  */
-function generateCodesIndexHtml(): string {
-  const sorted = [...CODES_PAGES].sort((a, b) => {
+const CODES_MONTH_MAP: Record<string, string> = {
+  january: '01',
+  february: '02',
+  march: '03',
+  april: '04',
+  may: '05',
+  june: '06',
+  july: '07',
+  august: '08',
+  september: '09',
+  october: '10',
+  november: '11',
+  december: '12'
+};
+
+function parseCodesDateToIso(dateStr: string): string {
+  const match = dateStr.trim().match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/);
+  if (!match) return dateStr;
+  const day = match[1].padStart(2, '0');
+  const month = CODES_MONTH_MAP[match[2].toLowerCase()];
+  if (!month) return dateStr;
+  return `${match[3]}-${month}-${day}`;
+}
+
+function getSortedCodesPages(): CodesPageData[] {
+  return [...CODES_PAGES].sort((a, b) => {
     const kindOrder = { codes: 0, links: 1, status: 2 };
     if (kindOrder[a.kind] !== kindOrder[b.kind]) {
       return kindOrder[a.kind] - kindOrder[b.kind];
@@ -1442,6 +1571,10 @@ function generateCodesIndexHtml(): string {
     }
     return a.gameName.localeCompare(b.gameName);
   });
+}
+
+function generateCodesIndexHtml(): string {
+  const sorted = getSortedCodesPages();
 
   const cardsHtml = sorted.map(entry => {
     let badgeText = '';
@@ -1511,11 +1644,33 @@ function generateCodesIndexHtml(): string {
   `;
 }
 
+const sortedCodesPages = getSortedCodesPages();
+const codesHubJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${DOMAIN}/codes`,
+  name: 'Game Codes — Free Redeem Codes & Daily Links',
+  description: 'Active redeem codes and free daily links for Blox Fruits, Type Soul, Monopoly GO and more. Verified and checked daily with zero spam.',
+  url: `${DOMAIN}/codes`,
+  isPartOf: { '@id': `${DOMAIN}/#website` },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: sortedCodesPages.length,
+    itemListElement: sortedCodesPages.map((entry, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: entry.gameName,
+      url: `${DOMAIN}/codes/${entry.slug}`
+    }))
+  }
+};
+
 renderPageTemplate(
   '/codes',
   'Game Codes — Free Redeem Codes & Daily Links (November 2026) | GamingToolsHub',
   'Active redeem codes and free daily links for Blox Fruits, Type Soul, Monopoly GO and more. Verified and checked daily with zero spam.',
-  generateCodesIndexHtml()
+  generateCodesIndexHtml(),
+  codesHubJsonLd
 );
 
 // Detail pages for each CODES_PAGES entry
@@ -1615,11 +1770,63 @@ CODES_PAGES.forEach(entry => {
     </div>
   `;
 
+  const codesDescription = `${entry.gameName} redeem codes (November 2026). ${entry.intro}`;
+  const codesUrl = `${DOMAIN}/codes/${entry.slug}`;
+  const codesDetailJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': codesUrl,
+        url: codesUrl,
+        name: pageH1,
+        description: codesDescription,
+        dateModified: parseCodesDateToIso(entry.lastChecked),
+        inLanguage: 'en',
+        isPartOf: { '@id': `${DOMAIN}/#website` }
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: DOMAIN
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Codes',
+            item: `${DOMAIN}/codes`
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: entry.gameName,
+            item: codesUrl
+          }
+        ]
+      },
+      {
+        '@type': 'ItemList',
+        name: `${entry.gameName} Active Codes`,
+        numberOfItems: entry.codes.length,
+        itemListElement: entry.codes.map((c, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          name: `${c.code} — ${c.reward}`
+        }))
+      }
+    ]
+  };
+
   renderPageTemplate(
     `/codes/${entry.slug}`,
     pageTitle,
-    `${entry.gameName} redeem codes (November 2026). ${entry.intro}`,
-    detailBodyHtml
+    codesDescription,
+    detailBodyHtml,
+    codesDetailJsonLd
   );
 });
 
@@ -1676,15 +1883,36 @@ function generateQaIndexHtml(): string {
   `;
 }
 
+const qaGamesList = getQaGames();
+const qaHubJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${DOMAIN}/qa`,
+  name: 'Game Q&A — Quick Answers to Gaming Questions',
+  description: 'Clear, calculated answers to common gaming questions, exchange rates, currency values, and mechanics across major games.',
+  url: `${DOMAIN}/qa`,
+  isPartOf: { '@id': `${DOMAIN}/#website` },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: qaGamesList.length,
+    itemListElement: qaGamesList.map((game, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: `${game.name} Q&A`,
+      url: `${DOMAIN}/qa/${game.slug}`
+    }))
+  }
+};
+
 renderPageTemplate(
   '/qa',
   'Game Q&A — Quick Answers to Gaming Questions | GamingToolsHub',
   'Clear, calculated answers to common gaming questions, exchange rates, currency values, and mechanics across major games.',
-  generateQaIndexHtml()
+  generateQaIndexHtml(),
+  qaHubJsonLd
 );
 
 // Pre-render each game Q&A hub (/qa/:gameSlug)
-const qaGamesList = getQaGames();
 qaGamesList.forEach(game => {
   const gameEntries = getQaEntriesByGame(game.slug);
   const gameCardsHtml = gameEntries.map(entry => `
@@ -1733,11 +1961,34 @@ qaGamesList.forEach(game => {
     </div>
   `;
 
+  const qaGameHubUrl = `${DOMAIN}/qa/${game.slug}`;
+  const qaGameDescription = `Get fast, verified answers to top ${game.name} questions, currency calculations, exchange rates, and game mechanics.`;
+  const qaGameJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': qaGameHubUrl,
+    name: `${game.name} Questions & Answers`,
+    description: qaGameDescription,
+    url: qaGameHubUrl,
+    isPartOf: { '@id': `${DOMAIN}/#website` },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: gameEntries.length,
+      itemListElement: gameEntries.map((entry, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        name: entry.question,
+        url: `${DOMAIN}/qa/${entry.gameSlug}/${entry.slug}`
+      }))
+    }
+  };
+
   renderPageTemplate(
     `/qa/${game.slug}`,
     `${game.name} Questions & Answers | GamingToolsHub`,
-    `Get fast, verified answers to top ${game.name} questions, currency calculations, exchange rates, and game mechanics.`,
-    hubHtml
+    qaGameDescription,
+    hubHtml,
+    qaGameJsonLd
   );
 });
 
@@ -1818,11 +2069,19 @@ QA_ENTRIES.forEach(entry => {
       name: entry.question,
       text: entry.question,
       answerCount: 1,
+      author: {
+        '@type': 'Organization',
+        '@id': `${DOMAIN}/#organization`
+      },
       acceptedAnswer: {
         '@type': 'Answer',
         text: entry.workedExample
           ? `${entry.shortAnswer}\n\n${entry.explanation}\n\nWorked Example: ${entry.workedExample}`
-          : `${entry.shortAnswer}\n\n${entry.explanation}`
+          : `${entry.shortAnswer}\n\n${entry.explanation}`,
+        author: {
+          '@type': 'Organization',
+          '@id': `${DOMAIN}/#organization`
+        }
       }
     }
   };

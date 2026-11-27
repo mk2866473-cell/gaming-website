@@ -144,7 +144,7 @@ export const CODES_PAGES: CodesPageData[] = [
     gameName: 'Genshin Impact',
     gameHubPath: '/games/genshin',
     kind: 'codes',
-    lastChecked: '11 November 2026',
+    lastChecked: '15 November 2026',
     relatedToolPath: '/tools/genshin-pity-calculator',
     relatedToolLabel: 'Genshin Impact Pity Calculator',
     intro:
@@ -161,11 +161,6 @@ export const CODES_PAGES: CodesPageData[] = [
       {
         code: 'Y6JYMKV6JKSL',
         reward: "60 Primogems, 5 Adventurer's Experience"
-      },
-      {
-        code: 'KeepUpWithMitya',
-        reward: '3 Guide to Charity, 3 Kristallfold, 3 Energy-Replenishing Meal',
-        expires: '16 November 2026'
       },
       {
         code: 'MIJIQ23V2437',

@@ -59,7 +59,18 @@ async function generateFavicons() {
   const icoBuffer = Buffer.concat([icoHeader, ...dirEntries, ...payloads]);
   fs.writeFileSync(path.join(PUBLIC_DIR, 'favicon.ico'), icoBuffer);
 
-  console.log('Successfully generated favicon.ico, PNG favicons (16, 32, 48, 96, 180, 192, 512), and apple-touch-icon!');
+  // Render 1200x630 OpenGraph share image PNG from public/og-image.svg
+  const ogSvgPath = path.join(PUBLIC_DIR, 'og-image.svg');
+  if (fs.existsSync(ogSvgPath)) {
+    const ogSvgBuffer = fs.readFileSync(ogSvgPath);
+    const ogPngBuffer = await sharp(ogSvgBuffer)
+      .resize(1200, 630)
+      .png()
+      .toBuffer();
+    fs.writeFileSync(path.join(PUBLIC_DIR, 'og-image.png'), ogPngBuffer);
+  }
+
+  console.log('Successfully generated favicon.ico, PNG favicons (16, 32, 48, 96, 180, 192, 512), apple-touch-icon, and og-image.png (1200x630)!');
 }
 
 generateFavicons().catch((err) => {
